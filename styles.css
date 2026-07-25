@@ -17,19 +17,27 @@
 .tabs button{
     background-color:#003507;
     color:white;
-    padding: 15px;
+    padding: 20px;
     border: none;
     font-size:25px;
+    margin: 10px;
     font-family:'Times New Roman';
 }
 
 .tabs button:hover{
     background-color:#008111;
     color:white;
-    padding: 15px;
+    padding: 20px;
     border: none;
-    font-size:25px;
+    font-size:30px; 
     font-family:'Times New Roman';
+}
+
+.tabs {
+    display: flex;
+    background-color: grey;
+    width: 95%;
+    height: 100px;
 }
 
 /* Buttons inside tabs*/
@@ -37,10 +45,15 @@
 .anyButton {
     background-color:#0b8ade;
     color:rgb(0, 0, 0);
-    padding: 1%;
-    border: 2%;
+    padding: 15px;
     font-size: 100%;
     font-family:'Times New Roman';
+}
+
+.anyButton:hover{
+    background-color:#0a4f7d;
+    padding: 17px;
+
 }
 
 .upgrade {

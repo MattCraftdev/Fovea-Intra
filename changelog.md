@@ -1,8 +1,15 @@
 Newest versions
 
+2026/07/25 11:43 AM - [0.13.2]
+- Added goatcounter for site analytics
+
+2026/07/21 6:00 PM - [0.13.1]
+- Added button highlights for styling on some buttons
+- Added href link to changelog (hi there :o meta)
+
 2026/07/11 9:32 PM - [0.13.0]
 - Updated upgrades to be more dynamic with unlocking, adding more
-- Added bar levels in player.xxx
+- Added bar levels in player.xxx (array)
 - Added fitness upgrade as a whole and it's shop unlock upgrade
 
 2026/07/10 1:44 PM - [0.12.0]
@@ -82,7 +89,7 @@ Newest versions
 - Added Tabs for each part
 - Added knowledge and made it so you can "birth knowledge"
 - Added story message box on the side
-- Added depression as a mechanic, mainly mood thoughssssssss
+- Added depression as a mechanic, mainly mood thoughsss
 
 2026/07/01 3:33PM - Initial Build [0] 
 - Time system implemented
