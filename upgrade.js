@@ -86,6 +86,23 @@ const upgrades = [
         }
     },
 
+        {
+        id: "unlockmagicbtn",
+        description: "magic bro",
+        cost: 50,
+        costtype: "wisdom",
+        unlocked: false,
+        reqamount: 10,
+        reqtype: "wisdom",
+        flavortext: "You feel a calling to something more.",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("magicContainer").classList.remove("hidden");
+            say("Learning with life");
+        }
+    },
+
 ]
 
 // Checks if any upgrade can be unlocked
@@ -132,7 +149,5 @@ function buyUpgrade(upgradeId) {
 
 // For each button, when clicked buy the upgrade
 for (const btns of upgrades) {
-    document.getElementById(btns.id).addEventListener("click", () => {
-    buyUpgrade(btns.id);
-    });
+    document.getElementById(btns.id).addEventListener("click", () => { buyUpgrade(btns.id); });
 };

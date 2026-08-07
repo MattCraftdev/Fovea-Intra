@@ -11,6 +11,7 @@ class ProgressBar {
     };
     
     update() {
+
         if (this.progress < this.maxprogress) {
             this.progress += this.speed;
             let widthPercent = Math.min((this.progress / this.maxprogress) * 100, 100);
@@ -19,7 +20,7 @@ class ProgressBar {
         } else {
             this.level++;
             this.progress = 0;
-
+            console.log(`${this.progress}/${this.maxprogress}. Speed is ${this.speed}`)
             updateAllSpeeds();
             
             // Expo increase value
@@ -60,6 +61,8 @@ const fitnessBar = new ProgressBar("fitness", 10, 2500, 1.25)
 
 const knowledgeBar = new ProgressBar("knowledge", 10, 10000, 1.2);
 
+const magicBar = new ProgressBar("magic", 10, 25000, 1.25);
+
 // Vars
 let flexbuff = 0;
 
@@ -79,6 +82,9 @@ function updateProgress() {
     } else if (activeBar === "fitness") {
         fitnessBar.update();
         document.getElementById("fitnessLevelDisplay").innerText = "Fitness Level: " + fitnessBar.getLevel();
+    } else if (activeBar === "magic") {
+        magicBar.update();
+        document.getElementById("magicLevelDisplay").innerText = "Magic Accumination Level: " + magicBar.getLevel();
     }
 
     flexbuff = player.flexLevel*2;
@@ -96,6 +102,8 @@ function updateAllSpeeds() {
     vitBar.speed = baseMoodspeed + flexbuff;
     flexBar.speed = baseMoodspeed;
     knowledgeBar.speed = baseMoodspeed;
+    fitnessBar.speed = baseMoodspeed;
+    magicBar.speed = baseMoodspeed;
 }
 
 // Setting interval higher = worse transitioning rate. Currently 

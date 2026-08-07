@@ -1,5 +1,10 @@
 Newest versions
 
+2026/07/25 10:40 PM - [0.14.0]
+- Added magic upgrade
+- Cleaned up minor issues in code
+- Checked magic code and it works too
+
 2026/07/25 11:43 AM - [0.13.2]
 - Added goatcounter for site analytics
 

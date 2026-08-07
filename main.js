@@ -21,6 +21,10 @@ const player = {
     get fitnessLevel () {
         return fitnessBar.getLevel();
     },
+    get magicLevel () {
+        return magicBar.getLevel();
+    },
+
 }
 
 
@@ -31,6 +35,7 @@ Ideas:
 - Add chatbox message multiple
 - Potiental change to mood sys (ratio*1000)
 - Add more to upgrade system
+- Group sections more thouroughly
 */
 
 // Knowledge accumilination system

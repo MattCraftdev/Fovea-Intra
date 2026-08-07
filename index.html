@@ -33,8 +33,11 @@
 
     <nav class = "tab-content" id = "Creation">
         <br>
-        <button id = "createKnowledge" class = "anyButton" >Create knowledge</button>
-        <button id = "switchtoWisdom" class = "anyButton hidden" >Become wise, 5 Knowledge: 1 Wisdom</button>
+
+        <section>
+            <button id = "createKnowledge" class = "anyButton" >Create knowledge</button>
+            <button id = "switchtoWisdom" class = "anyButton hidden" >Become wise, 5 Knowledge: 1 Wisdom</button>
+        </section>
 
         <section>
 
@@ -69,7 +72,18 @@
                     <span class= "progress-text" id = "knowledgeLevelDisplay">Knowledge Level: 1</span>
                 </div>
             </div>
+        </section>
 
+        <section>
+
+            <div class = "hidden" id="magicContainer">
+                <div class="progress-container" title = "Become magical and kill stuff!" id = "magicbtn">
+                    <div class="progress-bar" id="magic"></div>
+                    <span class= "progress-text" id = "magicLevelDisplay">Magic Accumulination Level: 1</span>
+                </div>
+            </div>        
+
+        
         </section>
     </nav>
 
@@ -82,6 +96,7 @@
         <button id = "unlockwisdombtn" class = "hidden upgrade">Learn the act of wisdom - Costs 35 Knowledge</button>
         <button id = "unlockknowledgebtn" class = "hidden upgrade">Study how to learn better - Costs 10 Wisdom</button>
         <button id = "unlockfitnessbtn" class = "hidden upgrade">Fitness - Costs 500 Knowledge</button>
+        <button id = "unlockmagicbtn" class = "hidden upgrade">Magic - Costs 50 Wisdom</button>
 
     </nav>
     
