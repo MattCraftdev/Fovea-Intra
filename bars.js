@@ -72,6 +72,8 @@ const magicstudyBar = new ProgressBar("magicstudy", 10, 10000, 1.15);
 // Vars
 let flexbuff = 0;
 let martialbuff = 0;
+let magicbuff = 0;
+let magicstudybuff = 0;
 
 let activeBar = null;
 // Update Progress Bars

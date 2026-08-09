@@ -44,7 +44,7 @@ Ideas:
 - Group sections more thouroughly
 */
 
-// Knowledge accumilination system
+// Knowledge addition system + wisdom sys
 document.getElementById("createKnowledge").addEventListener("click", () => {
     if (mood<player.knowledgeCap) {
         player.knowledge += player.baseKnowledgeIncrease;
@@ -60,11 +60,21 @@ document.getElementById("switchtoWisdom").addEventListener("click", () => {
     }
 });
 
-// Chatbox creation to send a message
-function say(message) {
-    document.getElementById("messageplaceholder").innerText = message;
-};
+// Chatbox code
+let maxMessages = 10;
+const chatbox = document.getElementById("chatbox");
 
+function say(message) {
+    const msg = document.createElement("p");
+    msg.classList.add("message");
+    msg.textContent = message;
+    chatbox.prepend(msg);
+    // Max message count (set it)
+    while (chatbox.children.length > maxMessages) {
+        chatbox.firstElementChild.remove();
+    };
+    chatbox.scrollTop = chatbox.scrollHeight;
+};
 
 // Tab code foreach
 const TabButtons= document.querySelectorAll(".tab-button");

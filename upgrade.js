@@ -8,12 +8,12 @@ const upgrades = [
         unlocked: false,
         reqamount: 50,
         reqtype: "knowledge",
-        flavortext: "There's a plan I want to do. (Go to Inventions)",
+        flavortext: "I may not have a brain gentlemen. But I have an idea..",
         purchased: 0,
         maxpurchases: 1,
         onpurchase: () => {
             document.getElementById("vitContainer").classList.remove("hidden");
-            say("You design a strict routine. Your physical form feels... resilient.");
+            say("A strict routine only for the best");
         }
     },
 
@@ -48,7 +48,7 @@ const upgrades = [
         onpurchase: () => {
             document.getElementById("switchtoWisdom").classList.remove("hidden");
             document.getElementById("displayWisdom").classList.remove("hidden");
-            say("A white beard sprouts on your chin, and your back teeth emerge.");
+            say("A white beard sprouts on your chin, and your back teeth emerge. You feel...wiser somehow?");
         }
     },
 
@@ -60,12 +60,12 @@ const upgrades = [
         unlocked: false,
         reqamount: 4,
         reqtype: "wisdom",
-        flavortext: "You feel a calling to something more.",
+        flavortext: "What if I just studied how to think?!",
         purchased: 0,
         maxpurchases: 1,
         onpurchase: () => {
             document.getElementById("knowledgeContainer").classList.remove("hidden");
-            say("Learning with life");
+            say("The deeper the knowledge the better");
         }
     },
 
@@ -77,12 +77,12 @@ const upgrades = [
         unlocked: false,
         reqamount: 25,
         reqtype: "vitLevel",
-        flavortext: "You feel a calling to something more.",
+        flavortext: "You feel fat. Maybe it's time to fix this issue.",
         purchased: 0,
         maxpurchases: 1,
         onpurchase: () => {
             document.getElementById("fitnessContainer").classList.remove("hidden");
-            say("Learning with life");
+            say("Time to excersize");
         }
     },
 
@@ -94,12 +94,12 @@ const upgrades = [
         unlocked: false,
         reqamount: 25,
         reqtype: "flexLevel",
-        flavortext: "You feel a calling to something more.",
+        flavortext: "You just watched your first kung fu movie and now think you're Bruce Lee.",
         purchased: 0,
         maxpurchases: 1,
         onpurchase: () => {
             document.getElementById("martialContainer").classList.remove("hidden");
-            say("Learning with life");
+            say("Everybody wa' kung foo fighti-ing hooo haaaa!!");
         }
     },
 
@@ -111,12 +111,12 @@ const upgrades = [
         unlocked: false,
         reqamount: 10,
         reqtype: "wisdom",
-        flavortext: "You're unlocking cool shtuff!",
+        flavortext: "A tree said to you that magic is real",
         purchased: 0,
         maxpurchases: 1,
         onpurchase: () => {
             document.getElementById("magicContainer").classList.remove("hidden");
-            say("Learning with life");
+            say("FIREBALL!!!!!");
         }
     },
         {
@@ -127,12 +127,12 @@ const upgrades = [
         unlocked: false,
         reqamount: 10,
         reqtype: "magicLevel",
-        flavortext: "You don't really wanna study but..",
+        flavortext: "You don't really wanna study but..magic kool!!",
         purchased: 0,
         maxpurchases: 1,
         onpurchase: () => {
             document.getElementById("magicstudyContainer").classList.remove("hidden");
-            say("Learning with magic boringly enough");
+            say("Books are boring but magic is not.");
         }
     },
 
@@ -161,7 +161,7 @@ setInterval(() => {
                 document.getElementById(loop.id).classList.remove("hidden")
             }
                     
-            say(loop.flavortext)
+            say(`${loop.flavortext}. Check Inventions!`)
         };
     };
 }, 500);
@@ -176,7 +176,8 @@ function buyUpgrade(upgradeId) {
         upgrade.purchased += 1
         document.getElementById(upgrade.id).classList.add("hidden")
         upgrade.onpurchase();
-        console.log(upgrade)
+        console.log(upgrade);
+        say("Upgrade unlocked!!!")
 
     };
 };

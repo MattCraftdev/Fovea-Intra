@@ -116,8 +116,53 @@
     width: 100%;
     position: relative;
     z-index: 2;
-}    
+}
 
+/* Section  */
+
+#box {
+    padding: 20px;
+    margin: 10px;
+    display: flex;
+    background-color: grey;
+    width: 90%;
+}
+
+#healthSection {
+    border:5px solid rgb(0, 103, 21);
+    padding: 20px;
+    margin: 10px;
+    display: block;
+    background-color: rgb(73, 210, 91);
+    width: 90%;
+    height: fit-content;
+}
+
+#magicSection {
+    border:5px solid rgb(56, 56, 155);
+    padding: 20px;
+    margin: 10px;
+    display: block;
+    background-color: rgb(79, 90, 167);
+    width: 90%;
+    height: fit-content;
+}
+
+#healthheader {
+    padding: 20px;
+    margin: 10px;
+    display: flex;
+    background-color: rgb(73, 210, 91);
+    width: fit-content;
+}
+
+#magicheader {
+    padding: 20px;
+    margin: 10px;
+    display: flex;
+    background-color: rgb(79, 90, 167);
+    width: fit-content;
+}
 /* Death Screen */
 #youDied {
     position: absolute;

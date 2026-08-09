@@ -1,4 +1,20 @@
 Newest versions
+
+2026/08/09 3:16 PM - [0.17.1]
+- Updated chatbox even MORE by making it add new messages at the top
+- Fixed lil bites of code 
+
+2026/08/09 3:00 PM - [0.17.0]
+- Updated chatbox from holding 1 line to 10/any amount max
+- Updated all flavor text + unlock messages
+
+2026/08/09 1:22 PM - [0.16.3]
+- Fixed errors with buffs (declaring)
+
+2026/08/09 11:35 AM - [0.16.2]
+- Grouped together sections of bars (eg. Health bars, magic bars, etc.) with borders
+- Added colors and the pizzaz
+
 2026/08/08 10:53 PM - [0.16.1]
 - Minor adjustments to magicstudy upgrade (changed req to magiclevel)
 - Another small adjustment to making magic increase speed of other magic types
