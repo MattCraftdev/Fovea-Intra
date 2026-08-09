@@ -10,8 +10,6 @@ const player = {
     lifespan: 50,
 
 
-
-
     get vitLevel () {
         return vitBar.getLevel();
     },
@@ -30,18 +28,21 @@ const player = {
     get magicstudyLevel () {
         return magicstudyBar.getLevel();
     },
+    get hitLevel() {
+        return hitBar.getLevel();
+    },
+    get taichiLevel () {
+        return taichiBar.getLevel();
+    },
 
 }
 
 
 /*
 Ideas:
-- Knowledge Cap through mood
 - Add coping mech which increases mood tolerance/knowledgecap
-- Add chatbox message multiple
 - Potiental change to mood sys (ratio*1000)
 - Add more to upgrade system
-- Group sections more thouroughly
 */
 
 // Knowledge addition system + wisdom sys
@@ -49,7 +50,7 @@ document.getElementById("createKnowledge").addEventListener("click", () => {
     if (mood<player.knowledgeCap) {
         player.knowledge += player.baseKnowledgeIncrease;
     } else {
-        console.log(`knowledge is ${player.knowledge}. Mood is ${mood}`)
+        console.log(`knowledge is ${player.knowledge}. Mood is ${mood}. Currently MOOD is BAD!`)
     }
 });
 

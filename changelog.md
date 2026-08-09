@@ -1,8 +1,16 @@
 Newest versions
 
+2026/08/09 5:03 PM - [0.19.0]
+- Added taichi upgrade that decreases speed of all health bars/upgrades but greatly increases mood cap
+- Also modified HIT to swap as taichi (so tai chi decreases speed and HIT increases speed, swapped taichi)
+- And slightly tweaked speed calc in updateallspeeds while added taichi buff
+
+2026/08/09 4:31 PM - [0.18.0]
+- Added Tai Chi upgrade, that increases the speed of all health upgrades/bars
+
 2026/08/09 3:16 PM - [0.17.1]
 - Updated chatbox even MORE by making it add new messages at the top
-- Fixed lil bites of code 
+- Fixed lil bites of code, and it says when upgrades are unlocked and when available to check inventions*
 
 2026/08/09 3:00 PM - [0.17.0]
 - Updated chatbox from holding 1 line to 10/any amount max

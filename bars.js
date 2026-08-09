@@ -42,6 +42,8 @@ class ProgressBar {
 
             } else if (this.elementId == "martial") {
                 player.knowledgeCap += 5;
+            } else if (this.elementId == "taichi") {
+                player.knowledgeCap += 50;
             }
             
         };
@@ -63,6 +65,8 @@ const vitBar = new ProgressBar("vit", 10, 1000, 1.15);
 const flexBar = new ProgressBar("flex", 10, 1000, 1.1);
 const fitnessBar = new ProgressBar("fitness", 10, 2500, 1.25)
 const martialBar = new ProgressBar("martial", 10, 3500, 1.3)
+const hitBar = new ProgressBar("hit", 10, 5000, 1.25)
+const taichiBar = new ProgressBar("taichi", 10, 4000, 1.15)
 
 const knowledgeBar = new ProgressBar("knowledge", 10, 10000, 1.2);
 
@@ -74,6 +78,8 @@ let flexbuff = 0;
 let martialbuff = 0;
 let magicbuff = 0;
 let magicstudybuff = 0;
+let taichibuff = 0;
+let hitnerf = 0;
 
 let activeBar = null;
 // Update Progress Bars
@@ -100,6 +106,12 @@ function updateProgress() {
     } else if (activeBar === "magicstudy") {
         magicstudyBar.update();
         document.getElementById("magicstudyLevelDisplay").innerText = "Magic Study Level: " + magicstudyBar.getLevel();
+    } else if (activeBar === "hit") {
+        hitBar.update();
+        document.getElementById("hitLevelDisplay").innerText = "HIT Level: " + hitBar.getLevel();
+    } else if (activeBar === "taichi") {
+        taichiBar.update();
+        document.getElementById("taichiLevelDisplay").innerText = "Tai Chi Level: " + taichiBar.getLevel();
     }
 
 
@@ -108,7 +120,8 @@ function updateProgress() {
     martialbuff = player.martialLevel*2
     magicbuff = player.magicLevel
     magicstudybuff = player.magicstudyLevel*2
-
+    taichinerf = player.taichiLevel*3
+    hitbuff = player.hitLevel*2
 };
 
 
@@ -119,12 +132,16 @@ function updateAllSpeeds() {
     const baseSpeed = 10
 
     const baseMoodspeed = baseSpeed + mooddiff*10
-    vitBar.speed = baseMoodspeed + flexbuff;
-    flexBar.speed = baseMoodspeed + martialbuff;
+    const healthsum = taichinerf-hitbuff;
+
+    vitBar.speed = baseMoodspeed + flexbuff + healthsum
+    flexBar.speed = baseMoodspeed + martialbuff + healthsum
+    fitnessBar.speed = baseMoodspeed + healthsum
+    martialBar.speed = baseMoodspeed + healthsum
+    hitBar.speed = baseMoodspeed + healthsum
+
     knowledgeBar.speed = baseMoodspeed + magicstudybuff;
-    fitnessBar.speed = baseMoodspeed;
     magicBar.speed = baseMoodspeed;
-    martialBar.speed = baseMoodspeed;
     magicstudyBar.speed = baseMoodspeed + magicbuff - 10;
 }
 

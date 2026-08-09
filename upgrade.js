@@ -136,6 +136,39 @@ const upgrades = [
         }
     },
 
+        {
+        id: "unlockhitbtn",
+        description: "Become flowers with the wind",
+        cost: 1000,
+        costtype: "knowledge",
+        unlocked: false,
+        reqamount: 10,
+        reqtype: "martialLevel",
+        flavortext: "Become flowing water with the wind (No more Kung Foo movies)",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("hitContainer").classList.remove("hidden");
+            say("You got out of your kung foo phase for the real stuff");
+        }
+    },
+
+        {
+        id: "unlocktaichibtn",
+        description: "Become flowers with the wind",
+        cost: 150,
+        costtype: "wisdom",
+        unlocked: false,
+        reqamount: 15,
+        reqtype: "martialLevel",
+        flavortext: "Become flowing water with the wind (No more Kung Foo movies)",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("taichiContainer").classList.remove("hidden");
+            say("Say a proverb because you don't care about life! PEEEEAAAACE!!!");
+        }
+    },
 
 ]
 
