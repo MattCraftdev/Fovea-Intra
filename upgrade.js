@@ -2,7 +2,6 @@
 const upgrades = [
     {
         id: "unlock1",
-        description: "Unlocks the ability to increase your vitality.",
         cost: 100,
         costtype: "knowledge",
         unlocked: false,
@@ -19,7 +18,6 @@ const upgrades = [
 
     {
         id: "unlocklifespanTimer",
-        description: "Unlocks the ability to see your lifespan.",
         cost: 1000,
         costtype: "knowledge",
         unlocked: false,
@@ -36,7 +34,6 @@ const upgrades = [
 
     {
         id: "unlockwisdombtn",
-        description: "The act of transfering knowledge into wisdom.",
         cost: 35,
         costtype: "knowledge",
         unlocked: false,
@@ -54,7 +51,6 @@ const upgrades = [
 
     {
         id: "unlockknowledgebtn",
-        description: "Know thyself.",
         cost: 10,
         costtype: "wisdom",
         unlocked: false,
@@ -71,7 +67,6 @@ const upgrades = [
 
         {
         id: "unlockfitnessbtn",
-        description: "Know thyself.",
         cost: 500,
         costtype: "knowledge",
         unlocked: false,
@@ -88,7 +83,6 @@ const upgrades = [
 
         {
         id: "unlockmartialbtn",
-        description: "Know thyself.",
         cost: 75,
         costtype: "wisdom",
         unlocked: false,
@@ -105,7 +99,6 @@ const upgrades = [
 
         {
         id: "unlockmagicbtn",
-        description: "magic bro",
         cost: 50,
         costtype: "wisdom",
         unlocked: false,
@@ -121,7 +114,6 @@ const upgrades = [
     },
         {
         id: "unlockmagicstudybtn",
-        description: "studying more...",
         cost: 100,
         costtype: "wisdom",
         unlocked: false,
@@ -138,7 +130,6 @@ const upgrades = [
 
         {
         id: "unlockhitbtn",
-        description: "Become flowers with the wind",
         cost: 1000,
         costtype: "knowledge",
         unlocked: false,
@@ -155,7 +146,6 @@ const upgrades = [
 
         {
         id: "unlocktaichibtn",
-        description: "Become flowers with the wind",
         cost: 150,
         costtype: "wisdom",
         unlocked: false,
@@ -169,11 +159,26 @@ const upgrades = [
             say("Say a proverb because you don't care about life! PEEEEAAAACE!!!");
         }
     },
+        {
+        id: "unlockpit",
+        cost: 10,
+        costtype: "knowledge",
+        unlocked: true,
+        reqamount: 0,
+        reqtype: "knowledge",
+        flavortext: "",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("the-pit").classList.remove("hidden");
+            document.getElementById("no-pit").classList.add("hidden");
+            say("A big dark hole emerged from the nearby ground. It's deep.");
+        }
+    },
 
 ]
 
 // Checks if any upgrade can be unlocked
-
 const inventionsBtn = document.querySelector('[data-tab = "Inventions"]');
 
 setInterval(() => {

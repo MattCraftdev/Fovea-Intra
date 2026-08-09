@@ -41,7 +41,6 @@ const player = {
 /*
 Ideas:
 - Pit of sacrifice where better loot thrown = better stuff back
-- add wisdom to be factored to cap
 - Add more to upgrade system
 */
 
@@ -55,11 +54,84 @@ document.getElementById("createKnowledge").addEventListener("click", () => {
 });
 
 document.getElementById("switchtoWisdom").addEventListener("click", () => {
-    if (player.knowledge>Math.min(wisdomRate-1, 1)) {
-        player.knowledge -= wisdomRate;
+    if (player.knowledge>player.wisdomRate-1) {
+        player.knowledge -= player.wisdomRate;
         player.wisdom += 1;
     }
 });
+
+// THE PIT
+document.getElementById("the-pit").addEventListener("click", () => {
+    if (player.knowledge > 0 || player.wisdom > 0) {
+        console.log("throwing")
+
+        const addbuff = player.knowledge + player.wisdom*6
+
+        player.knowledge = 0;
+        player.wisdom = 0;
+
+        const roll = Math.random()*100 + addbuff
+
+        if (roll<25) {
+
+            say("The pit shakes slightly, but is not impressed you stingy bum!")
+
+        } else if (roll>=25 && roll<50) {
+
+            say("The pit is mildly impressed, but does not care enough.")
+
+        } else if (roll>=50 && roll<75) {
+
+            say("Chanting can be heard from deep inside the pit. It is pleased.")
+            player.knowledge = roundto1(Math.random() * 75); 
+
+            if (document.getElementById("unlockwisdombtn").classList.contains("hidden")) {
+                player.knowledge = roundto1(Math.max(player.knowledge - (Math.random() * 10), 0)); 
+                say(`It has gifted you ${player.knowledge} knowledge. Be grateful.`)
+
+            } else {
+
+                player.wisdom = roundto1(Math.random() * 10); 
+                say(`It has gifted you ${player.knowledge} knowledge and ${player.wisdom} wisdom. Be grateful.`)
+            }
+
+        } else if (roll>=75 && roll<100) {
+
+            say("A nice smell wafts up from the pit. It's the greatest thing you've ever smelled")
+            player.knowledge = roundto1(Math.random() * 250); 
+
+            if (document.getElementById("unlockwisdombtn").classList.contains("hidden")) {
+                player.knowledge = roundto1(Math.max(player.knowledge - (Math.random() * 50), 0)); 
+                say(`It has gifted you ${player.knowledge} knowledge. Be grateful.`)
+
+            } else {
+
+                player.wisdom = roundto1(Math.random() * 25); 
+                say(`It has gifted you ${player.knowledge} knowledge and ${player.wisdom} wisdom. Be grateful.`)
+            }
+
+        } else if (roll>=100) {
+            
+            say("Wow you got really lucky. Too bad getting a life doesn't come with this prize")
+            player.knowledge = roundto1((Math.random() * 400)+100); 
+
+            if (document.getElementById("unlockwisdombtn").classList.contains("hidden")) {
+                say(`It has gifted you ${player.knowledge} knowledge. Be grateful.`)
+            } else {
+                player.wisdom = roundto1(Math.random() * 50); 
+                say(`It has gifted you ${player.knowledge} knowledge and ${player.wisdom} wisdom. Be grateful.`)
+            }
+        }
+
+
+    } else {
+        say("You can't throw nothing into a pit idiot...")
+    }
+});
+
+function roundto1(varib) {
+    return parseFloat(varib.toFixed(1));
+};
 
 // Chatbox code
 let maxMessages = 10;
@@ -72,8 +144,9 @@ function say(message) {
     chatbox.prepend(msg);
     // Max message count (set it)
     while (chatbox.children.length > maxMessages) {
-        chatbox.firstElementChild.remove();
+        chatbox.lastElementChild.remove();
     };
+
     chatbox.scrollTop = chatbox.scrollHeight;
 };
 

@@ -1,6 +1,16 @@
 Newest versions
 
-2026/08/09 5:16 PM - [0.20.0]
+2026/08/09 6:55 PM - [0.22.0]
+- Added the pit and it's own tab
+- Added the pit's own upgrade, and also a little blurb that initially shown but hides after bought
+- Fixed a small error with chatbox
+- Added the pit system when you throw in stuff
+
+2026/08/09 5:38 PM - [0.20.1]
+- Fixed some minor errors with wisdom code
+- Fixed another error with forgotton tai chi button
+
+2026/08/09 5:29 PM - [0.20.0]
 - Fixed small error with ratio * a fixed amount
 - Modified player cap
 - Completely overhauled how mood is calculated, making wisdom also take how much convert rate into consideration
