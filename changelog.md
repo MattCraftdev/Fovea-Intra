@@ -1,5 +1,11 @@
 Newest versions
 
+2026/08/09 5:16 PM - [0.20.0]
+- Fixed small error with ratio * a fixed amount
+- Modified player cap
+- Completely overhauled how mood is calculated, making wisdom also take how much convert rate into consideration
+- Also fixed wisdom to a specific convert rate for future easy change
+
 2026/08/09 5:03 PM - [0.19.0]
 - Added taichi upgrade that decreases speed of all health bars/upgrades but greatly increases mood cap
 - Also modified HIT to swap as taichi (so tai chi decreases speed and HIT increases speed, swapped taichi)

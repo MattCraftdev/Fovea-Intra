@@ -38,12 +38,12 @@ class ProgressBar {
 
             } else if (this.elementId == "fitness") {
                 player.lifespan += 1;
-                player.knowledgeCap -= 1;
+                player.cap -= 1;
 
             } else if (this.elementId == "martial") {
-                player.knowledgeCap += 5;
+                player.cap += 5;
             } else if (this.elementId == "taichi") {
-                player.knowledgeCap += 50;
+                player.cap += 50;
             }
             
         };
@@ -127,7 +127,7 @@ function updateProgress() {
 
 // Updates all speeds quickly
 function updateAllSpeeds() {
-    const currentProgress = mood/player.knowledgeCap;
+    const currentProgress = mood/player.cap;
     const mooddiff = 0.5 - currentProgress;
     const baseSpeed = 10
 

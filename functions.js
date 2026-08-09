@@ -8,31 +8,31 @@ setInterval(() => {
 
 
 function solveMood() {
-    let ratio = Math.min(player.knowledge/player.knowledgeCap, 1)
-    mood = ratio*1000
+    let ratio = Math.min(Math.max(player.knowledge+player.wisdom*player.wisdomRate, 1)/player.cap, 1)
+    mood = ratio*player.cap
     
-    if (mood>=player.knowledgeCap) {
-        mood = player.knowledgeCap;
+    if (mood>=player.cap) {
+        mood = player.cap;
         moodStatus = "Death awaits."
     }
 
-    else if (mood>=(player.knowledgeCap*0.9)) {
+    else if (mood>=(player.cap*0.9)) {
         moodStatus = "Depressed."
     }
 
-    else if (mood>(player.knowledgeCap*0.6) && mood<(player.knowledgeCap*0.9)) {
+    else if (mood>(player.cap*0.6) && mood<(player.cap*0.9)) {
         moodStatus = "Sad."
     }
     
-    else if (mood>(player.knowledgeCap*0.4) && mood<(player.knowledgeCap*0.6)) {
+    else if (mood>(player.cap*0.4) && mood<(player.cap*0.6)) {
         moodStatus = "Alright."
     }
 
-    else if (mood>(player.knowledgeCap*0.1) && mood<(player.knowledgeCap * 0.4)) {
+    else if (mood>(player.cap*0.1) && mood<(player.cap * 0.4)) {
         moodStatus = "Happy"
     }
 
-    else if (mood<=(player.knowledgeCap*0.1)) {
+    else if (mood<=(player.cap*0.1)) {
         moodStatus = "Overjoyed";
     }
 

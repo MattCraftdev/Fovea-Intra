@@ -1,12 +1,12 @@
-
 let mood = 0;
 let moodStatus = "Ok";
 
 const player = {
     knowledge: 0,
-    knowledgeCap: 1000,
+    cap: 100,
     baseKnowledgeIncrease: 1,
     wisdom: 0,
+    wisdomRate: 5,
     lifespan: 50,
 
 
@@ -40,14 +40,14 @@ const player = {
 
 /*
 Ideas:
-- Add coping mech which increases mood tolerance/knowledgecap
-- Potiental change to mood sys (ratio*1000)
+- Pit of sacrifice where better loot thrown = better stuff back
+- add wisdom to be factored to cap
 - Add more to upgrade system
 */
 
 // Knowledge addition system + wisdom sys
 document.getElementById("createKnowledge").addEventListener("click", () => {
-    if (mood<player.knowledgeCap) {
+    if (mood<player.cap) {
         player.knowledge += player.baseKnowledgeIncrease;
     } else {
         console.log(`knowledge is ${player.knowledge}. Mood is ${mood}. Currently MOOD is BAD!`)
@@ -55,8 +55,8 @@ document.getElementById("createKnowledge").addEventListener("click", () => {
 });
 
 document.getElementById("switchtoWisdom").addEventListener("click", () => {
-    if (player.knowledge>4) {
-        player.knowledge -= 5;
+    if (player.knowledge>Math.min(wisdomRate-1, 1)) {
+        player.knowledge -= wisdomRate;
         player.wisdom += 1;
     }
 });
