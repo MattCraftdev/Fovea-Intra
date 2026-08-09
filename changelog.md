@@ -1,6 +1,15 @@
 Newest versions
+2026/08/08 10:53 PM - [0.16.1]
+- Minor adjustments to magicstudy upgrade (changed req to magiclevel)
+- Another small adjustment to making magic increase speed of other magic types
 
-2026/07/25 10:40 PM - [0.14.0]
+2026/08/08 10:15 PM - [0.16.0]
+- Added study magic upgrade, which increases knowledge upgrade speed
+
+2026/08/07 8:59 PM - [0.15.0]
+- Added martial arts upgrade which unlocks martial arts
+
+2026/08/06 10:40 PM - [0.14.0]
 - Added magic upgrade
 - Cleaned up minor issues in code
 - Checked magic code and it works too

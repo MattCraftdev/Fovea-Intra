@@ -24,6 +24,12 @@ const player = {
     get magicLevel () {
         return magicBar.getLevel();
     },
+    get martialLevel () {
+        return martialBar.getLevel();
+    },
+    get magicstudyLevel () {
+        return magicstudyBar.getLevel();
+    },
 
 }
 

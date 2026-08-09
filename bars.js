@@ -35,9 +35,13 @@ class ProgressBar {
 
             } else if (this.elementId == "knowledge") {
                 player.baseKnowledgeIncrease = knowledgeBar.getLevel();
+
             } else if (this.elementId == "fitness") {
                 player.lifespan += 1;
                 player.knowledgeCap -= 1;
+
+            } else if (this.elementId == "martial") {
+                player.knowledgeCap += 5;
             }
             
         };
@@ -47,7 +51,7 @@ class ProgressBar {
         this.progress = 0;
         this.level = 1;
 
-    };
+    };  
 
     getLevel() {
         return this.level;
@@ -58,13 +62,16 @@ class ProgressBar {
 const vitBar = new ProgressBar("vit", 10, 1000, 1.15);
 const flexBar = new ProgressBar("flex", 10, 1000, 1.1);
 const fitnessBar = new ProgressBar("fitness", 10, 2500, 1.25)
+const martialBar = new ProgressBar("martial", 10, 3500, 1.3)
 
 const knowledgeBar = new ProgressBar("knowledge", 10, 10000, 1.2);
 
 const magicBar = new ProgressBar("magic", 10, 25000, 1.25);
+const magicstudyBar = new ProgressBar("magicstudy", 10, 10000, 1.15);
 
 // Vars
 let flexbuff = 0;
+let martialbuff = 0;
 
 let activeBar = null;
 // Update Progress Bars
@@ -85,9 +92,20 @@ function updateProgress() {
     } else if (activeBar === "magic") {
         magicBar.update();
         document.getElementById("magicLevelDisplay").innerText = "Magic Accumination Level: " + magicBar.getLevel();
+    } else if (activeBar === "martial") {
+        martialBar.update();
+        document.getElementById("martialLevelDisplay").innerText = "Martial Arts Level: " + martialBar.getLevel();
+    } else if (activeBar === "magicstudy") {
+        magicstudyBar.update();
+        document.getElementById("magicstudyLevelDisplay").innerText = "Magic Study Level: " + magicstudyBar.getLevel();
     }
 
+
+
     flexbuff = player.flexLevel*2;
+    martialbuff = player.martialLevel*2
+    magicbuff = player.magicLevel
+    magicstudybuff = player.magicstudyLevel*2
 
 };
 
@@ -100,10 +118,12 @@ function updateAllSpeeds() {
 
     const baseMoodspeed = baseSpeed + mooddiff*10
     vitBar.speed = baseMoodspeed + flexbuff;
-    flexBar.speed = baseMoodspeed;
-    knowledgeBar.speed = baseMoodspeed;
+    flexBar.speed = baseMoodspeed + martialbuff;
+    knowledgeBar.speed = baseMoodspeed + magicstudybuff;
     fitnessBar.speed = baseMoodspeed;
     magicBar.speed = baseMoodspeed;
+    martialBar.speed = baseMoodspeed;
+    magicstudyBar.speed = baseMoodspeed + magicbuff - 10;
 }
 
 // Setting interval higher = worse transitioning rate. Currently 

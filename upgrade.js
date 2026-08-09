@@ -87,6 +87,23 @@ const upgrades = [
     },
 
         {
+        id: "unlockmartialbtn",
+        description: "Know thyself.",
+        cost: 75,
+        costtype: "wisdom",
+        unlocked: false,
+        reqamount: 25,
+        reqtype: "flexLevel",
+        flavortext: "You feel a calling to something more.",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("martialContainer").classList.remove("hidden");
+            say("Learning with life");
+        }
+    },
+
+        {
         id: "unlockmagicbtn",
         description: "magic bro",
         cost: 50,
@@ -94,7 +111,7 @@ const upgrades = [
         unlocked: false,
         reqamount: 10,
         reqtype: "wisdom",
-        flavortext: "You feel a calling to something more.",
+        flavortext: "You're unlocking cool shtuff!",
         purchased: 0,
         maxpurchases: 1,
         onpurchase: () => {
@@ -102,6 +119,23 @@ const upgrades = [
             say("Learning with life");
         }
     },
+        {
+        id: "unlockmagicstudybtn",
+        description: "studying more...",
+        cost: 100,
+        costtype: "wisdom",
+        unlocked: false,
+        reqamount: 10,
+        reqtype: "magicLevel",
+        flavortext: "You don't really wanna study but..",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("magicstudyContainer").classList.remove("hidden");
+            say("Learning with magic boringly enough");
+        }
+    },
+
 
 ]
 
