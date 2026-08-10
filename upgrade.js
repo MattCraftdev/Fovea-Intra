@@ -230,9 +230,6 @@ function buyUpgrade(upgradeId) {
 };
 
 
-
-
-
 // For each button, when clicked buy the upgrade
 for (const btns of upgrades) {
     document.getElementById(btns.id).addEventListener("click", () => { buyUpgrade(btns.id); });

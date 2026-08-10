@@ -35,6 +35,7 @@ class ProgressBar {
 
             } else if (this.elementId == "knowledge") {
                 player.baseKnowledgeIncrease = knowledgeBar.getLevel();
+                document.getElementById("createKnowledge").innerText(`Create ${baseKnowledgeIncrease} Knowledge`);
 
             } else if (this.elementId == "fitness") {
                 player.lifespan += 1;

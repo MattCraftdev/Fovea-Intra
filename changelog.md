@@ -1,18 +1,28 @@
 Newest versions
 
-2026/08/09 11:56 PM - [0.24.0]
+2026/08/10 4:23 PM - [0.26.0] THE PIT II
+- Updated the pit's code to be more dynamic
+- Added a total pit roll amount
+- And finally updated and increased pit ranges (more different pit actions)
+- Now says how much know you earn per click for knowledge
+- Also added player.cap into the pit for more boosts
+- Added jackpots aswell in pit
+
+2026/08/10 1:21 PM - [0.24.1]
+- Offically changed name to fovea-intra in repo
+
+2026/08/09 11:56 PM - [0.24.0] SAVE/LOAD
 - Added buttons in help to save the game/load the game
 - Added a button that hard resets all progress
 - Stylized buttons
 - Health/magic/etc. groups now hidden until your first upgrade on them
 - Added a little saving notif in the bottom corner that appears for 1 second
 
-
 2026/08/09 10:42 PM - [0.23.0]
 - Changed a few varaibles/cleaned up code
 - Added game saving and loading
 
-2026/08/09 6:55 PM - [0.22.0]
+2026/08/09 6:55 PM - [0.22.0] THE PIT
 - Added the pit and it's own tab
 - Added the pit's own upgrade, and also a little blurb that initially shown but hides after bought
 - Fixed a small error with chatbox
