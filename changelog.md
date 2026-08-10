@@ -1,5 +1,10 @@
 Newest versions
 
+2026/08/09 10:42 PM - [0.23.0]
+- Changed a few varaibles/cleaned up code
+- Added game saving and loading
+
+
 2026/08/09 6:55 PM - [0.22.0]
 - Added the pit and it's own tab
 - Added the pit's own upgrade, and also a little blurb that initially shown but hides after bought

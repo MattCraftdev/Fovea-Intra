@@ -58,6 +58,23 @@ class ProgressBar {
     getLevel() {
         return this.level;
     };
+
+    getSaveData() {
+        return {
+            elementId: this.elementId,
+            level: this.level,
+            maxprogress: this.maxprogress,
+            progress: this.progress,
+        };
+    }
+
+    loadSaveData(savedData) {
+        if (savedData) {
+            this.level = savedData.level;
+            this.maxprogress = savedData.maxprogress;
+            this.progress = savedData.progress;
+        }
+    }
 };
 
 // Progress Bars

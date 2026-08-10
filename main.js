@@ -1,6 +1,3 @@
-let mood = 0;
-let moodStatus = "Ok";
-
 const player = {
     knowledge: 0,
     cap: 100,
@@ -8,6 +5,8 @@ const player = {
     wisdom: 0,
     wisdomRate: 5,
     lifespan: 50,
+    day: 0,
+    year: 0,
 
 
     get vitLevel () {
@@ -34,9 +33,9 @@ const player = {
     get taichiLevel () {
         return taichiBar.getLevel();
     },
-
 }
-
+let mood = 0;
+let moodStatus = "Ok";
 
 /*
 Ideas:
@@ -172,4 +171,72 @@ TabButtons.forEach(button => {
         console.log(`Clicking on ${tabId}`)
 
     });
+});
+
+// Save system (IMPORTANT!)
+function saveGame() {
+
+    const allBars = [vitBar, flexBar, fitnessBar, magicBar, martialBar, magicstudyBar, hitBar, taichiBar];
+    let state = {
+            player: {
+                knowledge: player.knowledge,
+                day: player.day,
+                year: player.year,
+                cap: player.cap,
+                baseKnowledgeIncrease: player.baseKnowledgeIncrease,
+                wisdom: player.wisdom,
+                wisdomRate: player.wisdomRate,
+                lifespan: player.lifespan
+            },
+            upgrades: upgrades.map(u => ({ id: u.id, unlocked: u.unlocked, purchased: u.purchased })),
+            bars: allBars.map(b => ({ id: b.elementId, level: b.level, maxprogress: b.maxprogress, progress: b.progress}))
+    };
+    localStorage.setItem("gameSave", JSON.stringify(state));
+}
+
+function loadGame() {
+    let savedGame = localStorage.getItem("gameSave");
+    if (savedGame) {
+        let state = JSON.parse(savedGame);
+        const allBars = [vitBar, flexBar, fitnessBar, magicBar, martialBar, magicstudyBar, hitBar, taichiBar];
+
+        if (state.player) {
+            player.knowledge = state.player.knowledge ?? player.knowledge;
+            player.day = state.player.day ?? player.day;
+            player.year = state.player.year ?? player.year;
+            player.cap = state.player.cap ?? player.cap;
+            player.baseKnowledgeIncrease = state.player.baseKnowledgeIncrease ?? player.baseKnowledgeIncrease;
+            player.wisdom = state.player.wisdom ?? player.wisdom;
+            player.wisdomRate = state.player.wisdomRate ?? player.wisdomRate;
+            player.lifespan = state.player.lifespan ?? player.lifespan;
+        }
+    
+
+        if (state.upgrades) {
+            state.upgrades.forEach(savedU => {
+                let realU = upgrades.find(u => u.id === savedU.id);
+                if (realU) {
+                    realU.unlocked = savedU.unlocked;
+                    realU.purchased = savedU.purchased;
+                }
+            });
+        }
+
+        if (state.bars) {
+            state.bars.forEach(savedB => {
+                let realB = allBars.find(b => b.elementId === savedB.id);
+                if (realB) {
+                    realB.loadSaveData(savedB);
+                }
+            });
+        }
+    } else {
+        console.log("no save found")
+    }
+};
+
+
+window.addEventListener('DOMContentLoaded', () => {
+    loadGame();
+    setInterval(saveGame, 10000);
 });

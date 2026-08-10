@@ -51,22 +51,20 @@ function solveMood() {
 
 
 // Time System
-let day = 0;
-let year = 0;
 
 function updateTime() {
-    day += 1;
-    if (day > 365) {
-        day = 0;
-        year += 1;
+    player.day += 1;
+    if (player.day > 365) {
+        player.day = 0;
+        player.year += 1;
     };
 
-    if (year>=player.lifespan) {
+    if (player.year>=player.lifespan) {
         initiateDeath();
     }
 
-    document.getElementById("displayDay").innerText = "Day: " + day;
-    document.getElementById("displayYear").innerText = "Age: " + year;
+    document.getElementById("displayDay").innerText = "Day: " + player.day;
+    document.getElementById("displayYear").innerText = "Age: " + player.year;
 };
 
 function updateLifespan() {
@@ -76,7 +74,7 @@ function updateLifespan() {
 
 setInterval(() => {
     updateTime();
-}, 500); // Day per X
+}, 500); // Day per X, in this case 2 days per sec
 
 function initiateDeath() {
     console.log("Player has died, end.")
