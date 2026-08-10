@@ -1,9 +1,16 @@
 Newest versions
 
+2026/08/09 11:56 PM - [0.24.0]
+- Added buttons in help to save the game/load the game
+- Added a button that hard resets all progress
+- Stylized buttons
+- Health/magic/etc. groups now hidden until your first upgrade on them
+- Added a little saving notif in the bottom corner that appears for 1 second
+
+
 2026/08/09 10:42 PM - [0.23.0]
 - Changed a few varaibles/cleaned up code
 - Added game saving and loading
-
 
 2026/08/09 6:55 PM - [0.22.0]
 - Added the pit and it's own tab

@@ -217,8 +217,21 @@ function buyUpgrade(upgradeId) {
         console.log(upgrade);
         say("Upgrade unlocked!!!")
 
+        if (upgradeId == "unlock1") {
+            console.log("vit cost")
+            document.getElementById("healthSection").style.display = "block";
+            document.getElementById("healthheader").style.display = "flex";
+        } else if (upgradeId == "unlockmagicbtn") {
+            document.getElementById("magicSection").style.display = "block";
+            document.getElementById("magicheader").style.display = "flex";
+        }
+
     };
 };
+
+
+
+
 
 // For each button, when clicked buy the upgrade
 for (const btns of upgrades) {

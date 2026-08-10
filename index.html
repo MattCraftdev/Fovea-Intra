@@ -10,6 +10,7 @@
     
 </head>
 <body>
+
     <div id = "hideDeath" class = "hidden"></div>
     <p id = "youDied" class = "hidden">You DIED!</p>
 
@@ -26,7 +27,7 @@
     <div class = "tabs">
         <button class = "tab-button" data-tab="Creation">Creation</button>
         <button class = "tab-button" data-tab="Inventions">Inventions</button>
-        <button class = "tab-button" data-tab="Pit">The pit</button>
+        <button class = "tab-button" data-tab="Pit">The Pit</button>
         <button class = "tab-button" data-tab="Other">Other</button>
     </div>
 
@@ -152,14 +153,23 @@
 
     <nav class = "tab-content" id = "Other">
         <h1>Help</h1>
-        <p>Knowledge: Used to unlock other upgrades, a core important resource
-        </p>
+        <p>Knowledge: Used to unlock other upgrades, a core important resource</p>
+        
+        <h1>Saving/Loading</h1>
+        <p>If you're having issues saving or loading, press these buttons</p>
+        <button id = "saveGame" class = "tech">Save Game</button>
+        <button id = "loadGame" class = "tech">Load Game</button>
+        <button id = "resetGame" class = "tech">Hard reset game</button>
 
         <h1>Statistics</h1>
 
         <h2>Changelog</h2>
         <a href = "changelog.md">Click me for changelog!!!!</a>
     </nav>  
+
+    <div id = "savingnotif">Saving...</div>
+
+
 
     <script src="main.js" defer></script>
     <script src="functions.js" defer></script>

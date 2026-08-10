@@ -174,7 +174,33 @@ TabButtons.forEach(button => {
 });
 
 // Save system (IMPORTANT!)
+document.getElementById("saveGame").addEventListener("click", () => {
+    saveGame();
+    say("Game saved! (Hopefully)")
+});
+
+document.getElementById("loadGame").addEventListener("click", () => {
+    loadGame();
+    say("Game loaded! (Hopefully)")
+});
+
+document.getElementById("resetGame").addEventListener("click", () => {
+    hardReset();
+});
+
+
+function hardReset() {
+    if (confirm("Are you sure you want to erase your lifetime progress and start over?")) {
+        localStorage.removeItem("gameSave");
+        location.reload();
+    }
+}
+
+const savenotif = document.getElementById("savingnotif")
+
 function saveGame() {
+
+    console.log("Saving game...")
 
     const allBars = [vitBar, flexBar, fitnessBar, magicBar, martialBar, magicstudyBar, hitBar, taichiBar];
     let state = {
@@ -192,6 +218,10 @@ function saveGame() {
             bars: allBars.map(b => ({ id: b.elementId, level: b.level, maxprogress: b.maxprogress, progress: b.progress}))
     };
     localStorage.setItem("gameSave", JSON.stringify(state));
+    savenotif.classList.remove("hidden");
+    setTimeout(() => {
+        savenotif.classList.add("hidden");
+    }, 1000); 
 }
 
 function loadGame() {
