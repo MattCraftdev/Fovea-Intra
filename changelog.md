@@ -1,6 +1,12 @@
 Newest versions
 
-2026/08/11 2:40 PM - [0.29.0] ENERGY
+2026/08/11 7:35 PM - [0.30.0]
+- Switched up an upgrade (unlocking the pit)
+- Fixed error with saving/loading upgrades (with hiding while being unlocked)
+- Updated the pit shell with more additions
+- Optimized the pit variable working (each roll bracket doesn't have to have a variable) and cleaned some code up
+
+2026/08/11 6:44 PM - [0.29.0] ENERGY
 - Modified docs by changing functions.js to systems and moving some code there from main.js
 - Added energy upgrades
 - Added energy well tab and short system (save/loadable aswell)

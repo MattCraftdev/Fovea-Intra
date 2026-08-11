@@ -163,8 +163,8 @@ const upgrades = [
         id: "unlockpit",
         cost: 10,
         costtype: "knowledge",
-        unlocked: true,
-        reqamount: 0,
+        unlocked: false,
+        reqamount: 2,
         reqtype: "knowledge",
         flavortext: "",
         purchased: 0,
@@ -220,12 +220,16 @@ setInterval(() => {
         };
 
         if (loop.id == "unlock1" && loop.unlocked == true) {
-            console.log("vit cost")
             document.getElementById("healthSection").style.display = "block";
             document.getElementById("healthheader").style.display = "flex";
         } else if (loop.id == "unlockmagicbtn" && loop.unlocked == true) {
             document.getElementById("magicSection").style.display = "block";
             document.getElementById("magicheader").style.display = "flex";
+        }
+
+        if (loop.unlocked === true && document.getElementById(loop.id).classList.contains("hidden") && loop.purchased === 0) {
+            console.log(loop.id)
+            document.getElementById(loop.id).classList.remove("hidden")
         }
     };
 
