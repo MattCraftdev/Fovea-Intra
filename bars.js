@@ -133,7 +133,6 @@ function updateProgress() {
     }
 
 
-
     flexbuff = player.flexLevel*2;
     martialbuff = player.martialLevel*2
     magicbuff = player.magicLevel
@@ -165,7 +164,6 @@ function updateAllSpeeds() {
 
 // Setting interval higher = worse transitioning rate. Currently 
 setInterval(updateProgress, 20);
-
 
 // Gets the progress
 const progressContainers = document.getElementsByClassName('progress-container');

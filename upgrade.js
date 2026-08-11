@@ -12,8 +12,8 @@ const upgrades = [
         maxpurchases: 1,
         onpurchase: () => {
             document.getElementById("vitContainer").classList.remove("hidden");
-            say("A strict routine only for the best");
-        }
+        },
+        purchasetext: "A strict routine only for the best"
     },
 
     {
@@ -28,8 +28,8 @@ const upgrades = [
         maxpurchases: 1,
         onpurchase: () => {
             document.getElementById("displayLifespan").classList.remove("hidden");
-            say("You peer into the unknown. Your lifespan is revealed.");
-        }
+        },
+        purchasetext: "You peer into the unknown. Your lifespan is revealed."
     },
 
     {
@@ -45,8 +45,8 @@ const upgrades = [
         onpurchase: () => {
             document.getElementById("switchtoWisdom").classList.remove("hidden");
             document.getElementById("displayWisdom").classList.remove("hidden");
-            say("A white beard sprouts on your chin, and your back teeth emerge. You feel...wiser somehow?");
-        }
+        },
+        purchasetext: "A white beard sprouts on your chin, and your back teeth emerge. You feel...wiser somehow?"
     },
 
     {
@@ -61,8 +61,8 @@ const upgrades = [
         maxpurchases: 1,
         onpurchase: () => {
             document.getElementById("knowledgeContainer").classList.remove("hidden");
-            say("The deeper the knowledge the better");
-        }
+        },
+        purchasetext: "The deeper the knowledge the better"
     },
 
         {
@@ -77,8 +77,8 @@ const upgrades = [
         maxpurchases: 1,
         onpurchase: () => {
             document.getElementById("fitnessContainer").classList.remove("hidden");
-            say("Time to excersize");
-        }
+        },
+        purchasetext: "Time to get fit!"
     },
 
         {
@@ -93,8 +93,8 @@ const upgrades = [
         maxpurchases: 1,
         onpurchase: () => {
             document.getElementById("martialContainer").classList.remove("hidden");
-            say("Everybody wa' kung foo fighti-ing hooo haaaa!!");
-        }
+        },
+        purchasetext: "Everybody wa' kung foo fighti-ing hooo haaaa!!"
     },
 
         {
@@ -109,8 +109,8 @@ const upgrades = [
         maxpurchases: 1,
         onpurchase: () => {
             document.getElementById("magicContainer").classList.remove("hidden");
-            say("FIREBALL!!!!!");
-        }
+        },
+        purchasetext: "FIREBALL!!!!!"
     },
         {
         id: "unlockmagicstudybtn",
@@ -124,8 +124,8 @@ const upgrades = [
         maxpurchases: 1,
         onpurchase: () => {
             document.getElementById("magicstudyContainer").classList.remove("hidden");
-            say("Books are boring but magic is not.");
-        }
+        },
+        purchasetext: "Books are boring but magic is not."
     },
 
         {
@@ -140,8 +140,8 @@ const upgrades = [
         maxpurchases: 1,
         onpurchase: () => {
             document.getElementById("hitContainer").classList.remove("hidden");
-            say("You got out of your kung foo phase for the real stuff");
-        }
+        },
+        purchasetext:"You got out of your kung foo phase for the real stuff"
     },
 
         {
@@ -156,8 +156,8 @@ const upgrades = [
         maxpurchases: 1,
         onpurchase: () => {
             document.getElementById("taichiContainer").classList.remove("hidden");
-            say("Say a proverb because you don't care about life! PEEEEAAAACE!!!");
-        }
+        },
+        purchasetext: "Say a proverb because you don't care about life! PEEEEAAAACE!!!"
     },
         {
         id: "unlockpit",
@@ -172,10 +172,9 @@ const upgrades = [
         onpurchase: () => {
             document.getElementById("the-pit").classList.remove("hidden");
             document.getElementById("no-pit").classList.add("hidden");
-            say("A big dark hole emerged from the nearby ground. It's deep.");
-        }
+        },
+        purchasetext: "A big dark hole emerged from the nearby ground. It's deep."
     },
-
 ]
 
 // Checks if any upgrade can be unlocked
@@ -201,7 +200,17 @@ setInterval(() => {
                     
             say(`${loop.flavortext}. Check Inventions!`)
         };
+
+        if (loop.id == "unlock1" && loop.unlocked == true) {
+            console.log("vit cost")
+            document.getElementById("healthSection").style.display = "block";
+            document.getElementById("healthheader").style.display = "flex";
+        } else if (loop.id == "unlockmagicbtn" && loop.unlocked == true) {
+            document.getElementById("magicSection").style.display = "block";
+            document.getElementById("magicheader").style.display = "flex";
+        }
     };
+
 }, 500);
 
 // Buying the upgrade
@@ -209,23 +218,13 @@ function buyUpgrade(upgradeId) {
     const upgrade = upgrades.find(item => item.id === upgradeId);
 
     if (upgrade && upgrade.cost<=player[upgrade.costtype] && upgrade.purchased < upgrade.maxpurchases) {
-
         player[upgrade.costtype] -= upgrade.cost
         upgrade.purchased += 1
         document.getElementById(upgrade.id).classList.add("hidden")
         upgrade.onpurchase();
         console.log(upgrade);
         say("Upgrade unlocked!!!")
-
-        if (upgradeId == "unlock1") {
-            console.log("vit cost")
-            document.getElementById("healthSection").style.display = "block";
-            document.getElementById("healthheader").style.display = "flex";
-        } else if (upgradeId == "unlockmagicbtn") {
-            document.getElementById("magicSection").style.display = "block";
-            document.getElementById("magicheader").style.display = "flex";
-        }
-
+        say(upgrade.purchasetext)
     };
 };
 

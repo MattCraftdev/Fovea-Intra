@@ -1,5 +1,15 @@
 Newest versions
 
+2026/08/10 11:05 PM - [0.27.1]
+- Fixed the annoying error with upgrade purchasing
+- Slightly tweaked the pit by adding a bit more
+
+2026/08/10 8:08 PM - [0.27.0]
+- Completely completed the pit
+- Mildly modified a bit of code
+- Updated code structure by adding 2 new files (thepit.js && storage.js)
+(this version has an error not fixed)
+
 2026/08/10 4:23 PM - [0.26.0] THE PIT II
 - Updated the pit's code to be more dynamic
 - Added a total pit roll amount
@@ -11,14 +21,14 @@ Newest versions
 2026/08/10 1:21 PM - [0.24.1]
 - Offically changed name to fovea-intra in repo
 
-2026/08/09 11:56 PM - [0.24.0] SAVE/LOAD
+2026/08/09 11:56 PM - [0.24.0] HELP BUTTONS
 - Added buttons in help to save the game/load the game
 - Added a button that hard resets all progress
 - Stylized buttons
 - Health/magic/etc. groups now hidden until your first upgrade on them
 - Added a little saving notif in the bottom corner that appears for 1 second
 
-2026/08/09 10:42 PM - [0.23.0]
+2026/08/09 10:42 PM - [0.23.0] SAVE/LOAD
 - Changed a few varaibles/cleaned up code
 - Added game saving and loading
 
@@ -71,7 +81,7 @@ Newest versions
 2026/08/07 8:59 PM - [0.15.0]
 - Added martial arts upgrade which unlocks martial arts
 
-2026/08/06 10:40 PM - [0.14.0]
+2026/08/06 10:40 PM - [0.14.0] MAGIC
 - Added magic upgrade
 - Cleaned up minor issues in code
 - Checked magic code and it works too
@@ -83,7 +93,7 @@ Newest versions
 - Added button highlights for styling on some buttons
 - Added href link to changelog (hi there :o meta)
 
-2026/07/11 9:32 PM - [0.13.0]
+2026/07/11 9:32 PM - [0.13.0] DYNAMIC UPGRADES
 - Updated upgrades to be more dynamic with unlocking, adding more
 - Added bar levels in player.xxx (array)
 - Added fitness upgrade as a whole and it's shop unlock upgrade
@@ -112,13 +122,13 @@ Newest versions
 - Wisdom fully added, along with a hidden button and counter
 - Deleted flexability upgrade, opted for flexability to show after vitality got to level 10
 
-2026/07/04 10:58 PM - [0.10.0]
+2026/07/04 10:58 PM - [0.10.0] WISDOM
 - Actually, FINALLY fixed depression and overworked it.
 - Added a button to exchange knowledge to wisdom
 - More flavour text in upgrades
 - Added wisdom unlock
 
-2026/07/04 5:18 PM - [0.9.1]
+2026/07/04 5:18 PM - [0.9.1] MOCK DEATH
 - Optimized button system with upgrades
 - Cleaned up lifespan counter with decimal limit of 2
 - Changed core code on how player variables are
@@ -143,7 +153,7 @@ Newest versions
 - Further optimization from seperating into more files (added functions.js)
 - Added knowledge gameloop
 
-2026/07/03 12:31 AM - [0.5.0]
+2026/07/03 12:31 AM - [0.5.0] UNLOCK
 - Added unlock when you get over 10 knowledge to appear in the "Inventions" tab, along with a story message
 - Optimized some code
 - The unlock now appears and disappears correctly
@@ -152,7 +162,7 @@ Newest versions
 - Added another upgrade, the lifespan timer which acts as VIT but costs more
 - Made the lifespan timer work and all this fillings with it
 
-2026/07/02 10:39 PM - [0.3.0]
+2026/07/02 10:39 PM - [0.3.0] VIT
 - Added Bars and vitality marker
 - Vitality now extends "lifespan"
 - Updated Time System
@@ -161,11 +171,11 @@ Newest versions
 2026/07/02 9:15PM - [0.2.1]
 - Fixed error with depression
 
-2026/07/01 - [0.2.0]
+2026/07/01 - [0.2.0] TABS
 - Added Tabs for each part
 - Added knowledge and made it so you can "birth knowledge"
 - Added story message box on the side
 - Added depression as a mechanic, mainly mood thoughsss
 
-2026/07/01 3:33PM - Initial Build [0] 
+2026/07/01 3:33PM - Initial Build [0] (EQ to 0.1.0)
 - Time system implemented
