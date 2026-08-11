@@ -2,10 +2,17 @@
 setInterval(() => {
     document.getElementById("displayKnowledge").innerText = "Knowledge: " + player.knowledge;
     document.getElementById("displayWisdom").innerText = "Wisdom: " + player.wisdom;
+
+    document.getElementById("displayGoop").innerText = "Goop: " + player.rawgoop;
+    document.getElementById("displayGloop").innerText = "Gloop: " + player.processedgloop;
+    document.getElementById("displayEnergy").innerText = "Energy: " + player.energy;
+    
     solveMood();
     updateLifespan();
 }, 20);
 
+
+// Mood system
 let mood = 0;
 let moodStatus = "Ok";
 
@@ -58,3 +65,44 @@ function initiateDeath() {
     document.getElementById("youDied").classList.remove("hidden")
     document.getElementById("hideDeath").classList.remove("hidden")
 }
+
+// Chatbox code
+let maxMessages = 10;
+const chatbox = document.getElementById("chatbox");
+
+function say(message) {
+    const msg = document.createElement("p");
+    msg.classList.add("message");
+    msg.textContent = message;
+    chatbox.prepend(msg);
+    // Max message count (set it)
+    while (chatbox.children.length > maxMessages) {
+        chatbox.lastElementChild.remove();
+    };
+
+    chatbox.scrollTop = chatbox.scrollHeight;
+};
+
+// Tab code foreach
+const TabButtons= document.querySelectorAll(".tab-button");
+
+TabButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const tabId = button.dataset.tab;
+
+        // Hides all tabs
+        document.querySelectorAll(".tab-content").forEach(tab => {
+            tab.style.display = "none";
+
+        });
+
+        // Shows selected tab
+        document.getElementById(tabId).style.display = "block";
+
+        if (tabId == "Inventions") {
+            inventionsBtn.classList.remove("glow");
+        }
+        console.log(`Clicking on ${tabId}`)
+
+    });
+});

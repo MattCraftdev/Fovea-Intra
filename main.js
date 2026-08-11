@@ -8,7 +8,9 @@ const player = {
     day: 0,
     year: 0,
     totalpitrolls: 0,
-
+    rawgoop: 0,
+    processedgloop: 0,
+    energy: 0,
 
     get vitLevel () {
         return vitBar.getLevel();
@@ -41,7 +43,10 @@ Ideas:
 - Pit of sacrifice where better loot thrown = better stuff back
 - Add more to upgrade system
 - Add timer to pit
-- FIX ERROR
+- potientally add a bar that fills up when knowledge meets cap or for lifespan/maxlifespan
+- Upgrades that cost a resource to fill up bar
+- Bar leveling that gives you a resource every time the bar fills
+-
 */
 
 // Knowledge addition system + wisdom sys
@@ -60,43 +65,32 @@ document.getElementById("switchtoWisdom").addEventListener("click", () => {
     }
 });
 
-// Chatbox code
-let maxMessages = 10;
-const chatbox = document.getElementById("chatbox");
+// Energy Systems
+document.getElementById("collectGoop").addEventListener("click", () => {
+    if (player.knowledge>4) {
+        player.knowledge -= 5;
+        player.rawgoop += 1;
+    } else {
+        say("Not enough smarts up there laddy!")
+    }
+});
 
-function say(message) {
-    const msg = document.createElement("p");
-    msg.classList.add("message");
-    msg.textContent = message;
-    chatbox.prepend(msg);
-    // Max message count (set it)
-    while (chatbox.children.length > maxMessages) {
-        chatbox.lastElementChild.remove();
-    };
+document.getElementById("processGloop").addEventListener("click", () => {
+    if (player.knowledge>4 && player.rawgoop>0) {
+        player.knowledge -= 5;
+        player.rawgoop -= 1;
+        player.processedgloop += 1;
+    } else {
+        say("need more bucko!")
+    }
+});
 
-    chatbox.scrollTop = chatbox.scrollHeight;
-};
-
-// Tab code foreach
-const TabButtons= document.querySelectorAll(".tab-button");
-
-TabButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        const tabId = button.dataset.tab;
-
-        // Hides all tabs
-        document.querySelectorAll(".tab-content").forEach(tab => {
-            tab.style.display = "none";
-
-        });
-
-        // Shows selected tab
-        document.getElementById(tabId).style.display = "block";
-
-        if (tabId == "Inventions") {
-            inventionsBtn.classList.remove("glow");
-        }
-        console.log(`Clicking on ${tabId}`)
-
-    });
+document.getElementById("packageEnergy").addEventListener("click", () => {
+    if (player.wisdom>1 && player.processedgloop>1) {
+        player.wisdom -= 2;
+        player.processedgloop -= 2;
+        player.energy += 1;
+    } else {
+        say("Not enough shtuff brochacho")
+    }
 });

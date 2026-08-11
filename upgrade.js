@@ -175,6 +175,24 @@ const upgrades = [
         },
         purchasetext: "A big dark hole emerged from the nearby ground. It's deep."
     },
+
+        {
+        id: "unlockenergy",
+        cost: 1000,
+        costtype: "knowledge",
+        unlocked: false,
+        reqamount: 250,
+        reqtype: "knowledge",
+        flavortext: "A whisper echoes from around you. 'If you build it, he will come.'",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("collectGoop").classList.remove("hidden");
+            document.getElementById("processGloop").classList.remove("hidden");
+            document.getElementById("packageEnergy").classList.remove("hidden");
+        },
+        purchasetext: "A well materializes in front of you, filled with green goo."
+    },
 ]
 
 // Checks if any upgrade can be unlocked

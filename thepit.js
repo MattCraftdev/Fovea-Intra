@@ -165,7 +165,7 @@ document.getElementById("the-pit").addEventListener("click", () => {
         player.knowledge = 0;
         player.wisdom = 0;
 
-        const roll = Math.random()*100 + (addbuff/100);
+        const roll = Math.random()*100 + (addbuff/100); //addbuff directly adds to the roll improving roll ceiling, be careful
 
         const fitroll = pitrolls.find(tier => tier.rollmin<=roll && tier.rollmax>roll );
 

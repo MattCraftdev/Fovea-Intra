@@ -1,8 +1,15 @@
 Newest versions
 
+2026/08/11 2:40 PM - [0.29.0] ENERGY
+- Modified docs by changing functions.js to systems and moving some code there from main.js
+- Added energy upgrades
+- Added energy well tab and short system (save/loadable aswell)
+- Added displaying each energystage (goop, gloop and energy) & buttons and conversion system
+
 2026/08/10 11:05 PM - [0.27.1]
 - Fixed the annoying error with upgrade purchasing
 - Slightly tweaked the pit by adding a bit more
+- Slightly optimized some code, by shrinking line size
 
 2026/08/10 8:08 PM - [0.27.0]
 - Completely completed the pit

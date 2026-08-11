@@ -57,24 +57,6 @@
 }
 
 
-.upgrade {
-    background-color:#be9200;
-    color:rgb(0, 0, 0);
-    padding: 10px;
-    border: 20px;
-    font-size: 100%;
-    font-family:'georgia';
-}
-
-.tech {
-    background-color:#b0bcce;
-    border-color:rgb(187, 183, 191);
-    color:rgb(0, 0, 0);
-    padding: 10px;
-    border-width: 5px;
-    font-size: 100%;
-    font-family:'georgia';
-}
 
 #savingnotif {
     font-size:40px;
@@ -203,4 +185,35 @@
     background:rgb(241, 241, 241);
     top: 0%;
     left: 0%;
+}
+
+
+
+/* In tabs buttons */
+.energybtn {
+    background-color:#b0bcce;
+    color:rgb(0, 0, 0);
+    padding: 10px;
+    border: 20px;
+    font-size: 100%;
+    font-family:'georgia';
+}
+
+.tech {
+    background-color:#b0bcce;
+    border-color:rgb(187, 183, 191);
+    color:rgb(0, 0, 0);
+    padding: 10px;
+    border-width: 5px;
+    font-size: 100%;
+    font-family:'georgia';
+}
+
+.upgrade {
+    background-color:#be9200;
+    color:rgb(0, 0, 0);
+    padding: 10px;
+    border: 20px;
+    font-size: 100%;
+    font-family:'georgia';
 }

@@ -28,6 +28,7 @@
         <button class = "tab-button" data-tab="Creation">Creation</button>
         <button class = "tab-button" data-tab="Inventions">Inventions</button>
         <button class = "tab-button" data-tab="Pit">The Pit</button>
+        <button class = "tab-button" data-tab="Energy">Energy Wells</button>
         <button class = "tab-button" data-tab="Other">Other</button>
     </div>
 
@@ -125,7 +126,10 @@
 
         <button id = "unlock1" class = "hidden upgrade">Create Health Exercise Plan - Cost 100 Knowledge</button>
         <button id = "unlockwisdombtn" class = "hidden upgrade">Learn the act of wisdom - Costs 35 Knowledge</button>
+        
         <button id = "unlockknowledgebtn" class = "hidden upgrade">Study how to learn better - Costs 10 Wisdom</button>
+        <button id = "unlockenergy" class = "hidden upgrade">Create a new energy system - Costs 1000 Knowledge</button>
+        
         <button id = "unlockfitnessbtn" class = "hidden upgrade">Fitness - Costs 500 Knowledge</button>
         <button id = "unlockmartialbtn" class = "hidden upgrade">Martial Arts - Costs 75 Wisdom</button>
         <button id = "unlockhitbtn" class = "hidden upgrade">HIT training - Costs 1000 Knowledge</button>
@@ -140,7 +144,16 @@
         <p id = "no-pit">There is nothing here yet...you gotta make it lol!</p>
         <button id = "the-pit" class = "hidden upgrade">Throw stuff into the pit</button>
 
+    </nav>
 
+    <nav class = "tab-content" id = "Energy">
+        <p id = "displayGoop">Goop: 0</p>
+        <p id = "displayGloop">Gloop: 0</p>
+        <p id = "displayEnergy">Energy: 0</p>
+
+        <button class = "hidden energybtn" id = "collectGoop">Collect Raw Goop - Costs 5 knowledge</button>
+        <button class = "hidden energybtn" id = "processGloop">Process into Gloop - Costs 5 knowledge & 1 Goop</button>
+        <button class = "hidden energybtn" id = "packageEnergy">Package into useable energy - Costs 2 wisdom & 2 Gloop</button>
 
     </nav>
 
@@ -171,7 +184,7 @@
 
 
     <script src="main.js" defer></script>
-    <script src="functions.js" defer></script>
+    <script src="systems.js" defer></script>
     <script src="bars.js" defer></script>
     <script src="upgrade.js" defer></script>
     <script src="thepit.js" defer></script>

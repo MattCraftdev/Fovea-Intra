@@ -1,4 +1,4 @@
-// Save system (IMPORTANT!)
+// Buttons
 document.getElementById("saveGame").addEventListener("click", () => {
     saveGame();
     say("Game saved! (Hopefully)")
@@ -13,7 +13,7 @@ document.getElementById("resetGame").addEventListener("click", () => {
     hardReset();
 });
 
-
+// Hard reset
 function hardReset() {
     if (confirm("Are you sure you want to erase your lifetime progress and start over?")) {
         localStorage.removeItem("gameSave");
@@ -23,6 +23,7 @@ function hardReset() {
 
 const savenotif = document.getElementById("savingnotif")
 
+// Save and load
 function saveGame() {
 
     console.log("Saving game...")
@@ -39,6 +40,9 @@ function saveGame() {
                 wisdomRate: player.wisdomRate,
                 lifespan: player.lifespan,
                 totalpitrolls: player.totalpitrolls,
+                rawgoop: player.rawgoop,
+                processedgloop: player.processedgloop,
+                energy: player.energy,
             },
             upgrades: upgrades.map(u => ({ id: u.id, unlocked: u.unlocked, purchased: u.purchased })),
             bars: allBars.map(b => ({ id: b.elementId, level: b.level, maxprogress: b.maxprogress, progress: b.progress}))
@@ -66,6 +70,9 @@ function loadGame() {
             player.wisdomRate = state.player.wisdomRate ?? player.wisdomRate;
             player.lifespan = state.player.lifespan ?? player.lifespan;
             player.totalpitrolls = state.player.totalpitrolls ?? player.totalpitrolls;
+            player.rawgoop = state.player.rawgoop ?? player.rawgoop;
+            player.processedgloop = state.player.processedgloop ?? player.processedgloop;
+            player.energy = state.player.energy ?? player.energy;
         }
     
 
@@ -87,7 +94,7 @@ function loadGame() {
                     }
                 }
             });
-            
+
         } else {
             console.log("No upgrades loaded ERROR")
         }
@@ -108,10 +115,6 @@ function loadGame() {
         console.log("no save found")
     }
 };
-
-
-
-
 
 window.addEventListener('DOMContentLoaded', () => {
     loadGame();
