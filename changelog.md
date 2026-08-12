@@ -1,5 +1,10 @@
 Newest versions
 
+2026/08/12 2:00 PM - [0.32.0]
+- Added mood bar that shows how much mood capacity you have left.
+- Fixed minor bugs with mood bar and cleaned up code with it
+- Added mood upgrade 
+
 2026/08/12 12:20 AM - [0.31.0] TWEAKS && FIXES
 - Switched the energy upgrade to reveal the data-tab, instead of stuff in the tab itself
 - Added more variables to the pit and updated the rolls

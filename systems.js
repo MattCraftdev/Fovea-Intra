@@ -17,7 +17,7 @@ let mood = 0;
 let moodStatus = "Ok";
 
 function solveMood() {
-    let ratio = Math.min(Math.max(player.knowledge+player.wisdom*player.wisdomRate, 1)/player.cap, 1)
+    let ratio = Math.min(Math.max(player.knowledge+player.wisdom*player.wisdomRate, 0)/player.cap, 1)
     mood = ratio*player.cap
     
     if (mood>=player.cap) {
@@ -35,6 +35,10 @@ function solveMood() {
     document.getElementById("displayMood").innerText = "Mood: " + moodStatus;
 
     if (mood<0) { mood = 0; }
+    
+
+    moodBar.element.style.width = mood + "%";
+    document.getElementById("moodBarDisplay").innerText =`${parseFloat(mood.toFixed(0))}/${player.cap}`;
 };
 
 // Time System

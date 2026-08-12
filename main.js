@@ -43,12 +43,13 @@ const player = {
 Ideas:
 - Pit of sacrifice where better loot thrown = better stuff back
 - Add more to upgrade system
-- Add timer to pit
+- Add timer to pit (1 Hour, btw timer runs when game closes for ca;c)
 - potientally add a bar that fills up when lifespan/maxlifespan
 - Upgrades that cost a resource to fill up bar
 - Bar leveling that gives you a resource every time the bar fills
 - When knowledge/wisdom above cap, actively it slowly removes excess resources
-- Mood also has a bar
+- Make mood (happy, sad, etc.) fit into bar aswell and not appear on side
+- Have a way to easily increase moodcap!
 */
 
 // Knowledge addition system + wisdom sys

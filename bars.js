@@ -75,6 +75,8 @@ const knowledgeBar = new ProgressBar("knowledge", 10, 10000, 1.2);
 const magicBar = new ProgressBar("magic", 10, 25000, 1.25);
 const magicstudyBar = new ProgressBar("magicstudy", 10, 10000, 1.15);
 
+const moodBar = new ProgressBar("mood", 0, 0, 0)
+
 // Vars
 let flexbuff = 0;
 let martialbuff = 0;
@@ -158,8 +160,9 @@ for (const all of progressContainers) {
     });
 };
 
+// Recalculates buffs
 function recalcBuffs() {
-    player.cap = 46+(vitBar.level)+(martialBar.level*5)+(taichiBar.level*50)-(fitnessBar.level)+player.capBonus;
+    player.cap = 45+(vitBar.level)+(martialBar.level*5)+(taichiBar.level*50)-(fitnessBar.level)+player.capBonus;
     player.lifespan = 50+(fitnessBar.level)
 
     if (vitBar.level>=10) {document.getElementById("flexContainer").classList.remove("hidden");}

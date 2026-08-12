@@ -20,6 +20,14 @@
         <p id= "displayDay">Day: </p>
         <p id= "displayYear">Age: </p> <span id="displayLifespan" class = "hidden">Lifespan: </span>
 
+        <div class = "hidden" id = "moodContainer">
+            <div class="progress-container">
+                <div class="progress-bar" id="mood"></div>
+                <span class= "progress-text" id = "moodBarDisplay">0/100</span>
+            </div>
+        </div>
+
+        
         <p id= "displayWisdom" class = "hidden">Wisdom: 0</p>        
     </div>
 
@@ -123,6 +131,7 @@
         <br>
         <button id = "unlocklifespanTimer" class = "hidden upgrade">Peer into the future - Costs 1000 Knowledge</button>
         <button id = "unlockpit" class = "hidden upgrade">Create the pit - Costs 10 Knowledge</button>
+        <button id = "unlockmoodbtn" class = "hidden upgrade">Unlock Mood Bar - Costs 100 Knowledge</button>
 
         <button id = "unlock1" class = "hidden upgrade">Create Health Exercise Plan - Cost 100 Knowledge</button>
         <button id = "unlockwisdombtn" class = "hidden upgrade">Learn the act of wisdom - Costs 35 Knowledge</button>

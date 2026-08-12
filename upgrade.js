@@ -21,7 +21,7 @@ const upgrades = [
         cost: 1000,
         costtype: "knowledge",
         unlocked: false,
-        reqamount: 200,
+        reqamount: 100,
         reqtype: "knowledge", 
         flavortext: "Something is being touched upon. You need to learn more to reveal it...",
         purchased: 0,
@@ -54,7 +54,7 @@ const upgrades = [
         cost: 10,
         costtype: "wisdom",
         unlocked: false,
-        reqamount: 4,
+        reqamount: 5,
         reqtype: "wisdom",
         flavortext: "What if I just studied how to think?!",
         purchased: 0,
@@ -190,6 +190,22 @@ const upgrades = [
             document.querySelector('[data-tab = "Energy"]').classList.remove("hidden");
         },
         purchasetext: "A well materializes in front of you, filled with green goo."
+    },
+
+        {
+        id: "unlockmoodbtn",
+        cost: 100,
+        costtype: "knowledge",
+        unlocked: false,
+        reqamount: 75,
+        reqtype: "knowledge",
+        flavortext: "An idea strikes from all this knowledge building up inside you. Why not map mood on a bar?",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("moodContainer").classList.remove("hidden");
+        },
+        purchasetext: "A bar floats above your head, dictating your mood"
     },
 ]
 
