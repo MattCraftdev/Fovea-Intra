@@ -1,6 +1,16 @@
 Newest versions
 
-2026/08/11 7:35 PM - [0.30.0]
+2026/08/12 12:20 AM - [0.31.0] TWEAKS && FIXES
+- Switched the energy upgrade to reveal the data-tab, instead of stuff in the tab itself
+- Added more variables to the pit and updated the rolls
+- Tweaked energy conversion costs
+- Tweaked vitality to increase mood cap (not lifespan)
+- Fixed minor error with knowledgebar not saving (forgot to put in lol)
+- Fixed another error with bars not saving bonuses after save/load
+- Fixed a few small bugs
+- Completely changed bar system to recalc after load
+
+2026/08/11 7:56 PM - [0.30.0]
 - Switched up an upgrade (unlocking the pit)
 - Fixed error with saving/loading upgrades (with hiding while being unlocked)
 - Updated the pit shell with more additions

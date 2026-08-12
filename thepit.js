@@ -22,71 +22,70 @@ const pitrolls = [
         rollmin:30,
         rollmax:40,
         flavortext: "A little chime plays from the pit, and a neat package hits you in the head.",
-        knowledgemax:20,
-        wisdommax:2,
+        kMax:20,
+        wMax:2,
     },
 
     {
         rollmin:40,
         rollmax:50,
         flavortext: "A small box floats out of the pit somehow, lightly hovering into your hands.",
-        knowledgemax:50,
-        wisdommax:5,
+        kMax:50,
+        wMax:5,
     },
 
     {
         rollmin:50,
         rollmax:60,
         flavortext: "A bunch of thoughts fill your head, and suddenly you know. The pit laughs.",
-        knowledgemax:75,
-        knowledgemin:0,
-        wisdommax:10,
+        kMax:75,
+        wMax:10,
     },
 
     {
         rollmin:60,
         rollmax:70,
         flavortext: "A bigger box is chucked at you from deep inside the pit.",
-        knowledgemax:100,
-        wisdommax:10,
+        kMax:100,
+        wMax:10,
     },
 
     {
         rollmin:70,
         rollmax:80,
         flavortext: "The pit has a mild conversation with you, and gives you a hug.",
-        knowledgemax:125,
-        wisdommax:15,
+        kMax:125,
+        wMax:15,
     },
 
     {
         rollmin:80,
         rollmax:90,
         flavortext: "The pit thanks you for playing this game",
-        knowledgemax:150,
-        wisdommax:15,
+        kMax:150,
+        wMax:15,
     },
 
     {
         rollmin:90,
         rollmax:95,
         flavortext: "A beautiful song plays, leaving a tear on your cheek.",
-        knowledgemax:175,
-        wisdommax:20,
+        kMax:175,
+        wMax:20,
     },
 
     {
         rollmin:95,
         rollmax:96,
         flavortext: "A massive amount of knowledge floods your brain",
-        knowledgemax:1000,
+        kMax:1000,
     },
 
     {
         rollmin:96,
         rollmax:97,
         flavortext: "Wisdom fills you, and calm resides.",
-        wisdommax:250,
+        wMax:250,
     },
 
     {
@@ -106,12 +105,20 @@ const pitrolls = [
         rollmin:99,
         rollmax:100,
         flavortext: "You feel lucky. A shower of items fall onto you",
-        knowledgemax:500,
-        wisdommax:100,
+        kMax:500,
+        wMax:100,
+    },
+
+    
+    {
+        rollmin:100,
+        rollmax:101,
+        flavortext: "A thin package filled with green boxes dumps out near you",
+        eMax: 25,
     },
 
     {
-        rollmin:100,
+        rollmin:101,
         rollmax:110,
         flavortext: "A deep laugh echoes from the pit, followed by a dull emptiness from deep inside you. Nothing.",
     },
@@ -120,8 +127,8 @@ const pitrolls = [
         rollmin:110,
         rollmax:1000,
         flavortext: "A whole lotta luck you're feeling",
-        knowledgemax:10000,
-        wisdommax:1000,
+        kMax:10000,
+        wMax:1000,
     },
 ]
 
@@ -147,26 +154,35 @@ document.getElementById("the-pit").addEventListener("click", () => {
 
         say(fitroll.flavortext);
 
-        const kMax = fitroll.knowledgemax || 0;
-        const kMin = fitroll.knowledgemin || 0;
-        const kBoost = fitroll.knowledgeboost || 0;
+        const kMax = fitroll.kMax || 0; // Knowledge
+        const kMin = fitroll.kMin || 0;
+        const kBoost = fitroll.kBoost || 0;
 
-        const wMin = fitroll.wisdommin || 0;
-        const wMax = fitroll.wisdommax || 0;
-        const wBoost = fitroll.wisdomboost || 0;
+        const wMin = fitroll.wMin || 0; // Wisdom
+        const wMax = fitroll.wMax || 0;
+        const wBoost = fitroll.wBoost || 0;
 
-        const lMin = fitroll.lifespanmin || 0;
-        const lMax = fitroll.lifespanmax || 0;
-        const lBoost = fitroll.lifespanboost|| 0;
+        const lMin = fitroll.lMin || 0; // Lifespan
+        const lMax = fitroll.lMax || 0;
+        const lBoost = fitroll.lBoost|| 0;
 
-        const rgMin = fitroll.rawgoopmin || 0;
-        const rgMax = fitroll.rawgoopmax || 0;
-        const rgBoost = fitroll.rawgoopboost || 0;
+        const rgMin = fitroll.rgMin || 0; // Goop
+        const rgMax = fitroll.rgMax || 0;
+        const rgBoost = fitroll.rgBoost || 0;
+
+        const pgMin = fitroll.pgMin || 0; // Gloop
+        const pgMax = fitroll.pgMax || 0;
+        const pgBoost = fitroll.pgBoost || 0;
+
+        const eMin = fitroll.eMin || 0; // Energy
+        const eMax = fitroll.eMax || 0;
+        const eBoost = fitroll.eBoost || 0;
 
         const addCap = fitroll.moodcapadd || 0;
 
         player.knowledge = roundto1(Math.max(Math.random()*kMax,0) + kBoost)
-        player.cap += roundto1(Math.max(addCap,0))
+        player.capBonus += roundto1(Math.max(addCap,0))
+        player.energy += roundto1(Math.max(Math.random()*eMax, 0))
 
         if (addCap>0) {
             say("Mood is calmed")
@@ -182,6 +198,10 @@ document.getElementById("the-pit").addEventListener("click", () => {
             if (player.wisdom > 0) {
                 say(`It has gifted you ${player.wisdom} wisdom. Be grateful.`);
             }
+        }
+
+        if (eMax>0) {
+            say("Gave y'all energy!")
         }
 
         player.totalpitrolls += 1;

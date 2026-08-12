@@ -26,27 +26,11 @@ class ProgressBar {
             // Expo increase value
             this.maxprogress = this.maxprogress*this.expoincrease;
 
-            if (this.elementId == "vit") {
-                player.lifespan += 0.1;
-                
-                if (this.level == 10) {
-                    document.getElementById("flexContainer").classList.remove("hidden");
-                }
+            if (this.elementId == "knowledge") {
+                player.baseKnowledgeIncrease = knowledgeBar.level;
+                document.getElementById("createKnowledge").innerText = `Create ${player.baseKnowledgeIncrease} Knowledge`;
 
-            } else if (this.elementId == "knowledge") {
-                player.baseKnowledgeIncrease = knowledgeBar.getLevel();
-                document.getElementById("createKnowledge").innerText(`Create ${baseKnowledgeIncrease} Knowledge`);
-
-            } else if (this.elementId == "fitness") {
-                player.lifespan += 1;
-                player.cap -= 1;
-
-            } else if (this.elementId == "martial") {
-                player.cap += 5;
-            } else if (this.elementId == "taichi") {
-                player.cap += 50;
             }
-            
         };
     };
 
@@ -132,13 +116,14 @@ function updateProgress() {
         document.getElementById("taichiLevelDisplay").innerText = "Tai Chi Level: " + taichiBar.getLevel();
     }
 
-
     flexbuff = player.flexLevel*2;
     martialbuff = player.martialLevel*2
     magicbuff = player.magicLevel
     magicstudybuff = player.magicstudyLevel*2
     taichinerf = player.taichiLevel*3
     hitbuff = player.hitLevel*2
+
+    recalcBuffs();
 };
 
 
@@ -171,4 +156,11 @@ for (const all of progressContainers) {
     all.addEventListener("click", () => {
         activeBar = all.id.replace("btn", "")
     });
+};
+
+function recalcBuffs() {
+    player.cap = 46+(vitBar.level)+(martialBar.level*5)+(taichiBar.level*50)-(fitnessBar.level)+player.capBonus;
+    player.lifespan = 50+(fitnessBar.level)
+
+    if (vitBar.level>=10) {document.getElementById("flexContainer").classList.remove("hidden");}
 };

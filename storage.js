@@ -28,13 +28,14 @@ function saveGame() {
 
     console.log("Saving game...")
 
-    const allBars = [vitBar, flexBar, fitnessBar, magicBar, martialBar, magicstudyBar, hitBar, taichiBar];
+    const allBars = [vitBar, flexBar, fitnessBar, magicBar, martialBar, magicstudyBar, hitBar, taichiBar, knowledgeBar];
     let state = {
             player: {
                 knowledge: player.knowledge,
                 day: player.day,
                 year: player.year,
                 cap: player.cap,
+                capBonus: player.capBonus,
                 baseKnowledgeIncrease: player.baseKnowledgeIncrease,
                 wisdom: player.wisdom,
                 wisdomRate: player.wisdomRate,
@@ -58,13 +59,14 @@ function loadGame() {
     let savedGame = localStorage.getItem("gameSave");
     if (savedGame) {
         let state = JSON.parse(savedGame);
-        const allBars = [vitBar, flexBar, fitnessBar, magicBar, martialBar, magicstudyBar, hitBar, taichiBar];
+        const allBars = [vitBar, flexBar, fitnessBar, magicBar, martialBar, magicstudyBar, hitBar, taichiBar, knowledgeBar];
 
         if (state.player) {
             player.knowledge = state.player.knowledge ?? player.knowledge;
             player.day = state.player.day ?? player.day;
             player.year = state.player.year ?? player.year;
             player.cap = state.player.cap ?? player.cap;
+            player.capBonus = state.player.capBonus ?? player.capBonus;
             player.baseKnowledgeIncrease = state.player.baseKnowledgeIncrease ?? player.baseKnowledgeIncrease;
             player.wisdom = state.player.wisdom ?? player.wisdom;
             player.wisdomRate = state.player.wisdomRate ?? player.wisdomRate;

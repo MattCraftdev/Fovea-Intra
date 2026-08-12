@@ -1,6 +1,7 @@
 const player = {
     knowledge: 0,
     cap: 100,
+    capBonus: 0,
     baseKnowledgeIncrease: 1,
     wisdom: 0,
     wisdomRate: 5,
@@ -43,10 +44,11 @@ Ideas:
 - Pit of sacrifice where better loot thrown = better stuff back
 - Add more to upgrade system
 - Add timer to pit
-- potientally add a bar that fills up when knowledge meets cap or for lifespan/maxlifespan
+- potientally add a bar that fills up when lifespan/maxlifespan
 - Upgrades that cost a resource to fill up bar
 - Bar leveling that gives you a resource every time the bar fills
--
+- When knowledge/wisdom above cap, actively it slowly removes excess resources
+- Mood also has a bar
 */
 
 // Knowledge addition system + wisdom sys
@@ -76,9 +78,9 @@ document.getElementById("collectGoop").addEventListener("click", () => {
 });
 
 document.getElementById("processGloop").addEventListener("click", () => {
-    if (player.knowledge>4 && player.rawgoop>0) {
+    if (player.knowledge>4 && player.rawgoop>1) {
         player.knowledge -= 5;
-        player.rawgoop -= 1;
+        player.rawgoop -= 2;
         player.processedgloop += 1;
     } else {
         say("need more bucko!")

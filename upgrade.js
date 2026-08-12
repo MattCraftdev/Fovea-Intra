@@ -187,9 +187,7 @@ const upgrades = [
         purchased: 0,
         maxpurchases: 1,
         onpurchase: () => {
-            document.getElementById("collectGoop").classList.remove("hidden");
-            document.getElementById("processGloop").classList.remove("hidden");
-            document.getElementById("packageEnergy").classList.remove("hidden");
+            document.querySelector('[data-tab = "Energy"]').classList.remove("hidden");
         },
         purchasetext: "A well materializes in front of you, filled with green goo."
     },
