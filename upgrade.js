@@ -2,10 +2,10 @@
 const upgrades = [
     {
         id: "unlock1",
-        cost: 100,
+        cost: 75,
         costtype: "knowledge",
         unlocked: false,
-        reqamount: 50,
+        reqamount: 40,
         reqtype: "knowledge",
         flavortext: "I may not have a brain gentlemen. But I have an idea..",
         purchased: 0,
@@ -170,8 +170,7 @@ const upgrades = [
         purchased: 0,
         maxpurchases: 1,
         onpurchase: () => {
-            document.getElementById("the-pit").classList.remove("hidden");
-            document.getElementById("no-pit").classList.add("hidden");
+            document.querySelector('[data-tab = "Pit"]').classList.remove("hidden");
         },
         purchasetext: "A big dark hole emerged from the nearby ground. It's deep."
     },
@@ -233,11 +232,9 @@ setInterval(() => {
             say(`${loop.flavortext}. Check Inventions!`)
         };
 
-        if (loop.id == "unlock1" && loop.unlocked == true) {
-            document.getElementById("healthSection").style.display = "block";
+        if (loop.id == "unlock1" && loop.purchased === 1) {
             document.getElementById("healthheader").style.display = "flex";
-        } else if (loop.id == "unlockmagicbtn" && loop.unlocked == true) {
-            document.getElementById("magicSection").style.display = "block";
+        } else if (loop.id == "unlockmagicbtn" && loop.purchased === 1) {
             document.getElementById("magicheader").style.display = "flex";
         }
 
@@ -262,6 +259,7 @@ function buyUpgrade(upgradeId) {
         say("Upgrade unlocked!!!")
         say(upgrade.purchasetext)
     };
+
 };
 
 

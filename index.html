@@ -35,94 +35,113 @@
     <div class = "tabs">
         <button class = "tab-button" data-tab="Creation">Creation</button>
         <button class = "tab-button" data-tab="Inventions">Inventions</button>
-        <button class = "tab-button" data-tab="Pit">The Pit</button>
+        <button class = "tab-button hidden" data-tab="Pit">The Pit</button>
         <button class = "tab-button hidden" data-tab="Energy">Energy Wells</button>
         <button class = "tab-button" data-tab="Other">Other</button>
     </div>
 
-
     <nav class = "tab-content" id = "Creation">
-        <br>
-
+    <br>
+        
         <section id = "box">
             <button id = "createKnowledge" class = "anyButton" >Create 1 knowledge</button>
             <button id = "switchtoWisdom" class = "anyButton hidden" >Become wise, 5 Knowledge: 1 Wisdom</button>
         </section>
 
-        <h2 id = "healthheader">Health</h2>
-        <section id = "healthSection">
-            
+        <div class="game-layout">
 
-            <div class = "hidden" id="vitContainer">
-                <div class="progress-container" title = "Vitality increases your lifespan through unknown means.." id = "vitbtn">
-                    <div class="progress-bar" id="vit"></div>
-                    <span class= "progress-text" id = "vitLevelDisplay">Vitality Level: 1</span>
+            <h2 class="section-title" id = "healthheader">Health</h2>
+            <section class = "category-grid" id = "healthSection">
+                              
+                
+                <div class = "hidden skill-row" id="vitContainer">
+                    <div class="progress-container" title = "Vitality increases your lifespan through unknown means.." id = "vitbtn">
+                        <div class="progress-bar" id="vit"></div>
+                        <span class= "progress-text" id = "vitLevelDisplay">Vitality Level: 1</span>
+                    </div>
+                    <div class="skill-info" id="vitInfo">
+                        <p>Vitality increases mood tolerance, meaning you can hold more</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class = "hidden" id="flexContainer">
-                <div class="progress-container" title = "Staying flexable increases vitality growth rate!" id = "flexbtn">
-                    <div class="progress-bar" id="flex"></div>
-                    <span class= "progress-text" id = "flexLevelDisplay">Flexibility Level: 1</span>
+                <div class = "hidden skill-row" id="flexContainer">
+                    <div class="progress-container" title = "Staying flexable increases vitality growth rate!" id = "flexbtn">
+                        <div class="progress-bar" id="flex"></div>
+                        <span class= "progress-text" id = "flexLevelDisplay">Flexibility Level: 1</span>
+                    </div>
+                    <div class="skill-info" id="flexInfo">
+                        <p>Flexability increases the speed of vitality</p>
+                    </div>
                 </div>
-            </div>
 
-            
-            <div class = "hidden" id="fitnessContainer">
-                <div class="progress-container" title = "Go all out with exercise!" id = "fitnessbtn">
-                    <div class="progress-bar" id="fitness"></div>
-                    <span class= "progress-text" id = "fitnessLevelDisplay">Fitness Program Level: 1</span>
+                <div class = "hidden skill-row" id="fitnessContainer">
+                    <div class="progress-container" title = "Go all out with exercise!" id = "fitnessbtn">
+                        <div class="progress-bar" id="fitness"></div>
+                        <span class= "progress-text" id = "fitnessLevelDisplay">Fitness Program Level: 1</span>
+                    </div>
+                    <div class="skill-info" id="fitnessInfo">
+                        <p>Fitness increases lifespan but lowers mood tolerance</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class = "hidden" id="martialContainer">
-                <div class="progress-container" title = "Go all out with exercise!" id = "martialbtn">
-                    <div class="progress-bar" id="martial"></div>
-                    <span class= "progress-text" id = "martialLevelDisplay">Martial Arts Level: 1</span>
+                <div class = "hidden skill-row" id="martialContainer">
+                    <div class="progress-container" title = "Go all out with exercise!" id = "martialbtn">
+                        <div class="progress-bar" id="martial"></div>
+                        <span class= "progress-text" id = "martialLevelDisplay">Martial Arts Level: 1</span>
+                    </div>
+                    <div class="skill-info" id="martialInfo">
+                        <p>Martial Arts increases flexability speed and greatly increases mood tolerance</p>
+                    </div>                    
                 </div>
-            </div>
 
-            <div class = "hidden" id="hitContainer">
-                <div class="progress-container" title = "Go all out with exercise!" id = "hitbtn">
-                    <div class="progress-bar" id="hit"></div>
-                    <span class= "progress-text" id = "hitLevelDisplay">HIT Level: 1</span>
+                <div class = "hidden skill-row" id="hitContainer">
+                    <div class="progress-container" title = "Go all out with exercise!" id = "hitbtn">
+                        <div class="progress-bar" id="hit"></div>
+                        <span class= "progress-text" id = "hitLevelDisplay">HIT Level: 1</span>
+                    </div>
+                    <div class="skill-info" id="hitInfo">
+                        <p>HIT increases all health bar speeds</p>
+                    </div>                    
                 </div>
-            </div>
 
-        </section>
-
-        <section>
-
-            <div class = "hidden" id="knowledgeContainer">
-                <div class="progress-container" title = "Study how to learn more" id = "knowledgebtn">
-                    <div class="progress-bar" id="knowledge"></div>
-                    <span class= "progress-text" id = "knowledgeLevelDisplay">Knowledge Level: 1</span>
+                <div class = "hidden skill-row" id="knowledgeContainer">
+                    <div class="progress-container" title = "Study how to learn more" id = "knowledgebtn">
+                        <div class="progress-bar" id="knowledge"></div>
+                        <span class= "progress-text" id = "knowledgeLevelDisplay">Knowledge Level: 1</span>
+                    </div>
+                    <div class="skill-info" id="knowledgeInfo">
+                        <p>Knowledge increases knowledge gain per creation</p>
+                    </div>                    
                 </div>
-            </div>
-        </section>
 
-        <h2 id = "magicheader">Magic</h2>
-        <section id = "magicSection">
+            </section>
 
-
-            <div class = "hidden" id="magicContainer">
-                <div class="progress-container" title = "Become magical and kill stuff!" id = "magicbtn">
-                    <div class="progress-bar" id="magic"></div>
-                    <span class= "progress-text" id = "magicLevelDisplay">Magic Accumulination Level: 1</span>
+            <h2 class="section-title" id = "magicheader">Magic</h2>
+            <section class = "category-grid" id = "magicSection">
+           
+                <div class = "hidden skill-row" id="magicContainer">
+                    <div class="progress-container" title = "Become magical and kill stuff!" id = "magicbtn">
+                        <div class="progress-bar" id="magic"></div>
+                        <span class= "progress-text" id = "magicLevelDisplay">Magic Accumulination Level: 1</span>
+                    </div>
+                    <div class="skill-info" id="magicInfo">
+                        <p>Level it up.</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class = "hidden" id="magicstudyContainer">
-                <div class="progress-container" title = "Become magical and kill stuff!" id = "magicstudybtn">
-                    <div class="progress-bar" id="magicstudy"></div>
-                    <span class= "progress-text" id = "magicstudyLevelDisplay">Magic Study Level: 1</span>
+                <div class = "hidden skill-row" id="magicstudyContainer">
+                    <div class="progress-container" title = "Become magical and kill stuff!" id = "magicstudybtn">
+                        <div class="progress-bar" id="magicstudy"></div>
+                        <span class= "progress-text" id = "magicstudyLevelDisplay">Magic Study Level: 1</span>
+                    </div>
+                    <div class="skill-info" id="magicstudyInfo">
+                        <p>Increases the knowledge learning speed</p>
+                    </div>
                 </div>
-            </div>
- 
 
+            </section>
 
-        
-        </section>
+        </div>
     </nav>
 
 
@@ -133,7 +152,7 @@
         <button id = "unlockpit" class = "hidden upgrade">Create the pit - Costs 10 Knowledge</button>
         <button id = "unlockmoodbtn" class = "hidden upgrade">Unlock Mood Bar - Costs 100 Knowledge</button>
 
-        <button id = "unlock1" class = "hidden upgrade">Create Health Exercise Plan - Cost 100 Knowledge</button>
+        <button id = "unlock1" class = "hidden upgrade">Create Health Exercise Plan - Cost 75 Knowledge</button>
         <button id = "unlockwisdombtn" class = "hidden upgrade">Learn the act of wisdom - Costs 35 Knowledge</button>
         
         <button id = "unlockknowledgebtn" class = "hidden upgrade">Study how to learn better - Costs 10 Wisdom</button>
@@ -150,8 +169,7 @@
     </nav>
     
     <nav class = "tab-content" id = "Pit">
-        <p id = "no-pit">There is nothing here yet...you gotta make it lol!</p>
-        <button id = "the-pit" class = "hidden upgrade">Sacrifice stuff into the pit</button>
+        <button id = "the-pit" class = "upgrade">Sacrifice stuff into the pit</button>
 
     </nav>
 
@@ -167,15 +185,12 @@
     </nav>
 
     <nav id = "Story">
-        <h1 id = "storyTitle">Story</h1>
+        <h1 id = "storyTitle">Message Log</h1>
 
         <p id = "chatbox"></p>
     </nav> 
 
     <nav class = "tab-content" id = "Other">
-        <h1>Help</h1>
-        <p>Knowledge: Used to unlock other upgrades, a core important resource</p>
-        
         <h1>Saving/Loading</h1>
         <p>If you're having issues saving or loading, press these buttons</p>
         <button id = "saveGame" class = "tech">Save Game</button>
@@ -183,9 +198,15 @@
         <button id = "resetGame" class = "tech">Hard reset game</button>
 
         <h1>Statistics</h1>
+        <p>Sorry I didn't add any...check back later</p>
+
+        <h1>Help</h1>
+        <p>Knowledge: Used to unlock other upgrades, a core important resource</p>
+        <p>Mood: Mood affects how fast your bars move, along with if it's very bad, stops you from generating more knowledge</p>
 
         <h2>Changelog</h2>
         <a href = "changelog.md">Click me for changelog!!!!</a>
+
     </nav>  
 
     <div id = "savingnotif">Saving...</div>

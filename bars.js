@@ -4,7 +4,7 @@ class ProgressBar {
         this.elementId = elementId;
         this.progress = 0;
         this.maxprogress = maxprogress;
-        this.level = 1;
+        this.level = 0;
         this.speed = speed;
         this.element = document.getElementById(elementId);
         this.expoincrease = expoincrease;
@@ -27,7 +27,7 @@ class ProgressBar {
             this.maxprogress = this.maxprogress*this.expoincrease;
 
             if (this.elementId == "knowledge") {
-                player.baseKnowledgeIncrease = knowledgeBar.level;
+                player.baseKnowledgeIncrease = (knowledgeBar.level) + 1;
                 document.getElementById("createKnowledge").innerText = `Create ${player.baseKnowledgeIncrease} Knowledge`;
 
             }
@@ -64,11 +64,11 @@ class ProgressBar {
 
 // Progress Bars
 const vitBar = new ProgressBar("vit", 10, 1000, 1.15);
-const flexBar = new ProgressBar("flex", 10, 1000, 1.1);
-const fitnessBar = new ProgressBar("fitness", 10, 2500, 1.25)
-const martialBar = new ProgressBar("martial", 10, 3500, 1.3)
-const hitBar = new ProgressBar("hit", 10, 5000, 1.25)
-const taichiBar = new ProgressBar("taichi", 10, 4000, 1.15)
+const flexBar = new ProgressBar("flex", 10, 500, 1.1);
+const fitnessBar = new ProgressBar("fitness", 10, 2500, 1.25);
+const martialBar = new ProgressBar("martial", 10, 3500, 1.3);
+const hitBar = new ProgressBar("hit", 10, 5000, 1.25);
+const taichiBar = new ProgressBar("taichi", 10, 4000, 1.15);
 
 const knowledgeBar = new ProgressBar("knowledge", 10, 10000, 1.2);
 
@@ -162,7 +162,7 @@ for (const all of progressContainers) {
 
 // Recalculates buffs
 function recalcBuffs() {
-    player.cap = 45+(vitBar.level)+(martialBar.level*5)+(taichiBar.level*50)-(fitnessBar.level)+player.capBonus;
+    player.cap = 100+(vitBar.level*5)+(martialBar.level*10)+(taichiBar.level*100)-(fitnessBar.level)+player.capBonus;
     player.lifespan = 50+(fitnessBar.level)
 
     if (vitBar.level>=10) {document.getElementById("flexContainer").classList.remove("hidden");}

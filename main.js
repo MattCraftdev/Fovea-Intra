@@ -49,7 +49,9 @@ Ideas:
 - Bar leveling that gives you a resource every time the bar fills
 - When knowledge/wisdom above cap, actively it slowly removes excess resources
 - Make mood (happy, sad, etc.) fit into bar aswell and not appear on side
-- Have a way to easily increase moodcap!
+- Reduce lifespan when you're top
+- Mood changes mood bar color
+- Add more text beside bars
 */
 
 // Knowledge addition system + wisdom sys

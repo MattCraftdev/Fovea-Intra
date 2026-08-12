@@ -37,7 +37,7 @@ function solveMood() {
     if (mood<0) { mood = 0; }
     
 
-    moodBar.element.style.width = mood + "%";
+    moodBar.element.style.width = (mood/player.cap)*100 + "%";
     document.getElementById("moodBarDisplay").innerText =`${parseFloat(mood.toFixed(0))}/${player.cap}`;
 };
 

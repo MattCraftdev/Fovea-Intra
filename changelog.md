@@ -1,5 +1,20 @@
 Newest versions
 
+
+2026/08/12 6:36 PM - [0.34.0] TWEAKS && FIXES II QOL
+- Fixed scaling with moodcap by changing the pit and vit cost
+- Fixed moodcap scaling with vit/martialarts/taichi buffed
+- Changed the pit to hide tab until unlocked like energytab
+- Updated table reveals (health/magic)
+- Fixed minor error with knowledgeBar
+- Fixed error with moodcap bar
+- Added more help text
+- Tweaked flexbar progress to be in half (twice as fast as before)
+
+- Completely revolutized layout of HTML using tables/boxes
+- Added text on the side of each bar that tells you what the bar does
+Such a pain to add.
+
 2026/08/12 2:00 PM - [0.32.0]
 - Added mood bar that shows how much mood capacity you have left.
 - Fixed minor bugs with mood bar and cleaned up code with it
@@ -11,7 +26,7 @@ Newest versions
 - Tweaked energy conversion costs
 - Tweaked vitality to increase mood cap (not lifespan)
 - Fixed minor error with knowledgebar not saving (forgot to put in lol)
-- Fixed another error with bars not saving bonuses after save/load
+- Fixed another error with bars not saving bonuses after save/load (the pit bonuses)
 - Fixed a few small bugs
 - Completely changed bar system to recalc after load
 
@@ -20,6 +35,7 @@ Newest versions
 - Fixed error with saving/loading upgrades (with hiding while being unlocked)
 - Updated the pit shell with more additions
 - Optimized the pit variable working (each roll bracket doesn't have to have a variable) and cleaned some code up
+- Also ported to galaxy.click
 
 2026/08/11 6:44 PM - [0.29.0] ENERGY
 - Modified docs by changing functions.js to systems and moving some code there from main.js

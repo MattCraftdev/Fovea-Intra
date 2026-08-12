@@ -1,7 +1,7 @@
 /* Effects */
 
 .hidden {
-    display:none;
+    display:none !important;
 }
 
 .glow {
@@ -67,7 +67,7 @@
     position: absolute;
     bottom: 20px;
     right: 20px;
-    display: fixed;
+    position: fixed;
 }
 
 /* Story box */
@@ -123,7 +123,44 @@
     z-index: 2;
 }
 
-/* Section  */
+/* Sections */
+
+.game-layout {
+    display: flex;
+    grid-template-columns: 1fr 1fr; /* columns*/
+    gap: 15px;                      /* Spacing */
+    align-items: center;
+}
+
+/* Makes your h2 section titles stretch across both columns */
+.section-title {
+    grid-column: span 2;
+    margin-top: 20px;
+}
+
+.skill-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10px;
+}
+
+.skill-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.category-grid {
+    display: flex;
+    grid-template-columns: 1fr 1fr; /* Left side: Bar container | Right side: Text */
+    gap: 15px;                      /* Spacing between grid elements */
+    align-items: center;
+    flex-direction: column;
+}
+
 
 #box {
     padding: 20px;
@@ -132,33 +169,11 @@
     background-color: grey;
     width: 90%;
 }
-
-#healthSection {
-    border:5px solid rgb(0, 103, 21);
-    padding: 20px;
-    margin: 10px;
-    display: none;
-    background-color: rgb(73, 210, 91);
-    width: 90%;
-    height: fit-content;
-}
-
-#magicSection {
-    border:5px solid rgb(56, 56, 155);
-    padding: 20px;
-    margin: 10px;
-    display: none;
-    background-color: rgb(79, 90, 167);
-    width: 90%;
-    height: fit-content;
-}
-
 #healthheader {
     padding: 20px;
     margin: 10px;
     display: none;
     background-color: rgb(73, 210, 91);
-    width: fit-content;
 }
 
 #magicheader {
@@ -166,7 +181,6 @@
     margin: 10px;
     display: none;
     background-color: rgb(79, 90, 167);
-    width: fit-content;
 }
 /* Death Screen */
 #youDied {
