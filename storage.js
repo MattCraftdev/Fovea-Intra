@@ -54,6 +54,7 @@ function saveGame() {
                 processedgloop: player.processedgloop,
                 energy: player.energy,
                 saveInterval: player.saveInterval,
+                potionStock: player.potionStock,
             },
             upgrades: upgrades.map(u => ({ id: u.id, unlocked: u.unlocked, purchased: u.purchased })),
             bars: allBars.map(b => ({ id: b.elementId, level: b.level, maxprogress: b.maxprogress, progress: b.progress}))
@@ -86,6 +87,7 @@ function loadGame() {
             player.processedgloop = state.player.processedgloop ?? player.processedgloop;
             player.energy = state.player.energy ?? player.energy;
             player.saveInterval = state.player.saveInterval ?? player.saveInterval;
+            player.potionStock = state.player.potionStock ?? player.potionStock;
         }
     
 

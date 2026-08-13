@@ -206,6 +206,22 @@ const upgrades = [
         },
         purchasetext: "A bar floats above your head, dictating your mood"
     },
+
+        {
+        id: "unlockpotionbtn",
+        cost: 75,
+        costtype: "wisdom",
+        unlocked: false,
+        reqamount: 75,
+        reqtype: "wisdom",
+        flavortext: "Hmm. Maybe you should call the local drug de- I mean potion maker.",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.querySelector('[data-tab = "Potion"]').classList.remove("hidden");
+        },
+        purchasetext: "Potion man giving you a call. Better head down."
+    },
 ]
 
 // Checks if any upgrade can be unlocked

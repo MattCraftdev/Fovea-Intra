@@ -12,6 +12,7 @@ const player = {
     rawgoop: 0,
     processedgloop: 0,
     energy: 0,
+    potionStock: [knowledge1 = 0, knowledge2 = 0, knowledge3 = 0],
 
     get vitLevel () {
         return vitBar.getLevel();
@@ -103,3 +104,46 @@ document.getElementById("packageEnergy").addEventListener("click", () => {
         say("Not enough shtuff brochacho")
     }
 });
+
+
+// Potion creation system
+
+document.getElementById("createPotion").addEventListener("click", () => {
+    const resources = Math.random()*100+100;
+
+    player.knowledge -= parseFloat(resources.toFixed(0));
+
+    const randomPotion = Math.random()*100
+    
+    console.log(player.potionStock)
+
+    const rollPotion = potionOdds.find(tier => tier.rollmin<=randomPotion && tier.rollmax>randomPotion );
+
+    player.potionStock[rollPotion.Num] += 1;
+    say(`You got ${rollPotion.Name} from Bobby!`)
+});
+
+const potionOdds = [
+    {
+        Num: 0,
+        Name: "Knowledge Potion I",
+        rollmin: 0,
+        rollmax: 60,
+    },
+
+    {
+        Num: 1,
+        Name: "Knowledge Potion II",
+        rollmin: 60,
+        rollmax: 90,
+    },
+
+
+    {
+        Num: 2,
+        Name: "Knowledge Potion III",
+        rollmin: 90,
+        rollmax: 100,
+    },
+
+];

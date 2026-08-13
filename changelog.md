@@ -1,6 +1,11 @@
 Newest versions
 
-2026/08/13 4:22 PM - [0.36.0] TWEAKS && FIXES III + QOL
+2026/08/13 5:52 PM - [0.37.0] POTIONS
+- Added potion upgrade, which unlocks the potion tab
+- Added a placeholder potion upgrade that works, and potion stocks which save
+- Added random potion odds, 3 potions (knowledge I, II and III) and the whole potion getting system
+
+2026/08/13 4:22 PM - [0.36.0] TWEAKS && FIXES III + QOL/UI
 - Fixed minor error with create knowledge not updating after page load
 - Optimized bar code for selecting and leveling bars
 - Redid the code to work so it had correct names

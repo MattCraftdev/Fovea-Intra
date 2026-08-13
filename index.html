@@ -37,6 +37,7 @@
         <button class = "tab-button" data-tab="Inventions">Inventions</button>
         <button class = "tab-button hidden" data-tab="Pit">The Pit</button>
         <button class = "tab-button hidden" data-tab="Energy">Energy Wells</button>
+        <button class = "tab-button hidden" data-tab="Potion">Potion Brewery</button>
         <button class = "tab-button" data-tab="Other">Other</button>
     </div>
 
@@ -175,6 +176,7 @@
 
         <button id = "unlockmagicbtn" class = "hidden upgrade">Magic - Costs 50 Wisdom</button>
         <button id = "unlockmagicstudybtn" class = "hidden upgrade">Study Magic - Costs 100 Wisdom</button>
+        <button id = "unlockpotionbtn" class = "hidden upgrade">Find potion shop - Costs 75 Wisdom</button>
         
     </nav>
     
@@ -194,11 +196,10 @@
 
     </nav>
 
-    <nav id = "Story">
-        <h1 id = "storyTitle">Message Log</h1>
+    <nav class = "tab-content" id = "Potion">
+        <button id="createPotion">Create a Potion</button>
+    </nav>
 
-        <p id = "chatbox"></p>
-    </nav> 
 
     <nav class = "tab-content" id = "Other">
         <h1>Saving/Loading</h1>
@@ -223,11 +224,15 @@
     
         <h1>Statistics</h1>
         <p>Sorry I didn't add any...check back later</p>
-    </nav>  
+    </nav>
+
+    <nav id = "Story">
+        <h1 id = "storyTitle">Message Log</h1>
+
+        <p id = "chatbox"></p>
+    </nav> 
 
     <div id = "savingnotif">Saving...</div>
-
-
 
     <script src="main.js" defer></script>
     <script src="systems.js" defer></script>
