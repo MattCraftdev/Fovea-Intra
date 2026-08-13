@@ -13,6 +13,15 @@ document.getElementById("resetGame").addEventListener("click", () => {
     hardReset();
 });
 
+const saveSlider = document.getElementById("slidersaveInterval")
+
+saveSlider.addEventListener("input", () => {
+    const saveIntervalValue = saveSlider.value
+    document.getElementById("saveIntervalDisplay").innerText = `Save Interval: ${saveIntervalValue} Seconds`
+    player.saveInterval = saveIntervalValue*1000
+
+});
+
 // Hard reset
 function hardReset() {
     if (confirm("Are you sure you want to erase your lifetime progress and start over?")) {
@@ -44,6 +53,7 @@ function saveGame() {
                 rawgoop: player.rawgoop,
                 processedgloop: player.processedgloop,
                 energy: player.energy,
+                saveInterval: player.saveInterval,
             },
             upgrades: upgrades.map(u => ({ id: u.id, unlocked: u.unlocked, purchased: u.purchased })),
             bars: allBars.map(b => ({ id: b.elementId, level: b.level, maxprogress: b.maxprogress, progress: b.progress}))
@@ -75,6 +85,7 @@ function loadGame() {
             player.rawgoop = state.player.rawgoop ?? player.rawgoop;
             player.processedgloop = state.player.processedgloop ?? player.processedgloop;
             player.energy = state.player.energy ?? player.energy;
+            player.saveInterval = state.player.saveInterval ?? player.saveInterval;
         }
     
 
@@ -113,6 +124,9 @@ function loadGame() {
             console.log("Bars not loaded")
         }
 
+        document.getElementById("saveIntervalDisplay").innerText = `Save Interval: ${player.saveInterval/1000} Seconds`
+        saveSlider.value = player.saveInterval/1000
+
     } else {
         console.log("no save found")
     }
@@ -120,5 +134,5 @@ function loadGame() {
 
 window.addEventListener('DOMContentLoaded', () => {
     loadGame();
-    setInterval(saveGame, 10000);
+    setInterval(saveGame, player.saveInterval);
 });

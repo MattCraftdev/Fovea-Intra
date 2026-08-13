@@ -37,21 +37,25 @@ const player = {
     get taichiLevel () {
         return taichiBar.getLevel();
     },
+
+    saveInterval: 10000,
 }
 
 /*
 Ideas:
 - Pit of sacrifice where better loot thrown = better stuff back
-- Add more to upgrade system
-- Add timer to pit (1 Hour, btw timer runs when game closes for ca;c)
-- potientally add a bar that fills up when lifespan/maxlifespan
+- Reduce effectiveness of simply throwing with low knowledge (maybe add when player.cap is = knowledge+wisdom, etc.)
+
+- Add timer to pit (1 Hour, btw timer runs when game closes )
 - Upgrades that cost a resource to fill up bar
 - Bar leveling that gives you a resource every time the bar fills
-- When knowledge/wisdom above cap, actively it slowly removes excess resources
-- Make mood (happy, sad, etc.) fit into bar aswell and not appear on side
-- Reduce lifespan when you're top
-- Mood changes mood bar color
-- Add more text beside bars
+
+- When knowledge/wisdom above cap, actively it slowly removes excess resources and mildly drains a bit of lifespan
+- Make mood (happy, sad, etc.) fit into bar aswell and not appear on side and change bar color
+
+- Added suggestions on what button was last clicked (tabs, bars)
+
+- Cleanup mess with allBars vs barInfo
 */
 
 // Knowledge addition system + wisdom sys

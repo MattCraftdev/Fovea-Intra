@@ -1,7 +1,17 @@
 Newest versions
 
+2026/08/13 4:22 PM - [0.36.0] TWEAKS && FIXES III + QOL
+- Fixed minor error with create knowledge not updating after page load
+- Optimized bar code for selecting and leveling bars
+- Redid the code to work so it had correct names
+- Fixed issue with bars saying their level was 0 when reloading until you used them
+- Added taichi again because somehow it wasn't there before (?)
+- Changed story box to be smaller, border on saving notif and a few other minor things
+- Aligned the magic bars to be next to health bars
+- Added a save interval bar (and settings) which has a 5 to 60 sec range, also saves and loads itself
+- Fixed issues with bars not showing progress after reloading until you use them
 
-2026/08/12 6:36 PM - [0.34.0] TWEAKS && FIXES II QOL
+2026/08/12 6:36 PM - [0.34.0] TWEAKS && FIXES II + QOL
 - Fixed scaling with moodcap by changing the pit and vit cost
 - Fixed moodcap scaling with vit/martialarts/taichi buffed
 - Changed the pit to hide tab until unlocked like energytab
@@ -10,7 +20,6 @@ Newest versions
 - Fixed error with moodcap bar
 - Added more help text
 - Tweaked flexbar progress to be in half (twice as fast as before)
-
 - Completely revolutized layout of HTML using tables/boxes
 - Added text on the side of each bar that tells you what the bar does
 Such a pain to add.
@@ -18,7 +27,7 @@ Such a pain to add.
 2026/08/12 2:00 PM - [0.32.0]
 - Added mood bar that shows how much mood capacity you have left.
 - Fixed minor bugs with mood bar and cleaned up code with it
-- Added mood upgrade 
+- Added mood upgrade for bar
 
 2026/08/12 12:20 AM - [0.31.0] TWEAKS && FIXES
 - Switched the energy upgrade to reveal the data-tab, instead of stuff in the tab itself

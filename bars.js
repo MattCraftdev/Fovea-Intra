@@ -11,27 +11,18 @@ class ProgressBar {
     };
     
     update() {
-
         if (this.progress < this.maxprogress) {
             this.progress += this.speed;
             let widthPercent = Math.min((this.progress / this.maxprogress) * 100, 100);
             this.element.style.width = widthPercent + "%";
-            updateAllSpeeds();
         } else {
             this.level++;
             this.progress = 0;
             console.log(`${this.progress}/${this.maxprogress}. Speed is ${this.speed}`)
-            updateAllSpeeds();
-            
             // Expo increase value
             this.maxprogress = this.maxprogress*this.expoincrease;
-
-            if (this.elementId == "knowledge") {
-                player.baseKnowledgeIncrease = (knowledgeBar.level) + 1;
-                document.getElementById("createKnowledge").innerText = `Create ${player.baseKnowledgeIncrease} Knowledge`;
-
-            }
         };
+        updateAllSpeeds();
     };
 
     reset() {
@@ -58,7 +49,13 @@ class ProgressBar {
             this.level = savedData.level;
             this.maxprogress = savedData.maxprogress;
             this.progress = savedData.progress;
+            if (this.elementId) {
+                document.getElementById(`${this.elementId}LevelDisplay`).innerText = `${barInfo[this.elementId][1]} Level: ${this.level}`;
+                let widthPercent = Math.min((this.progress / this.maxprogress) * 100, 100);
+                this.element.style.width = widthPercent + "%";
+            }
         }
+            
     }
 };
 
@@ -77,45 +74,35 @@ const magicstudyBar = new ProgressBar("magicstudy", 10, 10000, 1.15);
 
 const moodBar = new ProgressBar("mood", 0, 0, 0)
 
+const barInfo = { // activebar id, then says their bar then name to DISPLAY
+    vit: [vitBar, "Vitality"],
+    flex: [flexBar, "Flexability"],
+    knowledge: [knowledgeBar, "Knowledge"],
+    fitness: [fitnessBar, "Fitness"],
+    magic: [magicBar, "Magic"],
+    martial: [martialBar, "Martial Arts"],
+    magicstudy: [magicstudyBar, "Magic Study"],
+    hit: [hitBar, "HIT"],
+    taichi: [taichiBar, "Tai Chi"]
+}   
+
 // Vars
 let flexbuff = 0;
 let martialbuff = 0;
 let magicbuff = 0;
 let magicstudybuff = 0;
-let taichibuff = 0;
-let hitnerf = 0;
+let taichinerf = 0;
+let hitbuff = 0;
 
 let activeBar = null;
+
 // Update Progress Bars
 function updateProgress() {
-
-    if (activeBar === "vit") {
-        vitBar.update();
-        document.getElementById("vitLevelDisplay").innerText = "Vitality Level: " + vitBar.getLevel();
-    } else if (activeBar === "flex") {
-        flexBar.update();
-        document.getElementById("flexLevelDisplay").innerText = "Flexibility Level: " + flexBar.getLevel();
-    } else if (activeBar === "knowledge") {
-        knowledgeBar.update();
-        document.getElementById("knowledgeLevelDisplay").innerText = "Knowledge Level: " + knowledgeBar.getLevel();
-    } else if (activeBar === "fitness") {
-        fitnessBar.update();
-        document.getElementById("fitnessLevelDisplay").innerText = "Fitness Level: " + fitnessBar.getLevel();
-    } else if (activeBar === "magic") {
-        magicBar.update();
-        document.getElementById("magicLevelDisplay").innerText = "Magic Accumination Level: " + magicBar.getLevel();
-    } else if (activeBar === "martial") {
-        martialBar.update();
-        document.getElementById("martialLevelDisplay").innerText = "Martial Arts Level: " + martialBar.getLevel();
-    } else if (activeBar === "magicstudy") {
-        magicstudyBar.update();
-        document.getElementById("magicstudyLevelDisplay").innerText = "Magic Study Level: " + magicstudyBar.getLevel();
-    } else if (activeBar === "hit") {
-        hitBar.update();
-        document.getElementById("hitLevelDisplay").innerText = "HIT Level: " + hitBar.getLevel();
-    } else if (activeBar === "taichi") {
-        taichiBar.update();
-        document.getElementById("taichiLevelDisplay").innerText = "Tai Chi Level: " + taichiBar.getLevel();
+    
+    const chosenBar = barInfo[activeBar]
+    if (chosenBar) {
+        chosenBar[0].update();
+        document.getElementById(`${activeBar}LevelDisplay`).innerText = `${chosenBar[1]} Level: ${chosenBar[0].getLevel()}`
     }
 
     flexbuff = player.flexLevel*2;
@@ -145,6 +132,7 @@ function updateAllSpeeds() {
     hitBar.speed = baseMoodspeed + healthsum
 
     knowledgeBar.speed = baseMoodspeed + magicstudybuff;
+
     magicBar.speed = baseMoodspeed;
     magicstudyBar.speed = baseMoodspeed + magicbuff - 10;
 }
@@ -166,4 +154,7 @@ function recalcBuffs() {
     player.lifespan = 50+(fitnessBar.level)
 
     if (vitBar.level>=10) {document.getElementById("flexContainer").classList.remove("hidden");}
+
+    player.baseKnowledgeIncrease = (knowledgeBar.level) + 1;
+    document.getElementById("createKnowledge").innerText = `Create ${player.baseKnowledgeIncrease} Knowledge`;
 };
