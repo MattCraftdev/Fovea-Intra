@@ -100,10 +100,16 @@ let activeBar = null;
 function updateProgress() {
     
     const chosenBar = barInfo[activeBar]
+
     if (chosenBar) {
         chosenBar[0].update();
         document.getElementById(`${activeBar}LevelDisplay`).innerText = `${chosenBar[1]} Level: ${chosenBar[0].getLevel()}`
+
+        document.querySelectorAll("skill-row").forEach(bar => bar.classList.remove("selectedTab"))
+        document.getElementById(`${activeBar}btn`).classList.add("selectedTab");
     }
+
+
 
     flexbuff = player.flexLevel*2;
     fitnessbuff = player.fitnessLevel*2

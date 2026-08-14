@@ -70,7 +70,7 @@ const pitrolls = [
         rollmin:85,
         rollmax:90,
         flavortext: "The pit screams how the dev forgot to patch something",
-        moodcapadd:50,
+        moodcapadd:100,
     },
 
     {
@@ -99,7 +99,7 @@ const pitrolls = [
         rollmin:97,
         rollmax:98,
         flavortext: "The pit takes away the strain of life.",
-        moodcapadd:300,
+        moodcapadd:500,
     },
 
     {

@@ -245,7 +245,7 @@ setInterval(() => {
                 document.getElementById(loop.id).classList.remove("hidden")
             }
                     
-            say(`${loop.flavortext}. Check Inventions!`)
+            say(`${loop.flavortext} Check Inventions!`)
         };
 
         if (loop.id == "unlock1" && loop.purchased === 1) {

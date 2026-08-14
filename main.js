@@ -56,17 +56,10 @@ Ideas:
 - The pit maybe works only when you have mood capped
 - Better pit algorithim
 
-- Upgrades that cost a resource to fill up bar
-- Bar leveling that gives you a resource every time the bar fills
-
 - When knowledge/wisdom above cap, actively it slowly removes excess resources and mildly drains a bit of lifespan
-- Make mood (happy, sad, etc.) fit into bar aswell and not appear on side and change bar color
+- Make mood (happy, sad, etc.) fit into bar aswell and not appear on side
 
-- Added suggestions on what button was last clicked (tabs, bars)
-
-- mass wisdom conversion upgrade, and better wisdom conversion
-
-- Fix death issue where dying covers whole screen. It should also display "hard reset" for trying again 
+- mass wisdom conversion upgrade, and better wisdom conversion (same thing with energy)
 
 - Cleanup mess with allBars vs barInfo
 */

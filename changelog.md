@@ -1,10 +1,17 @@
 Newest versions
 
-2026/08/14 12:30 PM - [0.38.1]
+2026/08/14 2:42 PM - [0.39.0]
+- Changed "other" tab to settings
+- Slightly boosted the pit's moodcap adding
+- Now the tab that's selected has a yellow border
+- The bar that's selected also gets a border
+- Added color on the mood bar, which is green when mood is good and red when bad
+
+2026/08/14 12:30 AM - [0.38.1]
 - Redid the "You died screen"
 - Fixed a major bug with it locking you out of the game, by adding a reset button
 
-2026/08/14 12:23 PM - [0.38.0] POTIONS II
+2026/08/14 12:23 AM - [0.38.0] POTIONS II
 - Updated potion system to be more dynamic, adding different resource costs and automatic scaling when adding more
 - Potion system now says cost
 - Added different dealers to the potion system and save system (Joel, Bobby and Amy)
@@ -232,12 +239,14 @@ Such a pain to add.
 - Added minor story bits :D
 - Added another upgrade, the lifespan timer which acts as VIT but costs more
 - Made the lifespan timer work and all this fillings with it
+- Added upgrades.js
 
 2026/07/02 10:39 PM - [0.3.0] VIT
 - Added Bars and vitality marker
 - Vitality now extends "lifespan"
 - Updated Time System
 - ACTUALLY fixed depression Error, and added a bit more
+- Added bars.js
 
 2026/07/02 9:15PM - [0.2.1]
 - Fixed error with depression

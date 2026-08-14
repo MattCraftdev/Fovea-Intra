@@ -35,10 +35,12 @@ function solveMood() {
     document.getElementById("displayMood").innerText = "Mood: " + moodStatus;
 
     if (mood<0) { mood = 0; }
-    
 
-    moodBar.element.style.width = (mood/player.cap)*100 + "%";
+    const fillratio = mood/player.cap
+
+    moodBar.element.style.width = fillratio*100 + "%";
     document.getElementById("moodBarDisplay").innerText =`${parseFloat(mood.toFixed(0))}/${player.cap}`;
+    moodBar.element.style.backgroundColor = `hsl(${(1-fillratio)*120}, 100%, 45%)`;
 };
 
 // Time System
@@ -93,16 +95,19 @@ function say(message) {
 };
 
 // Tab code foreach
-const TabButtons= document.querySelectorAll(".tab-button");
+const TabButtons = document.querySelectorAll(".tab-button");
+
+
 
 TabButtons.forEach(button => {
     button.addEventListener("click", () => {
-        const tabId = button.dataset.tab;
-
         // Hides all tabs
+        const tabId = button.dataset.tab;
+        
+        TabButtons.forEach(btn => btn.classList.remove("selectedTab"));
+        
         document.querySelectorAll(".tab-content").forEach(tab => {
             tab.style.display = "none";
-
         });
 
         // Shows selected tab
@@ -110,8 +115,10 @@ TabButtons.forEach(button => {
 
         if (tabId == "Inventions") {
             inventionsBtn.classList.remove("glow");
-        }
-        console.log(`Clicking on ${tabId}`)
-
+        };
+        console.log(`Clicking on ${tabId}`);
+        
+        button.classList.add("selectedTab");
+       
     });
 });
