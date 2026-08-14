@@ -65,10 +65,15 @@ setInterval(() => {
 }, 500); // Day per X, in this case 2 days per sec
 
 function initiateDeath() {
-    console.log("Player has died, end.")
-    document.getElementById("youDied").classList.remove("hidden")
-    document.getElementById("hideDeath").classList.remove("hidden")
+    console.log("Player has died, end.");
+    document.getElementById("youDied").classList.remove("hidden");
+    document.getElementById("hideDeath").classList.remove("hidden");
+    document.getElementById("tryAgain").classList.remove("hidden");
 }
+
+document.getElementById("tryAgain").addEventListener("click", () => {
+    hardReset();
+})
 
 // Chatbox code
 let maxMessages = 10;

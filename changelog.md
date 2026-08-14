@@ -1,6 +1,10 @@
 Newest versions
 
-2026/08/14 12:30 PM - [0.38.0] POTIONS II
+2026/08/14 12:30 PM - [0.38.1]
+- Redid the "You died screen"
+- Fixed a major bug with it locking you out of the game, by adding a reset button
+
+2026/08/14 12:23 PM - [0.38.0] POTIONS II
 - Updated potion system to be more dynamic, adding different resource costs and automatic scaling when adding more
 - Potion system now says cost
 - Added different dealers to the potion system and save system (Joel, Bobby and Amy)

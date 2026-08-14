@@ -178,6 +178,9 @@
     font-size: 160px;
     z-index:10;
     color:red;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, 0%)
 }
 
 #hideDeath {
@@ -190,6 +193,20 @@
     left: 0%;
 }
 
+#tryAgain {
+    position: absolute;
+    z-index: 10;
+    top: 60%;
+    left: 50%;
+    background-color:red;
+    color:rgb(0, 0, 0);
+    padding: 10px;
+    font-size: 25px;
+    width: 200px;
+    height: 100px;
+    font-family:'Times New Roman';
+    transform: translate(-50%, -50%);
+}
 /* In tabs buttons */
 #box {
     padding: 20px;
