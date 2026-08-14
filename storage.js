@@ -55,11 +55,13 @@ function saveGame() {
                 energy: player.energy,
                 saveInterval: player.saveInterval,
                 potionStock: player.potionStock,
+                currentDealer: player.currentDealer,
             },
             upgrades: upgrades.map(u => ({ id: u.id, unlocked: u.unlocked, purchased: u.purchased })),
             bars: allBars.map(b => ({ id: b.elementId, level: b.level, maxprogress: b.maxprogress, progress: b.progress}))
     };  
     localStorage.setItem("gameSave", JSON.stringify(state));
+
     savenotif.classList.remove("hidden");
     setTimeout(() => {
         savenotif.classList.add("hidden");
@@ -88,6 +90,7 @@ function loadGame() {
             player.energy = state.player.energy ?? player.energy;
             player.saveInterval = state.player.saveInterval ?? player.saveInterval;
             player.potionStock = state.player.potionStock ?? player.potionStock;
+            player.currentDealer = state.player.currentDealer ?? player.currentDealer;
         }
     
 
@@ -128,6 +131,8 @@ function loadGame() {
 
         document.getElementById("saveIntervalDisplay").innerText = `Save Interval: ${player.saveInterval/1000} Seconds`
         saveSlider.value = player.saveInterval/1000
+        resetPotionStock();
+        createPotionShowing();
 
     } else {
         console.log("no save found")
@@ -136,5 +141,5 @@ function loadGame() {
 
 window.addEventListener('DOMContentLoaded', () => {
     loadGame();
-    setInterval(saveGame, player.saveInterval);
+    setInterval(saveGame(), player.saveInterval);
 });

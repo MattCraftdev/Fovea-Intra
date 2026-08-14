@@ -12,7 +12,12 @@ const player = {
     rawgoop: 0,
     processedgloop: 0,
     energy: 0,
-    potionStock: [knowledge1 = 0, knowledge2 = 0, knowledge3 = 0],
+    potionStock: [knowledge1 = 0, knowledge2 = 0, knowledge3 = 0, knowledge4 = 0,
+        speed1 = 0, speed2 = 0, speed3 = 0, speed4= 0,
+    ],
+    currentDealer: null,
+
+
 
     get vitLevel () {
         return vitBar.getLevel();
@@ -46,8 +51,11 @@ const player = {
 Ideas:
 - Pit of sacrifice where better loot thrown = better stuff back
 - Reduce effectiveness of simply throwing with low knowledge (maybe add when player.cap is = knowledge+wisdom, etc.)
-
+- Free pit rolls (Like a token)
 - Add timer to pit (1 Hour, btw timer runs when game closes )
+- The pit maybe works only when you have mood capped
+- Better pit algorithim
+
 - Upgrades that cost a resource to fill up bar
 - Bar leveling that gives you a resource every time the bar fills
 
@@ -55,6 +63,10 @@ Ideas:
 - Make mood (happy, sad, etc.) fit into bar aswell and not appear on side and change bar color
 
 - Added suggestions on what button was last clicked (tabs, bars)
+
+- mass wisdom conversion upgrade, and better wisdom conversion
+
+- Fix death issue where dying covers whole screen. It should also display "hard reset" for trying again 
 
 - Cleanup mess with allBars vs barInfo
 */
@@ -104,46 +116,3 @@ document.getElementById("packageEnergy").addEventListener("click", () => {
         say("Not enough shtuff brochacho")
     }
 });
-
-
-// Potion creation system
-
-document.getElementById("createPotion").addEventListener("click", () => {
-    const resources = Math.random()*100+100;
-
-    player.knowledge -= parseFloat(resources.toFixed(0));
-
-    const randomPotion = Math.random()*100
-    
-    console.log(player.potionStock)
-
-    const rollPotion = potionOdds.find(tier => tier.rollmin<=randomPotion && tier.rollmax>randomPotion );
-
-    player.potionStock[rollPotion.Num] += 1;
-    say(`You got ${rollPotion.Name} from Bobby!`)
-});
-
-const potionOdds = [
-    {
-        Num: 0,
-        Name: "Knowledge Potion I",
-        rollmin: 0,
-        rollmax: 60,
-    },
-
-    {
-        Num: 1,
-        Name: "Knowledge Potion II",
-        rollmin: 60,
-        rollmax: 90,
-    },
-
-
-    {
-        Num: 2,
-        Name: "Knowledge Potion III",
-        rollmin: 90,
-        rollmax: 100,
-    },
-
-];

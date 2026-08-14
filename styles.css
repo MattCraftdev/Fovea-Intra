@@ -226,3 +226,12 @@
     font-size: 100%;
     font-family:'georgia';
 }
+
+.potionbtn {
+    background-color:#a101b2;
+    color:rgb(0, 0, 0);
+    padding: 10px;
+    border: 20px;
+    font-size: 100%;
+    font-family:'georgia';
+}

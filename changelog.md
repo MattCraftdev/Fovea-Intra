@@ -1,5 +1,14 @@
 Newest versions
 
+2026/08/14 12:30 PM - [0.38.0] POTIONS II
+- Updated potion system to be more dynamic, adding different resource costs and automatic scaling when adding more
+- Potion system now says cost
+- Added different dealers to the potion system and save system (Joel, Bobby and Amy)
+- Slightly tweaked some upgrades
+- Mildly changed the pit's add moodcap
+- Added potions.js file!
+- Added a little inventory for each potion and their I, II, III and IV (you can't use them yet lol)
+
 2026/08/13 5:52 PM - [0.37.0] POTIONS
 - Added potion upgrade, which unlocks the potion tab
 - Added a placeholder potion upgrade that works, and potion stocks which save

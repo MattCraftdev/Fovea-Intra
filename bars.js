@@ -88,7 +88,7 @@ const barInfo = { // activebar id, then says their bar then name to DISPLAY
 
 // Vars
 let flexbuff = 0;
-let martialbuff = 0;
+let fitnessbuff = 0;
 let magicbuff = 0;
 let magicstudybuff = 0;
 let taichinerf = 0;
@@ -106,7 +106,7 @@ function updateProgress() {
     }
 
     flexbuff = player.flexLevel*2;
-    martialbuff = player.martialLevel*2
+    fitnessbuff = player.fitnessLevel*2
     magicbuff = player.magicLevel
     magicstudybuff = player.magicstudyLevel*2
     taichinerf = player.taichiLevel*3
@@ -126,7 +126,7 @@ function updateAllSpeeds() {
     const healthsum = taichinerf-hitbuff;
 
     vitBar.speed = baseMoodspeed + flexbuff + healthsum
-    flexBar.speed = baseMoodspeed + martialbuff + healthsum
+    flexBar.speed = baseMoodspeed + fitnessbuff + healthsum
     fitnessBar.speed = baseMoodspeed + healthsum
     martialBar.speed = baseMoodspeed + healthsum
     hitBar.speed = baseMoodspeed + healthsum
@@ -150,8 +150,8 @@ for (const all of progressContainers) {
 
 // Recalculates buffs
 function recalcBuffs() {
-    player.cap = 100+(vitBar.level*5)+(martialBar.level*10)+(taichiBar.level*100)-(fitnessBar.level)+player.capBonus;
-    player.lifespan = 50+(fitnessBar.level)
+    player.cap = 100+(vitBar.level*5)+(martialBar.level*10)+(taichiBar.level*100)-(fitnessBar.level*2)+player.capBonus;
+    player.lifespan = 50;
 
     if (vitBar.level>=10) {document.getElementById("flexContainer").classList.remove("hidden");}
 

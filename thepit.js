@@ -188,11 +188,11 @@ document.getElementById("the-pit").addEventListener("click", () => {
         const addCap = fitroll.moodcapadd || 0;
 
         player.knowledge = roundto1(Math.max(Math.random()*kMax,0) + kBoost)
-        player.capBonus += roundto1(Math.max(addCap,0))
+        player.capBonus += roundto1(Math.max(Math.random()*addCap,0))
         player.energy += roundto1(Math.max(Math.random()*eMax, 0))
 
         if (addCap>0) {
-            say("Mood is calmed")
+            say(`Mood is calmed. Precisely by ${addCap} points.`)
         }
 
         if (player.knowledge > 0) {
