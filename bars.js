@@ -105,7 +105,7 @@ function updateProgress() {
         chosenBar[0].update();
         document.getElementById(`${activeBar}LevelDisplay`).innerText = `${chosenBar[1]} Level: ${chosenBar[0].getLevel()}`
 
-        document.querySelectorAll("skill-row").forEach(bar => bar.classList.remove("selectedTab"))
+        document.querySelectorAll(".progress-container").forEach(bar => bar.classList.remove("selectedTab"));
         document.getElementById(`${activeBar}btn`).classList.add("selectedTab");
     }
 

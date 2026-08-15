@@ -243,6 +243,8 @@
     border: 20px;
     font-size: 100%;
     font-family:'georgia';
+    display:flex;
+    margin: 10px;
 }
 
 .potionbtn {

@@ -13,6 +13,7 @@ document.getElementById("resetGame").addEventListener("click", () => {
     hardReset();
 });
 
+// Save Slider setting
 const saveSlider = document.getElementById("slidersaveInterval")
 
 saveSlider.addEventListener("input", () => {
@@ -20,7 +21,14 @@ saveSlider.addEventListener("input", () => {
     document.getElementById("saveIntervalDisplay").innerText = `Save Interval: ${saveIntervalValue} Seconds`
     player.saveInterval = saveIntervalValue*1000
 
+    startSaveTimer();
 });
+let saveTimer = null
+function startSaveTimer() {
+    if (saveTimer) {clearInterval(saveTimer)}
+    saveTimer = setInterval(saveGame, player.saveInterval)
+};
+
 
 // Hard reset
 function hardReset() {
@@ -134,6 +142,7 @@ function loadGame() {
         resetPotionStock();
         createPotionShowing();
 
+
     } else {
         console.log("no save found")
     }
@@ -141,5 +150,5 @@ function loadGame() {
 
 window.addEventListener('DOMContentLoaded', () => {
     loadGame();
-    setInterval(saveGame(), player.saveInterval);
+    startSaveTimer();
 });

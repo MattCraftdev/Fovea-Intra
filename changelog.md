@@ -1,5 +1,11 @@
 Newest versions
 
+2026/08/15 4:26 PM - [0.39.2]
+- Fixed the bar selection (it was allowing more than 1)
+- Made upgrades flex, so they wouldn't hide behind story & added margin 
+- Fixed error with save interval setting, and made it correctly work
+- Fixed minor pit error with it saying the incorrect value (with addcap)
+
 2026/08/14 2:42 PM - [0.39.0]
 - Changed "other" tab to settings
 - Slightly boosted the pit's moodcap adding
