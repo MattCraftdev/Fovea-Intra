@@ -111,12 +111,12 @@ function updateProgress() {
 
 
 
-    flexbuff = player.flexLevel*2;
-    fitnessbuff = player.fitnessLevel*2
-    magicbuff = player.magicLevel
-    magicstudybuff = player.magicstudyLevel*2
-    taichinerf = player.taichiLevel*3
-    hitbuff = player.hitLevel*2
+    flexbuff = flexBar.getLevel()*2;
+    fitnessbuff = fitnessBar.getLevel()*2
+    magicbuff = magicBar.getLevel()
+    magicstudybuff = magicstudyBar.getLevel()*2
+    taichinerf = taichiBar.getLevel()*3
+    hitbuff = hitBar.getLevel()*2
 
     recalcBuffs();
 };

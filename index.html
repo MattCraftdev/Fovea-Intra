@@ -15,21 +15,25 @@
     <p id = "youDied" class = "hidden">You DIED!</p>
     <button id = "tryAgain" class = "hidden">Try Again.</button>
 
-    <div class = "displayVaribles">
-        <p id= "displayKnowledge">Knowledge: </p>
-        <p id= "displayMood">Mood: </p>
-        <p id= "displayDay">Day: </p>
-        <p id= "displayYear">Age: </p> <span id="displayLifespan" class = "hidden">Lifespan: </span>
+    <div>
+        <br>
+        <span id= "displayKnowledge" >Knowledge: </span><span id = "displayKnowledgeBonus" class = "displayVariables"></span>
+        <span id= "displayWisdom" class = "hidden">Wisdom: 0</span><span id = "displayWisdomBonus" class = "hidden displayVariables"></span>
+        <br><br>
+        <span id= "displayDay">Day: </span>
+        <br>
+        <span id= "displayYear">Age: </span><span id="displayLifespan" class = "hidden displayVariables"></span>
+        <br>
 
+        <p id= "displayMood">Mood: </p>
+        <br>
         <div class = "hidden" id = "moodContainer">
             <div class="progress-container">
                 <div class="progress-bar" id="mood"></div>
                 <span class= "progress-text" id = "moodBarDisplay">0/100</span>
             </div>
         </div>
-
-        
-        <p id= "displayWisdom" class = "hidden">Wisdom: 0</p>        
+        <br>
     </div>
 
 
@@ -182,7 +186,7 @@
     </nav>
     
     <nav class = "tab-content" id = "Pit">
-        <button id = "the-pit" class = "upgrade">Sacrifice stuff into the pit</button>
+        <button id = "the-pit">Sacrifice stuff into the pit</button>
 
     </nav>
 

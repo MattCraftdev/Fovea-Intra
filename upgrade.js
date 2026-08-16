@@ -45,6 +45,7 @@ const upgrades = [
         onpurchase: () => {
             document.getElementById("switchtoWisdom").classList.remove("hidden");
             document.getElementById("displayWisdom").classList.remove("hidden");
+            document.getElementById("displayWisdomBonus").classList.remove("hidden");
         },
         purchasetext: "A white beard sprouts on your chin, and your back teeth emerge. You feel...wiser somehow?"
     },
@@ -266,16 +267,14 @@ setInterval(() => {
 function buyUpgrade(upgradeId) {
     const upgrade = upgrades.find(item => item.id === upgradeId);
 
-    if (upgrade && upgrade.cost<=player[upgrade.costtype] && upgrade.purchased < upgrade.maxpurchases) {
-        player[upgrade.costtype] -= upgrade.cost
+    if (upgrade && upgrade.purchased < upgrade.maxpurchases && calcCost(upgrade.costtype, upgrade.cost)) {
+
         upgrade.purchased += 1
         document.getElementById(upgrade.id).classList.add("hidden")
         upgrade.onpurchase();
         console.log(upgrade);
-        say("Upgrade unlocked!!!")
-        say(upgrade.purchasetext)
-    };
-
+        say(upgrade.purchasetext)            
+    }
 };
 
 

@@ -47,26 +47,9 @@ function saveGame() {
 
     const allBars = [vitBar, flexBar, fitnessBar, magicBar, martialBar, magicstudyBar, hitBar, taichiBar, knowledgeBar];
     let state = {
-            player: {
-                knowledge: player.knowledge,
-                day: player.day,
-                year: player.year,
-                cap: player.cap,
-                capBonus: player.capBonus,
-                baseKnowledgeIncrease: player.baseKnowledgeIncrease,
-                wisdom: player.wisdom,
-                wisdomRate: player.wisdomRate,
-                lifespan: player.lifespan,
-                totalpitrolls: player.totalpitrolls,
-                rawgoop: player.rawgoop,
-                processedgloop: player.processedgloop,
-                energy: player.energy,
-                saveInterval: player.saveInterval,
-                potionStock: player.potionStock,
-                currentDealer: player.currentDealer,
-            },
-            upgrades: upgrades.map(u => ({ id: u.id, unlocked: u.unlocked, purchased: u.purchased })),
-            bars: allBars.map(b => ({ id: b.elementId, level: b.level, maxprogress: b.maxprogress, progress: b.progress}))
+        player: player,
+        upgrades: upgrades.map(u => ({ id: u.id, unlocked: u.unlocked, purchased: u.purchased })),
+        bars: allBars.map(b => ({ id: b.elementId, level: b.level, maxprogress: b.maxprogress, progress: b.progress}))
     };  
     localStorage.setItem("gameSave", JSON.stringify(state));
 
@@ -82,24 +65,7 @@ function loadGame() {
         let state = JSON.parse(savedGame);
         const allBars = [vitBar, flexBar, fitnessBar, magicBar, martialBar, magicstudyBar, hitBar, taichiBar, knowledgeBar];
 
-        if (state.player) {
-            player.knowledge = state.player.knowledge ?? player.knowledge;
-            player.day = state.player.day ?? player.day;
-            player.year = state.player.year ?? player.year;
-            player.cap = state.player.cap ?? player.cap;
-            player.capBonus = state.player.capBonus ?? player.capBonus;
-            player.baseKnowledgeIncrease = state.player.baseKnowledgeIncrease ?? player.baseKnowledgeIncrease;
-            player.wisdom = state.player.wisdom ?? player.wisdom;
-            player.wisdomRate = state.player.wisdomRate ?? player.wisdomRate;
-            player.lifespan = state.player.lifespan ?? player.lifespan;
-            player.totalpitrolls = state.player.totalpitrolls ?? player.totalpitrolls;
-            player.rawgoop = state.player.rawgoop ?? player.rawgoop;
-            player.processedgloop = state.player.processedgloop ?? player.processedgloop;
-            player.energy = state.player.energy ?? player.energy;
-            player.saveInterval = state.player.saveInterval ?? player.saveInterval;
-            player.potionStock = state.player.potionStock ?? player.potionStock;
-            player.currentDealer = state.player.currentDealer ?? player.currentDealer;
-        }
+        if (state.player) {Object.assign(player, state.player);}
     
 
         if (state.upgrades) {

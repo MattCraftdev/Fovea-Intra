@@ -102,9 +102,7 @@ document.getElementById("createPotion").addEventListener("click", () => {
     } else {
         console.log(player.currentDealer)
 
-        if (player[typeCost]>resources) { // If you have enough shtuff
-
-            player[typeCost] -= resources; // Subtracts
+        if (calcCost(typeCost, resources)) { // If you have enough shtuff
 
             const randomPotion = Math.random()*100*potionOdds.length/4 // Rolls Potion
             const rollPotion = potionOdds.find(tier => tier.rollmin<randomPotion && tier.rollmax>=randomPotion ); // Finds option from roll       

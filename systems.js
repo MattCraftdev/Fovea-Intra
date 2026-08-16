@@ -1,7 +1,42 @@
+// Calculates cost relating to the bonuses (WILL DO SUBTRACTION BUT NOT RESULT, 
+function calcCost(resourceType, cost) {
+
+    const totalAmount = player[resourceType] + player[`${resourceType}Bonus`]
+
+    console.log(totalAmount)
+
+    if (player[resourceType]>=cost) {
+
+        player[resourceType] -= cost
+        return true;
+
+    } else if (totalAmount>=cost) {
+        const difference = cost - player[resourceType];
+        player[resourceType] = 0;
+        player[`${resourceType}Bonus`] -= difference;
+
+        return true;
+
+    } else {
+        console.log("cannot buy because not enough lol")
+        return false;
+    }
+    
+}
+
+
+
+
+
+
+
 // Display Loops
 setInterval(() => {
     document.getElementById("displayKnowledge").innerText = "Knowledge: " + player.knowledge;
+    document.getElementById("displayKnowledgeBonus").innerText = ` (+${player.knowledgeBonus})`
+
     document.getElementById("displayWisdom").innerText = "Wisdom: " + player.wisdom;
+    document.getElementById("displayWisdomBonus").innerText = ` (+${player.wisdomBonus})`
 
     document.getElementById("displayGoop").innerText = "Goop: " + player.rawgoop;
     document.getElementById("displayGloop").innerText = "Gloop: " + player.processedgloop;
@@ -59,7 +94,7 @@ function updateTime() {
 
 function updateLifespan() {
     const lifespanReal = player.lifespan.toFixed(2) // Sets decimals to max 0.XX
-    document.getElementById("displayLifespan").innerText = "Lifespan: " + lifespanReal;
+    document.getElementById("displayLifespan").innerText = `/${lifespanReal} (Time left.)`
 }
 
 setInterval(() => {

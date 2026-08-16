@@ -2,51 +2,30 @@
 const pitrolls = [
     {
         rollmin:0,
-        rollmax:10,
-        flavortext: "The pit shakes slightly, but is not impressed you stingy bum!",
-    },
-
-    {
-        rollmin:10,
-        rollmax:20,
-        flavortext: "The pit still is not satisfied. Try throwing more.",
-    },
-
-    {
-        rollmin:20,
-        rollmax:30,
-        flavortext: "A sour smell fills the air, but alas nothing comes from thee pit.",
-    },
-
-    {
-        rollmin:30,
         rollmax:40,
-        flavortext: "A little chime plays from the pit, and a neat package hits you in the head.",
-        kMax:20,
-        wMax:2,
+        flavortext: "random",
     },
 
     {
         rollmin:40,
         rollmax:50,
         flavortext: "A small box floats out of the pit somehow, lightly hovering into your hands.",
-        kMax:50,
-        wMax:5,
+        kMax:25,
     },
 
     {
         rollmin:50,
         rollmax:60,
         flavortext: "A bunch of thoughts fill your head, and suddenly you know. The pit laughs.",
-        kMax:75,
-        wMax:10,
+        kMax:50,
+        wMax:5,
     },
 
     {
         rollmin:60,
         rollmax:70,
         flavortext: "A bigger box is chucked at you from deep inside the pit.",
-        kMax:100,
+        kMax:75,
         wMax:10,
     },
 
@@ -127,7 +106,7 @@ const pitrolls = [
     {
         rollmin:101,
         rollmax:110,
-        flavortext: "A deep laugh echoes from the pit, followed by a dull emptiness from deep inside you. Nothing.",
+        flavortext: "random",
     },
 
     {
@@ -137,6 +116,13 @@ const pitrolls = [
         kMax:10000,
         wMax:1000,
     },
+]
+
+const randomBad = [
+    { text: "The pit shakes slightly, but is not impressed you stingy bum!" },
+    { text: "The pit still is not satisfied. Try throwing more." },
+    { text: "A sour smell fills the air, but alas nothing comes from thee pit." },
+    { text: "A deep laugh echoes from the pit, followed by a dull emptiness from deep inside you. Nothing." }
 ]
 
 // THE PIT
@@ -159,6 +145,11 @@ document.getElementById("the-pit").addEventListener("click", () => {
             return;
         }
 
+        if (fitroll.flavortext === "random") {
+            const flavor = randomBad[Math.floor(Math.random()*randomBad.length)]
+            fitroll.flavortext = flavor.text
+        }
+        
         say(fitroll.flavortext);
 
         const kMax = fitroll.kMax || 0; // Knowledge
@@ -187,30 +178,33 @@ document.getElementById("the-pit").addEventListener("click", () => {
 
         const addCap = fitroll.moodcapadd || 0;
 
-        player.knowledge = roundto1(Math.max(Math.random()*kMax,0) + kBoost)
-        const currentCap = roundto1(Math.max(Math.random()*addCap,0))
-        player.energy += roundto1(Math.max(Math.random()*eMax, 0))
+        const currentBonusKnowledge = roundto1(Math.max(Math.random()*kMax,0) + kBoost);
+        const currentCap = roundto1(Math.max(Math.random()*addCap,0));
+        const currentBonusWisdom = roundto1(Math.max(Math.random()*wMax, 0) + wBoost)
+
+        player.energy += roundto1(Math.max(Math.random()*eMax, 0));
 
         player.capBonus += currentCap;
+        player.knowledgeBonus += currentBonusKnowledge;
+        player.wisdomBonus += currentBonusWisdom;
 
         if (addCap>0) {
             say(`Mood is calmed. Precisely by ${currentCap} points.`)
         }
 
-        if (player.knowledge > 0) {
-            say(`It has gifted you ${player.knowledge} knowledge. Be grateful.`);
+        if (currentBonusKnowledge > 0) {
+            say(`It has gifted you ${currentBonusKnowledge} bonus knowledge. Be grateful.`);
         }
 
         if (!document.getElementById("displayWisdom").classList.contains("hidden")) {
-            player.wisdom = roundto1(Math.max(Math.random()*wMax, 0) + wBoost)
             
-            if (player.wisdom > 0) {
-                say(`It has gifted you ${player.wisdom} wisdom. Be grateful.`);
+            if (currentBonusWisdom > 0) {
+                say(`It has gifted you ${currentBonusWisdom} bonus wisdom. Be grateful.`);
             }
         }
 
         if (eMax>0) {
-            say("Gave y'all energy!")
+            say("You got energy! But it's useless currently")
         }
 
         player.totalpitrolls += 1;

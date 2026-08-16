@@ -69,6 +69,16 @@
     border: 2px solid #000000;
 }
 
+#the-pit {
+    background-color:#37004b;
+    color:rgb(241, 255, 135);
+    padding: 20px;
+    border: 20px;
+    font-size: 25px;
+    font-family:'georgia';
+    display:flex;
+    margin: 20px;
+}
 /* Story box */
 
 #Story {
@@ -209,6 +219,10 @@
     transform: translate(-50%, -50%);
 }
 /* In tabs buttons */
+.displayVariables {
+    color: rgb(20, 128, 20);
+}
+
 #box {
     padding: 20px;
     margin: 10px;

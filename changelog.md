@@ -1,5 +1,18 @@
 Newest versions
 
+2026/08/15 7:45 PM - [0.41.0] FIXES && PIT BOOSTS
+- Fixed VERY BAD issue where players could click and hold down enter to get a resource quick
+- Optimized save code by removing the getLevel() return in player object
+- Further optimized save code by deleting all the safe strict code
+- Added bonus knowledge/wisdom that doesn't contribute to mood or be thrown in the pit
+- Improved the pit code by making it give bonuses that don't contribute to knowledge/wisdom
+- Added upgrade function where it buys upgrade/costs of something. Importantly, it factors in the boosts from the pit for EVERYTHING!
+- The pit now has set random bad flavor text that it says when you get nothing
+- Added green colors on unlocked things (Player inventory) and also changed player inventory displaying
+- Added specific styling for the pit button
+- Fixed a few bugs on the way of all this
+
+
 2026/08/15 4:26 PM - [0.39.2]
 - Fixed the bar selection (it was allowing more than 1)
 - Made upgrades flex, so they wouldn't hide behind story & added margin 
