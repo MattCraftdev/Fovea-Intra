@@ -28,11 +28,6 @@ class ProgressBar {
     reset() {
         this.progress = 0;
         this.level = 1;
-
-    };  
-
-    getLevel() {
-        return this.level;
     };
 
     getSaveData() {
@@ -71,6 +66,7 @@ const knowledgeBar = new ProgressBar("knowledge", 10, 10000, 1.2);
 
 const magicBar = new ProgressBar("magic", 10, 25000, 1.25);
 const magicstudyBar = new ProgressBar("magicstudy", 10, 10000, 1.15);
+const abyssalBar = new ProgressBar("abyssal", 10, 10000, 1.25);
 
 const moodBar = new ProgressBar("mood", 0, 0, 0)
 
@@ -79,11 +75,12 @@ const barInfo = { // activebar id, then says their bar then name to DISPLAY
     flex: [flexBar, "Flexability"],
     knowledge: [knowledgeBar, "Knowledge"],
     fitness: [fitnessBar, "Fitness"],
-    magic: [magicBar, "Magic"],
     martial: [martialBar, "Martial Arts"],
-    magicstudy: [magicstudyBar, "Magic Study"],
     hit: [hitBar, "HIT"],
-    taichi: [taichiBar, "Tai Chi"]
+    taichi: [taichiBar, "Tai Chi"],
+    magic: [magicBar, "Magic"],
+    magicstudy: [magicstudyBar, "Magic Study"],
+    abyssal: [abyssalBar, "Abyssal"],
 }   
 
 // Vars
@@ -103,7 +100,7 @@ function updateProgress() {
 
     if (chosenBar) {
         chosenBar[0].update();
-        document.getElementById(`${activeBar}LevelDisplay`).innerText = `${chosenBar[1]} Level: ${chosenBar[0].getLevel()}`
+        document.getElementById(`${activeBar}LevelDisplay`).innerText = `${chosenBar[1]} Level: ${chosenBar[0].level}`
 
         document.querySelectorAll(".progress-container").forEach(bar => bar.classList.remove("selectedTab"));
         document.getElementById(`${activeBar}btn`).classList.add("selectedTab");
@@ -111,12 +108,12 @@ function updateProgress() {
 
 
 
-    flexbuff = flexBar.getLevel()*2;
-    fitnessbuff = fitnessBar.getLevel()*2
-    magicbuff = magicBar.getLevel()
-    magicstudybuff = magicstudyBar.getLevel()*2
-    taichinerf = taichiBar.getLevel()*3
-    hitbuff = hitBar.getLevel()*2
+    flexbuff = flexBar.level*2;
+    fitnessbuff = fitnessBar.level*2
+    magicbuff = magicBar.level
+    magicstudybuff = magicstudyBar.level*2
+    taichinerf = taichiBar.level*3
+    hitbuff = hitBar.level*2
 
     recalcBuffs();
 };
@@ -129,6 +126,7 @@ function updateAllSpeeds() {
     const baseSpeed = 10
 
     const baseMoodspeed = baseSpeed + mooddiff*10
+    const magicsum = magicbuff-10
     const healthsum = taichinerf-hitbuff;
 
     vitBar.speed = baseMoodspeed + flexbuff + healthsum
@@ -140,7 +138,8 @@ function updateAllSpeeds() {
     knowledgeBar.speed = baseMoodspeed + magicstudybuff;
 
     magicBar.speed = baseMoodspeed;
-    magicstudyBar.speed = baseMoodspeed + magicbuff - 10;
+    magicstudyBar.speed = baseMoodspeed + magicsum
+    abyssalBar.speed = baseMoodspeed + magicsum
 }
 
 // Setting interval higher = worse transitioning rate. Currently 
@@ -163,4 +162,5 @@ function recalcBuffs() {
 
     player.baseKnowledgeIncrease = (knowledgeBar.level) + 1;
     document.getElementById("createKnowledge").innerText = `Create ${player.baseKnowledgeIncrease} Knowledge`;
+    player.pitMulti = 1+(abyssalBar.level/50)
 };

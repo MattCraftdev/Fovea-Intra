@@ -138,7 +138,7 @@
                 <div class = "hidden skill-row" id="magicContainer">
                     <div class="progress-container" title = "Become magical and kill stuff!" id = "magicbtn">
                         <div class="progress-bar" id="magic"></div>
-                        <span class= "progress-text" id = "magicLevelDisplay">Magic Accumulination Level: 1</span>
+                        <span class= "progress-text" id = "magicLevelDisplay">Magic Accumulination Level: 0</span>
                     </div>
                     <div class="skill-info" id="magicInfo">
                         <p>Increases all magic bar speeds.</p>
@@ -146,15 +146,25 @@
                 </div>
 
                 <div class = "hidden skill-row" id="magicstudyContainer">
-                    <div class="progress-container" title = "Become magical and kill stuff!" id = "magicstudybtn">
+                    <div class="progress-container" title = "Study hard!" id = "magicstudybtn">
                         <div class="progress-bar" id="magicstudy"></div>
-                        <span class= "progress-text" id = "magicstudyLevelDisplay">Magic Study Level: 1</span>
+                        <span class= "progress-text" id = "magicstudyLevelDisplay">Magic Study Level: 0</span>
                     </div>
                     <div class="skill-info" id="magicstudyInfo">
                         <p>Increases the knowledge learning speed</p>
                     </div>
                 </div>
 
+                
+                <div class = "hidden skill-row" id="abyssalContainer">
+                    <div class="progress-container" title = "The abyss does not talk. It does not think. But it knows." id = "abyssalbtn">
+                        <div class="progress-bar" id="abyssal"></div>
+                        <span class= "progress-text" id = "abyssalLevelDisplay">Abyssal Level: 0</span>
+                    </div>
+                    <div class="skill-info" id="abyssalInfo">
+                        <p>Increases the pit loot by boosting ontop of what you throw in there</p>
+                    </div>
+                </div>
             </section>
 
         </div>
@@ -182,6 +192,7 @@
         <button id = "unlockmagicbtn" class = "hidden upgrade">Magic - Costs 50 Wisdom</button>
         <button id = "unlockmagicstudybtn" class = "hidden upgrade">Study Magic - Costs 100 Wisdom</button>
         <button id = "unlockpotionbtn" class = "hidden upgrade">Find potion shop - Costs 75 Wisdom</button>
+        <button id = "unlockabyssalbtn" class = "hidden upgrade">Abyssal - Costs 200 knowledge</button>
         
     </nav>
     
@@ -189,6 +200,7 @@
         <p id = "displayThePitTimer">Time until reset: </p>
         <input type ="number" id = "thepitKnowledge"> Knowledge
         <input type ="number" id = "thepitWisdom"> Wisdom
+        <button id = "setToMax" class = "upgrade">Set to players knowledge and wisdom amounts</button>
         <button id = "the-pit">Sacrifice stuff into the pit</button>
 
     </nav>

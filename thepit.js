@@ -129,8 +129,36 @@ const pitrolls = [
         wBoost: 5,
     },
 
+
     {
-        rollmin:110,
+        rollmin:120,
+        rollmax:130,
+        flavortext: "The pit says great job, increasing your mood!",
+        kMax: 150,
+        kBoost: 50,
+        addCap: 100,
+    },
+
+    {
+        rollmin:130,
+        rollmax:140,
+        flavortext: "Energizzzing!",
+        eMax: 50,
+        eBoost: 10,
+    },
+
+    {
+        rollmin:140,
+        rollmax:150,
+        flavortext: "For all.",
+        kMax: 200,
+        kBoost: 75,
+        wMax: 30,
+        wBoost: 10,
+    },
+
+    {
+        rollmin:150,
         rollmax:1000,
         flavortext: "A whole lotta luck you're feeling",
         kMax:10000,
@@ -150,18 +178,16 @@ const randomBad = [
     { text: "Something falls from the sky, narrowly missing you. An anvil, how strange." },
 ]
 // THE PIT
+let flavor = "";
 document.getElementById("the-pit").addEventListener("click", () => {
-    const knowledge = player.pitKnowledge
-    const wisdom = player.pitWisdom
- 
-    if (knowledge > 0 && elementpitK.value<=player.knowledge && wisdom >= 0 && elementpitW.value<=player.wisdom || elementpitW.value<=player.wisdom && wisdom > 0 && knowledge >= 0 && elementpitK.value<=player.knowledge) {
+    if ((knowledge > 0 || wisdom > 0) && knowledge<=player.knowledge && wisdom<=player.wisdom && (knowledge>=0 && wisdom >= 0)) {
         if (player.pitUsable === true) {
             const addbuff = knowledge + wisdom*6
 
             player.knowledge -= knowledge;
             player.wisdom -= wisdom;
 
-            const roll = Math.random()*100 + (Math.sqrt(addbuff))-1; //addbuff directly adds to the roll improving roll ceiling, be careful
+            const roll = Math.random()*100 + (Math.sqrt(addbuff*player.pitMulti))-1; //addbuff directly adds to the roll improving roll ceiling, be careful
 
             const fitroll = pitrolls.find(tier => tier.rollmin<=roll && tier.rollmax>roll );
 
@@ -172,7 +198,7 @@ document.getElementById("the-pit").addEventListener("click", () => {
             }
 
             if (fitroll.flavortext === "random") {
-                const flavor = randomBad[Math.floor(Math.random()*randomBad.length)]
+                flavor = randomBad[Math.floor(Math.random()*randomBad.length)]
                 fitroll.flavortext = flavor.text
             }
             
@@ -250,7 +276,7 @@ function resetThePitTimer() {
     player.pitUsable = false;
     player.pitTimer = (player.pitResetTime/1000)
 
-    if (pitInterval) {clearTimeout(pitInterval)}
+    if (pitInterval) {clearInterval(pitInterval)}
 
     pitInterval = setInterval(() => {
         player.pitTimer-=1
@@ -264,10 +290,21 @@ function resetThePitTimer() {
 // Inputs into the pit
 const elementpitK = document.getElementById("thepitKnowledge")
 elementpitK.addEventListener("input", () => {
-    player.pitKnowledge = elementpitK.value
+   knowledge = elementpitK.value
 });
 
 const elementpitW = document.getElementById("thepitWisdom")
 elementpitW.addEventListener("input", () => {
-    player.pitWisdom = elementpitW.value
+    wisdom = elementpitW.value
+});
+
+let knowledge = 0;
+let wisdom = 0;
+
+document.getElementById("setToMax").addEventListener("click", () => {
+    knowledge = player.knowledge
+    wisdom = player.wisdom
+
+    elementpitK.value = player.knowledge
+    elementpitW.value = player.wisdom
 });

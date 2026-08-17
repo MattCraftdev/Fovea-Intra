@@ -19,9 +19,7 @@ const player = {
     pitTimer: 0,
     pitUsable: false,
     pitResetTime: 60000,
-
-    pitKnowledge: 0,
-    pitWisdom: 0,
+    pitMulti: 0,
 
     rawgoop: 0,
     processedgloop: 0,
@@ -38,21 +36,24 @@ const player = {
 /*
 Ideas:
 - Free pit rolls (Like a token)
+- Paywall set to max button
 
 - When knowledge/wisdom above cap, actively it slowly removes excess resources and mildly drains a bit of lifespan
 - Make mood fit into bar aswell and not appear on side
 
 - Process gloop/goop change to switch upgrade (COMPLETE IT WITH CALC)
+- Make upgrades able to take more than 1 cost
 
-- Mini games to get knowledge/wisdom
+- Add potions III
 
 - Add inventions helptext for each upgrade (on what they do like bars)
 - Make bars say their progress,speed, etc.
 
-
 - mass wisdom conversion upgrade, and better wisdom conversion (same thing with energy)
 
 - Cleanup mess with allBars vs barInfo
+
+- Add images
 */
 
 // Knowledge addition system + wisdom sys

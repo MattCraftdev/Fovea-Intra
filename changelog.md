@@ -1,5 +1,13 @@
 # Newest versions
 
+2026/08/17 12:19 AM - [0.44.0] THE PIT IV
+- Cleaned up the pits code
+- Fixed error with flavortext not randomizing in the pit
+- Added more pit brackets
+- Fixed big error with bars not unlocking as they couldn't get their level && slightly optimized upgrade code
+- Optimized bar code, and removed getLevel()
+- Added abyssal bar and upgrade, which multiplies whatever thrown into the pit
+- Added set to max button, which sets the values to player amounts (effectively max)
 
 2026/08/16 8:10 PM - [0.43.0] THE PIT III
 - Fixed a minor error in wisdom cost convert && altered the pit message
@@ -139,7 +147,7 @@ Such a pain to add.
 - Changed a few varaibles/cleaned up code
 - Added game saving and loading
 
-2026/08/09 6:55 PM - [0.22.0] THE PIT
+2026/08/09 6:55 PM - [0.22.0] THE PIT 
 - Added the pit and it's own tab
 - Added the pit's own upgrade, and also a little blurb that initially shown but hides after bought
 - Fixed a small error with chatbox
@@ -289,5 +297,7 @@ Such a pain to add.
 2026/07/01 3:33PM - Initial Build [0] (EQ to 0.1.0)
 - Time system implemented
 
+(Dates interfering with this:)
 VACA: July 8-28th
 CAMP: AUGUST 4-7th
+GALAXY: AUGUST 11th-15th

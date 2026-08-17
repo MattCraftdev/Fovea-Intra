@@ -72,7 +72,7 @@ const upgrades = [
         costtype: "knowledge",
         unlocked: false,
         reqamount: 25,
-        reqtype: "vitLevel",
+        reqtype: "vit",
         flavortext: "You feel fat. Maybe it's time to fix this issue.",
         purchased: 0,
         maxpurchases: 1,
@@ -88,7 +88,7 @@ const upgrades = [
         costtype: "wisdom",
         unlocked: false,
         reqamount: 25,
-        reqtype: "flexLevel",
+        reqtype: "flex",
         flavortext: "You just watched your first kung fu movie and now think you're Bruce Lee.",
         purchased: 0,
         maxpurchases: 1,
@@ -119,7 +119,7 @@ const upgrades = [
         costtype: "wisdom",
         unlocked: false,
         reqamount: 10,
-        reqtype: "magicLevel",
+        reqtype: "magic",
         flavortext: "You don't really wanna study but..magic kool!!",
         purchased: 0,
         maxpurchases: 1,
@@ -135,7 +135,7 @@ const upgrades = [
         costtype: "knowledge",
         unlocked: false,
         reqamount: 10,
-        reqtype: "martialLevel",
+        reqtype: "martial",
         flavortext: "Become flowing water with the wind (No more Kung Foo movies)",
         purchased: 0,
         maxpurchases: 1,
@@ -151,7 +151,7 @@ const upgrades = [
         costtype: "wisdom",
         unlocked: false,
         reqamount: 15,
-        reqtype: "martialLevel",
+        reqtype: "martial",
         flavortext: "Become flowing water with the wind (No more Kung Foo movies)",
         purchased: 0,
         maxpurchases: 1,
@@ -224,6 +224,22 @@ const upgrades = [
         },
         purchasetext: "Potion man giving you a call. Better head down."
     },
+
+        {
+        id: "unlockabyssalbtn",
+        cost: 200,
+        costtype: "knowledge",
+        unlocked: false,
+        reqamount: 15,
+        reqtype: "magic",
+        flavortext: "I should try telling stories to the pit. Communicate with it. Have fun with it.",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("abyssalContainer").classList.remove("hidden");
+        },
+        purchasetext: "The abyss resides inside the pit."
+    },
 ]
 
 // Checks if any upgrade can be unlocked
@@ -231,24 +247,15 @@ const inventionsBtn = document.querySelector('[data-tab = "Inventions"]');
 
 setInterval(() => {
     for (const loop of upgrades) {
+        let reqsMet = false;
         if (player[loop.reqtype]>=loop.reqamount && loop.unlocked == false) {
-            
-            if (inventionsBtn.classList.contains("glow")) {
-
-            } else {
-            inventionsBtn.classList.add("glow");
-            console.log(`Added glow on ${loop.id} using ${inventionsBtn.classList.contains("glow")}`)
-
-            }
-
-            loop.unlocked = true;
-            if (document.getElementById(loop.id).classList.contains("hidden")) {
-                console.log(loop.id)
-                document.getElementById(loop.id).classList.remove("hidden")
-            }
+            reqsMet = true;
                     
-            say(`${loop.flavortext} Check Inventions!`)
-        };
+        } else if (loop.reqtype !== "knowledge" && loop.reqtype !== "wisdom") {
+            if (barInfo[loop.reqtype][0].level >= loop.reqamount && loop.unlocked == false) {
+                reqsMet = true;
+            }
+        }
 
         if (loop.id == "unlock1" && loop.purchased === 1) {
             document.getElementById("healthheader").style.display = "flex";
@@ -260,6 +267,21 @@ setInterval(() => {
             console.log(loop.id)
             document.getElementById(loop.id).classList.remove("hidden")
         }
+
+        if (reqsMet == true) {
+            if (!inventionsBtn.classList.contains("glow")) {
+                inventionsBtn.classList.add("glow");
+                console.log(`Added glow on ${loop.id} using ${inventionsBtn.classList.contains("glow")}`)
+            }
+
+            loop.unlocked = true;
+            if (document.getElementById(loop.id).classList.contains("hidden")) {
+                console.log(loop.id)
+                document.getElementById(loop.id).classList.remove("hidden")
+            }
+            say(`${loop.flavortext} Check Inventions!`)
+        }
+
     };
 
 }, 500);
