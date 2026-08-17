@@ -172,6 +172,7 @@ const upgrades = [
         maxpurchases: 1,
         onpurchase: () => {
             document.querySelector('[data-tab = "Pit"]').classList.remove("hidden");
+            resetThePitTimer();
         },
         purchasetext: "A big dark hole emerged from the nearby ground. It's deep."
     },

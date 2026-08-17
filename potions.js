@@ -83,8 +83,7 @@ let resources = 0;
 let typeCost = "";
 // Resets stock, important!
 function resetPotionStock() {
-    resources = Math.random()*100+100;
-    resources = parseFloat(resources.toFixed(0))
+    resources = Math.floor(Math.random()*100+100);
     const resourceTypes = ["knowledge", "wisdom", "energy"]
     typeCost = resourceTypes[Math.floor(Math.random()*resourceTypes.length)]
 

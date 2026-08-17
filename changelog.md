@@ -1,6 +1,17 @@
-Newest versions
+# Newest versions
 
-2026/08/15 7:45 PM - [0.41.0] FIXES && PIT BOOSTS
+
+2026/08/16 8:10 PM - [0.43.0] THE PIT III
+- Fixed a minor error in wisdom cost convert && altered the pit message
+- Added more helptext
+- Mildly optimized code by changing 'parseFloat' to Math.floor
+- Added the pit timer of a minute, which during you must wait for it to reset
+- Edited the pit's scaling system to SQRT(addbost) opposed to x/100, for better early scaling and discouraging throwing minute amounts 
+- Added more pit flavortext and brackets
+- Added the pit selection where you select what to put into the pit
+- Fixed some errors with the pit and all the stuff I added
+
+2026/08/15 8:59 PM - [0.41.0] FIXES && PIT BOOSTS/FLAVORTEXT
 - Fixed VERY BAD issue where players could click and hold down enter to get a resource quick
 - Optimized save code by removing the getLevel() return in player object
 - Further optimized save code by deleting all the safe strict code
@@ -11,7 +22,6 @@ Newest versions
 - Added green colors on unlocked things (Player inventory) and also changed player inventory displaying
 - Added specific styling for the pit button
 - Fixed a few bugs on the way of all this
-
 
 2026/08/15 4:26 PM - [0.39.2]
 - Fixed the bar selection (it was allowing more than 1)
@@ -278,3 +288,6 @@ Such a pain to add.
 
 2026/07/01 3:33PM - Initial Build [0] (EQ to 0.1.0)
 - Time system implemented
+
+VACA: July 8-28th
+CAMP: AUGUST 4-7th

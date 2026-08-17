@@ -41,6 +41,8 @@ setInterval(() => {
     document.getElementById("displayGoop").innerText = "Goop: " + player.rawgoop;
     document.getElementById("displayGloop").innerText = "Gloop: " + player.processedgloop;
     document.getElementById("displayEnergy").innerText = "Energy: " + player.energy;
+
+    document.getElementById("displayThePitTimer").innerText = `Time until reset: ${player.pitTimer}`
     
     solveMood();
     updateLifespan();
@@ -74,7 +76,7 @@ function solveMood() {
     const fillratio = mood/player.cap
 
     moodBar.element.style.width = fillratio*100 + "%";
-    document.getElementById("moodBarDisplay").innerText =`${parseFloat(mood.toFixed(0))}/${player.cap}`;
+    document.getElementById("moodBarDisplay").innerText =`${Math.floor(mood.toFixed(0))}/${player.cap}`;
     moodBar.element.style.backgroundColor = `hsl(${(1-fillratio)*120}, 100%, 45%)`;
 };
 

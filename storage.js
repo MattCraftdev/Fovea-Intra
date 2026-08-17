@@ -23,6 +23,7 @@ saveSlider.addEventListener("input", () => {
 
     startSaveTimer();
 });
+
 let saveTimer = null
 function startSaveTimer() {
     if (saveTimer) {clearInterval(saveTimer)}
@@ -107,7 +108,7 @@ function loadGame() {
         saveSlider.value = player.saveInterval/1000
         resetPotionStock();
         createPotionShowing();
-
+        resetThePitTimer();
 
     } else {
         console.log("no save found")

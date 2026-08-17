@@ -16,6 +16,12 @@ const player = {
     year: 0,
 
     totalpitrolls: 0,
+    pitTimer: 0,
+    pitUsable: false,
+    pitResetTime: 60000,
+
+    pitKnowledge: 0,
+    pitWisdom: 0,
 
     rawgoop: 0,
     processedgloop: 0,
@@ -31,19 +37,18 @@ const player = {
 
 /*
 Ideas:
-- Pit of sacrifice where better loot thrown = better stuff back
-- Reduce effectiveness of simply throwing with low knowledge (maybe add when player.cap is = knowledge+wisdom, etc.)
 - Free pit rolls (Like a token)
-- Add timer to pit (1 Hour, btw timer runs when game closes )
-- The pit maybe works only when you have mood capped OR you choose what to sacrifice
-- Better pit algorithim
 
 - When knowledge/wisdom above cap, actively it slowly removes excess resources and mildly drains a bit of lifespan
-- Make mood (happy, sad, etc.) fit into bar aswell and not appear on side
+- Make mood fit into bar aswell and not appear on side
 
-- Process gloop/goop change to switch upgrade
+- Process gloop/goop change to switch upgrade (COMPLETE IT WITH CALC)
 
 - Mini games to get knowledge/wisdom
+
+- Add inventions helptext for each upgrade (on what they do like bars)
+- Make bars say their progress,speed, etc.
+
 
 - mass wisdom conversion upgrade, and better wisdom conversion (same thing with energy)
 
@@ -60,7 +65,7 @@ document.getElementById("createKnowledge").addEventListener("click", () => {
 });
 
 document.getElementById("switchtoWisdom").addEventListener("click", () => {
-    if (calcCost("knowledge", player.wisdomRate-1)) {
+    if (calcCost("knowledge", player.wisdomRate)) {
         player.wisdom += 1;
     }
 });

@@ -2,47 +2,46 @@
 const pitrolls = [
     {
         rollmin:0,
-        rollmax:40,
+        rollmax:35,
         flavortext: "random",
     },
 
     {
-        rollmin:40,
+        rollmin:35,
         rollmax:50,
-        flavortext: "A small box floats out of the pit somehow, lightly hovering into your hands.",
-        kMax:25,
+        flavortext: "A small box floats out of the pit, hovering into your hands. It says 'KNOWLEDGE' on it.",
+        kMax:10,
     },
 
     {
         rollmin:50,
         rollmax:60,
         flavortext: "A bunch of thoughts fill your head, and suddenly you know. The pit laughs.",
-        kMax:50,
-        wMax:5,
+        kMax:40,
     },
 
     {
         rollmin:60,
         rollmax:70,
         flavortext: "A bigger box is chucked at you from deep inside the pit.",
-        kMax:75,
-        wMax:10,
+        kMax:50,
+        wMax:5,
     },
 
     {
         rollmin:70,
         rollmax:80,
         flavortext: "The pit has a mild conversation with you, and gives you a hug.",
-        kMax:125,
-        wMax:15,
+        kMax:50,
+        wMax:10,
     },
 
     {
         rollmin:80,
         rollmax:85,
         flavortext: "The pit thanks you for playing this game",
-        kMax:150,
-        wMax:15,
+        kMax:75,
+        wMax:20,
     },
 
     {
@@ -56,7 +55,7 @@ const pitrolls = [
         rollmin:90,
         rollmax:95,
         flavortext: "A beautiful song plays, leaving a tear on your cheek.",
-        kMax:175,
+        kMax:150,
         wMax:20,
     },
 
@@ -64,14 +63,14 @@ const pitrolls = [
         rollmin:95,
         rollmax:96,
         flavortext: "A massive amount of knowledge floods your brain",
-        kMax:1000,
+        kMax:600,
     },
 
     {
         rollmin:96,
         rollmax:97,
         flavortext: "Wisdom fills you, and calm resides.",
-        wMax:250,
+        wMax:100,
     },
 
     {
@@ -91,8 +90,8 @@ const pitrolls = [
         rollmin:99,
         rollmax:100,
         flavortext: "You feel lucky. A shower of items fall onto you",
-        kMax:500,
-        wMax:100,
+        kMax:300,
+        wMax:50,
     },
 
     
@@ -105,8 +104,29 @@ const pitrolls = [
 
     {
         rollmin:101,
+        rollmax:105,
+        flavortext: "The pit tells you a knowledgeable secret",
+        kBoost: 25,
+        kMax: 50,
+    },
+
+
+    {
+        rollmin:105,
         rollmax:110,
-        flavortext: "random",
+        flavortext: "The pit gives you wise advice",
+        wBoost: 10,
+        wMax: 20,
+    },
+
+    {
+        rollmin:110,
+        rollmax:120,
+        flavortext: "The pit likes your gifts!",
+        kMax: 100,
+        kBoost: 50,
+        wMax: 20,
+        wBoost: 5,
     },
 
     {
@@ -121,98 +141,133 @@ const pitrolls = [
 const randomBad = [
     { text: "The pit shakes slightly, but is not impressed you stingy bum!" },
     { text: "The pit still is not satisfied. Try throwing more." },
-    { text: "A sour smell fills the air, but alas nothing comes from thee pit." },
-    { text: "A deep laugh echoes from the pit, followed by a dull emptiness from deep inside you. Nothing." }
+    { text: "A sour smell fills the air, but alas nothing comes from thy pit." },
+    { text: "A deep laugh echoes from the pit, followed by a dull emptiness from deep inside you. Nothing." },
+    { text: "You wonder what really lurks inside the pit. And why." },
+    { text: "You hear a distinct ringing. It gets louder, and your ears start to hurt. Nothing." },
+    { text: "Something whispers into your ear, but upon turning around, nothing's there." },
+    { text: "You're getting bored. The pit seems to be a waste of your time." },
+    { text: "Something falls from the sky, narrowly missing you. An anvil, how strange." },
 ]
-
 // THE PIT
 document.getElementById("the-pit").addEventListener("click", () => {
-    if (player.knowledge > 0 || player.wisdom > 0) {
-        console.log("throwing")
+    const knowledge = player.pitKnowledge
+    const wisdom = player.pitWisdom
+ 
+    if (knowledge > 0 && elementpitK.value<=player.knowledge && wisdom >= 0 && elementpitW.value<=player.wisdom || elementpitW.value<=player.wisdom && wisdom > 0 && knowledge >= 0 && elementpitK.value<=player.knowledge) {
+        if (player.pitUsable === true) {
+            const addbuff = knowledge + wisdom*6
 
-        const addbuff = player.knowledge + player.wisdom*6
+            player.knowledge -= knowledge;
+            player.wisdom -= wisdom;
 
-        player.knowledge = 0;
-        player.wisdom = 0;
+            const roll = Math.random()*100 + (Math.sqrt(addbuff))-1; //addbuff directly adds to the roll improving roll ceiling, be careful
 
-        const roll = Math.random()*100 + (addbuff/100); //addbuff directly adds to the roll improving roll ceiling, be careful
+            const fitroll = pitrolls.find(tier => tier.rollmin<=roll && tier.rollmax>roll );
 
-        const fitroll = pitrolls.find(tier => tier.rollmin<=roll && tier.rollmax>roll );
-
-        if (!fitroll) {
-            console.log("Roll number fitting in bracket not found!");
-            say("The pit warps reality just to say no. LOL");
-            return;
-        }
-
-        if (fitroll.flavortext === "random") {
-            const flavor = randomBad[Math.floor(Math.random()*randomBad.length)]
-            fitroll.flavortext = flavor.text
-        }
-        
-        say(fitroll.flavortext);
-
-        const kMax = fitroll.kMax || 0; // Knowledge
-        const kMin = fitroll.kMin || 0;
-        const kBoost = fitroll.kBoost || 0;
-
-        const wMin = fitroll.wMin || 0; // Wisdom
-        const wMax = fitroll.wMax || 0;
-        const wBoost = fitroll.wBoost || 0;
-
-        const lMin = fitroll.lMin || 0; // Lifespan
-        const lMax = fitroll.lMax || 0;
-        const lBoost = fitroll.lBoost|| 0;
-
-        const rgMin = fitroll.rgMin || 0; // Goop
-        const rgMax = fitroll.rgMax || 0;
-        const rgBoost = fitroll.rgBoost || 0;
-
-        const pgMin = fitroll.pgMin || 0; // Gloop
-        const pgMax = fitroll.pgMax || 0;
-        const pgBoost = fitroll.pgBoost || 0;
-
-        const eMin = fitroll.eMin || 0; // Energy
-        const eMax = fitroll.eMax || 0;
-        const eBoost = fitroll.eBoost || 0;
-
-        const addCap = fitroll.moodcapadd || 0;
-
-        const currentBonusKnowledge = roundto1(Math.max(Math.random()*kMax,0) + kBoost);
-        const currentCap = roundto1(Math.max(Math.random()*addCap,0));
-        const currentBonusWisdom = roundto1(Math.max(Math.random()*wMax, 0) + wBoost)
-
-        player.energy += roundto1(Math.max(Math.random()*eMax, 0));
-
-        player.capBonus += currentCap;
-        player.knowledgeBonus += currentBonusKnowledge;
-        player.wisdomBonus += currentBonusWisdom;
-
-        if (addCap>0) {
-            say(`Mood is calmed. Precisely by ${currentCap} points.`)
-        }
-
-        if (currentBonusKnowledge > 0) {
-            say(`It has gifted you ${currentBonusKnowledge} bonus knowledge. Be grateful.`);
-        }
-
-        if (!document.getElementById("displayWisdom").classList.contains("hidden")) {
-            
-            if (currentBonusWisdom > 0) {
-                say(`It has gifted you ${currentBonusWisdom} bonus wisdom. Be grateful.`);
+            if (!fitroll) {
+                console.log("Roll number fitting in bracket not found!");
+                say("The pit warps reality just to say no. LOL");
+                return;
             }
+
+            if (fitroll.flavortext === "random") {
+                const flavor = randomBad[Math.floor(Math.random()*randomBad.length)]
+                fitroll.flavortext = flavor.text
+            }
+            
+            say(fitroll.flavortext);
+
+            const kMax = fitroll.kMax || 0; // Knowledge
+            const kBoost = fitroll.kBoost || 0;
+
+            // Wisdom
+            const wMax = fitroll.wMax || 0;
+            const wBoost = fitroll.wBoost || 0;
+
+            // Lifespan
+            const lMax = fitroll.lMax || 0;
+            const lBoost = fitroll.lBoost|| 0;
+
+            // Goop
+            const rgMax = fitroll.rgMax || 0;
+            const rgBoost = fitroll.rgBoost || 0;
+
+            // Gloop
+            const pgMax = fitroll.pgMax || 0;
+            const pgBoost = fitroll.pgBoost || 0;
+
+            // Energy
+            const eMax = fitroll.eMax || 0;
+            const eBoost = fitroll.eBoost || 0;
+
+            const addCap = fitroll.moodcapadd || 0;
+
+            const currentBonusKnowledge = Math.floor(Math.max(Math.random()*kMax,0) + kBoost);
+            const currentCap = Math.floor(Math.max(Math.random()*addCap,0));
+            const currentBonusWisdom = Math.floor(Math.max(Math.random()*wMax, 0) + wBoost)
+
+            player.energy += Math.floor(Math.max(Math.random()*eMax, 0));
+
+            player.capBonus += currentCap;
+            player.knowledgeBonus += currentBonusKnowledge;
+            player.wisdomBonus += currentBonusWisdom;
+
+            if (addCap>0) {
+                say(`Mood is calmed. Precisely by ${currentCap} points.`)
+            }
+
+            if (currentBonusKnowledge > 0) {
+                say(`It has gifted you ${currentBonusKnowledge} bonus knowledge. Be grateful.`);
+            }
+
+            if (!document.getElementById("displayWisdom").classList.contains("hidden")) {
+                
+                if (currentBonusWisdom > 0) {
+                    say(`It has gifted you ${currentBonusWisdom} bonus wisdom. Be grateful.`);
+                }
+            }
+
+            if (eMax>0) {
+                say("You got energy! But it's useless currently")
+            }
+
+            player.totalpitrolls += 1;
+            resetThePitTimer();
+            
+        } else {
+            say("Wait until the timer finishes!")
         }
 
-        if (eMax>0) {
-            say("You got energy! But it's useless currently")
-        }
-
-        player.totalpitrolls += 1;
     } else {
-        say("You can't throw nothing into a pit idiot...")
+        say("Pick valid resources to throw")
     }
 });
 
-function roundto1(varib) {
-    return parseFloat(varib.toFixed(0));
-};
+// Resets pit interval
+let pitInterval = null;
+function resetThePitTimer() {
+    player.pitUsable = false;
+    player.pitTimer = (player.pitResetTime/1000)
+
+    if (pitInterval) {clearTimeout(pitInterval)}
+
+    pitInterval = setInterval(() => {
+        player.pitTimer-=1
+        if (player.pitTimer <= 0) {
+            player.pitUsable = true;
+            clearTimeout(pitInterval)
+        }
+    }, 1000);
+}
+
+// Inputs into the pit
+const elementpitK = document.getElementById("thepitKnowledge")
+elementpitK.addEventListener("input", () => {
+    player.pitKnowledge = elementpitK.value
+});
+
+const elementpitW = document.getElementById("thepitWisdom")
+elementpitW.addEventListener("input", () => {
+    player.pitWisdom = elementpitW.value
+});
