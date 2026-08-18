@@ -98,16 +98,23 @@ const pitrolls = [
     {
         rollmin:100,
         rollmax:101,
-        flavortext: "A thin package filled with green boxes dumps out near you",
+        flavortext: "A thin package filled with green boxes dumps out near you.",
         eMax: 25,
     },
 
     {
         rollmin:101,
+        rollmax:102,
+        flavortext: "A can flies out of the pit, landing at your feet with the label 'MATTER'.",
+        mMax: 10,
+        mBoost: 5,
+    },
+
+    {
+        rollmin:102,
         rollmax:105,
-        flavortext: "The pit tells you a knowledgeable secret",
-        kBoost: 25,
-        kMax: 50,
+        flavortext: "The pit tells you a knowledgeable secret, injecting 50 into your brain.",
+        kBoost: 50,
     },
 
 
@@ -211,6 +218,9 @@ document.getElementById("the-pit").addEventListener("click", () => {
             const wMax = fitroll.wMax || 0;
             const wBoost = fitroll.wBoost || 0;
 
+            const mMax = fitroll.mMax || 0; // Matter
+            const mBoost = fitroll.mBoost || 0;
+
             // Lifespan
             const lMax = fitroll.lMax || 0;
             const lBoost = fitroll.lBoost|| 0;
@@ -230,14 +240,16 @@ document.getElementById("the-pit").addEventListener("click", () => {
             const addCap = fitroll.moodcapadd || 0;
 
             const currentBonusKnowledge = Math.floor(Math.max(Math.random()*kMax,0) + kBoost);
-            const currentCap = Math.floor(Math.max(Math.random()*addCap,0));
             const currentBonusWisdom = Math.floor(Math.max(Math.random()*wMax, 0) + wBoost)
+            const currentBonusMatter = Math.floor(Math.max(Math.random()*mMax, 0) + mBoost)
+            const currentCap = Math.floor(Math.max(Math.random()*addCap,0));
 
             player.energy += Math.floor(Math.max(Math.random()*eMax, 0));
 
             player.capBonus += currentCap;
             player.knowledgeBonus += currentBonusKnowledge;
             player.wisdomBonus += currentBonusWisdom;
+            player.matterBonus += currentBonusMatter;
 
             if (addCap>0) {
                 say(`Mood is calmed. Precisely by ${currentCap} points.`)
@@ -257,6 +269,14 @@ document.getElementById("the-pit").addEventListener("click", () => {
             if (eMax>0) {
                 say("You got energy! But it's useless currently")
             }
+
+            if (!document.getElementById("displayMatter").classList.contains("hidden")) {
+                if (currentBonusMatter > 0) {
+                    say(`It gifted ya ${currentBonusMatter} bonus matter!! Kool beans!`)
+                }
+            }
+            
+
 
             player.totalpitrolls += 1;
             resetThePitTimer();
@@ -300,7 +320,7 @@ elementpitW.addEventListener("input", () => {
 
 let knowledge = 0;
 let wisdom = 0;
-
+// Sets values to what's on player hand
 document.getElementById("setToMax").addEventListener("click", () => {
     knowledge = player.knowledge
     wisdom = player.wisdom

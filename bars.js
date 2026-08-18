@@ -21,6 +21,10 @@ class ProgressBar {
             console.log(`${this.progress}/${this.maxprogress}. Speed is ${this.speed}`)
             // Expo increase value
             this.maxprogress = this.maxprogress*this.expoincrease;
+
+            if (this.elementId === "matter") {
+                player.matter += 1;
+            }
         };
         updateAllSpeeds();
     };
@@ -69,6 +73,7 @@ const magicstudyBar = new ProgressBar("magicstudy", 10, 10000, 1.15);
 const abyssalBar = new ProgressBar("abyssal", 10, 10000, 1.25);
 
 const moodBar = new ProgressBar("mood", 0, 0, 0)
+const matterBar = new ProgressBar("matter", 10, 2500, 1.0003);
 
 const barInfo = { // activebar id, then says their bar then name to DISPLAY
     vit: [vitBar, "Vitality"],
@@ -81,6 +86,7 @@ const barInfo = { // activebar id, then says their bar then name to DISPLAY
     magic: [magicBar, "Magic"],
     magicstudy: [magicstudyBar, "Magic Study"],
     abyssal: [abyssalBar, "Abyssal"],
+    matter: [matterBar, "Matter"],
 }   
 
 // Vars
@@ -92,6 +98,7 @@ let taichinerf = 0;
 let hitbuff = 0;
 
 let activeBar = null;
+let matterBarActive = false;
 
 // Update Progress Bars
 function updateProgress() {
@@ -106,6 +113,10 @@ function updateProgress() {
         document.getElementById(`${activeBar}btn`).classList.add("selectedTab");
     }
 
+    if (matterBarActive) {
+        matterBar.update();
+        document.getElementById(`matterLevelDisplay`).innerText = `Matter Level: ${matterBar.level}`
+    }
 
 
     flexbuff = flexBar.level*2;
@@ -125,7 +136,7 @@ function updateAllSpeeds() {
     const mooddiff = 0.5 - currentProgress;
     const baseSpeed = 10
 
-    const baseMoodspeed = baseSpeed + mooddiff*10
+    const baseMoodspeed = (baseSpeed + mooddiff*10) // Mood diff between (5 and -5)
     const magicsum = magicbuff-10
     const healthsum = taichinerf-hitbuff;
 
@@ -155,7 +166,9 @@ for (const all of progressContainers) {
 
 // Recalculates buffs
 function recalcBuffs() {
-    player.cap = 100+(vitBar.level*5)+(martialBar.level*10)+(taichiBar.level*100)-(fitnessBar.level*2)+player.capBonus;
+    if (matterBarActive === true) {player.cap = Math.floor((100+(vitBar.level*5)+(martialBar.level*10)+(taichiBar.level*100)-(fitnessBar.level*2)+player.capBonus)*player.matterCapNerf) } 
+    else { player.cap = 100+(vitBar.level*5)+(martialBar.level*10)+(taichiBar.level*100)-(fitnessBar.level*2)+player.capBonus }
+    
     player.lifespan = 50;
 
     if (vitBar.level>=10) {document.getElementById("flexContainer").classList.remove("hidden");}

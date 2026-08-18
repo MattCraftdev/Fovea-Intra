@@ -24,12 +24,6 @@ function calcCost(resourceType, cost) {
     
 }
 
-
-
-
-
-
-
 // Display Loops
 setInterval(() => {
     document.getElementById("displayKnowledge").innerText = "Knowledge: " + player.knowledge;
@@ -37,6 +31,9 @@ setInterval(() => {
 
     document.getElementById("displayWisdom").innerText = "Wisdom: " + player.wisdom;
     document.getElementById("displayWisdomBonus").innerText = ` (+${player.wisdomBonus})`
+
+    document.getElementById("displayMatter").innerText = "Matter: " + player.matter;
+    document.getElementById("displayMatterBonus").innerText = ` (+${player.matterBonus})`
 
     document.getElementById("displayGoop").innerText = "Goop: " + player.rawgoop;
     document.getElementById("displayGloop").innerText = "Gloop: " + player.processedgloop;
@@ -46,7 +43,7 @@ setInterval(() => {
     
     solveMood();
     updateLifespan();
-}, 20);
+}, 50);
 
 
 // Mood system
@@ -54,7 +51,7 @@ let mood = 0;
 let moodStatus = "Ok";
 
 function solveMood() {
-    let ratio = Math.min(Math.max(player.knowledge+player.wisdom*player.wisdomRate, 0)/player.cap, 1)
+    const ratio = Math.min(Math.max(player.knowledge+player.wisdom*player.wisdomRate, 0)/player.cap, 1)
     mood = ratio*player.cap
     
     if (mood>=player.cap) {

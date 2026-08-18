@@ -46,7 +46,7 @@ function saveGame() {
 
     console.log("Saving game...")
 
-    const allBars = [vitBar, flexBar, fitnessBar, magicBar, martialBar, magicstudyBar, hitBar, taichiBar, knowledgeBar];
+    const allBars = [vitBar, flexBar, fitnessBar, magicBar, martialBar, magicstudyBar, hitBar, taichiBar, knowledgeBar, abyssalBar];
     let state = {
         player: player,
         upgrades: upgrades.map(u => ({ id: u.id, unlocked: u.unlocked, purchased: u.purchased })),
@@ -64,7 +64,7 @@ function loadGame() {
     let savedGame = localStorage.getItem("gameSave");
     if (savedGame) {
         let state = JSON.parse(savedGame);
-        const allBars = [vitBar, flexBar, fitnessBar, magicBar, martialBar, magicstudyBar, hitBar, taichiBar, knowledgeBar];
+        const allBars = [vitBar, flexBar, fitnessBar, magicBar, martialBar, magicstudyBar, hitBar, taichiBar, knowledgeBar, abyssalBar];
 
         if (state.player) {Object.assign(player, state.player);}
     

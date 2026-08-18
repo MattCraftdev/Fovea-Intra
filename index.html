@@ -19,6 +19,7 @@
         <br>
         <span id= "displayKnowledge" >Knowledge: </span><span id = "displayKnowledgeBonus" class = "displayVariables"></span>
         <span id= "displayWisdom" class = "hidden">Wisdom: 0</span><span id = "displayWisdomBonus" class = "hidden displayVariables"></span>
+        <span id = "displayMatter" class = "hidden">Matter: 0</span><span id = "displayMatterBonus" class = "hidden displayVariables"></span>
         <br><br>
         <span id= "displayDay">Day: </span>
         <br>
@@ -27,12 +28,14 @@
 
         <p id= "displayMood">Mood: </p>
         <br>
+
         <div class = "hidden" id = "moodContainer">
             <div class="progress-container">
                 <div class="progress-bar" id="mood"></div>
                 <span class= "progress-text" id = "moodBarDisplay">0/100</span>
             </div>
         </div>
+
         <br>
     </div>
 
@@ -41,6 +44,7 @@
         <button class = "tab-button" data-tab="Creation">Creation</button>
         <button class = "tab-button" data-tab="Inventions">Inventions</button>
         <button class = "tab-button hidden" data-tab="Pit">The Pit</button>
+        <button class = "tab-button hidden" data-tab="Matter">Matter</button>
         <button class = "tab-button hidden" data-tab="Energy">Energy Wells</button>
         <button class = "tab-button hidden" data-tab="Potion">Potion Brewery</button>
         <button class = "tab-button" data-tab="Settings">Settings</button>
@@ -174,25 +178,27 @@
     <nav class = "tab-content" id = "Inventions">
 
         <br>
-        <button id = "unlocklifespanTimer" class = "hidden upgrade">Peer into the future - Costs 1000 Knowledge</button>
+        <button id = "unlocklifespanTimer" class = "hidden upgrade">Peer into the future - Costs 10000 Knowledge</button>
         <button id = "unlockpit" class = "hidden upgrade">Create the pit - Costs 10 Knowledge</button>
         <button id = "unlockmoodbtn" class = "hidden upgrade">Unlock Mood Bar - Costs 100 Knowledge</button>
+        <button id = "unlockwisdombtn" class = "hidden upgrade">Learn the act of wisdom - Costs 50 Knowledge</button>
+        <button id = "unlockmatterbtn" class = "hidden upgrade">Unlock Matter - Costs 25 Wisdom</button>
+        <button id = "unlocksetmaxbtn" class = "hidden upgrade">The pit set max button - Costs 5 Matter</button>
 
-        <button id = "unlock1" class = "hidden upgrade">Create Health Exercise Plan - Cost 75 Knowledge</button>
-        <button id = "unlockwisdombtn" class = "hidden upgrade">Learn the act of wisdom - Costs 35 Knowledge</button>
-        
-        <button id = "unlockknowledgebtn" class = "hidden upgrade">Study how to learn better - Costs 10 Wisdom</button>
-        <button id = "unlockenergy" class = "hidden upgrade">Create a new energy system - Costs 1000 Knowledge</button>
-        
-        <button id = "unlockfitnessbtn" class = "hidden upgrade">Fitness - Costs 500 Knowledge</button>
+        <button id = "unlockknowledgebtn" class = "hidden upgrade">Study how to learn better - Costs 20 Wisdom</button>
+        <button id = "unlockenergy" class = "hidden upgrade">Create a new energy system - Costs 50 Matter</button>
+
+        <button id = "unlockvitbtn" class = "hidden upgrade">Create Health Exercise Plan - Cost 75 Knowledge</button>        
+        <button id = "unlockfitnessbtn" class = "hidden upgrade">Fitness - Costs 250 Knowledge</button>
         <button id = "unlockmartialbtn" class = "hidden upgrade">Martial Arts - Costs 75 Wisdom</button>
-        <button id = "unlockhitbtn" class = "hidden upgrade">HIT training - Costs 1000 Knowledge</button>
+        <button id = "unlockhitbtn" class = "hidden upgrade">HIT training - Costs 25 Matter</button>
         <button id = "unlocktaichibtn" class = "hidden upgrade">Tai Chi - Costs 150 Wisdom</button>
 
-        <button id = "unlockmagicbtn" class = "hidden upgrade">Magic - Costs 50 Wisdom</button>
+        <button id = "unlockmagicbtn" class = "hidden upgrade">Magic - Costs 25 Wisdom</button>
         <button id = "unlockmagicstudybtn" class = "hidden upgrade">Study Magic - Costs 100 Wisdom</button>
         <button id = "unlockpotionbtn" class = "hidden upgrade">Find potion shop - Costs 75 Wisdom</button>
-        <button id = "unlockabyssalbtn" class = "hidden upgrade">Abyssal - Costs 200 knowledge</button>
+        <button id = "unlockabyssalbtn" class = "hidden upgrade">Abyssal - Costs 25 Matter</button>
+    
         
     </nav>
     
@@ -200,8 +206,21 @@
         <p id = "displayThePitTimer">Time until reset: </p>
         <input type ="number" id = "thepitKnowledge"> Knowledge
         <input type ="number" id = "thepitWisdom"> Wisdom
-        <button id = "setToMax" class = "upgrade">Set to players knowledge and wisdom amounts</button>
+        <button id = "setToMax" class = "hidden upgrade">Set to players knowledge and wisdom amounts</button>
         <button id = "the-pit">Sacrifice stuff into the pit</button>
+
+    </nav>
+
+    <nav class = "tab-content" id = "Matter">
+        <div id="matterContainer">
+            <div class="progress-container">
+                <div class="progress-bar" id="matter"></div>
+                <span class= "progress-text" id = "matterLevelDisplay"></span>
+            </div>
+        </div>
+
+        <button id = "enableMatter">Enable Matter</button>
+        <button id = "disableMatter">Disable Matter</button>
 
     </nav>
 
@@ -234,6 +253,8 @@
         <button id = "loadGame" class = "tech">Load Game</button>
         <button id = "resetGame" class = "tech">Hard reset game</button>
 
+        <p>WARNING! Earlier saves may get corrupted, so you may have to start a new save(as the way it works, saves layer over, so you might get incorrect old variables)</p>
+
         <h1>Settings</h1>
 
         <p id = "saveIntervalDisplay">Save interval: 5 Seconds</p>
@@ -246,6 +267,7 @@
         <p>Bonuses: (+0) next to your resources is the bonus part! Gotten exclusively from the pit, it's not taxed by mood and only used when you cannot normally afford an upgrade. Is not thrown into the pit aswell</p>
         <p>Inventions: Technically you can call them upgrades, but anyway their requirements to unlock are hidden! Some take knowledge/wisdom (BUT NEVER BONUSES!) or levels of bars.</p>
         <p>Magic: Many people say to me that they don't know what it does, but you must find out! (Hint: level it up)</p>
+        <p>Matter: The matter bar gives you matter every time it levels up. While active, it makes your mood capacity be able to take less.</p>
 
         <h1>Changelog</h1>
         <a href = "changelog.md">Click me for changelog!!!!</a>

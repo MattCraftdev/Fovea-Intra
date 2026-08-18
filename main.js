@@ -2,6 +2,10 @@ const player = {
     knowledge: 0,
     knowledgeBonus: 0,
 
+    matter: 0,
+    matterBonus: 0,
+    matterCapNerf: 0.5,
+
     baseKnowledgeIncrease: 1,
 
     cap: 100,
@@ -36,7 +40,9 @@ const player = {
 /*
 Ideas:
 - Free pit rolls (Like a token)
-- Paywall set to max button
+- The pit emits radiation or something that over time hurts the player. Can be removed to "dump sites"
+
+- Maybe make some upgrades unlock 2 bars
 
 - When knowledge/wisdom above cap, actively it slowly removes excess resources and mildly drains a bit of lifespan
 - Make mood fit into bar aswell and not appear on side
@@ -98,6 +104,15 @@ document.getElementById("packageEnergy").addEventListener("click", () => {
     } else {
         say("Not enough shtuff brochacho")
     }
+});
+
+// Matter System
+document.getElementById("disableMatter").addEventListener("click", () => {
+    matterBarActive = false;
+});
+
+document.getElementById("enableMatter").addEventListener("click", () => {
+    matterBarActive = true;
 });
 
 

@@ -84,7 +84,7 @@ let typeCost = "";
 // Resets stock, important!
 function resetPotionStock() {
     resources = Math.floor(Math.random()*100+100);
-    const resourceTypes = ["knowledge", "wisdom", "energy"]
+    const resourceTypes = ["knowledge", "wisdom", "energy", "matter"]
     typeCost = resourceTypes[Math.floor(Math.random()*resourceTypes.length)]
 
     document.getElementById("createPotion").innerText = `Create Potion for ${typeCost} ${resources}`

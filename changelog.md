@@ -1,5 +1,17 @@
 # Newest versions
 
+2026/08/17 7:35 PM - [0.46.0] MATTER
+- Fixed small error with all bars in storage, added "abyssalBar"
+- Added a pit bracket for matter & bonus matter system, along with text
+- Minor tweaks to small things
+- Made the set max button for the pit an upgrade
+- Added matter as a system
+- Added matter upgrade and soft integration
+- Added matter tab && matter bar, which upon leveling increases matter by 1 (changes with upgrades)
+- When matter bar is enabled, runs in the background but makes moodcap*0.5 (halving, but could change)
+- Updated all upgrades to maybe include matter, and for better pacing
+- Fixed minor errors on the way && altered a few minor things
+
 2026/08/17 12:19 AM - [0.44.0] THE PIT IV
 - Cleaned up the pits code
 - Fixed error with flavortext not randomizing in the pit

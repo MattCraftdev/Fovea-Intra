@@ -1,14 +1,14 @@
 // Upgrade array for each
 const upgrades = [
     {
-        id: "unlock1",
+        id: "unlockvitbtn",
         cost: 75,
         costtype: "knowledge",
         unlocked: false,
-        reqamount: 40,
+        reqamount: 50,
         reqtype: "knowledge",
         flavortext: "I may not have a brain gentlemen. But I have an idea..",
-        purchased: 0,
+        purchased:   0,
         maxpurchases: 1,
         onpurchase: () => {
             document.getElementById("vitContainer").classList.remove("hidden");
@@ -18,11 +18,11 @@ const upgrades = [
 
     {
         id: "unlocklifespanTimer",
-        cost: 1000,
+        cost: 10000,
         costtype: "knowledge",
         unlocked: false,
         reqamount: 100,
-        reqtype: "knowledge", 
+        reqtype: "energy", 
         flavortext: "Something is being touched upon. You need to learn more to reveal it...",
         purchased: 0,
         maxpurchases: 1,
@@ -34,10 +34,10 @@ const upgrades = [
 
     {
         id: "unlockwisdombtn",
-        cost: 35,
+        cost: 50,
         costtype: "knowledge",
         unlocked: false,
-        reqamount: 25,
+        reqamount: 10,
         reqtype: "knowledge",
         flavortext: "You feel a calling to something more.",
         purchased: 0,
@@ -45,14 +45,13 @@ const upgrades = [
         onpurchase: () => {
             document.getElementById("switchtoWisdom").classList.remove("hidden");
             document.getElementById("displayWisdom").classList.remove("hidden");
-            document.getElementById("displayWisdomBonus").classList.remove("hidden");
         },
         purchasetext: "A white beard sprouts on your chin, and your back teeth emerge. You feel...wiser somehow?"
     },
 
     {
         id: "unlockknowledgebtn",
-        cost: 10,
+        cost: 20,
         costtype: "wisdom",
         unlocked: false,
         reqamount: 5,
@@ -68,11 +67,11 @@ const upgrades = [
 
         {
         id: "unlockfitnessbtn",
-        cost: 500,
+        cost: 250,
         costtype: "knowledge",
         unlocked: false,
-        reqamount: 25,
-        reqtype: "vit",
+        reqamount: 20,
+        reqtype: "flex",
         flavortext: "You feel fat. Maybe it's time to fix this issue.",
         purchased: 0,
         maxpurchases: 1,
@@ -88,7 +87,7 @@ const upgrades = [
         costtype: "wisdom",
         unlocked: false,
         reqamount: 25,
-        reqtype: "flex",
+        reqtype: "vit",
         flavortext: "You just watched your first kung fu movie and now think you're Bruce Lee.",
         purchased: 0,
         maxpurchases: 1,
@@ -100,7 +99,7 @@ const upgrades = [
 
         {
         id: "unlockmagicbtn",
-        cost: 50,
+        cost: 25,
         costtype: "wisdom",
         unlocked: false,
         reqamount: 10,
@@ -131,8 +130,8 @@ const upgrades = [
 
         {
         id: "unlockhitbtn",
-        cost: 1000,
-        costtype: "knowledge",
+        cost: 25,
+        costtype: "matter",
         unlocked: false,
         reqamount: 10,
         reqtype: "martial",
@@ -150,8 +149,8 @@ const upgrades = [
         cost: 150,
         costtype: "wisdom",
         unlocked: false,
-        reqamount: 15,
-        reqtype: "martial",
+        reqamount: 50,
+        reqtype: "vit",
         flavortext: "Become flowing water with the wind (No more Kung Foo movies)",
         purchased: 0,
         maxpurchases: 1,
@@ -182,8 +181,8 @@ const upgrades = [
         cost: 1000,
         costtype: "knowledge",
         unlocked: false,
-        reqamount: 250,
-        reqtype: "knowledge",
+        reqamount: 50,
+        reqtype: "matter",
         flavortext: "A whisper echoes from around you. 'If you build it, he will come.'",
         purchased: 0,
         maxpurchases: 1,
@@ -198,7 +197,7 @@ const upgrades = [
         cost: 100,
         costtype: "knowledge",
         unlocked: false,
-        reqamount: 75,
+        reqamount: 80,
         reqtype: "knowledge",
         flavortext: "An idea strikes from all this knowledge building up inside you. Why not map mood on a bar?",
         purchased: 0,
@@ -227,8 +226,8 @@ const upgrades = [
 
         {
         id: "unlockabyssalbtn",
-        cost: 200,
-        costtype: "knowledge",
+        cost: 25,
+        costtype: "matter",
         unlocked: false,
         reqamount: 15,
         reqtype: "magic",
@@ -240,6 +239,43 @@ const upgrades = [
         },
         purchasetext: "The abyss resides inside the pit."
     },
+
+        {
+        id: "unlockmatterbtn",
+        cost: 25,
+        costtype: "wisdom",
+        unlocked: false,
+        reqamount: 15,
+        reqtype: "wisdom",
+        flavortext: "What is...matter?",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("displayMatter").classList.remove("hidden");
+            document.getElementById("displayMatterBonus").classList.remove("hidden");
+            document.querySelector('[data-tab = "Matter"]').classList.remove("hidden");
+        },
+        purchasetext: "Matter is shown to ye!"
+    },
+
+
+        {
+        id: "unlocksetmaxbtn",
+        cost: 5,
+        costtype: "matter",
+        unlocked: false,
+        reqamount: 100,
+        reqtype: "knowledge",
+        flavortext: "If you use the pit, get the set max button",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("setToMax").classList.remove("hidden");
+        },
+        purchasetext: "Click the button to set inputs to player eqivalent (max)"
+    },
+
+
 ]
 
 // Checks if any upgrade can be unlocked
@@ -251,13 +287,13 @@ setInterval(() => {
         if (player[loop.reqtype]>=loop.reqamount && loop.unlocked == false) {
             reqsMet = true;
                     
-        } else if (loop.reqtype !== "knowledge" && loop.reqtype !== "wisdom") {
+        } else if (loop.reqtype !== "knowledge" && loop.reqtype !== "wisdom" && loop.reqtype !== "matter" && loop.reqtype !== "energy") {
             if (barInfo[loop.reqtype][0].level >= loop.reqamount && loop.unlocked == false) {
                 reqsMet = true;
             }
         }
 
-        if (loop.id == "unlock1" && loop.purchased === 1) {
+        if (loop.id == "unlockvitbtn" && loop.purchased === 1) {
             document.getElementById("healthheader").style.display = "flex";
         } else if (loop.id == "unlockmagicbtn" && loop.purchased === 1) {
             document.getElementById("magicheader").style.display = "flex";
