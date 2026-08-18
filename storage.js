@@ -40,17 +40,17 @@ function hardReset() {
 }
 
 const savenotif = document.getElementById("savingnotif")
+const barsOnly = Object.values(barInfo).map(item => item[0]);
 
 // Save and load
 function saveGame() {
 
     console.log("Saving game...")
 
-    const allBars = [vitBar, flexBar, fitnessBar, magicBar, martialBar, magicstudyBar, hitBar, taichiBar, knowledgeBar, abyssalBar];
     let state = {
         player: player,
         upgrades: upgrades.map(u => ({ id: u.id, unlocked: u.unlocked, purchased: u.purchased })),
-        bars: allBars.map(b => ({ id: b.elementId, level: b.level, maxprogress: b.maxprogress, progress: b.progress}))
+        bars: barsOnly.map(b => ({ id: b.elementId, level: b.level, maxprogress: b.maxprogress, progress: b.progress}))
     };  
     localStorage.setItem("gameSave", JSON.stringify(state));
 
@@ -64,7 +64,7 @@ function loadGame() {
     let savedGame = localStorage.getItem("gameSave");
     if (savedGame) {
         let state = JSON.parse(savedGame);
-        const allBars = [vitBar, flexBar, fitnessBar, magicBar, martialBar, magicstudyBar, hitBar, taichiBar, knowledgeBar, abyssalBar];
+        
 
         if (state.player) {Object.assign(player, state.player);}
     
@@ -95,7 +95,7 @@ function loadGame() {
 
         if (state.bars) {
             state.bars.forEach(savedB => {
-                let realB = allBars.find(b => b.elementId === savedB.id);
+                let realB = barsOnly.find(b => b.elementId === savedB.id);
                 if (realB) {
                     realB.loadSaveData(savedB);
                 }

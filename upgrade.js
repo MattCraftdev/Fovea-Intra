@@ -33,7 +33,7 @@ const upgrades = [
     },
 
     {
-        id: "unlockwisdombtn",
+        id: "unlockwisdomConvertbtn",
         cost: 50,
         costtype: "knowledge",
         unlocked: false,
@@ -275,6 +275,23 @@ const upgrades = [
         purchasetext: "Click the button to set inputs to player eqivalent (max)"
     },
 
+        {
+        id: "unlockwisdombtn",
+        cost: 5,
+        costtype: "wisdom",
+        unlocked: false,
+        reqamount: 1,
+        reqtype: "wisdom",
+        flavortext: "Wisdom.",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("wisdomContainer").classList.remove("hidden");
+        },
+        purchasetext: "MORE BARS!!!!"
+    },
+
+
 
 ]
 
@@ -329,7 +346,10 @@ function buyUpgrade(upgradeId) {
     if (upgrade && upgrade.purchased < upgrade.maxpurchases && calcCost(upgrade.costtype, upgrade.cost)) {
 
         upgrade.purchased += 1
-        document.getElementById(upgrade.id).classList.add("hidden")
+        if (upgrade.purchased>=upgrade.maxpurchases) {
+            document.getElementById(upgrade.id).classList.add("hidden")            
+        }
+
         upgrade.onpurchase();
         console.log(upgrade);
         say(upgrade.purchasetext)            

@@ -62,17 +62,18 @@ class ProgressBar {
 const vitBar = new ProgressBar("vit", 10, 1000, 1.15);
 const flexBar = new ProgressBar("flex", 10, 500, 1.1);
 const fitnessBar = new ProgressBar("fitness", 10, 2500, 1.25);
-const martialBar = new ProgressBar("martial", 10, 3500, 1.3);
+const martialBar = new ProgressBar("martial", 10, 3500, 1.2);
 const hitBar = new ProgressBar("hit", 10, 5000, 1.25);
 const taichiBar = new ProgressBar("taichi", 10, 4000, 1.15);
 
 const knowledgeBar = new ProgressBar("knowledge", 10, 10000, 1.2);
+const wisdomBar = new ProgressBar("wisdom", 10, 4000, 1.15);
 
-const magicBar = new ProgressBar("magic", 10, 25000, 1.25);
+const magicBar = new ProgressBar("magic", 10, 10000, 1.2);
 const magicstudyBar = new ProgressBar("magicstudy", 10, 10000, 1.15);
 const abyssalBar = new ProgressBar("abyssal", 10, 10000, 1.25);
 
-const moodBar = new ProgressBar("mood", 0, 0, 0)
+const moodBar = new ProgressBar("mood", 0, 0, 0); // Do not mark. Placeholder Bar!!!
 const matterBar = new ProgressBar("matter", 10, 2500, 1.0003);
 
 const barInfo = { // activebar id, then says their bar then name to DISPLAY
@@ -87,6 +88,7 @@ const barInfo = { // activebar id, then says their bar then name to DISPLAY
     magicstudy: [magicstudyBar, "Magic Study"],
     abyssal: [abyssalBar, "Abyssal"],
     matter: [matterBar, "Matter"],
+    wisdom: [wisdomBar, "Wisdom Bar"],
 }   
 
 // Vars
@@ -170,6 +172,8 @@ function recalcBuffs() {
     else { player.cap = 100+(vitBar.level*5)+(martialBar.level*10)+(taichiBar.level*100)-(fitnessBar.level*2)+player.capBonus }
     
     player.lifespan = 50;
+
+    player.wisdomClickPower = wisdomBar.level+1;
 
     if (vitBar.level>=10) {document.getElementById("flexContainer").classList.remove("hidden");}
 

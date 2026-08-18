@@ -55,7 +55,7 @@
         
         <section id = "box">
             <button id = "createKnowledge" class = "anyButton" >Create 1 knowledge</button>
-            <button id = "switchtoWisdom" class = "anyButton hidden" >Become wise, 5 Knowledge: 1 Wisdom</button>
+            <button id = "switchtoWisdom" class = "anyButton hidden" >Create 1 wisdom (0/20)</button>
         </section>
 
         <div class="game-layout">
@@ -66,7 +66,7 @@
                 <div class = "hidden skill-row" id="vitContainer">
                     <div class="progress-container" title = "Vitality increases your lifespan through unknown means.." id = "vitbtn">
                         <div class="progress-bar" id="vit"></div>
-                        <span class= "progress-text" id = "vitLevelDisplay">Vitality Level: 1</span>
+                        <span class= "progress-text" id = "vitLevelDisplay">Vitality Level: 0</span>
                     </div>
                     <div class="skill-info" id="vitInfo">
                         <p>Vitality increases mood tolerance, meaning you can hold more resources</p>
@@ -76,7 +76,7 @@
                 <div class = "hidden skill-row" id="flexContainer">
                     <div class="progress-container" title = "Staying flexable increases vitality growth rate!" id = "flexbtn">
                         <div class="progress-bar" id="flex"></div>
-                        <span class= "progress-text" id = "flexLevelDisplay">Flexibility Level: 1</span>
+                        <span class= "progress-text" id = "flexLevelDisplay">Flexibility Level: 0</span>
                     </div>
                     <div class="skill-info" id="flexInfo">
                         <p>Flexability increases the speed of vitality</p>
@@ -86,7 +86,7 @@
                 <div class = "hidden skill-row" id="fitnessContainer">
                     <div class="progress-container" title = "Go all out with exercise!" id = "fitnessbtn">
                         <div class="progress-bar" id="fitness"></div>
-                        <span class= "progress-text" id = "fitnessLevelDisplay">Fitness Program Level: 1</span>
+                        <span class= "progress-text" id = "fitnessLevelDisplay">Fitness Program Level: 0</span>
                     </div>
                     <div class="skill-info" id="fitnessInfo">
                         <p>Fitness increases flexability speed but lowers mood tolerance</p>
@@ -96,7 +96,7 @@
                 <div class = "hidden skill-row" id="martialContainer">
                     <div class="progress-container" title = "Go all out with exercise!" id = "martialbtn">
                         <div class="progress-bar" id="martial"></div>
-                        <span class= "progress-text" id = "martialLevelDisplay">Martial Arts Level: 1</span>
+                        <span class= "progress-text" id = "martialLevelDisplay">Martial Arts Level: 0</span>
                     </div>
                     <div class="skill-info" id="martialInfo">
                         <p>Martial Arts greatly increases mood tolerance</p>
@@ -106,7 +106,7 @@
                 <div class = "hidden skill-row" id="hitContainer">
                     <div class="progress-container" title = "Go all out with exercise!" id = "hitbtn">
                         <div class="progress-bar" id="hit"></div>
-                        <span class= "progress-text" id = "hitLevelDisplay">HIT Level: 1</span>
+                        <span class= "progress-text" id = "hitLevelDisplay">HIT Level: 0</span>
                     </div>
                     <div class="skill-info" id="hitInfo">
                         <p>HIT increases all health bar speeds</p>
@@ -116,7 +116,7 @@
                 <div class = "hidden skill-row" id="taichiContainer">
                     <div class="progress-container" title = "Go all out with exercise!" id = "taichibtn">
                         <div class="progress-bar" id="taichi"></div>
-                        <span class= "progress-text" id = "taichiLevelDisplay">Tai Chi Level: 1</span>
+                        <span class= "progress-text" id = "taichiLevelDisplay">Tai Chi Level: 0</span>
                     </div>
                     <div class="skill-info" id="taichiInfo">
                         <p>Tai chi decreases all health bar speeds but gives immense amounts of mood tolerance</p>
@@ -126,11 +126,21 @@
                 <div class = "hidden skill-row" id="knowledgeContainer">
                     <div class="progress-container" title = "Study how to learn more" id = "knowledgebtn">
                         <div class="progress-bar" id="knowledge"></div>
-                        <span class= "progress-text" id = "knowledgeLevelDisplay">Knowledge Level: 1</span>
+                        <span class= "progress-text" id = "knowledgeLevelDisplay">Knowledge Level: 0</span>
                     </div>
                     <div class="skill-info" id="knowledgeInfo">
                         <p>Knowledge increases knowledge gain per creation</p>
                     </div>                    
+                </div>
+
+                <div class = "hidden skill-row" id="wisdomContainer">
+                    <div class="progress-container" title = "Wise." id = "wisdombtn">
+                        <div class="progress-bar" id="wisdom"></div>
+                        <span class= "progress-text" id = "wisdomLevelDisplay">Wisdom Level: 0</span>
+                    </div>
+                    <div class="skill-info" id="abyssalInfo">
+                        <p>Increases the power of wisdom clicks +1.</p>
+                    </div>
                 </div>
 
             </section>
@@ -179,14 +189,16 @@
 
         <br>
         <button id = "unlocklifespanTimer" class = "hidden upgrade">Peer into the future - Costs 10000 Knowledge</button>
-        <button id = "unlockpit" class = "hidden upgrade">Create the pit - Costs 10 Knowledge</button>
         <button id = "unlockmoodbtn" class = "hidden upgrade">Unlock Mood Bar - Costs 100 Knowledge</button>
-        <button id = "unlockwisdombtn" class = "hidden upgrade">Learn the act of wisdom - Costs 50 Knowledge</button>
-        <button id = "unlockmatterbtn" class = "hidden upgrade">Unlock Matter - Costs 25 Wisdom</button>
         <button id = "unlocksetmaxbtn" class = "hidden upgrade">The pit set max button - Costs 5 Matter</button>
 
+        <button id = "unlockpit" class = "hidden upgrade">Create the pit - Costs 10 Knowledge</button>
         <button id = "unlockknowledgebtn" class = "hidden upgrade">Study how to learn better - Costs 20 Wisdom</button>
+        <button id = "unlockwisdomConvertbtn" class = "hidden upgrade">Learn the act of wisdom - Costs 50 Knowledge</button>
+        <button id = "unlockwisdombtn" class = "hidden upgrade">Wisdom Bar - Costs 5 Wisdom</button>
         <button id = "unlockenergy" class = "hidden upgrade">Create a new energy system - Costs 50 Matter</button>
+        <button id = "unlockmatterbtn" class = "hidden upgrade">Unlock Matter - Costs 25 Wisdom</button>
+
 
         <button id = "unlockvitbtn" class = "hidden upgrade">Create Health Exercise Plan - Cost 75 Knowledge</button>        
         <button id = "unlockfitnessbtn" class = "hidden upgrade">Fitness - Costs 250 Knowledge</button>
@@ -240,8 +252,6 @@
         <button class = "potionbtn" id="createPotion">Create a Potion</button>
 
         <p id = "potionShowing"></p>
-
-        
 
     </nav>
 

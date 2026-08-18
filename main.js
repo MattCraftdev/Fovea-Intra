@@ -13,7 +13,9 @@ const player = {
 
     wisdom: 0,
     wisdomBonus: 0,
-    wisdomRate: 5,
+    wisdomRate: 20,
+    reflection: 0,
+    wisdomClickPower:1,
 
     lifespan: 50,
     day: 0,
@@ -45,7 +47,6 @@ Ideas:
 - Maybe make some upgrades unlock 2 bars
 
 - When knowledge/wisdom above cap, actively it slowly removes excess resources and mildly drains a bit of lifespan
-- Make mood fit into bar aswell and not appear on side
 
 - Process gloop/goop change to switch upgrade (COMPLETE IT WITH CALC)
 - Make upgrades able to take more than 1 cost
@@ -56,8 +57,6 @@ Ideas:
 - Make bars say their progress,speed, etc.
 
 - mass wisdom conversion upgrade, and better wisdom conversion (same thing with energy)
-
-- Cleanup mess with allBars vs barInfo
 
 - Add images
 */
@@ -72,9 +71,16 @@ document.getElementById("createKnowledge").addEventListener("click", () => {
 });
 
 document.getElementById("switchtoWisdom").addEventListener("click", () => {
-    if (calcCost("knowledge", player.wisdomRate)) {
-        player.wisdom += 1;
-    }
+    player.reflection += player.wisdomClickPower;
+
+    if (player.reflection>=player.wisdomRate) {
+        const leftOverAcc = player.reflection % player.wisdomRate;
+        player.wisdom += Math.floor(player.reflection/player.wisdomRate);
+        player.reflection = leftOverAcc;
+        
+    } 
+
+    document.getElementById("switchtoWisdom").innerText = `Create 1 wisdom (${player.reflection}/${player.wisdomRate})`
 });
 
 // Energy Systems

@@ -189,7 +189,7 @@ let flavor = "";
 document.getElementById("the-pit").addEventListener("click", () => {
     if ((knowledge > 0 || wisdom > 0) && knowledge<=player.knowledge && wisdom<=player.wisdom && (knowledge>=0 && wisdom >= 0)) {
         if (player.pitUsable === true) {
-            const addbuff = knowledge + wisdom*6
+            const addbuff = knowledge + (wisdom*10)
 
             player.knowledge -= knowledge;
             player.wisdom -= wisdom;

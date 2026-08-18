@@ -51,7 +51,7 @@ let mood = 0;
 let moodStatus = "Ok";
 
 function solveMood() {
-    const ratio = Math.min(Math.max(player.knowledge+player.wisdom*player.wisdomRate, 0)/player.cap, 1)
+    const ratio = Math.min(Math.max(player.knowledge+player.wisdom*2, 0)/player.cap, 1)
     mood = ratio*player.cap
     
     if (mood>=player.cap) {
@@ -66,15 +66,23 @@ function solveMood() {
     else if (mood<=(player.cap*0.1)) { moodStatus = "Overjoyed"; }
     else { moodStatus = "Ok" }
 
-    document.getElementById("displayMood").innerText = "Mood: " + moodStatus;
+    
 
     if (mood<0) { mood = 0; }
 
     const fillratio = mood/player.cap
+    if (document.getElementById("moodContainer").classList.contains("hidden")) {
+        document.getElementById("displayMood").innerText = "Mood: " + moodStatus;
+    } else {
+        moodBar.element.style.width = fillratio*100 + "%";
+        document.getElementById("moodBarDisplay").innerText =`Mood: ${moodStatus} (${Math.floor(mood.toFixed(0))}/${player.cap})`;
+        moodBar.element.style.backgroundColor = `hsl(${(1-fillratio)*120}, 100%, 45%)`;
 
-    moodBar.element.style.width = fillratio*100 + "%";
-    document.getElementById("moodBarDisplay").innerText =`${Math.floor(mood.toFixed(0))}/${player.cap}`;
-    moodBar.element.style.backgroundColor = `hsl(${(1-fillratio)*120}, 100%, 45%)`;
+        if (!document.getElementById("displayMood").classList.contains("hidden")) {
+            document.getElementById("displayMood").classList.add("hidden")
+        }
+    }
+
 };
 
 // Time System

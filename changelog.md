@@ -1,6 +1,16 @@
 # Newest versions
 
-2026/08/17 7:35 PM - [0.46.0] MATTER
+2026/08/17 11:00 PM - [0.48.0] WISDOM II && TWEAKS
+- Optimized code by merging redundant allbars with BarInfo (well deleted allbars)
+- Style tweaks
+- Bar tweaking/balencing
+- Mood text now fits in bar, and if bar unlocks the text hides
+- Wisdom is now generated seperatly than knowledge, no more 5:1 wisdom conversion
+- Wisdom takes up less moodcap, and also gives a greater bonus in the pit
+- Wisdom overflows if your click power for wisdom is over the wisdomRate
+- Added another upgrade (wisdom bar) && wisdom bar that increases wisdom click power
+
+2026/08/17 8:52 PM - [0.46.0] MATTER
 - Fixed small error with all bars in storage, added "abyssalBar"
 - Added a pit bracket for matter & bonus matter system, along with text
 - Minor tweaks to small things
