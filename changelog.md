@@ -1,6 +1,21 @@
 # Newest versions
 
-2026/08/17 11:00 PM - [0.48.0] WISDOM II && TWEAKS
+2026/08/18 11:40 PM - [0.50.0] DYNAMIC UPGRADES II && (TWEAKS && FIXES IV + QOL)
+- Added UMAMI tracker, which added a script so it only goes when not my localHost
+- Updated calcCost structure, enabling multiple costs
+- Merged cost and costtype in upgrades
+- Merged reqamount and req in upgrades
+- Updated all upgrades to support multicost structure
+- Fixed all upgrades to support the same multicost structure
+- Updated all requirements to support new req structure
+- Updated the requirement system to support multireqs
+- Optimized code and cleaned up after coding the systems
+- Shifted upgrades around, and added new multicosts+required unlocks
+- Balencing a few things with a playtest, specifically fixed a few bugs and made bars a bit better progression wise.
+- Nerfed wisdom mood (from *2 to *4) and nerfed wisdom pit (from *10 to *5)
+- Fixed major issue with the pit giving super high rolls from nothing (inputs into pit were strings, so it added incorrect)
+
+2026/08/17 11:56 PM - [0.48.0] WISDOM II && TWEAKS
 - Optimized code by merging redundant allbars with BarInfo (well deleted allbars)
 - Style tweaks
 - Bar tweaking/balencing
@@ -290,7 +305,7 @@ Such a pain to add.
 - Further optimization from seperating into more files (added functions.js)
 - Added knowledge gameloop
 
-2026/07/03 12:31 AM - [0.5.0] UNLOCK
+2026/07/03 12:31 AM - [0.5.0] UNLOCK REQS (precursor to DYNAMIC UPGRADES)
 - Added unlock when you get over 10 knowledge to appear in the "Inventions" tab, along with a story message
 - Optimized some code
 - The unlock now appears and disappears correctly

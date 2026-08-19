@@ -45,11 +45,11 @@ Ideas:
 - The pit emits radiation or something that over time hurts the player. Can be removed to "dump sites"
 
 - Maybe make some upgrades unlock 2 bars
+- Re finish upgrades, and balence out with another playtest
 
 - When knowledge/wisdom above cap, actively it slowly removes excess resources and mildly drains a bit of lifespan
 
 - Process gloop/goop change to switch upgrade (COMPLETE IT WITH CALC)
-- Make upgrades able to take more than 1 cost
 
 - Add potions III
 
@@ -80,12 +80,12 @@ document.getElementById("switchtoWisdom").addEventListener("click", () => {
         
     } 
 
-    document.getElementById("switchtoWisdom").innerText = `Create 1 wisdom (${player.reflection}/${player.wisdomRate})`
+    document.getElementById("switchtoWisdom").innerText = `Create 1 wisdom +${player.wisdomClickPower}(${player.reflection}/${player.wisdomRate})`
 });
 
 // Energy Systems
 document.getElementById("collectGoop").addEventListener("click", () => {
-    if (calcCost("knowledge", 5)) {
+    if (calcCost(["knowledge", 5])) {
         player.rawgoop += 1;
     } else {
         say("Not enough smarts up there laddy!")

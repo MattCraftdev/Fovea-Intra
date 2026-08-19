@@ -1,28 +1,10 @@
 // Upgrade array for each
 const upgrades = [
     {
-        id: "unlockvitbtn",
-        cost: 75,
-        costtype: "knowledge",
-        unlocked: false,
-        reqamount: 50,
-        reqtype: "knowledge",
-        flavortext: "I may not have a brain gentlemen. But I have an idea..",
-        purchased:   0,
-        maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("vitContainer").classList.remove("hidden");
-        },
-        purchasetext: "A strict routine only for the best"
-    },
-
-    {
         id: "unlocklifespanTimer",
-        cost: 10000,
-        costtype: "knowledge",
+        cost: [["knowledge", 1000], ["matter", 100], ["energy", 25]],
         unlocked: false,
-        reqamount: 100,
-        reqtype: "energy", 
+        reqs: [["energy", 100], ["magic", 5]],
         flavortext: "Something is being touched upon. You need to learn more to reveal it...",
         purchased: 0,
         maxpurchases: 1,
@@ -33,139 +15,10 @@ const upgrades = [
     },
 
     {
-        id: "unlockwisdomConvertbtn",
-        cost: 50,
-        costtype: "knowledge",
-        unlocked: false,
-        reqamount: 10,
-        reqtype: "knowledge",
-        flavortext: "You feel a calling to something more.",
-        purchased: 0,
-        maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("switchtoWisdom").classList.remove("hidden");
-            document.getElementById("displayWisdom").classList.remove("hidden");
-        },
-        purchasetext: "A white beard sprouts on your chin, and your back teeth emerge. You feel...wiser somehow?"
-    },
-
-    {
-        id: "unlockknowledgebtn",
-        cost: 20,
-        costtype: "wisdom",
-        unlocked: false,
-        reqamount: 5,
-        reqtype: "wisdom",
-        flavortext: "What if I just studied how to think?!",
-        purchased: 0,
-        maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("knowledgeContainer").classList.remove("hidden");
-        },
-        purchasetext: "The deeper the knowledge the better"
-    },
-
-        {
-        id: "unlockfitnessbtn",
-        cost: 250,
-        costtype: "knowledge",
-        unlocked: false,
-        reqamount: 20,
-        reqtype: "flex",
-        flavortext: "You feel fat. Maybe it's time to fix this issue.",
-        purchased: 0,
-        maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("fitnessContainer").classList.remove("hidden");
-        },
-        purchasetext: "Time to get fit!"
-    },
-
-        {
-        id: "unlockmartialbtn",
-        cost: 75,
-        costtype: "wisdom",
-        unlocked: false,
-        reqamount: 25,
-        reqtype: "vit",
-        flavortext: "You just watched your first kung fu movie and now think you're Bruce Lee.",
-        purchased: 0,
-        maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("martialContainer").classList.remove("hidden");
-        },
-        purchasetext: "Everybody wa' kung foo fighti-ing hooo haaaa!!"
-    },
-
-        {
-        id: "unlockmagicbtn",
-        cost: 25,
-        costtype: "wisdom",
-        unlocked: false,
-        reqamount: 10,
-        reqtype: "wisdom",
-        flavortext: "A tree said to you that magic is real",
-        purchased: 0,
-        maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("magicContainer").classList.remove("hidden");
-        },
-        purchasetext: "FIREBALL!!!!!"
-    },
-        {
-        id: "unlockmagicstudybtn",
-        cost: 100,
-        costtype: "wisdom",
-        unlocked: false,
-        reqamount: 10,
-        reqtype: "magic",
-        flavortext: "You don't really wanna study but..magic kool!!",
-        purchased: 0,
-        maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("magicstudyContainer").classList.remove("hidden");
-        },
-        purchasetext: "Books are boring but magic is not."
-    },
-
-        {
-        id: "unlockhitbtn",
-        cost: 25,
-        costtype: "matter",
-        unlocked: false,
-        reqamount: 10,
-        reqtype: "martial",
-        flavortext: "Become flowing water with the wind (No more Kung Foo movies)",
-        purchased: 0,
-        maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("hitContainer").classList.remove("hidden");
-        },
-        purchasetext:"You got out of your kung foo phase for the real stuff"
-    },
-
-        {
-        id: "unlocktaichibtn",
-        cost: 150,
-        costtype: "wisdom",
-        unlocked: false,
-        reqamount: 50,
-        reqtype: "vit",
-        flavortext: "Become flowing water with the wind (No more Kung Foo movies)",
-        purchased: 0,
-        maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("taichiContainer").classList.remove("hidden");
-        },
-        purchasetext: "Say a proverb because you don't care about life! PEEEEAAAACE!!!"
-    },
-        {
         id: "unlockpit",
-        cost: 10,
-        costtype: "knowledge",
+        cost: [["knowledge", 10]],
         unlocked: false,
-        reqamount: 2,
-        reqtype: "knowledge",
+        reqs: [["knowledge", 2]],
         flavortext: "",
         purchased: 0,
         maxpurchases: 1,
@@ -176,29 +29,11 @@ const upgrades = [
         purchasetext: "A big dark hole emerged from the nearby ground. It's deep."
     },
 
-        {
-        id: "unlockenergy",
-        cost: 1000,
-        costtype: "knowledge",
-        unlocked: false,
-        reqamount: 50,
-        reqtype: "matter",
-        flavortext: "A whisper echoes from around you. 'If you build it, he will come.'",
-        purchased: 0,
-        maxpurchases: 1,
-        onpurchase: () => {
-            document.querySelector('[data-tab = "Energy"]').classList.remove("hidden");
-        },
-        purchasetext: "A well materializes in front of you, filled with green goo."
-    },
-
-        {
+    {
         id: "unlockmoodbtn",
-        cost: 100,
-        costtype: "knowledge",
+        cost: [["knowledge", 100]],
         unlocked: false,
-        reqamount: 80,
-        reqtype: "knowledge",
+        reqs: [["knowledge", 80]],
         flavortext: "An idea strikes from all this knowledge building up inside you. Why not map mood on a bar?",
         purchased: 0,
         maxpurchases: 1,
@@ -208,45 +43,11 @@ const upgrades = [
         purchasetext: "A bar floats above your head, dictating your mood"
     },
 
-        {
-        id: "unlockpotionbtn",
-        cost: 75,
-        costtype: "wisdom",
-        unlocked: false,
-        reqamount: 75,
-        reqtype: "wisdom",
-        flavortext: "Hmm. Maybe you should call the local drug de- I mean potion maker.",
-        purchased: 0,
-        maxpurchases: 1,
-        onpurchase: () => {
-            document.querySelector('[data-tab = "Potion"]').classList.remove("hidden");
-        },
-        purchasetext: "Potion man giving you a call. Better head down."
-    },
-
-        {
-        id: "unlockabyssalbtn",
-        cost: 25,
-        costtype: "matter",
-        unlocked: false,
-        reqamount: 15,
-        reqtype: "magic",
-        flavortext: "I should try telling stories to the pit. Communicate with it. Have fun with it.",
-        purchased: 0,
-        maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("abyssalContainer").classList.remove("hidden");
-        },
-        purchasetext: "The abyss resides inside the pit."
-    },
-
-        {
+    {
         id: "unlockmatterbtn",
-        cost: 25,
-        costtype: "wisdom",
+        cost: [["wisdom", 50]],
         unlocked: false,
-        reqamount: 15,
-        reqtype: "wisdom",
+        reqs: [["wisdom", 10], ["knowledge", 50]],
         flavortext: "What is...matter?",
         purchased: 0,
         maxpurchases: 1,
@@ -258,14 +59,11 @@ const upgrades = [
         purchasetext: "Matter is shown to ye!"
     },
 
-
-        {
+    {
         id: "unlocksetmaxbtn",
-        cost: 5,
-        costtype: "matter",
+        cost: [["matter", 5]],
         unlocked: false,
-        reqamount: 100,
-        reqtype: "knowledge",
+        reqs: [["knowledge", 100]],
         flavortext: "If you use the pit, get the set max button",
         purchased: 0,
         maxpurchases: 1,
@@ -275,13 +73,98 @@ const upgrades = [
         purchasetext: "Click the button to set inputs to player eqivalent (max)"
     },
 
-        {
-        id: "unlockwisdombtn",
-        cost: 5,
-        costtype: "wisdom",
+    {
+        id: "unlockvitbtn",
+        cost: [["knowledge", 75]],
         unlocked: false,
-        reqamount: 1,
-        reqtype: "wisdom",
+        reqs: [["knowledge", 50]],
+        flavortext: "I may not have a brain gentlemen. But I have an idea..",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("vitContainer").classList.remove("hidden");
+        },
+        purchasetext: "A strict routine only for the best"
+    },
+
+    {
+        id: "unlockfitnessbtn",
+        cost: [["knowledge", 250]],
+        unlocked: false,
+        reqs: [["flex", 20]],
+        flavortext: "You feel fat. Maybe it's time to fix this issue.",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("fitnessContainer").classList.remove("hidden");
+        },
+        purchasetext: "Time to get fit!"
+    },
+
+    {
+        id: "unlockmartialbtn",
+        cost: [["wisdom", 75]],
+        unlocked: false,
+        reqs: [["vit", 25]],
+        flavortext: "You just watched your first kung fu movie and now think you're Bruce Lee.",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("martialContainer").classList.remove("hidden");
+        },
+        purchasetext: "Everybody wa' kung foo fighti-ing hooo haaaa!!"
+    },
+
+
+    {
+        id: "unlockhitbtn",
+        cost: [["matter", 25]],
+        unlocked: false,
+        reqs: [["martial", 10]],
+        flavortext: "Become flowing water with the wind (No more Kung Foo movies)",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("hitContainer").classList.remove("hidden");
+        },
+        purchasetext:"You got out of your kung foo phase for the real stuff"
+    },
+
+    {
+        id: "unlocktaichibtn",
+        cost: [["wisdom", 150]],
+        unlocked: false,
+        reqs: [["vit", 50]],
+        flavortext: "Become flowing water with the wind (No more Kung Foo movies)",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("taichiContainer").classList.remove("hidden");
+        },
+        purchasetext: "Say a proverb because you don't care about life! PEEEEAAAACE!!!"
+    },
+
+    {
+        id: "unlockwisdomConvertbtn",
+        cost: [["knowledge", 50]],
+        unlocked: false,
+        reqs: [["knowledge", 10]],
+        flavortext: "You feel a calling to something more.",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("switchtoWisdom").classList.remove("hidden");
+            document.getElementById("displayWisdom").classList.remove("hidden");
+            document.getElementById("displayWisdomBonus").classList.remove("hidden");
+        },
+        purchasetext: "A white beard sprouts on your chin, and your back teeth emerge. You feel...wiser somehow?"
+    },
+
+    {
+        id: "unlockwisdombtn",
+        cost: [["wisdom", 5]],
+        unlocked: false,
+        reqs: [["wisdom", 1]],
         flavortext: "Wisdom.",
         purchased: 0,
         maxpurchases: 1,
@@ -291,24 +174,121 @@ const upgrades = [
         purchasetext: "MORE BARS!!!!"
     },
 
+    {
+        id: "unlockknowledgebtn",
+        cost: [["wisdom", 20]],
+        unlocked: false,
+        reqs: [["wisdom", 5]],
+        flavortext: "What if I just studied how to think?!",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("knowledgeContainer").classList.remove("hidden");
+        },
+        purchasetext: "The deeper the knowledge the better"
+    },
+
+    {
+        id: "unlockmagicbtn",
+        cost: [["wisdom", 25]],
+        unlocked: false,
+        reqs: [["wisdom", 10]],
+        flavortext: "A tree said to you that magic is real",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("magicContainer").classList.remove("hidden");
+        },
+        purchasetext: "FIREBALL!!!!!"
+    },
+    {
+        id: "unlockmagicstudybtn",
+        cost: [["wisdom", 100]],
+        unlocked: false,
+        reqs: [["magic", 10]],
+        flavortext: "You don't really wanna study but..magic kool!!",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("magicstudyContainer").classList.remove("hidden");
+        },
+        purchasetext: "Books are boring but magic is not."
+    },
 
 
+
+    {
+        id: "unlockpotionbtn",
+        cost: [["wisdom", 75]],
+        unlocked: false,
+        reqs: [["wisdom", 75]],
+        flavortext: "Hmm. Maybe you should call the local drug de- I mean potion maker.",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.querySelector('[data-tab = "Potion"]').classList.remove("hidden");
+        },
+        purchasetext: "Potion man giving you a call. Better head down."
+    },
+
+    {
+        id: "unlockabyssalbtn",
+        cost: [["matter", 25]],
+        unlocked: false,
+        reqs: [["magic", 15]],
+        flavortext: "I should try telling stories to the pit. Communicate with it. Have fun with it.",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("abyssalContainer").classList.remove("hidden");
+        },
+        purchasetext: "The abyss resides inside the pit."
+    },
+
+    {
+        id: "unlockenergy",
+        cost: [["knowledge", 1000]],
+        unlocked: false,
+        reqs: [["matter", 50]],
+        flavortext: "A whisper echoes from around you. 'If you build it, he will come.'",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.querySelector('[data-tab = "Energy"]').classList.remove("hidden");
+        },
+        purchasetext: "A well materializes in front of you, filled with green goo."
+    },
 ]
 
 // Checks if any upgrade can be unlocked
 const inventionsBtn = document.querySelector('[data-tab = "Inventions"]');
 
 setInterval(() => {
-    for (const loop of upgrades) {
-        let reqsMet = false;
-        if (player[loop.reqtype]>=loop.reqamount && loop.unlocked == false) {
-            reqsMet = true;
-                    
-        } else if (loop.reqtype !== "knowledge" && loop.reqtype !== "wisdom" && loop.reqtype !== "matter" && loop.reqtype !== "energy") {
-            if (barInfo[loop.reqtype][0].level >= loop.reqamount && loop.unlocked == false) {
-                reqsMet = true;
+    for (const loop of upgrades) { // Goes through each consecutive Upgrade
+        let allReqsMet = true;
+
+        for (const req of loop.reqs) { // Goes into each upgrade on reqs
+
+            const [reqType, reqAmount] = req;
+
+            if (loop.unlocked === false) {
+
+                if (reqType == "knowledge" || reqType === "wisdom" || reqType === "matter" || reqType === "energy") {
+                    if (!(player[reqType] >= reqAmount)) {
+                        allReqsMet = false;
+                    }
+                } else {
+                    if (!(barInfo[reqType][0].level >= reqAmount)) {
+                        allReqsMet = false;
+                    }
+                }
+            } else {
+                allReqsMet = false;
             }
+        
         }
+            
+
 
         if (loop.id == "unlockvitbtn" && loop.purchased === 1) {
             document.getElementById("healthheader").style.display = "flex";
@@ -321,7 +301,7 @@ setInterval(() => {
             document.getElementById(loop.id).classList.remove("hidden")
         }
 
-        if (reqsMet == true) {
+        if (allReqsMet === true) { // If the reqs are met does this
             if (!inventionsBtn.classList.contains("glow")) {
                 inventionsBtn.classList.add("glow");
                 console.log(`Added glow on ${loop.id} using ${inventionsBtn.classList.contains("glow")}`)
@@ -333,17 +313,17 @@ setInterval(() => {
                 document.getElementById(loop.id).classList.remove("hidden")
             }
             say(`${loop.flavortext} Check Inventions!`)
-        }
 
+        };
     };
 
-}, 500);
+}, 500); // Checks every 0.5 seconds
 
 // Buying the upgrade
 function buyUpgrade(upgradeId) {
     const upgrade = upgrades.find(item => item.id === upgradeId);
 
-    if (upgrade && upgrade.purchased < upgrade.maxpurchases && calcCost(upgrade.costtype, upgrade.cost)) {
+    if (upgrade && upgrade.purchased < upgrade.maxpurchases && calcCost(upgrade.cost)) {
 
         upgrade.purchased += 1
         if (upgrade.purchased>=upgrade.maxpurchases) {

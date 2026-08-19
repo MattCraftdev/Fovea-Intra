@@ -66,8 +66,8 @@ const martialBar = new ProgressBar("martial", 10, 3500, 1.2);
 const hitBar = new ProgressBar("hit", 10, 5000, 1.25);
 const taichiBar = new ProgressBar("taichi", 10, 4000, 1.15);
 
-const knowledgeBar = new ProgressBar("knowledge", 10, 10000, 1.2);
-const wisdomBar = new ProgressBar("wisdom", 10, 4000, 1.15);
+const knowledgeBar = new ProgressBar("knowledge", 10, 10000, 1.15);
+const wisdomBar = new ProgressBar("wisdom", 10, 4000, 1.25);
 
 const magicBar = new ProgressBar("magic", 10, 10000, 1.2);
 const magicstudyBar = new ProgressBar("magicstudy", 10, 10000, 1.15);

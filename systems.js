@@ -1,27 +1,46 @@
 // Calculates cost relating to the bonuses (WILL DO SUBTRACTION BUT NOT RESULT, 
-function calcCost(resourceType, cost) {
+function calcCost(resourceCost) {
 
-    const totalAmount = player[resourceType] + player[`${resourceType}Bonus`]
+    let overallCanBuy = true;
 
-    console.log(totalAmount)
+    for (const costObject of resourceCost) {
+        const [resourceType, cost] = costObject;
 
-    if (player[resourceType]>=cost) {
+        const totalAmount = player[resourceType] + player[`${resourceType}Bonus`]
 
-        player[resourceType] -= cost
-        return true;
+        console.log(`Resource: ${resourceType}. Cost: ${cost}. Player amount with Bonus: ${totalAmount}`)
 
-    } else if (totalAmount>=cost) {
-        const difference = cost - player[resourceType];
-        player[resourceType] = 0;
-        player[`${resourceType}Bonus`] -= difference;
+        costObject.payWithBonus = false;
 
-        return true;
+        if (player[resourceType]>=cost) {
+            costObject.payWithBonus = false;
 
-    } else {
-        console.log("cannot buy because not enough lol")
-        return false;
+        } else if (totalAmount>=cost) {
+            costObject.payWithBonus = true;
+
+        } else {
+            console.log(`Cannot buy, because player only has ${player[resourceType]} ${resourceType}, which is less than ${cost} ${resourceType}`)
+            overallCanBuy = false;
+        }
+        
     }
-    
+    if (overallCanBuy === true) {
+        for (const costObject of resourceCost) { // Rechecks each object if they're all yes and ready to sell
+            
+            const [resourceType, cost] = costObject
+
+            if (!costObject.payWithBonus) {
+                player[resourceType] -= cost;
+            } else {
+                const difference = cost - player[resourceType];
+                player[resourceType] = 0;
+                player[`${resourceType}Bonus`] -= difference;
+            }
+            
+        }        
+    }
+
+    return overallCanBuy;
 }
 
 // Display Loops
@@ -51,7 +70,7 @@ let mood = 0;
 let moodStatus = "Ok";
 
 function solveMood() {
-    const ratio = Math.min(Math.max(player.knowledge+player.wisdom*2, 0)/player.cap, 1)
+    const ratio = Math.min(Math.max(player.knowledge+player.wisdom*4, 0)/player.cap, 1)
     mood = ratio*player.cap
     
     if (mood>=player.cap) {

@@ -189,7 +189,7 @@ let flavor = "";
 document.getElementById("the-pit").addEventListener("click", () => {
     if ((knowledge > 0 || wisdom > 0) && knowledge<=player.knowledge && wisdom<=player.wisdom && (knowledge>=0 && wisdom >= 0)) {
         if (player.pitUsable === true) {
-            const addbuff = knowledge + (wisdom*10)
+            const addbuff = Number(knowledge) + Number(wisdom)*5
 
             player.knowledge -= knowledge;
             player.wisdom -= wisdom;
@@ -310,12 +310,12 @@ function resetThePitTimer() {
 // Inputs into the pit
 const elementpitK = document.getElementById("thepitKnowledge")
 elementpitK.addEventListener("input", () => {
-   knowledge = elementpitK.value
+   knowledge = Number(elementpitK.value);
 });
 
 const elementpitW = document.getElementById("thepitWisdom")
 elementpitW.addEventListener("input", () => {
-    wisdom = elementpitW.value
+    wisdom = Number(elementpitW.value);
 });
 
 let knowledge = 0;

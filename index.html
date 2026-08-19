@@ -7,7 +7,17 @@
     <title>Fovea Intra</title>
 
     <link rel="stylesheet" href="styles.css">
-    
+
+    <script>
+        if (location.hostname !== "127.0.0.1" && location.hostname !== "localhost") {
+            const script = document.createElement("script");
+            script.defer = true;
+            script.src = "https://cloud.umami.is/script.js";
+            script.dataset.websiteId = "c345541a-4b83-44d5-a914-2536ca5fbc36";
+            document.head.appendChild(script);
+        }
+    </script>
+
 </head>
 <body>
 
@@ -188,7 +198,7 @@
     <nav class = "tab-content" id = "Inventions">
 
         <br>
-        <button id = "unlocklifespanTimer" class = "hidden upgrade">Peer into the future - Costs 10000 Knowledge</button>
+        <button id = "unlocklifespanTimer" class = "hidden upgrade">Peer into the future - Costs 1000 Knowledge, 100 Matter and 25 Energy</button>
         <button id = "unlockmoodbtn" class = "hidden upgrade">Unlock Mood Bar - Costs 100 Knowledge</button>
         <button id = "unlocksetmaxbtn" class = "hidden upgrade">The pit set max button - Costs 5 Matter</button>
 
@@ -197,7 +207,7 @@
         <button id = "unlockwisdomConvertbtn" class = "hidden upgrade">Learn the act of wisdom - Costs 50 Knowledge</button>
         <button id = "unlockwisdombtn" class = "hidden upgrade">Wisdom Bar - Costs 5 Wisdom</button>
         <button id = "unlockenergy" class = "hidden upgrade">Create a new energy system - Costs 50 Matter</button>
-        <button id = "unlockmatterbtn" class = "hidden upgrade">Unlock Matter - Costs 25 Wisdom</button>
+        <button id = "unlockmatterbtn" class = "hidden upgrade">Unlock Matter - Costs 50 Wisdom</button>
 
 
         <button id = "unlockvitbtn" class = "hidden upgrade">Create Health Exercise Plan - Cost 75 Knowledge</button>        
