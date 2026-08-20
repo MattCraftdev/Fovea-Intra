@@ -16,9 +16,9 @@ const upgrades = [
 
     {
         id: "unlockpit",
-        cost: [["knowledge", 10]],
+        cost: [["wisdom", 10]],
         unlocked: false,
-        reqs: [["knowledge", 2]],
+        reqs: [["knowledge", 50]],
         flavortext: "",
         purchased: 0,
         maxpurchases: 1,
@@ -31,9 +31,9 @@ const upgrades = [
 
     {
         id: "unlockmoodbtn",
-        cost: [["knowledge", 100]],
+        cost: [["knowledge", 125]],
         unlocked: false,
-        reqs: [["knowledge", 80]],
+        reqs: [["knowledge", 100]],
         flavortext: "An idea strikes from all this knowledge building up inside you. Why not map mood on a bar?",
         purchased: 0,
         maxpurchases: 1,
@@ -45,9 +45,9 @@ const upgrades = [
 
     {
         id: "unlockmatterbtn",
-        cost: [["wisdom", 50]],
+        cost: [["knowledge", 250]],
         unlocked: false,
-        reqs: [["wisdom", 10], ["knowledge", 50]],
+        reqs: [["wisdom", 25]],
         flavortext: "What is...matter?",
         purchased: 0,
         maxpurchases: 1,
@@ -63,7 +63,7 @@ const upgrades = [
         id: "unlocksetmaxbtn",
         cost: [["matter", 5]],
         unlocked: false,
-        reqs: [["knowledge", 100]],
+        reqs: [["matter", 2]],
         flavortext: "If you use the pit, get the set max button",
         purchased: 0,
         maxpurchases: 1,
@@ -75,9 +75,9 @@ const upgrades = [
 
     {
         id: "unlockvitbtn",
-        cost: [["knowledge", 75]],
+        cost: [["knowledge", 75], ["wisdom", 2]],
         unlocked: false,
-        reqs: [["knowledge", 50]],
+        reqs: [["knowledge", 60]],
         flavortext: "I may not have a brain gentlemen. But I have an idea..",
         purchased: 0,
         maxpurchases: 1,
@@ -88,24 +88,24 @@ const upgrades = [
     },
 
     {
-        id: "unlockfitnessbtn",
-        cost: [["knowledge", 250]],
+        id: "unlockmediatebtn",
+        cost: [["knowledge", 200], ["wisdom", 10]],
         unlocked: false,
         reqs: [["flex", 20]],
         flavortext: "You feel fat. Maybe it's time to fix this issue.",
         purchased: 0,
         maxpurchases: 1,
         onpurchase: () => {
-            document.getElementById("fitnessContainer").classList.remove("hidden");
+            document.getElementById("mediateContainer").classList.remove("hidden");
         },
         purchasetext: "Time to get fit!"
     },
 
     {
         id: "unlockmartialbtn",
-        cost: [["wisdom", 75]],
+        cost: [["wisdom", 50]],
         unlocked: false,
-        reqs: [["vit", 25]],
+        reqs: [["vit", 20]],
         flavortext: "You just watched your first kung fu movie and now think you're Bruce Lee.",
         purchased: 0,
         maxpurchases: 1,
@@ -146,7 +146,7 @@ const upgrades = [
 
     {
         id: "unlockwisdomConvertbtn",
-        cost: [["knowledge", 50]],
+        cost: [["knowledge", 25]],
         unlocked: false,
         reqs: [["knowledge", 10]],
         flavortext: "You feel a calling to something more.",
@@ -190,9 +190,9 @@ const upgrades = [
 
     {
         id: "unlockmagicbtn",
-        cost: [["wisdom", 25]],
+        cost: [["wisdom", 75], ["matter", 5]],
         unlocked: false,
-        reqs: [["wisdom", 10]],
+        reqs: [["wisdom", 50]],
         flavortext: "A tree said to you that magic is real",
         purchased: 0,
         maxpurchases: 1,
@@ -219,9 +219,9 @@ const upgrades = [
 
     {
         id: "unlockpotionbtn",
-        cost: [["wisdom", 75]],
+        cost: [["wisdom", 50], ["matter" , 20], ["knowledge", 100]],
         unlocked: false,
-        reqs: [["wisdom", 75]],
+        reqs: [["wisdom", 40], ["magic", 5]],
         flavortext: "Hmm. Maybe you should call the local drug de- I mean potion maker.",
         purchased: 0,
         maxpurchases: 1,
@@ -233,7 +233,7 @@ const upgrades = [
 
     {
         id: "unlockabyssalbtn",
-        cost: [["matter", 25]],
+        cost: [["matter", 25], ["knowledge", 50]],
         unlocked: false,
         reqs: [["magic", 15]],
         flavortext: "I should try telling stories to the pit. Communicate with it. Have fun with it.",
@@ -247,9 +247,9 @@ const upgrades = [
 
     {
         id: "unlockenergy",
-        cost: [["knowledge", 1000]],
+        cost: [["matter", 50]],
         unlocked: false,
-        reqs: [["matter", 50]],
+        reqs: [["knowledge", 300]],
         flavortext: "A whisper echoes from around you. 'If you build it, he will come.'",
         purchased: 0,
         maxpurchases: 1,
@@ -324,7 +324,7 @@ function buyUpgrade(upgradeId) {
     const upgrade = upgrades.find(item => item.id === upgradeId);
 
     if (upgrade && upgrade.purchased < upgrade.maxpurchases && calcCost(upgrade.cost)) {
-
+        track(upgrade.id)
         upgrade.purchased += 1
         if (upgrade.purchased>=upgrade.maxpurchases) {
             document.getElementById(upgrade.id).classList.add("hidden")            

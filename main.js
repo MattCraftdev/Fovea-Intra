@@ -45,7 +45,6 @@ Ideas:
 - The pit emits radiation or something that over time hurts the player. Can be removed to "dump sites"
 
 - Maybe make some upgrades unlock 2 bars
-- Re finish upgrades, and balence out with another playtest
 
 - When knowledge/wisdom above cap, actively it slowly removes excess resources and mildly drains a bit of lifespan
 
@@ -55,6 +54,7 @@ Ideas:
 
 - Add inventions helptext for each upgrade (on what they do like bars)
 - Make bars say their progress,speed, etc.
+- Make mood say it's affect on the overall speed (Or just do the bars...lol)
 
 - mass wisdom conversion upgrade, and better wisdom conversion (same thing with energy)
 
@@ -65,27 +65,28 @@ Ideas:
 document.getElementById("createKnowledge").addEventListener("click", () => {
     if (mood<player.cap) {
         player.knowledge += player.baseKnowledgeIncrease;
+        track("knowledgeClicked")
     } else {
         console.log(`knowledge is ${player.knowledge}. Mood is ${mood}. Currently MOOD is BAD!`)
     }
 });
 
 document.getElementById("switchtoWisdom").addEventListener("click", () => {
-    player.reflection += player.wisdomClickPower;
-
-    if (player.reflection>=player.wisdomRate) {
-        const leftOverAcc = player.reflection % player.wisdomRate;
-        player.wisdom += Math.floor(player.reflection/player.wisdomRate);
-        player.reflection = leftOverAcc;
-        
-    } 
-
-    document.getElementById("switchtoWisdom").innerText = `Create 1 wisdom +${player.wisdomClickPower}(${player.reflection}/${player.wisdomRate})`
+    if (mood<player.cap) {    
+        player.reflection += player.wisdomClickPower;
+        track("wisdomClicked")
+        if (player.reflection>=player.wisdomRate) {
+            const leftOverAcc = player.reflection % player.wisdomRate;
+            player.wisdom += Math.floor(player.reflection/player.wisdomRate);
+            player.reflection = leftOverAcc;
+            
+        } 
+    }
 });
 
 // Energy Systems
 document.getElementById("collectGoop").addEventListener("click", () => {
-    if (calcCost(["knowledge", 5])) {
+    if (calcCost([["knowledge", 5]])) {
         player.rawgoop += 1;
     } else {
         say("Not enough smarts up there laddy!")
@@ -118,9 +119,24 @@ document.getElementById("disableMatter").addEventListener("click", () => {
 });
 
 document.getElementById("enableMatter").addEventListener("click", () => {
-    matterBarActive = true;
+    if (mood>(player.cap*0.5)) {
+        say("Mood is too high! Lower it to less than half to enable the matterbar!")
+    } else {
+        matterBarActive = true;
+    }
 });
 
+// Umami Tracking for detailed analytics to improve game (yeah well i need to know what to improve)
+function track(event, data) {
+    if (typeof umami !== "undefined") {
+        umami.track(event, data);
+    }
+}
+
+setInterval(() => track("30_secondsStayed"), 30000); // 30 secs
+
+// Clear console
+setInterval(() => console.clear() , 120000); // 2 Minutes every clear
 
 // Prevents clicking enter IMPORTANT!
 window.addEventListener('keydown', function(e) {

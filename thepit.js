@@ -77,7 +77,7 @@ const pitrolls = [
         rollmin:97,
         rollmax:98,
         flavortext: "The pit takes away the strain of life.",
-        moodcapadd:500,
+        moodcapadd:250,
     },
 
     {
@@ -168,8 +168,8 @@ const pitrolls = [
         rollmin:150,
         rollmax:1000,
         flavortext: "A whole lotta luck you're feeling",
-        kMax:10000,
-        wMax:1000,
+        kMax:1000,
+        wMax:200,
     },
 ]
 
@@ -206,10 +206,12 @@ document.getElementById("the-pit").addEventListener("click", () => {
 
             if (fitroll.flavortext === "random") {
                 flavor = randomBad[Math.floor(Math.random()*randomBad.length)]
-                fitroll.flavortext = flavor.text
+                say(flavor.text)
+            } else {
+                say(fitroll.flavortext);
             }
             
-            say(fitroll.flavortext);
+            
 
             const kMax = fitroll.kMax || 0; // Knowledge
             const kBoost = fitroll.kBoost || 0;
@@ -279,6 +281,7 @@ document.getElementById("the-pit").addEventListener("click", () => {
 
 
             player.totalpitrolls += 1;
+            track("pitRolls")
             resetThePitTimer();
             
         } else {

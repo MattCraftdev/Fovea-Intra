@@ -1,5 +1,14 @@
 # Newest versions
 
+2026/08/19 11:36 PM - [0.51.0]
+- Added Umami tracking to knowledge/wisdom clicked, bar levels and upgrades bought, the pit rolled, etc.
+- Adding multicost/multireqs to some upgrades
+- Balenced bars and speeds
+- Specifically changed fitness to mediate and redid it (it was useless basically before)
+- Fixed a few small bugs and mildly optimized code
+- Did a playtest: Fixed more bugs, reworked a few things and edited a few more things.
+- Redid more upgrades, and the pacing is smoother
+
 2026/08/18 11:40 PM - [0.50.0] DYNAMIC UPGRADES II && (TWEAKS && FIXES IV + QOL)
 - Added UMAMI tracker, which added a script so it only goes when not my localHost
 - Updated calcCost structure, enabling multiple costs

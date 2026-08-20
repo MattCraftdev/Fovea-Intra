@@ -48,6 +48,7 @@ setInterval(() => {
     document.getElementById("displayKnowledge").innerText = "Knowledge: " + player.knowledge;
     document.getElementById("displayKnowledgeBonus").innerText = ` (+${player.knowledgeBonus})`
 
+    document.getElementById("switchtoWisdom").innerText = `Create 1 wisdom +${player.wisdomClickPower}(${player.reflection}/${player.wisdomRate})`
     document.getElementById("displayWisdom").innerText = "Wisdom: " + player.wisdom;
     document.getElementById("displayWisdomBonus").innerText = ` (+${player.wisdomBonus})`
 

@@ -93,11 +93,13 @@
     height: 50%;
     overflow: scroll;
     border: 2px solid #000000;
+    z-index: 1000;
 }
 
 #storyTitle {
     font-size: 30px;
     font-family: "georgia";
+    z-index: 1001;
 }
 
 /* Progress bars */

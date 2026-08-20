@@ -21,10 +21,11 @@ class ProgressBar {
             console.log(`${this.progress}/${this.maxprogress}. Speed is ${this.speed}`)
             // Expo increase value
             this.maxprogress = this.maxprogress*this.expoincrease;
-
+            track(this.elementId)
             if (this.elementId === "matter") {
                 player.matter += 1;
             }
+            
         };
         updateAllSpeeds();
     };
@@ -61,7 +62,7 @@ class ProgressBar {
 // Progress Bars
 const vitBar = new ProgressBar("vit", 10, 1000, 1.15);
 const flexBar = new ProgressBar("flex", 10, 500, 1.1);
-const fitnessBar = new ProgressBar("fitness", 10, 2500, 1.25);
+const mediateBar = new ProgressBar("mediate", 10, 2000, 1.2);
 const martialBar = new ProgressBar("martial", 10, 3500, 1.2);
 const hitBar = new ProgressBar("hit", 10, 5000, 1.25);
 const taichiBar = new ProgressBar("taichi", 10, 4000, 1.15);
@@ -80,7 +81,7 @@ const barInfo = { // activebar id, then says their bar then name to DISPLAY
     vit: [vitBar, "Vitality"],
     flex: [flexBar, "Flexability"],
     knowledge: [knowledgeBar, "Knowledge"],
-    fitness: [fitnessBar, "Fitness"],
+    mediate: [mediateBar, "Mediate"],
     martial: [martialBar, "Martial Arts"],
     hit: [hitBar, "HIT"],
     taichi: [taichiBar, "Tai Chi"],
@@ -93,7 +94,7 @@ const barInfo = { // activebar id, then says their bar then name to DISPLAY
 
 // Vars
 let flexbuff = 0;
-let fitnessbuff = 0;
+let mediatebuff = 0;
 let magicbuff = 0;
 let magicstudybuff = 0;
 let taichinerf = 0;
@@ -120,9 +121,9 @@ function updateProgress() {
         document.getElementById(`matterLevelDisplay`).innerText = `Matter Level: ${matterBar.level}`
     }
 
-
+    // Buffs by speed
     flexbuff = flexBar.level*2;
-    fitnessbuff = fitnessBar.level*2
+    mediatebuff = mediateBar.level*2
     magicbuff = magicBar.level
     magicstudybuff = magicstudyBar.level*2
     taichinerf = taichiBar.level*3
@@ -139,12 +140,19 @@ function updateAllSpeeds() {
     const baseSpeed = 10
 
     const baseMoodspeed = (baseSpeed + mooddiff*10) // Mood diff between (5 and -5)
-    const magicsum = magicbuff-10
-    const healthsum = taichinerf-hitbuff;
+    let magicsum = (magicbuff-10)+mediatebuff
+    let healthsum = taichinerf-hitbuff;
+
+    if (healthsum+baseMoodspeed<1) {
+        healthsum = -5;
+    }
+    if (magicsum+baseMoodspeed<1) {
+        magicsum = -5;
+    }
 
     vitBar.speed = baseMoodspeed + flexbuff + healthsum
-    flexBar.speed = baseMoodspeed + fitnessbuff + healthsum
-    fitnessBar.speed = baseMoodspeed + healthsum
+    flexBar.speed = baseMoodspeed + healthsum
+    mediateBar.speed = baseMoodspeed + healthsum
     martialBar.speed = baseMoodspeed + healthsum
     hitBar.speed = baseMoodspeed + healthsum
 
@@ -153,6 +161,7 @@ function updateAllSpeeds() {
     magicBar.speed = baseMoodspeed;
     magicstudyBar.speed = baseMoodspeed + magicsum
     abyssalBar.speed = baseMoodspeed + magicsum
+
 }
 
 // Setting interval higher = worse transitioning rate. Currently 
@@ -168,12 +177,18 @@ for (const all of progressContainers) {
 
 // Recalculates buffs
 function recalcBuffs() {
-    if (matterBarActive === true) {player.cap = Math.floor((100+(vitBar.level*5)+(martialBar.level*10)+(taichiBar.level*100)-(fitnessBar.level*2)+player.capBonus)*player.matterCapNerf) } 
-    else { player.cap = 100+(vitBar.level*5)+(martialBar.level*10)+(taichiBar.level*100)-(fitnessBar.level*2)+player.capBonus }
+    if (matterBarActive === true) {
+        player.matterCapNerf = 0.5
+    } else {
+        player.matterCapNerf = 1;
+    }
+
+    player.cap = Math.floor((100+(vitBar.level*5)+(martialBar.level*10)+(taichiBar.level*100)-(mediateBar.level)+player.capBonus)*player.matterCapNerf)
     
     player.lifespan = 50;
 
     player.wisdomClickPower = wisdomBar.level+1;
+    player.matterCapNerf = 0.5
 
     if (vitBar.level>=10) {document.getElementById("flexContainer").classList.remove("hidden");}
 

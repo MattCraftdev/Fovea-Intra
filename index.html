@@ -15,6 +15,9 @@
             script.src = "https://cloud.umami.is/script.js";
             script.dataset.websiteId = "c345541a-4b83-44d5-a914-2536ca5fbc36";
             document.head.appendChild(script);
+            script.onload = () => {
+                umami.track("game_loaded");
+            };
         }
     </script>
 
@@ -93,13 +96,13 @@
                     </div>
                 </div>
 
-                <div class = "hidden skill-row" id="fitnessContainer">
-                    <div class="progress-container" title = "Go all out with exercise!" id = "fitnessbtn">
-                        <div class="progress-bar" id="fitness"></div>
-                        <span class= "progress-text" id = "fitnessLevelDisplay">Fitness Program Level: 0</span>
+                <div class = "hidden skill-row" id="mediateContainer">
+                    <div class="progress-container" title = "Go all out with exercise!" id = "mediatebtn">
+                        <div class="progress-bar" id="mediate"></div>
+                        <span class= "progress-text" id = "mediateLevelDisplay">Mediate Level: 0</span>
                     </div>
-                    <div class="skill-info" id="fitnessInfo">
-                        <p>Fitness increases flexability speed but lowers mood tolerance</p>
+                    <div class="skill-info" id="mediateInfo">
+                        <p>Mediate increases magic speed but lowers mood tolerance by 1</p>
                     </div>
                 </div>
 
@@ -199,27 +202,27 @@
 
         <br>
         <button id = "unlocklifespanTimer" class = "hidden upgrade">Peer into the future - Costs 1000 Knowledge, 100 Matter and 25 Energy</button>
-        <button id = "unlockmoodbtn" class = "hidden upgrade">Unlock Mood Bar - Costs 100 Knowledge</button>
+        <button id = "unlockmoodbtn" class = "hidden upgrade">Unlock Mood Bar - Costs 125 Knowledge</button>
         <button id = "unlocksetmaxbtn" class = "hidden upgrade">The pit set max button - Costs 5 Matter</button>
 
-        <button id = "unlockpit" class = "hidden upgrade">Create the pit - Costs 10 Knowledge</button>
+        <button id = "unlockpit" class = "hidden upgrade">Create the pit - Costs 10 Wisdom</button>
         <button id = "unlockknowledgebtn" class = "hidden upgrade">Study how to learn better - Costs 20 Wisdom</button>
-        <button id = "unlockwisdomConvertbtn" class = "hidden upgrade">Learn the act of wisdom - Costs 50 Knowledge</button>
+        <button id = "unlockwisdomConvertbtn" class = "hidden upgrade">Learn the act of wisdom - Costs 25 Knowledge</button>
         <button id = "unlockwisdombtn" class = "hidden upgrade">Wisdom Bar - Costs 5 Wisdom</button>
         <button id = "unlockenergy" class = "hidden upgrade">Create a new energy system - Costs 50 Matter</button>
-        <button id = "unlockmatterbtn" class = "hidden upgrade">Unlock Matter - Costs 50 Wisdom</button>
+        <button id = "unlockmatterbtn" class = "hidden upgrade">Unlock Matter - Costs 250 Knowledge</button>
 
 
-        <button id = "unlockvitbtn" class = "hidden upgrade">Create Health Exercise Plan - Cost 75 Knowledge</button>        
-        <button id = "unlockfitnessbtn" class = "hidden upgrade">Fitness - Costs 250 Knowledge</button>
-        <button id = "unlockmartialbtn" class = "hidden upgrade">Martial Arts - Costs 75 Wisdom</button>
+        <button id = "unlockvitbtn" class = "hidden upgrade">Create Health Exercise Plan - Cost 75 Knowledge and 2 wisdom</button>        
+        <button id = "unlockmediatebtn" class = "hidden upgrade">Mediate - Costs 200 Knowledge and 10 Wisdom</button>
+        <button id = "unlockmartialbtn" class = "hidden upgrade">Martial Arts - Costs 50 Wisdom</button>
         <button id = "unlockhitbtn" class = "hidden upgrade">HIT training - Costs 25 Matter</button>
         <button id = "unlocktaichibtn" class = "hidden upgrade">Tai Chi - Costs 150 Wisdom</button>
 
-        <button id = "unlockmagicbtn" class = "hidden upgrade">Magic - Costs 25 Wisdom</button>
+        <button id = "unlockmagicbtn" class = "hidden upgrade">Magic - Costs 75 Wisdom and 5 Matter</button>
         <button id = "unlockmagicstudybtn" class = "hidden upgrade">Study Magic - Costs 100 Wisdom</button>
-        <button id = "unlockpotionbtn" class = "hidden upgrade">Find potion shop - Costs 75 Wisdom</button>
-        <button id = "unlockabyssalbtn" class = "hidden upgrade">Abyssal - Costs 25 Matter</button>
+        <button id = "unlockpotionbtn" class = "hidden upgrade">Find potion shop - Costs 50 Wisdom, 20 Matter and 100 Knowledge</button>
+        <button id = "unlockabyssalbtn" class = "hidden upgrade">Abyssal - Costs 25 Matter and 50 Knowledge</button>
     
         
     </nav>
@@ -285,7 +288,7 @@
         <p>Mood: Mood affects how fast your bars move, along with if it's very bad, stops you from generating more knowledge (It's recommended to get the mood bar)</p>
         <p>The Pit: Throw your knowledge and wisdom into it to potientally recieve stuff back or nothing. Wisdom is better to throw FYI</p>
         <p>Bonuses: (+0) next to your resources is the bonus part! Gotten exclusively from the pit, it's not taxed by mood and only used when you cannot normally afford an upgrade. Is not thrown into the pit aswell</p>
-        <p>Inventions: Technically you can call them upgrades, but anyway their requirements to unlock are hidden! Some take knowledge/wisdom (BUT NEVER BONUSES!) or levels of bars.</p>
+        <p>Inventions: Technically you can call them upgrades, but anyway their requirements to unlock are hidden! Some take knowledge/wisdom (BUT NEVER BONUSES!) or levels of bars. MAY COMBINE >:D!</p>
         <p>Magic: Many people say to me that they don't know what it does, but you must find out! (Hint: level it up)</p>
         <p>Matter: The matter bar gives you matter every time it levels up. While active, it makes your mood capacity be able to take less.</p>
 
