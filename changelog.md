@@ -1,5 +1,13 @@
 # Newest versions
 
+2026/08/20 2:23 PM - [0.52.0]
+- Removed knowledge and iwsdom tracking for Umami
+- Revised upgrade costs again (this will be a reoccuring issue forever FYI) to be smoother at the start
+- Also moved around some bars too, espically thought reqs too
+- Now when moodcap is above 100 player resources go down by which one is higher for MOODCAP specifically
+- Updated energy system mildly to sync with calcCost
+- Added magic learner bar, it's upgrade and effects.
+
 2026/08/19 11:36 PM - [0.51.0]
 - Added Umami tracking to knowledge/wisdom clicked, bar levels and upgrades bought, the pit rolled, etc.
 - Adding multicost/multireqs to some upgrades

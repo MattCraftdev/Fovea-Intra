@@ -16,9 +16,9 @@ const upgrades = [
 
     {
         id: "unlockpit",
-        cost: [["wisdom", 10]],
+        cost: [["wisdom", 5]],
         unlocked: false,
-        reqs: [["knowledge", 50]],
+        reqs: [["knowledge", 25]],
         flavortext: "",
         purchased: 0,
         maxpurchases: 1,
@@ -47,7 +47,7 @@ const upgrades = [
         id: "unlockmatterbtn",
         cost: [["knowledge", 250]],
         unlocked: false,
-        reqs: [["wisdom", 25]],
+        reqs: [["wisdom", 20]],
         flavortext: "What is...matter?",
         purchased: 0,
         maxpurchases: 1,
@@ -146,9 +146,9 @@ const upgrades = [
 
     {
         id: "unlockwisdomConvertbtn",
-        cost: [["knowledge", 25]],
+        cost: [["knowledge", 10]],
         unlocked: false,
-        reqs: [["knowledge", 10]],
+        reqs: [["knowledge", 3]],
         flavortext: "You feel a calling to something more.",
         purchased: 0,
         maxpurchases: 1,
@@ -162,7 +162,7 @@ const upgrades = [
 
     {
         id: "unlockwisdombtn",
-        cost: [["wisdom", 5]],
+        cost: [["wisdom", 2]],
         unlocked: false,
         reqs: [["wisdom", 1]],
         flavortext: "Wisdom.",
@@ -176,9 +176,9 @@ const upgrades = [
 
     {
         id: "unlockknowledgebtn",
-        cost: [["wisdom", 20]],
+        cost: [["wisdom", 10], ["knowledge", 75]],
         unlocked: false,
-        reqs: [["wisdom", 5]],
+        reqs: [["wisdom", 10], ["knowledge", 10]],
         flavortext: "What if I just studied how to think?!",
         purchased: 0,
         maxpurchases: 1,
@@ -214,8 +214,19 @@ const upgrades = [
         },
         purchasetext: "Books are boring but magic is not."
     },
-
-
+    {
+        id: "unlockmagiclearnerbtn",
+        cost: [["matter", 100]],
+        unlocked: false,
+        reqs: [["magicstudy", 11]],
+        flavortext: "Yeah this is just learning but you're cheating",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("magiclearnerContainer").classList.remove("hidden");
+        },
+        purchasetext: "Time to increase learning with magic!."
+    },
 
     {
         id: "unlockpotionbtn",

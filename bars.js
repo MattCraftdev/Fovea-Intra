@@ -70,8 +70,9 @@ const taichiBar = new ProgressBar("taichi", 10, 4000, 1.15);
 const knowledgeBar = new ProgressBar("knowledge", 10, 10000, 1.15);
 const wisdomBar = new ProgressBar("wisdom", 10, 4000, 1.25);
 
-const magicBar = new ProgressBar("magic", 10, 10000, 1.2);
+const magicBar = new ProgressBar("magic", 10, 5000, 1.2);
 const magicstudyBar = new ProgressBar("magicstudy", 10, 10000, 1.15);
+const magiclearnerBar = new ProgressBar("magiclearner", 10, 25000, 1.3);
 const abyssalBar = new ProgressBar("abyssal", 10, 10000, 1.25);
 
 const moodBar = new ProgressBar("mood", 0, 0, 0); // Do not mark. Placeholder Bar!!!
@@ -87,6 +88,7 @@ const barInfo = { // activebar id, then says their bar then name to DISPLAY
     taichi: [taichiBar, "Tai Chi"],
     magic: [magicBar, "Magic"],
     magicstudy: [magicstudyBar, "Magic Study"],
+    magiclearner: [magiclearnerBar, "Magic Learner"],
     abyssal: [abyssalBar, "Abyssal"],
     matter: [matterBar, "Matter"],
     wisdom: [wisdomBar, "Wisdom Bar"],
@@ -99,6 +101,7 @@ let magicbuff = 0;
 let magicstudybuff = 0;
 let taichinerf = 0;
 let hitbuff = 0;
+let magiclearnerbuff = 0;
 
 let activeBar = null;
 let matterBarActive = false;
@@ -128,6 +131,7 @@ function updateProgress() {
     magicstudybuff = magicstudyBar.level*2
     taichinerf = taichiBar.level*3
     hitbuff = hitBar.level*2
+    magiclearnerbuff = magiclearnerBar.level*3
 
     recalcBuffs();
 };
@@ -139,7 +143,8 @@ function updateAllSpeeds() {
     const mooddiff = 0.5 - currentProgress;
     const baseSpeed = 10
 
-    const baseMoodspeed = (baseSpeed + mooddiff*10) // Mood diff between (5 and -5)
+    // Total Mood diff between (5 and -5). BTW bMs is the total average and affects ALL Bars. Careful.
+    const baseMoodspeed = (baseSpeed + mooddiff*10)+magiclearnerbuff
     let magicsum = (magicbuff-10)+mediatebuff
     let healthsum = taichinerf-hitbuff;
 
@@ -160,6 +165,7 @@ function updateAllSpeeds() {
 
     magicBar.speed = baseMoodspeed;
     magicstudyBar.speed = baseMoodspeed + magicsum
+    magiclearnerBar.speed = baseMoodspeed + magicsum
     abyssalBar.speed = baseMoodspeed + magicsum
 
 }

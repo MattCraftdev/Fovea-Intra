@@ -43,20 +43,21 @@ const player = {
 Ideas:
 - Free pit rolls (Like a token)
 - The pit emits radiation or something that over time hurts the player. Can be removed to "dump sites"
+- Add trash pit that rarely gives pit coins (used mainly for dumping)
 
 - Maybe make some upgrades unlock 2 bars
-
-- When knowledge/wisdom above cap, actively it slowly removes excess resources and mildly drains a bit of lifespan
-
-- Process gloop/goop change to switch upgrade (COMPLETE IT WITH CALC)
+- Cheap helptext upgrades
+- Upgrade that reveals max resources reached on each resource
 
 - Add potions III
 
 - Add inventions helptext for each upgrade (on what they do like bars)
 - Make bars say their progress,speed, etc.
 - Make mood say it's affect on the overall speed (Or just do the bars...lol)
+- RENAME OVERLAPPING RESOURCES AND BARS (Knowledge vs it's bar) to prevent ISSUES!!!!!!
 
-- mass wisdom conversion upgrade, and better wisdom conversion (same thing with energy)
+- mass wisdom conversion upgrade
+- mass energy conversion upgrade
 
 - Add images
 */
@@ -65,7 +66,6 @@ Ideas:
 document.getElementById("createKnowledge").addEventListener("click", () => {
     if (mood<player.cap) {
         player.knowledge += player.baseKnowledgeIncrease;
-        track("knowledgeClicked")
     } else {
         console.log(`knowledge is ${player.knowledge}. Mood is ${mood}. Currently MOOD is BAD!`)
     }
@@ -74,7 +74,6 @@ document.getElementById("createKnowledge").addEventListener("click", () => {
 document.getElementById("switchtoWisdom").addEventListener("click", () => {
     if (mood<player.cap) {    
         player.reflection += player.wisdomClickPower;
-        track("wisdomClicked")
         if (player.reflection>=player.wisdomRate) {
             const leftOverAcc = player.reflection % player.wisdomRate;
             player.wisdom += Math.floor(player.reflection/player.wisdomRate);
@@ -94,9 +93,7 @@ document.getElementById("collectGoop").addEventListener("click", () => {
 });
 
 document.getElementById("processGloop").addEventListener("click", () => {
-    if (player.knowledge>4 && player.rawgoop>1) {
-        player.knowledge -= 5;
-        player.rawgoop -= 2;
+    if (calcCost([["knowledge", 5], ["rawgoop", 2]])) {
         player.processedgloop += 1;
     } else {
         say("need more bucko!")
@@ -104,9 +101,7 @@ document.getElementById("processGloop").addEventListener("click", () => {
 });
 
 document.getElementById("packageEnergy").addEventListener("click", () => {
-    if (player.wisdom>1 && player.processedgloop>1) {
-        player.wisdom -= 2;
-        player.processedgloop -= 2;
+    if (calcCost([["wisdom", 2], ["processedgloop", 2]])) {
         player.energy += 1;
     } else {
         say("Not enough shtuff brochacho")

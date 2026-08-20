@@ -71,12 +71,24 @@ let mood = 0;
 let moodStatus = "Ok";
 
 function solveMood() {
-    const ratio = Math.min(Math.max(player.knowledge+player.wisdom*4, 0)/player.cap, 1)
+    const ratio = Math.max(player.knowledge+player.wisdom*4, 0)/player.cap
     mood = ratio*player.cap
     
     if (mood>=player.cap) {
-        mood = player.cap;
         moodStatus = "Death awaits."
+    }
+
+    if (mood>player.cap) {
+        if (player.knowledge>player.wisdom*4) { // IF numerically more knowledge that wisdom contributes to moodcap
+            if (player.knowledge>0) {
+                player.knowledge -= 1;
+            }  
+        } else {
+            if (player.wisdom>0) {
+                player.wisdom -= 1;
+            }
+        }
+
     }
 
     else if (mood>=(player.cap*0.9)) { moodStatus = "Depressed." }
@@ -86,9 +98,7 @@ function solveMood() {
     else if (mood<=(player.cap*0.1)) { moodStatus = "Overjoyed"; }
     else { moodStatus = "Ok" }
 
-    
 
-    if (mood<0) { mood = 0; }
 
     const fillratio = mood/player.cap
     if (document.getElementById("moodContainer").classList.contains("hidden")) {
