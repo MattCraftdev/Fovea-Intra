@@ -1,5 +1,6 @@
 # Newest versions
-
+2026/08/21 10:08 AM - [0.53.1]
+- Fixed the UI a bit better (to dark mode)
 
 2026/08/21 12:21 AM - [0.53.0] 
 - Fixed error with being allowed to go above moodcap and 'swap' resources (as the other resource declines) and added text
