@@ -22,7 +22,7 @@ class ProgressBar {
             // Expo increase value
             this.maxprogress = this.maxprogress*this.expoincrease;
             track(this.elementId)
-            if (this.elementId === "matter") {
+            if (this.elementId === "creation") {
                 player.matter += 1;
             }
             
@@ -67,8 +67,8 @@ const martialBar = new ProgressBar("martial", 10, 3500, 1.2);
 const hitBar = new ProgressBar("hit", 10, 5000, 1.25);
 const taichiBar = new ProgressBar("taichi", 10, 4000, 1.15);
 
-const knowledgeBar = new ProgressBar("knowledge", 10, 10000, 1.15);
-const wisdomBar = new ProgressBar("wisdom", 10, 4000, 1.25);
+const studyBar = new ProgressBar("study", 10, 10000, 1.15);
+const peaceBar = new ProgressBar("peace", 10, 4000, 1.25);
 
 const magicBar = new ProgressBar("magic", 10, 5000, 1.2);
 const magicstudyBar = new ProgressBar("magicstudy", 10, 10000, 1.15);
@@ -76,12 +76,12 @@ const magiclearnerBar = new ProgressBar("magiclearner", 10, 25000, 1.3);
 const abyssalBar = new ProgressBar("abyssal", 10, 10000, 1.25);
 
 const moodBar = new ProgressBar("mood", 0, 0, 0); // Do not mark. Placeholder Bar!!!
-const matterBar = new ProgressBar("matter", 10, 2500, 1.0003);
+const creationBar = new ProgressBar("creation", 10, 2500, 1.0003);
 
 const barInfo = { // activebar id, then says their bar then name to DISPLAY
     vit: [vitBar, "Vitality"],
     flex: [flexBar, "Flexability"],
-    knowledge: [knowledgeBar, "Knowledge"],
+    study: [studyBar, "Study"],
     mediate: [mediateBar, "Mediate"],
     martial: [martialBar, "Martial Arts"],
     hit: [hitBar, "HIT"],
@@ -90,8 +90,8 @@ const barInfo = { // activebar id, then says their bar then name to DISPLAY
     magicstudy: [magicstudyBar, "Magic Study"],
     magiclearner: [magiclearnerBar, "Magic Learner"],
     abyssal: [abyssalBar, "Abyssal"],
-    matter: [matterBar, "Matter"],
-    wisdom: [wisdomBar, "Wisdom Bar"],
+    creation: [creationBar, "Matter"],
+    peace: [peaceBar, "Peace"],
 }   
 
 // Vars
@@ -120,8 +120,8 @@ function updateProgress() {
     }
 
     if (matterBarActive) {
-        matterBar.update();
-        document.getElementById(`matterLevelDisplay`).innerText = `Matter Level: ${matterBar.level}`
+        creationBar.update();
+        document.getElementById(`creationLevelDisplay`).innerText = `Matter Level: ${creationBar.level}`
     }
 
     // Buffs by speed
@@ -161,7 +161,9 @@ function updateAllSpeeds() {
     martialBar.speed = baseMoodspeed + healthsum
     hitBar.speed = baseMoodspeed + healthsum
 
-    knowledgeBar.speed = baseMoodspeed + magicstudybuff;
+    studyBar.speed = baseMoodspeed + magicstudybuff;
+    peaceBar.speed = baseMoodspeed
+
 
     magicBar.speed = baseMoodspeed;
     magicstudyBar.speed = baseMoodspeed + magicsum
@@ -193,12 +195,12 @@ function recalcBuffs() {
     
     player.lifespan = 50;
 
-    player.wisdomClickPower = wisdomBar.level+1;
+    player.wisdomClickPower = peaceBar.level+1;
     player.matterCapNerf = 0.5
 
     if (vitBar.level>=10) {document.getElementById("flexContainer").classList.remove("hidden");}
 
-    player.baseKnowledgeIncrease = (knowledgeBar.level) + 1;
+    player.baseKnowledgeIncrease = (studyBar.level) + 1;
     document.getElementById("createKnowledge").innerText = `Create ${player.baseKnowledgeIncrease} Knowledge`;
     player.pitMulti = 1+(abyssalBar.level/50)
 };

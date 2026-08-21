@@ -1,7 +1,16 @@
 # Newest versions
 
+
+2026/08/21 12:21 AM - [0.53.0] 
+- Fixed error with being allowed to go above moodcap and 'swap' resources (as the other resource declines) and added text
+- Renamed upgrade and bar knowledge to study to prevent confusion and make sense.
+Did the same thing with wisdom bar (to peace)
+And the same thing to matter
+- Added stylesheet which adds a lot better smooth visuals
+- Added upgrade that costs flat 100 knowledge that gives you the hints of another upgrade. Hints are random and say only the reqs
+
 2026/08/20 2:23 PM - [0.52.0]
-- Removed knowledge and iwsdom tracking for Umami
+- Removed knowledge and wisdom tracking for Umami
 - Revised upgrade costs again (this will be a reoccuring issue forever FYI) to be smoother at the start
 - Also moved around some bars too, espically thought reqs too
 - Now when moodcap is above 100 player resources go down by which one is higher for MOODCAP specifically
@@ -355,3 +364,4 @@ Such a pain to add.
 VACA: July 8-28th
 CAMP: AUGUST 4-7th
 GALAXY: AUGUST 11th-15th
+FF: August 14th, 21st, 28th

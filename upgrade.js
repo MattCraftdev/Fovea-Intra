@@ -44,7 +44,7 @@ const upgrades = [
     },
 
     {
-        id: "unlockmatterbtn",
+        id: "unlockcreationbtn",
         cost: [["knowledge", 250]],
         unlocked: false,
         reqs: [["wisdom", 20]],
@@ -161,7 +161,7 @@ const upgrades = [
     },
 
     {
-        id: "unlockwisdombtn",
+        id: "unlockpeacebtn",
         cost: [["wisdom", 2]],
         unlocked: false,
         reqs: [["wisdom", 1]],
@@ -169,13 +169,13 @@ const upgrades = [
         purchased: 0,
         maxpurchases: 1,
         onpurchase: () => {
-            document.getElementById("wisdomContainer").classList.remove("hidden");
+            document.getElementById("peaceContainer").classList.remove("hidden");
         },
         purchasetext: "MORE BARS!!!!"
     },
 
     {
-        id: "unlockknowledgebtn",
+        id: "unlockstudybtn",
         cost: [["wisdom", 10], ["knowledge", 75]],
         unlocked: false,
         reqs: [["wisdom", 10], ["knowledge", 10]],
@@ -183,7 +183,7 @@ const upgrades = [
         purchased: 0,
         maxpurchases: 1,
         onpurchase: () => {
-            document.getElementById("knowledgeContainer").classList.remove("hidden");
+            document.getElementById("studyContainer").classList.remove("hidden");
         },
         purchasetext: "The deeper the knowledge the better"
     },
@@ -284,7 +284,7 @@ setInterval(() => {
 
             if (loop.unlocked === false) {
 
-                if (reqType == "knowledge" || reqType === "wisdom" || reqType === "matter" || reqType === "energy") {
+                if (reqType === "knowledge" || reqType === "wisdom" || reqType === "matter" || reqType === "energy") {
                     if (!(player[reqType] >= reqAmount)) {
                         allReqsMet = false;
                     }
@@ -352,3 +352,36 @@ function buyUpgrade(upgradeId) {
 for (const btns of upgrades) {
     document.getElementById(btns.id).addEventListener("click", () => { buyUpgrade(btns.id); });
 };
+
+// UNLOCKER
+document.getElementById("unlocker").addEventListener("click", () => {
+    if (calcCost([["knowledge", 100]])) {
+        const totalnotpurchased = upgrades.filter(UP => UP.purchased === 0)
+
+        if (!totalnotpurchased) {
+            console.error("There are no upgrades to buy")
+        }
+
+        const Randomreq = totalnotpurchased[Math.floor(Math.random()*totalnotpurchased.length)]
+
+        let allreqs = ``
+
+        for (const eachReq of Randomreq.reqs) {
+            console.log(eachReq)
+            if (Randomreq.reqs.length === 1) {
+
+            } else {
+                allreqs += ` and `
+            }
+            console.log(eachReq[0])
+            if (eachReq[0] === "knowledge" || eachReq[0] === "wisdom" || eachReq[0] === "matter" || eachReq[0] === "energy") {
+                allreqs += `${eachReq[1]} ${eachReq[0]}`
+            } else {
+                allreqs += ` ${barInfo[eachReq[0]][1]} at ${eachReq[1]} Levels`
+            }
+        }   
+
+
+        say(`A random upgrade requires ${allreqs}.`)
+    }
+});

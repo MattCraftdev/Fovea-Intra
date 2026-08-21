@@ -48,38 +48,41 @@ Ideas:
 - Maybe make some upgrades unlock 2 bars
 - Cheap helptext upgrades
 - Upgrade that reveals max resources reached on each resource
+- Make story able to be hidden and have different chat types (flavortext, storytext, pittext, etc.)
 
 - Add potions III
 
 - Add inventions helptext for each upgrade (on what they do like bars)
 - Make bars say their progress,speed, etc.
 - Make mood say it's affect on the overall speed (Or just do the bars...lol)
-- RENAME OVERLAPPING RESOURCES AND BARS (Knowledge vs it's bar) to prevent ISSUES!!!!!!
 
 - mass wisdom conversion upgrade
 - mass energy conversion upgrade
+
+- Fix issue with unlocker (It adds and at the start of sentence)
 
 - Add images
 */
 
 // Knowledge addition system + wisdom sys
 document.getElementById("createKnowledge").addEventListener("click", () => {
-    if (mood<player.cap) {
+    if (player.baseKnowledgeIncrease+mood<player.cap) {
         player.knowledge += player.baseKnowledgeIncrease;
     } else {
-        console.log(`knowledge is ${player.knowledge}. Mood is ${mood}. Currently MOOD is BAD!`)
+        say("You got too much knowledge per click, so basically your mood can't support it.")
     }
 });
 
 document.getElementById("switchtoWisdom").addEventListener("click", () => {
-    if (mood<player.cap) {    
+    if (mood+4<player.cap) {    
         player.reflection += player.wisdomClickPower;
         if (player.reflection>=player.wisdomRate) {
             const leftOverAcc = player.reflection % player.wisdomRate;
             player.wisdom += Math.floor(player.reflection/player.wisdomRate);
             player.reflection = leftOverAcc;
-            
         } 
+    } else {
+        say("There's not enough mood capacity, so you can't have more wisdom. Damn developer doing this, we should overthrown him together!")
     }
 });
 
