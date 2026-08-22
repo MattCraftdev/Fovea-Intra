@@ -381,7 +381,7 @@ document.getElementById("unlocker").addEventListener("click", () => {
             }
         }   
 
-
+        track("unlocker_Used")
         say(`A random upgrade requires ${allreqs}.`)
     }
 });

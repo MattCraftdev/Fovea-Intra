@@ -47,6 +47,38 @@ html {
 .selectedTab {
     border: 5px solid yellow;
 }
+
+/* Change log embed*/
+#changelog {
+    width: 50%;
+    height: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    z-index: 12;
+    background-color: black;
+
+}
+
+#gameInfo {
+    width: 80%;
+    height: 75%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    z-index: 11;
+    background-color: black;
+    overflow: scroll;
+    border: 2px solid grey;
+    font-family: monospace;
+    font-size: 16px;
+}
+
+dt {
+    margin: 10px
+}
 /* Buttons inside tabs*/
 
 .anyButton {
@@ -97,13 +129,13 @@ html {
     height: 50%;
     overflow: scroll;
     border: 2px solid #000000;
-    z-index: 1000;
+    z-index: 7;
 }
 
 #storyTitle {
     font-size: 30px;
     font-family: "georgia";
-    z-index: 1001;
+    z-index: 8;
 }
 
 /* Progress bars */
@@ -122,7 +154,7 @@ html {
 .progress-bar {
     height: 100%;
     width: 0%;
-    background-color: #4caf50;
+    background-color: #11a015;
     transition:all;
     position: absolute;
     top: 0;
@@ -195,7 +227,7 @@ html {
     position: absolute;
     font-weight: bold;
     font-size: 160px;
-    z-index:10;
+    z-index:21;
     color:red;
     top: 0%;
     left: 50%;
@@ -206,7 +238,7 @@ html {
     height: 100%;
     width: 100%;
     position: absolute;
-    z-index: 9;
+    z-index: 20;
     background:rgb(241, 241, 241);
     top: 0%;
     left: 0%;
@@ -214,7 +246,7 @@ html {
 
 #tryAgain {
     position: absolute;
-    z-index: 10;
+    z-index: 21;
     top: 60%;
     left: 50%;
     background-color:red;
@@ -249,11 +281,10 @@ html {
 }
 
 .tech {
-    background-color:#383c42;
-    border-color:rgb(187, 183, 191);
+    background-color:#7d848f;
+    border: none;
     color:rgb(0, 0, 0);
     padding: 10px;
-    border-width: 5px;
     font-size: 100%;
     font-family:'georgia';
 }

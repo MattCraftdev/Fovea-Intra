@@ -1,4 +1,14 @@
 # Newest versions
+
+2026/08/22 2:47 PM - [0.54.0] UI
+- Added another umami tracker (unlockerUsed) & edited some original trackers
+- Added anon feedback with a google form
+- Embeded the changelog into the game, adding a "changelog button" to directly embed
+- Buffed pit reset time to 30 (from 60) seconds && added helptext
+- Moved help screen to a new screen that's viewable from the start/toggleable off
+- Added more help info and made it more readable (and used data lists of dd,dl,dt)
+- Updated colors for UI/various things
+
 2026/08/21 10:08 AM - [0.53.1]
 - Fixed the UI a bit better (to dark mode)
 

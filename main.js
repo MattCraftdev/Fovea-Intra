@@ -24,7 +24,7 @@ const player = {
     totalpitrolls: 0,
     pitTimer: 0,
     pitUsable: false,
-    pitResetTime: 60000,
+    pitResetTime: 30000,
     pitMulti: 0,
 
     rawgoop: 0,
@@ -131,7 +131,7 @@ function track(event, data) {
     }
 }
 
-setInterval(() => track("30_secondsStayed"), 30000); // 30 secs
+setInterval(() => track("60_secondsStayed"), 60000); // 60 secs
 
 // Clear console
 setInterval(() => console.clear() , 120000); // 2 Minutes every clear
@@ -142,3 +142,22 @@ window.addEventListener('keydown', function(e) {
     e.preventDefault();
   }
 }, true);
+
+// Changelog embed iframe
+document.getElementById("getChangelog").addEventListener("click", () => {
+    if (document.getElementById("changelog").classList.contains("hidden")) {
+        document.getElementById("changelog").classList.remove("hidden")
+    } else {
+        document.getElementById("changelog").classList.add("hidden")
+    }
+});
+
+document.getElementById("getHelp").addEventListener("click", () => {
+    if (document.getElementById("gameInfo").classList.contains("hidden")) {
+        document.getElementById("gameInfo").classList.remove("hidden")
+    }
+});
+
+document.getElementById("backHelp").addEventListener("click", () => {
+    document.getElementById("gameInfo").classList.add("hidden")
+});
