@@ -31,14 +31,26 @@ const player = {
     processedgloop: 0,
     energy: 0,
 
-    potionStock: [knowledge1 = 0, knowledge2 = 0, knowledge3 = 0, knowledge4 = 0,
-        speed1 = 0, speed2 = 0, speed3 = 0, speed4= 0,
-    ],
     currentDealer: null,
+    currentPotionCost: null,
 
     saveInterval: 10000,
 }
 
+const potionStock = {
+    stocks: [knowledge1 = 0, knowledge2 = 0, knowledge3 = 0, knowledge4 = 0,
+        speed1 = 0, speed2 = 0, speed3 = 0, speed4= 0,
+    ],
+
+    "Knowledge I": false,
+    "Knowledge II": false,
+    "Knowledge III": false,
+    "Knowledge IV": false,
+    "Speed I": false,
+    "Speed II": false,
+    "Speed III": false,
+    "Speed IV": false
+}
 /*
 Ideas:
 - Free pit rolls (Like a token)
@@ -66,12 +78,29 @@ Ideas:
 
 // Knowledge addition system + wisdom sys
 document.getElementById("createKnowledge").addEventListener("click", () => {
-    if (player.baseKnowledgeIncrease+mood<player.cap) {
-        player.knowledge += player.baseKnowledgeIncrease;
+    let boosts = 1;
+    if (potionStock["Knowledge I"] === true) {
+        boosts = boosts*1.5
+    }
+    if (potionStock["Knowledge II"] === true) {
+        boosts = boosts*2
+    }
+    if (potionStock["Knowledge III"] === true) {
+        boosts = boosts*3
+    }
+    if (potionStock["Knowledge IV"] === true) {
+        boosts = boosts*5
+    }
+
+    if ((boosts*player.baseKnowledgeIncrease+mood)<player.cap) {
+        player.knowledge += player.baseKnowledgeIncrease*boosts;
+        document.getElementById("createKnowledge").innerText = `Create ${player.baseKnowledgeIncrease*boosts} Knowledge`;
     } else {
         say("You got too much knowledge per click, so basically your mood can't support it.")
     }
 });
+
+
 
 document.getElementById("switchtoWisdom").addEventListener("click", () => {
     if (mood+4<player.cap) {    
@@ -147,8 +176,10 @@ window.addEventListener('keydown', function(e) {
 document.getElementById("getChangelog").addEventListener("click", () => {
     if (document.getElementById("changelog").classList.contains("hidden")) {
         document.getElementById("changelog").classList.remove("hidden")
+        document.getElementById("getChangelog").innerText = "Back"
     } else {
         document.getElementById("changelog").classList.add("hidden")
+        document.getElementById("getChangelog").innerText = "Changelog"
     }
 });
 

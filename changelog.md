@@ -1,5 +1,20 @@
 # Newest versions
 
+2026/08/22 6:00 PM - [0.56.0] POTIONS III
+- Changelog button says "BACK" when clicked on and shows changelog
+- Mildly altered a bit of UI/colorings
+- Minor tweaks
+- Switched the upgrade unlocker to filter by unlocked (visible) not purchased
+- Added potion buttons to actually use the potions
+- Luck is now a factor in getting potions. If you get lucky from a good dealer, you get normally impossible IV potions
+- Scamming is also a factor in getting potions. Getting scammed by your dealer means you get NOTHING!
+- Button to switch dealer & also you can see what dealer you have currently
+- The switch dealer button switches the dealers until it's actually a different guy
+- Now you must get a dealer yourself instead of just clicking one button
+- Potions create individual timers that contain the amount of time left + what timer it is
+- Potions now have their own array (not in player) with if each potion is active or not
+- Each potion has a personal different effect and added it to the game
+
 2026/08/22 2:47 PM - [0.54.0] UI
 - Added another umami tracker (unlockerUsed) & edited some original trackers
 - Added anon feedback with a google form

@@ -82,7 +82,7 @@ dt {
 /* Buttons inside tabs*/
 
 .anyButton {
-    background-color:#0b8ade;
+    background-color:#0f4e77;
     color:rgb(0, 0, 0);
     padding: 15px;
     font-size: 100%;
@@ -90,7 +90,7 @@ dt {
 }
 
 .anyButton:hover{
-    background-color:#0a4f7d;
+    background-color:#1b4057;
     padding: 17px;
 
 }
@@ -154,7 +154,7 @@ dt {
 .progress-bar {
     height: 100%;
     width: 0%;
-    background-color: #11a015;
+    background-color: #274c29;
     transition:all;
     position: absolute;
     top: 0;
@@ -169,6 +169,7 @@ dt {
     width: 100%;
     position: relative;
     z-index: 2;
+    color: black;
 }
 
 /* Sections */
@@ -290,7 +291,7 @@ dt {
 }
 
 .upgrade {
-    background-color:#896900;
+    background-color:#6a5409;
     color:rgb(0, 0, 0);
     padding: 10px;
     border: 20px;
@@ -307,4 +308,8 @@ dt {
     border: 20px;
     font-size: 100%;
     font-family:'georgia';
+}
+
+#potionShowing {
+    display:block;
 }

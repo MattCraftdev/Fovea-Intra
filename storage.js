@@ -49,6 +49,7 @@ function saveGame() {
 
     let state = {
         player: player,
+        potionStock: potionStock.stocks,
         upgrades: upgrades.map(u => ({ id: u.id, unlocked: u.unlocked, purchased: u.purchased })),
         bars: barsOnly.map(b => ({ id: b.elementId, level: b.level, maxprogress: b.maxprogress, progress: b.progress}))
     };  
@@ -67,7 +68,7 @@ function loadGame() {
         
 
         if (state.player) {Object.assign(player, state.player);}
-    
+        if (state.potionStock.stocks) {Object.assign(potionStock.stocks, state.potionStock.stocks)}
 
         if (state.upgrades) {
             state.upgrades.forEach(savedU => {

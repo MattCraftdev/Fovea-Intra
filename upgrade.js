@@ -356,13 +356,13 @@ for (const btns of upgrades) {
 // UNLOCKER
 document.getElementById("unlocker").addEventListener("click", () => {
     if (calcCost([["knowledge", 100]])) {
-        const totalnotpurchased = upgrades.filter(UP => UP.purchased === 0)
+        const totalnotunlocked = upgrades.filter(UP => UP.unlocked === false)
 
-        if (!totalnotpurchased) {
+        if (!totalnotunlocked) {
             console.error("There are no upgrades to buy")
         }
 
-        const Randomreq = totalnotpurchased[Math.floor(Math.random()*totalnotpurchased.length)]
+        const Randomreq = totalnotunlocked[Math.floor(Math.random()*totalnotunlocked.length)]
 
         let allreqs = ``
 
@@ -383,5 +383,7 @@ document.getElementById("unlocker").addEventListener("click", () => {
 
         track("unlocker_Used")
         say(`A random upgrade requires ${allreqs}.`)
+    } else {
+        say("Not enough knowledge. If you don't know enough then you can't infer!")
     }
 });

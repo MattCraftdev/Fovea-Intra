@@ -143,8 +143,24 @@ function updateAllSpeeds() {
     const mooddiff = 0.5 - currentProgress;
     const baseSpeed = 10
 
+    let boostSpeed = baseSpeed
+
+    if (potionStock["Speed I"] === true) {
+        boostSpeed = boostSpeed*1.25
+    } 
+    if (potionStock["Speed II"] === true) {
+        boostSpeed = boostSpeed*1.5
+    }
+    if (potionStock["Speed III"] === true) {
+        boostSpeed = boostSpeed*2
+    }
+    if (potionStock["Speed IV"] === true) {
+        boostSpeed = boostSpeed*3
+    }
+    console.log(boostSpeed)
+
     // Total Mood diff between (5 and -5). BTW bMs is the total average and affects ALL Bars. Careful.
-    const baseMoodspeed = (baseSpeed + mooddiff*10)+magiclearnerbuff
+    const baseMoodspeed = (boostSpeed + mooddiff*10)+magiclearnerbuff
     let magicsum = (magicbuff-10)+mediatebuff
     let healthsum = taichinerf-hitbuff;
 
@@ -165,10 +181,14 @@ function updateAllSpeeds() {
     peaceBar.speed = baseMoodspeed
 
 
-    magicBar.speed = baseMoodspeed;
+    magicBar.speed = baseMoodspeed + mediatebuff // Magic does not boost itself but gets boosted by other bars!
     magicstudyBar.speed = baseMoodspeed + magicsum
     magiclearnerBar.speed = baseMoodspeed + magicsum
     abyssalBar.speed = baseMoodspeed + magicsum
+
+    if (barInfo[activeBar].speed<0) {
+        barInfo[activeBar].speed = 1;
+    }
 
 }
 

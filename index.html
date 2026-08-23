@@ -62,6 +62,12 @@
 
             <dt>Matter/Creation</dt>
             <dd>The creation bar gives you +1 matter every time it levels up. While active, it makes your mood capacity be able to take 1/2 as much as normal.</dd>
+    
+            <dt>Potions</dt>
+            <dd>Potions are given by dealers, and each have their own effects, hinted by the name. A higher tier potion (ex: II is higher than I) does more and lasts longer opposed to a lower tier.</dd>
+
+            <dt>Dealers</dt>
+            <dd>When getting potions, there are individual dealers. Each dealer can give you better potions if they're lucky, or scam you. If you feel unlucky, simply switch dealers!</dd>
     </div>
 
 
@@ -143,7 +149,7 @@
                         <span class= "progress-text" id = "mediateLevelDisplay">Mediate Level: 0</span>
                     </div>
                     <div class="skill-info" id="mediateInfo">
-                        <p>Mediate increases magic speed but lowers mood tolerance by 1</p>
+                        <p>Mediate increases all magic bar speeds but lowers mood tolerance by 1</p>
                     </div>
                 </div>
 
@@ -183,7 +189,7 @@
                         <span class= "progress-text" id = "studyLevelDisplay">Study Level: 0</span>
                     </div>
                     <div class="skill-info" id="studyInfo">
-                        <p>Studying increases knowledge gain per creation</p>
+                        <p>Studying increases the base knowledge gain</p>
                     </div>                    
                 </div>
 
@@ -206,7 +212,7 @@
                 <div class = "hidden skill-row" id="magicContainer">
                     <div class="progress-container" title = "Become magical and kill stuff!" id = "magicbtn">
                         <div class="progress-bar" id="magic"></div>
-                        <span class= "progress-text" id = "magicLevelDisplay">Magic Accumulination Level: 0</span>
+                        <span class= "progress-text" id = "magicLevelDisplay">Magic Level: 0</span>
                     </div>
                     <div class="skill-info" id="magicInfo">
                         <p>Increases all magic bar speeds.</p>
@@ -219,7 +225,7 @@
                         <span class= "progress-text" id = "magicstudyLevelDisplay">Magic Study Level: 0</span>
                     </div>
                     <div class="skill-info" id="magicstudyInfo">
-                        <p>Increases the knowledge learning speed</p>
+                        <p>Increases the study learning speed</p>
                     </div>
                 </div>
 
@@ -240,7 +246,7 @@
                         <span class= "progress-text" id = "abyssalLevelDisplay">Abyssal Level: 0</span>
                     </div>
                     <div class="skill-info" id="abyssalInfo">
-                        <p>Increases the pit loot by boosting ontop of what you throw in there</p>
+                        <p>Increases the pit loot by boosting what you throw in there</p>
                     </div>
                 </div>
             </section>
@@ -284,6 +290,7 @@
         <p>The pit will take your resources you throw into it and MIGHT give you something back if you're nice. Something good.</p>
         <p id = "displayThePitTimer">Time until reset: </p>
         Throw <input type ="number" id = "thepitKnowledge"> Knowledge into the pit
+        <br>
         Throw <input type ="number" id = "thepitWisdom"> Wisdom into the pit
         <button id = "setToMax" class = "hidden upgrade">Set to players knowledge and wisdom amounts</button>
         <button id = "the-pit">Sacrifice stuff into the pit</button>
@@ -315,10 +322,14 @@
     </nav>
 
     <nav class = "tab-content" id = "Potion">
+        <p id = "potionTimers"></p>
         <br>
         <button class = "potionbtn" id="createPotion">Create a Potion</button>
+        <p id = "currentDealer">Current Dealer: </p>
+        <button id = "switchDealer" class = "potionbtn">Switch Dealers</button>
+        <br>
 
-        <p id = "potionShowing"></p>
+        <p id = "potionShowing" ></p>
 
     </nav>
 
