@@ -1,6 +1,21 @@
 # Newest versions
 
-2026/08/22 6:00 PM - [0.56.0] POTIONS III
+2026/08/24 11:28 AM - [0.58.0] POTIONS IV
+- Minor fixes and more tracking (UMAMI)
+- Made knowledge increase boost from potions more integrated + cleaned up code
+- Aswell as altered some wisdom code
+- Added more helptext in that menu
+- Fixed MAJOR error where your potions would not save
+- More dealers (john, prudence, remy)
+- Dealers now have a cooldown between purchasing potions, each their own personal cooldown
+- Added 2 more potions (slow & wisdom) and effects
+- Decluttered space: Each use potion button also says the amount
+- Player dealer now shows automatically after loading
+- Potions come in automatic rows (each row has their type and I, II, etc.) and containers
+- Added player dealer timer that limits the intervals you can switch dealers
+- Potions can stack. Very complex to add fyi, but now using 1 potion multiple times will increase that number ONLY (Like if I used twice, the duration doubles, while the effect does not.)
+
+2026/08/22 10:47 PM - [0.56.0] POTIONS III
 - Changelog button says "BACK" when clicked on and shows changelog
 - Mildly altered a bit of UI/colorings
 - Minor tweaks

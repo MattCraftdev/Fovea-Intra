@@ -32,7 +32,10 @@ const player = {
     energy: 0,
 
     currentDealer: null,
+    currentDealerSwitchable: false,
     currentPotionCost: null,
+
+    currentPotionBuyable: false,
 
     saveInterval: 10000,
 }
@@ -40,6 +43,8 @@ const player = {
 const potionStock = {
     stocks: [knowledge1 = 0, knowledge2 = 0, knowledge3 = 0, knowledge4 = 0,
         speed1 = 0, speed2 = 0, speed3 = 0, speed4= 0,
+        wisdom1 = 0, wisdom2 = 0, wisdom3 = 0, wisdom4 = 0,
+        slow1 = 0, slow2 = 0, slow3 = 0, slow4 = 0
     ],
 
     "Knowledge I": false,
@@ -49,7 +54,15 @@ const potionStock = {
     "Speed I": false,
     "Speed II": false,
     "Speed III": false,
-    "Speed IV": false
+    "Speed IV": false,
+    "Wisdom I": false,
+    "Wisdom II": false,
+    "Wisdom III": false,
+    "Wisdom IV": false,
+    "Slow I": false,
+    "Slow II": false,
+    "Slow III": false,
+    "Slow IV": false
 }
 /*
 Ideas:
@@ -57,12 +70,16 @@ Ideas:
 - The pit emits radiation or something that over time hurts the player. Can be removed to "dump sites"
 - Add trash pit that rarely gives pit coins (used mainly for dumping)
 
-- Maybe make some upgrades unlock 2 bars
+- Maybe make some upgrades unlock 2 bars        
 - Cheap helptext upgrades
 - Upgrade that reveals max resources reached on each resource
 - Make story able to be hidden and have different chat types (flavortext, storytext, pittext, etc.)
 
-- Add potions III
+- Add more potion types
+- Finish slow potion.
+
+- Fix issues where knowledge does not update unless clicked (as bonus doesn't update)
+- Fix the same issue with wisdom
 
 - Add inventions helptext for each upgrade (on what they do like bars)
 - Make bars say their progress,speed, etc.
@@ -70,6 +87,7 @@ Ideas:
 
 - mass wisdom conversion upgrade
 - mass energy conversion upgrade
+- Click and hold upgrade
 
 - Fix issue with unlocker (It adds and at the start of sentence)
 
@@ -92,9 +110,10 @@ document.getElementById("createKnowledge").addEventListener("click", () => {
         boosts = boosts*5
     }
 
-    if ((boosts*player.baseKnowledgeIncrease+mood)<player.cap) {
-        player.knowledge += player.baseKnowledgeIncrease*boosts;
-        document.getElementById("createKnowledge").innerText = `Create ${player.baseKnowledgeIncrease*boosts} Knowledge`;
+    const knowledgeIncrease = Math.floor(player.baseKnowledgeIncrease*boosts)
+    if ((knowledgeIncrease+mood)<player.cap) {
+        player.knowledge += knowledgeIncrease;
+        document.getElementById("createKnowledge").innerText = `Create ${knowledgeIncrease} Knowledge`;
     } else {
         say("You got too much knowledge per click, so basically your mood can't support it.")
     }
@@ -103,8 +122,24 @@ document.getElementById("createKnowledge").addEventListener("click", () => {
 
 
 document.getElementById("switchtoWisdom").addEventListener("click", () => {
-    if (mood+4<player.cap) {    
-        player.reflection += player.wisdomClickPower;
+    if (mood+((Math.floor(player.reflection/player.wisdomRate)*4))<player.cap) {
+        let boosts = 1;
+        if (potionStock["Wisdom I"] === true) {
+            boosts = boosts*1.5
+        }
+        if (potionStock["Wisdom II"] === true) {
+            boosts = boosts*2
+        }
+        if (potionStock["Wisdom III"] === true) {
+            boosts = boosts*3
+        }
+        if (potionStock["Wisdom IV"] === true) {
+            boosts = boosts*4
+        }
+
+        const reflectionIncrease = player.wisdomClickPower*boosts
+
+        player.reflection += reflectionIncrease;
         if (player.reflection>=player.wisdomRate) {
             const leftOverAcc = player.reflection % player.wisdomRate;
             player.wisdom += Math.floor(player.reflection/player.wisdomRate);

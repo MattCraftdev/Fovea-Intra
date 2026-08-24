@@ -65,9 +65,11 @@
     
             <dt>Potions</dt>
             <dd>Potions are given by dealers, and each have their own effects, hinted by the name. A higher tier potion (ex: II is higher than I) does more and lasts longer opposed to a lower tier.</dd>
-
+            <dd>Potions also stack. Using a potion individually is much less superior to stacking different potion tiers at once, as they MULTIPLY each other. (if II gives 3x boost, III gives 4x boost, together they give a 12x, not 7x)</dd>
+            
             <dt>Dealers</dt>
             <dd>When getting potions, there are individual dealers. Each dealer can give you better potions if they're lucky, or scam you. If you feel unlucky, simply switch dealers!</dd>
+            <dd>Each dealer also has a different cooldown for purchasing potions, so take that in mind. Switching dealers also has a 5 min cooldown</dd>
     </div>
 
 
@@ -256,7 +258,7 @@
 
 
     <nav class = "tab-content" id = "Inventions">
-        <button id = "unlocker" class = "upgrade">Find a random unlock - Costs 100 knowledge</button>
+        <button id = "unlocker" class = "upgrade">Find random requirements for an upgrade - Costs 100 knowledge</button>
 
         <br>
         <button id = "unlocklifespanTimer" class = "hidden upgrade">Peer into the future - Costs 1000 Knowledge, 100 Matter and 25 Energy</button>
@@ -325,8 +327,10 @@
         <p id = "potionTimers"></p>
         <br>
         <button class = "potionbtn" id="createPotion">Create a Potion</button>
+        <p id = "displayPotionBuyTimer">Time left: </p>
         <p id = "currentDealer">Current Dealer: </p>
         <button id = "switchDealer" class = "potionbtn">Switch Dealers</button>
+        <p id = "displayDealerWait">Time Left:</p>
         <br>
 
         <p id = "potionShowing" ></p>

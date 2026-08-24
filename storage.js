@@ -68,7 +68,7 @@ function loadGame() {
         
 
         if (state.player) {Object.assign(player, state.player);}
-        if (state.potionStock.stocks) {Object.assign(potionStock.stocks, state.potionStock.stocks)}
+        if (state.potionStock) {Object.assign(potionStock.stocks, state.potionStock)}
 
         if (state.upgrades) {
             state.upgrades.forEach(savedU => {
@@ -108,8 +108,10 @@ function loadGame() {
         document.getElementById("saveIntervalDisplay").innerText = `Save Interval: ${player.saveInterval/1000} Seconds`
         saveSlider.value = player.saveInterval/1000
         resetPotionStock();
+        resetDealerStock();
         createPotionShowing();
         resetThePitTimer();
+        changeDealerTimer();
 
     } else {
         console.log("no save found")

@@ -305,11 +305,13 @@ dt {
     background-color:#a101b2;
     color:rgb(0, 0, 0);
     padding: 10px;
-    border: 20px;
-    font-size: 100%;
+    border: 5px solid rgb(91, 24, 207);
+    font-size: 15px;
     font-family:'georgia';
+    margin: 10px;
+    display: block;
 }
 
-#potionShowing {
-    display:block;
+.potionsContainer {
+    display: flex;
 }

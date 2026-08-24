@@ -359,30 +359,31 @@ document.getElementById("unlocker").addEventListener("click", () => {
         const totalnotunlocked = upgrades.filter(UP => UP.unlocked === false)
 
         if (!totalnotunlocked) {
-            console.error("There are no upgrades to buy")
+            say("There are no upgrades to buy. Damn...")
+        } else {
+            const Randomreq = totalnotunlocked[Math.floor(Math.random()*totalnotunlocked.length)]
+
+            let allreqs = ``
+
+            for (const eachReq of Randomreq.reqs) {
+                console.log(eachReq)
+                if (Randomreq.reqs.length === 1) {
+
+                } else {
+                    allreqs += ` and `
+                }
+                console.log(eachReq[0])
+                if (eachReq[0] === "knowledge" || eachReq[0] === "wisdom" || eachReq[0] === "matter" || eachReq[0] === "energy") {
+                    allreqs += `${eachReq[1]} ${eachReq[0]}`
+                } else {
+                    allreqs += ` ${barInfo[eachReq[0]][1]} at ${eachReq[1]} Levels`
+                }
+            }   
+
+            track("unlocker_Used")
+            say(`A random upgrade requires ${allreqs}.`)            
         }
 
-        const Randomreq = totalnotunlocked[Math.floor(Math.random()*totalnotunlocked.length)]
-
-        let allreqs = ``
-
-        for (const eachReq of Randomreq.reqs) {
-            console.log(eachReq)
-            if (Randomreq.reqs.length === 1) {
-
-            } else {
-                allreqs += ` and `
-            }
-            console.log(eachReq[0])
-            if (eachReq[0] === "knowledge" || eachReq[0] === "wisdom" || eachReq[0] === "matter" || eachReq[0] === "energy") {
-                allreqs += `${eachReq[1]} ${eachReq[0]}`
-            } else {
-                allreqs += ` ${barInfo[eachReq[0]][1]} at ${eachReq[1]} Levels`
-            }
-        }   
-
-        track("unlocker_Used")
-        say(`A random upgrade requires ${allreqs}.`)
     } else {
         say("Not enough knowledge. If you don't know enough then you can't infer!")
     }

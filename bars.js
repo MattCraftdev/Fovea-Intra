@@ -21,9 +21,11 @@ class ProgressBar {
             console.log(`${this.progress}/${this.maxprogress}. Speed is ${this.speed}`)
             // Expo increase value
             this.maxprogress = this.maxprogress*this.expoincrease;
-            track(this.elementId)
+            
             if (this.elementId === "creation") {
                 player.matter += 1;
+            } else {
+                track(this.elementId)
             }
             
         };
@@ -221,6 +223,6 @@ function recalcBuffs() {
     if (vitBar.level>=10) {document.getElementById("flexContainer").classList.remove("hidden");}
 
     player.baseKnowledgeIncrease = (studyBar.level) + 1;
-    document.getElementById("createKnowledge").innerText = `Create ${player.baseKnowledgeIncrease} Knowledge`;
+
     player.pitMulti = 1+(abyssalBar.level/50)
 };
