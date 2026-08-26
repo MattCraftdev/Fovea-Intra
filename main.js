@@ -47,23 +47,24 @@ const potionStock = {
         slow1 = 0, slow2 = 0, slow3 = 0, slow4 = 0
     ],
 
-    "Knowledge I": false,
-    "Knowledge II": false,
-    "Knowledge III": false,
-    "Knowledge IV": false,
-    "Speed I": false,
-    "Speed II": false,
-    "Speed III": false,
-    "Speed IV": false,
-    "Wisdom I": false,
-    "Wisdom II": false,
-    "Wisdom III": false,
-    "Wisdom IV": false,
-    "Slow I": false,
-    "Slow II": false,
-    "Slow III": false,
-    "Slow IV": false
+    "Knowledge I": 0,
+    "Knowledge II": 0,
+    "Knowledge III": 0,
+    "Knowledge IV": 0,
+    "Speed I": 0,
+    "Speed II": 0,
+    "Speed III": 0,
+    "Speed IV": 0,
+    "Wisdom I": 0,
+    "Wisdom II": 0,
+    "Wisdom III": 0,
+    "Wisdom IV": 0,
+    "Slow I": 0,
+    "Slow II": 0,
+    "Slow III": 0,
+    "Slow IV": 0,
 }
+
 /*
 Ideas:
 - Free pit rolls (Like a token)
@@ -74,9 +75,9 @@ Ideas:
 - Cheap helptext upgrades
 - Upgrade that reveals max resources reached on each resource
 - Make story able to be hidden and have different chat types (flavortext, storytext, pittext, etc.)
+- Optimize upgrade code (merge id and name)
 
 - Add more potion types
-- Finish slow potion.
 
 - Fix issues where knowledge does not update unless clicked (as bonus doesn't update)
 - Fix the same issue with wisdom
@@ -92,21 +93,23 @@ Ideas:
 - Fix issue with unlocker (It adds and at the start of sentence)
 
 - Add images
+
+- Automate creating divs/elements of the entire bar sys
 */
 
 // Knowledge addition system + wisdom sys
 document.getElementById("createKnowledge").addEventListener("click", () => {
     let boosts = 1;
-    if (potionStock["Knowledge I"] === true) {
+    if (potionStock["Knowledge I"]>0) {
         boosts = boosts*1.5
     }
-    if (potionStock["Knowledge II"] === true) {
+    if (potionStock["Knowledge II"]>0) {
         boosts = boosts*2
     }
-    if (potionStock["Knowledge III"] === true) {
+    if (potionStock["Knowledge III"]>0) {
         boosts = boosts*3
     }
-    if (potionStock["Knowledge IV"] === true) {
+    if (potionStock["Knowledge IV"]>0) {
         boosts = boosts*5
     }
 
@@ -124,16 +127,16 @@ document.getElementById("createKnowledge").addEventListener("click", () => {
 document.getElementById("switchtoWisdom").addEventListener("click", () => {
     if (mood+((Math.floor(player.reflection/player.wisdomRate)*4))<player.cap) {
         let boosts = 1;
-        if (potionStock["Wisdom I"] === true) {
+        if (potionStock["Wisdom I"]>0) {
             boosts = boosts*1.5
         }
-        if (potionStock["Wisdom II"] === true) {
+        if (potionStock["Wisdom II"]>0) {
             boosts = boosts*2
         }
-        if (potionStock["Wisdom III"] === true) {
+        if (potionStock["Wisdom III"]>0) {
             boosts = boosts*3
         }
-        if (potionStock["Wisdom IV"] === true) {
+        if (potionStock["Wisdom IV"]>0) {
             boosts = boosts*4
         }
 
@@ -226,4 +229,14 @@ document.getElementById("getHelp").addEventListener("click", () => {
 
 document.getElementById("backHelp").addEventListener("click", () => {
     document.getElementById("gameInfo").classList.add("hidden")
+});
+
+document.getElementById("closeStory").addEventListener("click", () => {
+    document.getElementById("Story").classList.add("hidden")
+});
+
+document.getElementById("showStory").addEventListener("click", () => {
+    if (document.getElementById("Story").classList.contains("hidden")) {
+        document.getElementById("Story").classList.remove("hidden")
+    }
 });

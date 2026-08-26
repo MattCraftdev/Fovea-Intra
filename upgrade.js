@@ -1,6 +1,7 @@
 // Upgrade array for each
 const upgrades = [
     {
+        name: "Lifespan Timer",
         id: "unlocklifespanTimer",
         cost: [["knowledge", 1000], ["matter", 100], ["energy", 25]],
         unlocked: false,
@@ -15,6 +16,7 @@ const upgrades = [
     },
 
     {
+        name: "The pit",
         id: "unlockpit",
         cost: [["wisdom", 5]],
         unlocked: false,
@@ -30,6 +32,7 @@ const upgrades = [
     },
 
     {
+        name: "Mood Bar",
         id: "unlockmoodbtn",
         cost: [["knowledge", 125]],
         unlocked: false,
@@ -44,6 +47,7 @@ const upgrades = [
     },
 
     {
+        name: "Creation",
         id: "unlockcreationbtn",
         cost: [["knowledge", 250]],
         unlocked: false,
@@ -60,6 +64,7 @@ const upgrades = [
     },
 
     {
+        name: "Set max (The pit)",
         id: "unlocksetmaxbtn",
         cost: [["matter", 5]],
         unlocked: false,
@@ -74,6 +79,7 @@ const upgrades = [
     },
 
     {
+        name: "Unlock Vitality",
         id: "unlockvitbtn",
         cost: [["knowledge", 75], ["wisdom", 2]],
         unlocked: false,
@@ -88,6 +94,7 @@ const upgrades = [
     },
 
     {
+        name: "Mediate",
         id: "unlockmediatebtn",
         cost: [["knowledge", 200], ["wisdom", 10]],
         unlocked: false,
@@ -102,6 +109,7 @@ const upgrades = [
     },
 
     {
+        name: "Martial",
         id: "unlockmartialbtn",
         cost: [["wisdom", 50]],
         unlocked: false,
@@ -117,6 +125,7 @@ const upgrades = [
 
 
     {
+        name: "HIT",
         id: "unlockhitbtn",
         cost: [["matter", 25]],
         unlocked: false,
@@ -131,6 +140,7 @@ const upgrades = [
     },
 
     {
+        name: "Tai Chi",
         id: "unlocktaichibtn",
         cost: [["wisdom", 150]],
         unlocked: false,
@@ -145,6 +155,7 @@ const upgrades = [
     },
 
     {
+        name: "Create Wisdom",
         id: "unlockwisdomConvertbtn",
         cost: [["knowledge", 10]],
         unlocked: false,
@@ -161,6 +172,7 @@ const upgrades = [
     },
 
     {
+        name: "Peace",
         id: "unlockpeacebtn",
         cost: [["wisdom", 2]],
         unlocked: false,
@@ -175,6 +187,7 @@ const upgrades = [
     },
 
     {
+        name: "Study",
         id: "unlockstudybtn",
         cost: [["wisdom", 10], ["knowledge", 75]],
         unlocked: false,
@@ -189,6 +202,7 @@ const upgrades = [
     },
 
     {
+        name: "Magic",
         id: "unlockmagicbtn",
         cost: [["wisdom", 75], ["matter", 5]],
         unlocked: false,
@@ -202,6 +216,7 @@ const upgrades = [
         purchasetext: "FIREBALL!!!!!"
     },
     {
+        name: "Magic Study",
         id: "unlockmagicstudybtn",
         cost: [["wisdom", 100]],
         unlocked: false,
@@ -215,6 +230,7 @@ const upgrades = [
         purchasetext: "Books are boring but magic is not."
     },
     {
+        name: "Magic Learner",
         id: "unlockmagiclearnerbtn",
         cost: [["matter", 100]],
         unlocked: false,
@@ -229,6 +245,7 @@ const upgrades = [
     },
 
     {
+        name: "Unlock Potion",
         id: "unlockpotionbtn",
         cost: [["wisdom", 50], ["matter" , 20], ["knowledge", 100]],
         unlocked: false,
@@ -243,6 +260,7 @@ const upgrades = [
     },
 
     {
+        name: "Abyssal",
         id: "unlockabyssalbtn",
         cost: [["matter", 25], ["knowledge", 50]],
         unlocked: false,
@@ -257,6 +275,7 @@ const upgrades = [
     },
 
     {
+        name: "Unlock energy",
         id: "unlockenergy",
         cost: [["matter", 50]],
         unlocked: false,
@@ -268,6 +287,21 @@ const upgrades = [
             document.querySelector('[data-tab = "Energy"]').classList.remove("hidden");
         },
         purchasetext: "A well materializes in front of you, filled with green goo."
+    },
+
+    {
+        name: "Unlock Insight",
+        id: "unlockinsight",
+        cost: [["wisdom", 25], ["knowledge", 200]],
+        unlocked: false,
+        reqs: [["peace", 10]],
+        flavortext: "See more to achieve inner peace.",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("insightContainer").classList.remove("hidden");
+        },
+        purchasetext: "Inner peace is achieved by looking at the bigger picture."
     },
 ]
 
@@ -350,7 +384,33 @@ function buyUpgrade(upgradeId) {
 
 // For each button, when clicked buy the upgrade
 for (const btns of upgrades) {
-    document.getElementById(btns.id).addEventListener("click", () => { buyUpgrade(btns.id); });
+
+    const button = document.createElement("button")
+    button.id = btns.id
+    document.getElementById("upgradeContainer").appendChild(button)
+
+    let allreqs = "";
+    for (const eachCost of btns.cost) {
+
+        if (btns.cost.length === 1) {
+
+        } else {
+            allreqs += ` and `
+        }
+
+        allreqs += `${eachCost[1]} ${eachCost[0]}`
+        
+    }
+    if (btns.unlocked === true) {
+
+    } else {
+        button.classList.add("hidden")
+    }
+
+    button.classList.add("upgrade")
+    button.innerText = `${btns.name} - Costs ${allreqs} `
+
+    document.getElementById(button.id).addEventListener("click", () => { buyUpgrade(btns.id); });
 };
 
 // UNLOCKER

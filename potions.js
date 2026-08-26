@@ -324,26 +324,7 @@ function createPotionShowing() {
     });
 }
 
-let potionStackTimers = [
-    { Name: "Knowledge I", Duration: 0},
-    { Name: "Knowledge II", Duration: 0},
-    { Name: "Knowledge III", Duration: 0},
-    { Name: "Knowledge IV", Duration: 0},
-    { Name: "Speed I", Duration: 0},
-    { Name: "Speed II", Duration: 0},
-    { Name: "Speed III", Duration: 0},
-    { Name: "Speed IV", Duration: 0},
-    { Name: "Wisdom I", Duration: 0},
-    { Name: "Wisdom II", Duration: 0},
-    { Name: "Wisdom III", Duration: 0},
-    { Name: "Wisdom IV", Duration: 0},
-    { Name: "Slow I", Duration: 0},
-    { Name: "Slow II", Duration: 0},
-    { Name: "Slow III", Duration: 0},
-    { Name: "Slow IV", Duration: 0},
 
-
-]
 // Use the potion
 function usePotion(idNum) {
     if (potionStock.stocks[idNum]>0) {
@@ -366,27 +347,25 @@ function usePotion(idNum) {
 
         const type = selectedPotion.Name
         
-        const potionStacked = potionStackTimers.find(name => name.Name === type)
+        console.log
         
         const timer = document.createElement("p")
         const potionTimers = document.getElementById("potionTimers");
 
-        if (potionStock[type] === true) {// If it's stacked
+        if (potionStock[type]>0) {// If it's stacked (duration of the timer is over 1)
             console.log("stacked potions")
-            potionStacked.Duration += potionDuration;
+            potionStock[type] += potionDuration;
 
         } else {
-            potionTimers.appendChild(timer);
+            potionTimers.appendChild(timer); // Else creates a new timer
 
-            potionStock[type] = true;
-            potionStacked.Duration = potionDuration;
+            potionStock[type] = potionDuration;
             const potionTimer = setInterval(() => {
-                potionStacked.Duration -= 1;
-                timer.innerText = `Time left: ${potionStacked.Duration} on the ${type}`
+                potionStock[type] -= 1;
+                timer.innerText = `Time left: ${potionStock[type]} on the ${type}`
 
-                if (potionStacked.Name<=0) {
-                    potionStock[type] = false;
-                    potionStacked.Duration = 0;
+                if (potionStock[type]<=0) {
+                    potionStock[type] = 0;
                     clearInterval(potionTimer)
                 }
             }, 1000)

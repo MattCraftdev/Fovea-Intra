@@ -71,6 +71,7 @@ const taichiBar = new ProgressBar("taichi", 10, 4000, 1.15);
 
 const studyBar = new ProgressBar("study", 10, 10000, 1.15);
 const peaceBar = new ProgressBar("peace", 10, 4000, 1.25);
+const insightBar = new ProgressBar("insight", 10, 6000, 1.2);
 
 const magicBar = new ProgressBar("magic", 10, 5000, 1.2);
 const magicstudyBar = new ProgressBar("magicstudy", 10, 10000, 1.15);
@@ -94,6 +95,7 @@ const barInfo = { // activebar id, then says their bar then name to DISPLAY
     abyssal: [abyssalBar, "Abyssal"],
     creation: [creationBar, "Matter"],
     peace: [peaceBar, "Peace"],
+    insight: [insightBar, "Insight"],
 }   
 
 // Vars
@@ -104,6 +106,7 @@ let magicstudybuff = 0;
 let taichinerf = 0;
 let hitbuff = 0;
 let magiclearnerbuff = 0;
+let insightbuff = 0;
 
 let activeBar = null;
 let matterBarActive = false;
@@ -134,6 +137,7 @@ function updateProgress() {
     taichinerf = taichiBar.level*3
     hitbuff = hitBar.level*2
     magiclearnerbuff = magiclearnerBar.level*3
+    insightbuff = insightBar.level*2
 
     recalcBuffs();
 };
@@ -147,19 +151,18 @@ function updateAllSpeeds() {
 
     let boostSpeed = baseSpeed
 
-    if (potionStock["Speed I"] === true) {
+    if (potionStock["Speed I"]>0) {
         boostSpeed = boostSpeed*1.25
     } 
-    if (potionStock["Speed II"] === true) {
+    if (potionStock["Speed II"]>0) {
         boostSpeed = boostSpeed*1.5
     }
-    if (potionStock["Speed III"] === true) {
+    if (potionStock["Speed III"]>0) {
         boostSpeed = boostSpeed*2
     }
-    if (potionStock["Speed IV"] === true) {
+    if (potionStock["Speed IV"]>0) {
         boostSpeed = boostSpeed*3
     }
-    console.log(boostSpeed)
 
     // Total Mood diff between (5 and -5). BTW bMs is the total average and affects ALL Bars. Careful.
     const baseMoodspeed = (boostSpeed + mooddiff*10)+magiclearnerbuff
@@ -180,8 +183,8 @@ function updateAllSpeeds() {
     hitBar.speed = baseMoodspeed + healthsum
 
     studyBar.speed = baseMoodspeed + magicstudybuff;
-    peaceBar.speed = baseMoodspeed
-
+    peaceBar.speed = baseMoodspeed + insightbuff;
+    insightBar.speed = baseMoodspeed
 
     magicBar.speed = baseMoodspeed + mediatebuff // Magic does not boost itself but gets boosted by other bars!
     magicstudyBar.speed = baseMoodspeed + magicsum

@@ -65,16 +65,16 @@ setInterval(() => {
     updateLifespan();
 
     let boosts = 1;
-    if (potionStock["Slow I"] === true) {
+    if (potionStock["Slow I"]>0) {
         boosts = boosts*0.8
     }
-    if (potionStock["Slow II"] === true) {
+    if (potionStock["Slow II"]>0) {
         boosts = boosts*0.7
     }
-    if (potionStock["Slow III"] === true) {
+    if (potionStock["Slow III"]>0) {
         boosts = boosts*0.6
     }
-    if (potionStock["Slow IV"] === true) {
+    if (potionStock["Slow IV"]>0) {
         boosts = boosts*0.4
     }
 
@@ -131,6 +131,8 @@ function solveMood() {
 
 };
 
+let dead = false;
+
 // Time System
 function updateTime() {
     player.day += 1;
@@ -138,7 +140,7 @@ function updateTime() {
         player.day = 0;
         player.year += 1;
     };
-    if (player.year>=player.lifespan) {
+    if (player.year>=player.lifespan && dead === false) {
         initiateDeath();
     }
     document.getElementById("displayDay").innerText = "Day: " + player.day;
@@ -150,7 +152,7 @@ function updateLifespan() {
     document.getElementById("displayLifespan").innerText = `/${lifespanReal} (Time left.)`
 }
 
-let timeInterval = 500;
+let timeInterval = 500; 
 setInterval(() => {
     updateTime();
 }, timeInterval); // Day per X, in this case 500= 2 days per sec
@@ -163,6 +165,7 @@ function initiateDeath() {
     document.getElementById("hideDeath").classList.remove("hidden");
     document.getElementById("tryAgain").classList.remove("hidden");
     track("player_died")
+    dead = true;
 }
 
 document.getElementById("tryAgain").addEventListener("click", () => {

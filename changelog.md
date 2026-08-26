@@ -1,5 +1,12 @@
 # Newest versions
 
+2026/08/26 1:23 PM - [0.59.0]
+- Story resizeable/closeable
+- Upgrade buttons generate automatically instead of manual creation (Automated)
+- Added insight bar that boosts peaceBar speed
+- Completely optimized potion duration code by splicing potionstackTimers and potionStock
+- For the most part fixed a major issue with when dying, track spam
+
 2026/08/24 11:28 AM - [0.58.0] POTIONS IV
 - Minor fixes and more tracking (UMAMI)
 - Made knowledge increase boost from potions more integrated + cleaned up code
