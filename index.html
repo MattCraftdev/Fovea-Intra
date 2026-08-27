@@ -132,20 +132,17 @@
             <button id = "switchtoWisdom" class = "anyButton hidden" >Create 1 wisdom (0/20)</button>
         </section>
 
-        <div class="game-layout">
+        <section>
+            <h2 class="section-title" id = "naheader">Basic</h2>
+            <div id = "naHolder"></div>
+
+            <h2 class="section-title" id = "healthheader">Health</h2>
+            <div id = "healthHolder"></div>
+
+            <h2 class="section-title" id = "magicheader">Magic</h2>
+            <div id = "magicHolder"></div>
             
-            <section class = "category-grid" id = "healthSection">
-                <h2 class="section-title" id = "healthheader">Health</h2>                  
-                <div id = "barHolder"></div>
-
-            </section>
-
-            
-            <section class = "category-grid" id = "magicSection">
-                <h2 class="section-title" id = "magicheader">Magic</h2>
-            </section>
-
-        </div>
+        </section>
     </nav>
 
 
@@ -177,7 +174,6 @@
 
         <button id = "enableMatter">Enable Matter</button>
         <button id = "disableMatter">Disable Matter</button>
-
     </nav>
 
     <nav class = "tab-content" id = "Energy">
@@ -188,7 +184,6 @@
         <button class = "energybtn" id = "collectGoop">Collect Raw Goop - Costs 5 knowledge</button>
         <button class = "energybtn" id = "processGloop">Process into Gloop - Costs 5 knowledge & 2 Goop</button>
         <button class = "energybtn" id = "packageEnergy">Package into useable energy - Costs 2 wisdom & 2 Gloop</button>
-
     </nav>
 
     <nav class = "tab-content" id = "Potion">
@@ -202,7 +197,6 @@
         <br>
 
         <p id = "potionShowing" ></p>
-
     </nav>
 
 
@@ -242,7 +236,6 @@
     <script src="potions.js" defer></script>
 
     <script data-goatcounter="https://mattcraft-dev.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-
 </body>
 
 </html>

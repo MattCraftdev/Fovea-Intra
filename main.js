@@ -75,7 +75,10 @@ Ideas:
 - Cheap helptext upgrades
 - Upgrade that reveals max resources reached on each resource
 - Make story able to be hidden and have different chat types (flavortext, storytext, pittext, etc.)
-- Optimize upgrade code (merge id and name)
+
+- Optimize upgrade code (merge id and name by making the id THE name but id is just without spaces)
+
+- Automate displaying variables
 
 - Add more potion types
 
@@ -90,11 +93,7 @@ Ideas:
 - mass energy conversion upgrade
 - Click and hold upgrade
 
-- Fix issue with unlocker (It adds and at the start of sentence)
-
 - Add images
-
-- Automate creating divs/elements of the entire bar sys
 */
 
 // Knowledge addition system + wisdom sys

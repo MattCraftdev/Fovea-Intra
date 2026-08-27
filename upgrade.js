@@ -9,9 +9,7 @@ const upgrades = [
         flavortext: "Something is being touched upon. You need to learn more to reveal it...",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("displayLifespan").classList.remove("hidden");
-        },
+        onpurchase: () => { document.getElementById("displayLifespan").classList.remove("hidden"); },
         purchasetext: "You peer into the unknown. Your lifespan is revealed."
     },
 
@@ -40,9 +38,7 @@ const upgrades = [
         flavortext: "An idea strikes from all this knowledge building up inside you. Why not map mood on a bar?",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("moodContainer").classList.remove("hidden");
-        },
+        onpurchase: () => { document.getElementById("moodContainer").classList.remove("hidden"); },
         purchasetext: "A bar floats above your head, dictating your mood"
     },
 
@@ -72,9 +68,7 @@ const upgrades = [
         flavortext: "If you use the pit, get the set max button",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("setToMax").classList.remove("hidden");
-        },
+        onpurchase: () => { document.getElementById("setToMax").classList.remove("hidden"); },
         purchasetext: "Click the button to set inputs to player eqivalent (max)"
     },
 
@@ -87,9 +81,7 @@ const upgrades = [
         flavortext: "I may not have a brain gentlemen. But I have an idea..",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("vitContainer").classList.remove("hidden");
-        },
+        onpurchase: () => { document.getElementById("vitContainer").classList.remove("hidden"); },
         purchasetext: "A strict routine only for the best"
     },
 
@@ -102,9 +94,7 @@ const upgrades = [
         flavortext: "You feel fat. Maybe it's time to fix this issue.",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("mediateContainer").classList.remove("hidden");
-        },
+        onpurchase: () => { document.getElementById("mediateContainer").classList.remove("hidden"); },
         purchasetext: "Time to get fit!"
     },
 
@@ -117,9 +107,7 @@ const upgrades = [
         flavortext: "You just watched your first kung fu movie and now think you're Bruce Lee.",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("martialContainer").classList.remove("hidden");
-        },
+        onpurchase: () => { document.getElementById("martialContainer").classList.remove("hidden"); },
         purchasetext: "Everybody wa' kung foo fighti-ing hooo haaaa!!"
     },
 
@@ -133,9 +121,7 @@ const upgrades = [
         flavortext: "Become flowing water with the wind (No more Kung Foo movies)",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("hitContainer").classList.remove("hidden");
-        },
+        onpurchase: () => { document.getElementById("hitContainer").classList.remove("hidden"); },
         purchasetext:"You got out of your kung foo phase for the real stuff"
     },
 
@@ -148,9 +134,7 @@ const upgrades = [
         flavortext: "Become flowing water with the wind (No more Kung Foo movies)",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("taichiContainer").classList.remove("hidden");
-        },
+        onpurchase: () => { document.getElementById("taichiContainer").classList.remove("hidden"); },
         purchasetext: "Say a proverb because you don't care about life! PEEEEAAAACE!!!"
     },
 
@@ -180,9 +164,7 @@ const upgrades = [
         flavortext: "Wisdom.",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("peaceContainer").classList.remove("hidden");
-        },
+        onpurchase: () => { document.getElementById("peaceContainer").classList.remove("hidden"); },
         purchasetext: "MORE BARS!!!!"
     },
 
@@ -195,9 +177,7 @@ const upgrades = [
         flavortext: "What if I just studied how to think?!",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("studyContainer").classList.remove("hidden");
-        },
+        onpurchase: () => { document.getElementById("studyContainer").classList.remove("hidden"); },
         purchasetext: "The deeper the knowledge the better"
     },
 
@@ -210,9 +190,7 @@ const upgrades = [
         flavortext: "A tree said to you that magic is real",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("magicContainer").classList.remove("hidden");
-        },
+        onpurchase: () => { document.getElementById("magicContainer").classList.remove("hidden"); },
         purchasetext: "FIREBALL!!!!!"
     },
     {
@@ -224,9 +202,7 @@ const upgrades = [
         flavortext: "You don't really wanna study but..magic kool!!",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("magicstudyContainer").classList.remove("hidden");
-        },
+        onpurchase: () => { document.getElementById("magicstudyContainer").classList.remove("hidden"); },
         purchasetext: "Books are boring but magic is not."
     },
     {
@@ -238,9 +214,7 @@ const upgrades = [
         flavortext: "Yeah this is just learning but you're cheating",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("magiclearnerContainer").classList.remove("hidden");
-        },
+        onpurchase: () => { document.getElementById("magiclearnerContainer").classList.remove("hidden"); },
         purchasetext: "Time to increase learning with magic!."
     },
 
@@ -253,9 +227,7 @@ const upgrades = [
         flavortext: "Hmm. Maybe you should call the local drug de- I mean potion maker.",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => {
-            document.querySelector('[data-tab = "Potion"]').classList.remove("hidden");
-        },
+        onpurchase: () => { document.querySelector('[data-tab = "Potion"]').classList.remove("hidden"); },
         purchasetext: "Potion man giving you a call. Better head down."
     },
 
@@ -268,9 +240,7 @@ const upgrades = [
         flavortext: "I should try telling stories to the pit. Communicate with it. Have fun with it.",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("abyssalContainer").classList.remove("hidden");
-        },
+        onpurchase: () => { document.getElementById("abyssalContainer").classList.remove("hidden"); },
         purchasetext: "The abyss resides inside the pit."
     },
 
@@ -283,9 +253,7 @@ const upgrades = [
         flavortext: "A whisper echoes from around you. 'If you build it, he will come.'",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => {
-            document.querySelector('[data-tab = "Energy"]').classList.remove("hidden");
-        },
+        onpurchase: () => { document.querySelector('[data-tab = "Energy"]').classList.remove("hidden"); },
         purchasetext: "A well materializes in front of you, filled with green goo."
     },
 
@@ -298,9 +266,7 @@ const upgrades = [
         flavortext: "See more to achieve inner peace.",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("insightContainer").classList.remove("hidden");
-        },
+        onpurchase: () => { document.getElementById("insightContainer").classList.remove("hidden"); },
         purchasetext: "Inner peace is achieved by looking at the bigger picture."
     },
 ]
@@ -323,22 +289,20 @@ setInterval(() => {
                         allReqsMet = false;
                     }
                 } else {
-                    if (!(barInfo[reqType][0].level >= reqAmount)) {
-                        allReqsMet = false;
-                    }
+                    if (!(barInfo[reqType][0].level >= reqAmount)) { allReqsMet = false; }
                 }
+                
             } else {
                 allReqsMet = false;
             }
-        
         }
-            
-
 
         if (loop.id == "unlockvitbtn" && loop.purchased === 1) {
             document.getElementById("healthheader").style.display = "flex";
         } else if (loop.id == "unlockmagicbtn" && loop.purchased === 1) {
             document.getElementById("magicheader").style.display = "flex";
+        } else if (loop.id == "unlockpeacebtn" && loop.purchased === 1) {
+            document.getElementById("naheader").style.display = "flex";
         }
 
         if (loop.unlocked === true && document.getElementById(loop.id).classList.contains("hidden") && loop.purchased === 0) {
@@ -381,34 +345,36 @@ function buyUpgrade(upgradeId) {
     }
 };
 
-
 // For each button, when clicked buy the upgrade
 for (const btns of upgrades) {
-
-    const button = document.createElement("button")
+    const button = document.createElement("button") // Creates buttons for upgrades
     button.id = btns.id
-    document.getElementById("upgradeContainer").appendChild(button)
+    document.getElementById("upgradeContainer").appendChild(button);
 
-    let allreqs = "";
+    let allcosts = "";
+    let deleteAnd = false;
     for (const eachCost of btns.cost) {
 
         if (btns.cost.length === 1) {
 
         } else {
-            allreqs += ` and `
+            if (deleteAnd === false) {
+                deleteAnd = true;
+            } else {
+                allcosts += ` and `                
+            }
         }
 
-        allreqs += `${eachCost[1]} ${eachCost[0]}`
-        
+        allcosts += `${eachCost[1]} ${eachCost[0]}`
     }
-    if (btns.unlocked === true) {
 
+    if (btns.unlocked === true) {
     } else {
         button.classList.add("hidden")
     }
 
     button.classList.add("upgrade")
-    button.innerText = `${btns.name} - Costs ${allreqs} `
+    button.innerText = `${btns.name} - Costs ${allcosts} `
 
     document.getElementById(button.id).addEventListener("click", () => { buyUpgrade(btns.id); });
 };
@@ -424,13 +390,19 @@ document.getElementById("unlocker").addEventListener("click", () => {
             const Randomreq = totalnotunlocked[Math.floor(Math.random()*totalnotunlocked.length)]
 
             let allreqs = ``
+            let deleteAnd = false
 
             for (const eachReq of Randomreq.reqs) {
                 console.log(eachReq)
                 if (Randomreq.reqs.length === 1) {
 
                 } else {
-                    allreqs += ` and `
+                    if (deleteAnd === false) { // If it's still 1
+                        deleteAnd = true;
+                    } else { // After the first sentence, adds and.
+                        allreqs += ` and `                        
+                    }
+
                 }
                 console.log(eachReq[0])
                 if (eachReq[0] === "knowledge" || eachReq[0] === "wisdom" || eachReq[0] === "matter" || eachReq[0] === "energy") {
@@ -438,12 +410,11 @@ document.getElementById("unlocker").addEventListener("click", () => {
                 } else {
                     allreqs += ` ${barInfo[eachReq[0]][1]} at ${eachReq[1]} Levels`
                 }
-            }   
+            }
 
             track("unlocker_Used")
             say(`A random upgrade requires ${allreqs}.`)            
         }
-
     } else {
         say("Not enough knowledge. If you don't know enough then you can't infer!")
     }

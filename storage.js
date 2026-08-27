@@ -36,7 +36,7 @@ function hardReset() {
     if (confirm("Are you sure you want to erase your lifetime progress and start over?")) {
         if (confirm("IMPORTANT! After clicking 'Ok', reload the page again to prevent any bar issues.")) {
             localStorage.removeItem("gameSave");
-            location.reload();            
+            location.reload();
         }
     }
 }

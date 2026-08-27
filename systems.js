@@ -36,7 +36,7 @@ function calcCost(resourceCost) {
                 player[resourceType] = 0;
                 player[`${resourceType}Bonus`] -= difference;
             }
-            
+
         }        
     }
 
@@ -114,8 +114,6 @@ function solveMood() {
     else if (mood<=(player.cap*0.1)) { moodStatus = "Overjoyed"; }
     else { moodStatus = "Ok" }
 
-
-
     const fillratio = mood/player.cap
     if (document.getElementById("moodContainer").classList.contains("hidden")) {
         document.getElementById("displayMood").innerText = "Mood: " + moodStatus;
@@ -128,11 +126,9 @@ function solveMood() {
             document.getElementById("displayMood").classList.add("hidden")
         }
     }
-
 };
 
 let dead = false;
-
 // Time System
 function updateTime() {
     player.day += 1;

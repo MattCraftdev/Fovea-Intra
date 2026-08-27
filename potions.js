@@ -292,7 +292,7 @@ function resetDealerStock() {
     }
 }
 
-// Creates a lil potion showing of each potion
+// Creates a lil potion showing of each potion (in neat containers)
 function createPotionShowing() {
     const potionInventory = document.getElementById("potionShowing");
     potionInventory.innerHTML = ""

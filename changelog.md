@@ -1,13 +1,22 @@
 # Newest versions
 
+2026/08/27 1:25 PM - [0.61.0]
+- Fixed small issue with unlocker text saying "And" at the start of the sentence (gramatically incorrect)
+Fixed same issue in upgrade buttons as it uses the same base infastructure as unlocker
+- Fixed multiple small issues/errors
+- Added automated holders (Bars get assigned to holders)
+Each bar gets a diffent color based off holder
+- Optimized header text and header colors
+- Deleted some unused things (hopefully unused)
+- Deleted overcomplicated useless classes in creating grids for the HTML cont.
 
-2026/08/26 10:20 PM - [0.60.0]
+2026/08/26 10:20 PM - [0.60.0] AUTOMATED BARS
 - Completely overhauled the creation of bars, automating each bar, container, etc.
 - Updated older code to be more functional with the automated bar creation
 - Fixed mild issues that arise from changing lots of the code
 - Altered bar speed code to be less messy/simplier
 
-2026/08/26 1:23 PM - [0.59.0]
+2026/08/26 1:23 PM - [0.59.0] AUTOMATED UPGRADES
 - Story resizeable/closeable
 - Upgrade buttons generate automatically instead of manual creation (Automated)
 - Added insight bar that boosts peaceBar speed
