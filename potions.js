@@ -274,26 +274,22 @@ function changeDealerTimer() {
 let potionInterval = null;
 function resetDealerStock() {
     if (player.currentDealer === null) {
+        console.log("No current dealer, cannot reset selling for a dealer")
     } else {
         document.getElementById("currentDealer").innerText = `Current Dealer: ${player.currentDealer.Name}`
+        player.currentPotionBuyable = false;
+        let timeLeft = player.currentDealer.Time
+        if (potionInterval) {clearInterval(potionInterval)}
+        potionInterval = setInterval(() => {
+            timeLeft -=1
+            document.getElementById("displayPotionBuyTimer").innerText = `Time until next potion purchaseable: ${timeLeft}`
+            if (timeLeft <= 0) {
+                player.currentPotionBuyable = true;
+                clearTimeout(potionInterval)
+            }
+            
+        }, 1000);
     }
-
-    player.currentPotionBuyable = false;
-    let timeLeft = player.currentDealer.Time
-
-    console.log(timeLeft)
-
-    if (potionInterval) {clearInterval(potionInterval)}
-
-    potionInterval = setInterval(() => {
-        timeLeft -=1
-        document.getElementById("displayPotionBuyTimer").innerText = `Time until next potion purchaseable: ${timeLeft}`
-        if (timeLeft <= 0) {
-            player.currentPotionBuyable = true;
-            clearTimeout(potionInterval)
-        }
-        
-    }, 1000);
 }
 
 // Creates a lil potion showing of each potion

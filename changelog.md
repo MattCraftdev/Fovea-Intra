@@ -1,5 +1,12 @@
 # Newest versions
 
+
+2026/08/26 10:20 PM - [0.60.0]
+- Completely overhauled the creation of bars, automating each bar, container, etc.
+- Updated older code to be more functional with the automated bar creation
+- Fixed mild issues that arise from changing lots of the code
+- Altered bar speed code to be less messy/simplier
+
 2026/08/26 1:23 PM - [0.59.0]
 - Story resizeable/closeable
 - Upgrade buttons generate automatically instead of manual creation (Automated)

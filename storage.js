@@ -34,8 +34,10 @@ function startSaveTimer() {
 // Hard reset
 function hardReset() {
     if (confirm("Are you sure you want to erase your lifetime progress and start over?")) {
-        localStorage.removeItem("gameSave");
-        location.reload();
+        if (confirm("IMPORTANT! After clicking 'Ok', reload the page again to prevent any bar issues.")) {
+            localStorage.removeItem("gameSave");
+            location.reload();            
+        }
     }
 }
 
@@ -65,8 +67,8 @@ function loadGame() {
     let savedGame = localStorage.getItem("gameSave");
     if (savedGame) {
         let state = JSON.parse(savedGame);
+        renderBars();
         
-
         if (state.player) {Object.assign(player, state.player);}
         if (state.potionStock) {Object.assign(potionStock.stocks, state.potionStock)}
 
@@ -78,7 +80,6 @@ function loadGame() {
                     realU.purchased = savedU.purchased;
 
                     if (realU.purchased >= 1 || realU.purchased === true) {
-                        console.log("pu")
                         const upgradeFx = upgrades.find(item => item.id === realU.id);
                         if (upgradeFx && typeof upgradeFx.onpurchase === "function") {
                             upgradeFx.onpurchase(); 

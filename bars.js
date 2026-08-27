@@ -47,14 +47,17 @@ class ProgressBar {
     }
 
     loadSaveData(savedData) {
+       
         if (savedData) {
+            console.log(this.elementId)
+            this.element = document.getElementById(this.elementId);
             this.level = savedData.level;
             this.maxprogress = savedData.maxprogress;
             this.progress = savedData.progress;
             if (this.elementId) {
                 document.getElementById(`${this.elementId}LevelDisplay`).innerText = `${barInfo[this.elementId][1]} Level: ${this.level}`;
                 let widthPercent = Math.min((this.progress / this.maxprogress) * 100, 100);
-                this.element.style.width = widthPercent + "%";
+                this.element.style.width = widthPercent + "%";                    
             }
         }
             
@@ -82,32 +85,23 @@ const moodBar = new ProgressBar("mood", 0, 0, 0); // Do not mark. Placeholder Ba
 const creationBar = new ProgressBar("creation", 10, 2500, 1.0003);
 
 const barInfo = { // activebar id, then says their bar then name to DISPLAY
-    vit: [vitBar, "Vitality"],
-    flex: [flexBar, "Flexability"],
-    study: [studyBar, "Study"],
-    mediate: [mediateBar, "Mediate"],
-    martial: [martialBar, "Martial Arts"],
-    hit: [hitBar, "HIT"],
-    taichi: [taichiBar, "Tai Chi"],
-    magic: [magicBar, "Magic"],
-    magicstudy: [magicstudyBar, "Magic Study"],
-    magiclearner: [magiclearnerBar, "Magic Learner"],
-    abyssal: [abyssalBar, "Abyssal"],
-    creation: [creationBar, "Matter"],
-    peace: [peaceBar, "Peace"],
-    insight: [insightBar, "Insight"],
+    vit: [vitBar, "Vitality", "Vitality increases mood tolerance, meaning you can hold more resources"],
+    flex: [flexBar, "Flexability", "Flexability increases the speed of vitality"],
+    study: [studyBar, "Study", "Studying increases the base knowledge gain"],
+    mediate: [mediateBar, "Mediate", "Mediate increases all magic bar speeds but lowers mood tolerance by 1"],
+    martial: [martialBar, "Martial Arts", "Martial Arts greatly increases mood tolerance"],
+    hit: [hitBar, "HIT", "HIT increases all health bar speeds"],
+    taichi: [taichiBar, "Tai Chi", "Tai chi decreases all health bar speeds but gives immense amounts of mood tolerance"],
+    magic: [magicBar, "Magic", "Increases all magic bar speeds."],
+    magicstudy: [magicstudyBar, "Magic Study", "Increases the study learning speed"],
+    magiclearner: [magiclearnerBar, "Magic Learner", "Increases the base speed of all bars. (Yes it's OP)"],
+    abyssal: [abyssalBar, "Abyssal", "Increases the pit loot by boosting what you throw in there"],
+    creation: [creationBar, "Matter", ""],
+    peace: [peaceBar, "Peace", "Increases the power of wisdom clicks +1."],
+    insight: [insightBar, "Insight", "Increases peace bar speed"],
 }   
 
 // Vars
-let flexbuff = 0;
-let mediatebuff = 0;
-let magicbuff = 0;
-let magicstudybuff = 0;
-let taichinerf = 0;
-let hitbuff = 0;
-let magiclearnerbuff = 0;
-let insightbuff = 0;
-
 let activeBar = null;
 let matterBarActive = false;
 
@@ -128,16 +122,6 @@ function updateProgress() {
         creationBar.update();
         document.getElementById(`creationLevelDisplay`).innerText = `Matter Level: ${creationBar.level}`
     }
-
-    // Buffs by speed
-    flexbuff = flexBar.level*2;
-    mediatebuff = mediateBar.level*2
-    magicbuff = magicBar.level
-    magicstudybuff = magicstudyBar.level*2
-    taichinerf = taichiBar.level*3
-    hitbuff = hitBar.level*2
-    magiclearnerbuff = magiclearnerBar.level*3
-    insightbuff = insightBar.level*2
 
     recalcBuffs();
 };
@@ -164,10 +148,12 @@ function updateAllSpeeds() {
         boostSpeed = boostSpeed*3
     }
 
+
+    const mediateBuff = mediateBar.level*2
     // Total Mood diff between (5 and -5). BTW bMs is the total average and affects ALL Bars. Careful.
-    const baseMoodspeed = (boostSpeed + mooddiff*10)+magiclearnerbuff
-    let magicsum = (magicbuff-10)+mediatebuff
-    let healthsum = taichinerf-hitbuff;
+    const baseMoodspeed = (boostSpeed + mooddiff*10)+magiclearnerBar.level*3
+    const magicsum = (magicBar.level-10)+mediateBuff
+    const healthsum = (taichiBar.level*3)-(hitBar.level*2);
 
     if (healthsum+baseMoodspeed<1) {
         healthsum = -5;
@@ -176,37 +162,74 @@ function updateAllSpeeds() {
         magicsum = -5;
     }
 
-    vitBar.speed = baseMoodspeed + flexbuff + healthsum
+    // Speed applications
+    vitBar.speed = baseMoodspeed + (flexBar.level*2) + healthsum
     flexBar.speed = baseMoodspeed + healthsum
     mediateBar.speed = baseMoodspeed + healthsum
     martialBar.speed = baseMoodspeed + healthsum
     hitBar.speed = baseMoodspeed + healthsum
 
-    studyBar.speed = baseMoodspeed + magicstudybuff;
-    peaceBar.speed = baseMoodspeed + insightbuff;
+    studyBar.speed = baseMoodspeed + magicstudyBar.level*2;
+    peaceBar.speed = baseMoodspeed + insightBar.level*2;
     insightBar.speed = baseMoodspeed
 
-    magicBar.speed = baseMoodspeed + mediatebuff // Magic does not boost itself but gets boosted by other bars!
+    magicBar.speed = baseMoodspeed + mediateBuff // Magic does not boost itself but gets boosted by other bars!
     magicstudyBar.speed = baseMoodspeed + magicsum
     magiclearnerBar.speed = baseMoodspeed + magicsum
     abyssalBar.speed = baseMoodspeed + magicsum
 
-    if (barInfo[activeBar].speed<0) {
+    if (barInfo[activeBar].speed<0) { // Prevents negative speeds
         barInfo[activeBar].speed = 1;
     }
-
 }
 
 // Setting interval higher = worse transitioning rate. Currently 
 setInterval(updateProgress, 20);
 
-// Gets the progress
-const progressContainers = document.getElementsByClassName('progress-container');
-for (const all of progressContainers) {
-    all.addEventListener("click", () => {
-        activeBar = all.id.replace("btn", "")
+// Creates Barz
+function renderBars() {
+    const createBars = document.getElementById("barHolder");
+    createBars.innerHTML = ""
+
+    Object.keys(barInfo).forEach(bar => {
+        const containerDiv = document.createElement("div")
+        const progressContainer = document.createElement("div")
+        const progressBar = document.createElement("div")
+        const progressText = document.createElement("span")
+        const infoContainer = document.createElement("div")
+        const infoText = document.createElement("p")
+
+        containerDiv.classList.add("hidden")
+        containerDiv.classList.add("skill-row")
+        containerDiv.id = `${bar}Container`
+
+        progressContainer.classList.add("progress-container")
+        progressContainer.id = `${bar}btn`
+
+        progressBar.classList.add("progress-bar")
+        progressBar.id = bar
+
+        progressText.classList.add("progress-text")
+        progressText.id = `${bar}LevelDisplay`
+
+        infoContainer.classList.add("skill-info")
+        infoContainer.id = `${bar}Info`
+
+        infoText.innerText = barInfo[bar][2];
+
+        createBars.appendChild(containerDiv)
+        containerDiv.appendChild(progressContainer)
+        containerDiv.appendChild(infoContainer)
+        infoContainer.appendChild(infoText)
+        progressContainer.appendChild(progressBar)
+        progressContainer.appendChild(progressText)
+
+        progressContainer.addEventListener("click", () => { activeBar = progressContainer.id.replace("btn", "")})
     });
-};
+    
+    console.log("Bar rendering completed")
+
+}
 
 // Recalculates buffs
 function recalcBuffs() {
