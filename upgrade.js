@@ -16,9 +16,9 @@ const upgrades = [
     {
         name: "The pit",
         id: "unlockpit",
-        cost: [["wisdom", 5]],
+        cost: [["wisdom", 10]],
         unlocked: false,
-        reqs: [["knowledge", 25]],
+        reqs: [["wisdom", 5]],
         flavortext: "",
         purchased: 0,
         maxpurchases: 1,
@@ -75,9 +75,9 @@ const upgrades = [
     {
         name: "Unlock Vitality",
         id: "unlockvitbtn",
-        cost: [["knowledge", 75], ["wisdom", 2]],
+        cost: [["knowledge", 50], ["wisdom", 2]],
         unlocked: false,
-        reqs: [["knowledge", 60]],
+        reqs: [["knowledge", 30]],
         flavortext: "I may not have a brain gentlemen. But I have an idea..",
         purchased: 0,
         maxpurchases: 1,
@@ -217,7 +217,19 @@ const upgrades = [
         onpurchase: () => { document.getElementById("magiclearnerContainer").classList.remove("hidden"); },
         purchasetext: "Time to increase learning with magic!."
     },
-
+    {
+        name: "Magic Multitasker",
+        id: "unlockmagicmultitaskerbtn",
+        cost: [["energy", 200]],
+        unlocked: false,
+        reqs: [["magiclearner", 12]],
+        flavortext: "A very OP upgrade. Verrry OP.",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => { document.getElementById("magicmultitaskerContainer").classList.remove("hidden"); },
+        purchasetext: "Learn multiple times over...somehow?"
+    },
+    
     {
         name: "Unlock Potion",
         id: "unlockpotionbtn",

@@ -80,6 +80,8 @@ Ideas:
 
 - Automate displaying variables
 
+- Add popup every ~10mins that asks user to give feedback (upgrade can disable it)
+
 - Add more potion types
 
 - Fix issues where knowledge does not update unless clicked (as bonus doesn't update)
@@ -197,7 +199,32 @@ function track(event, data) {
     }
 }
 
-setInterval(() => track("60_secondsStayed"), 60000); // 60 secs
+// If player is idle
+let idleTime = Date.now();
+let isIdle = false;
+setInterval(() => {
+    checkIdle()
+    if (isIdle === false) {
+        track("60_secondsActive")
+    }
+}, 60000); // Checks if idle every 60 secs
+
+function checkIdle() {
+    const timeElapsed = Date.now() - idleTime
+    if (timeElapsed>(5*60000)) { // If it's been over (x) without a window tap
+        isIdle = true;
+    } else {
+        isIdle = false;
+    }
+}
+
+function resetIdleTimer() {
+    idleTime = Date.now();
+}
+
+window.addEventListener('mousemove', resetIdleTimer);
+window.addEventListener('keydown', resetIdleTimer);
+window.addEventListener('click', resetIdleTimer);
 
 // Clear console
 setInterval(() => console.clear() , 120000); // 2 Minutes every clear

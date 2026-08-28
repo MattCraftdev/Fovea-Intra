@@ -11,14 +11,25 @@ class ProgressBar {
     };
     
     update() {
+        let speed = this.speed
+        if (this.elementId !== "creation") {
+            if (activeBar === this.elementId) {
+                speed = this.speed
+            } else {
+                speed = (this.speed*magicmultiBar.level)/100 // Basically if the magicmulti bar goes to level 100 the bar fills like normal        
+            }
+        } 
+
+
         if (this.progress < this.maxprogress) {
-            this.progress += this.speed;
+            this.progress += speed;
             let widthPercent = Math.min((this.progress / this.maxprogress) * 100, 100);
             this.element.style.width = widthPercent + "%";
+
         } else {
             this.level++;
             this.progress = 0;
-            console.log(`${this.progress}/${this.maxprogress}. Speed is ${this.speed}`)
+            console.log(`${this.progress}/${this.maxprogress}. Speed is ${speed}, base speed is ${this.speed}`)
             // Expo increase value
             this.maxprogress = this.maxprogress*this.expoincrease;
             
@@ -29,9 +40,15 @@ class ProgressBar {
             }
         };
 
-        if (!this.elementId === "creation") {
+        if (this.elementId !== "creation") {
             updateAllSpeeds();            
         }
+
+        document.querySelectorAll(".progress-container").forEach(bar => bar.classList.remove("selectedTab"));
+        if (activeBar) {
+            document.getElementById(`${activeBar}btn`).classList.add("selectedTab");            
+        }
+
     };
 
     reset() {
@@ -66,7 +83,7 @@ class ProgressBar {
     }
 };
 
-// Progress Bars
+// Progress Bars: ID, speed(Doesn't matter), Max Progress, Exponentional
 const vitBar = new ProgressBar("vit", 10, 1000, 1.15);
 const flexBar = new ProgressBar("flex", 10, 500, 1.1);
 const mediateBar = new ProgressBar("mediate", 10, 2000, 1.2);
@@ -81,12 +98,13 @@ const insightBar = new ProgressBar("insight", 10, 6000, 1.2);
 const magicBar = new ProgressBar("magic", 10, 5000, 1.2);
 const magicstudyBar = new ProgressBar("magicstudy", 10, 10000, 1.15);
 const magiclearnerBar = new ProgressBar("magiclearner", 10, 25000, 1.3);
+const magicmultiBar = new ProgressBar("magicmulti", 10, 50000, 1.4);
 const abyssalBar = new ProgressBar("abyssal", 10, 10000, 1.25);
 
 const moodBar = new ProgressBar("mood", 0, 0, 0); // Do not mark. Placeholder Bar!!!
 const creationBar = new ProgressBar("creation", 10, 2500, 1.0003);
 
-const barInfo = { // activebar id, then says their bar then name to DISPLAY
+const barInfo = { // activebar id, then says their bar then name to DISPLAY. These also create the bars+containers
     // ID: Bar, Name, Description, Type
     study: [studyBar, "Study", "Studying increases the base knowledge gain", "na"],
     peace: [peaceBar, "Peace", "Increases the power of wisdom clicks +1.", "na"],
@@ -102,6 +120,7 @@ const barInfo = { // activebar id, then says their bar then name to DISPLAY
     magic: [magicBar, "Magic", "Increases all magic bar speeds.", "magic"],
     magicstudy: [magicstudyBar, "Magic Study", "Increases the study learning speed", "magic"],
     magiclearner: [magiclearnerBar, "Magic Learner", "Increases the base speed of all bars. (Yes it's OP)", "magic"],
+    magicmulti: [magicmultiBar, "Magic Multitasker", "Passively increases all bars by flat 1% of their normal speed (Very OP)", "magic"],
     abyssal: [abyssalBar, "Abyssal", "Increases the pit loot by boosting what you throw in there", "magic"],
 }   
 
@@ -111,16 +130,12 @@ let matterBarActive = false;
 
 // Update Progress Bars
 function updateProgress() {
-    
-    const chosenBar = barInfo[activeBar]
 
-    if (chosenBar) {
-        chosenBar[0].update();
-        document.getElementById(`${activeBar}LevelDisplay`).innerText = `${chosenBar[1]} Level: ${chosenBar[0].level}`
-
-        document.querySelectorAll(".progress-container").forEach(bar => bar.classList.remove("selectedTab"));
-        document.getElementById(`${activeBar}btn`).classList.add("selectedTab");
-    }
+    Object.keys(barInfo).forEach(bar => {
+        const specificBar = barInfo[bar]
+        specificBar[0].update()
+        document.getElementById(`${bar}LevelDisplay`).innerText = `${specificBar[1]} Level: ${specificBar[0].level}`
+    })
 
     if (matterBarActive) {
         creationBar.update();
@@ -175,10 +190,6 @@ function updateAllSpeeds() {
     magicstudyBar.speed = baseMoodspeed + magicsum
     magiclearnerBar.speed = baseMoodspeed + magicsum
     abyssalBar.speed = baseMoodspeed + magicsum
-
-    if (barInfo[activeBar].speed<0) { // Prevents negative speeds
-        barInfo[activeBar].speed = 1;
-    }
 }
 
 // Setting interval higher = worse transitioning rate. Currently 

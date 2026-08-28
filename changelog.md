@@ -1,5 +1,14 @@
 # Newest versions
 
+2026/08/27 10:53 PM - [0.62.0]
+- If the player is idle, it will not send a tracking time
+- Magic multitasker upgrade/bar, which gives the player passive speed for all bars (1%)
+- Fixed lots of errors
+- Specifically fixed error with bars not having elements (If no save, render anyway)
+- Optimized update progress function/update(); in bars
+- Altered upgrade costs (balencing) to make early game less "locked" (because no way to increase moodcap)
+- Fixed issue where speeds were not updating
+
 2026/08/27 1:25 PM - [0.61.0]
 - Fixed small issue with unlocker text saying "And" at the start of the sentence (gramatically incorrect)
 Fixed same issue in upgrade buttons as it uses the same base infastructure as unlocker

@@ -34,7 +34,7 @@ function startSaveTimer() {
 // Hard reset
 function hardReset() {
     if (confirm("Are you sure you want to erase your lifetime progress and start over?")) {
-        if (confirm("IMPORTANT! After clicking 'Ok', reload the page again to prevent any bar issues.")) {
+        if (confirm("Are you doubley sure? This might make you sad :(")) {
             localStorage.removeItem("gameSave");
             location.reload();
         }
@@ -116,6 +116,7 @@ function loadGame() {
 
     } else {
         console.log("no save found")
+        renderBars();
     }
 };
 
