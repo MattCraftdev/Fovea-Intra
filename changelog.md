@@ -1,6 +1,11 @@
 # Newest versions
 
-2026/08/27 10:53 PM - [0.62.0]
+2026/08/28 9:11 PM - [0.62.1]
+- Fixed issue with the creationBar not saving (manual save)
+- Fixed the issue with it throwing an error because this.element in bars was not there
+- Updated UMAMI tracking to a new website fresh
+
+2026/08/27 10:53 PM - [0.62.0]  
 - If the player is idle, it will not send a tracking time
 - Magic multitasker upgrade/bar, which gives the player passive speed for all bars (1%)
 - Fixed lots of errors

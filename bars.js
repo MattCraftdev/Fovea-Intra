@@ -11,12 +11,17 @@ class ProgressBar {
     };
     
     update() {
+        this.element = document.getElementById(this.elementId);
         let speed = this.speed
         if (this.elementId !== "creation") {
             if (activeBar === this.elementId) {
                 speed = this.speed
             } else {
                 speed = (this.speed*magicmultiBar.level)/100 // Basically if the magicmulti bar goes to level 100 the bar fills like normal        
+            }
+
+            if (speed<0) {
+                speed = 1;
             }
         } 
 
@@ -66,20 +71,22 @@ class ProgressBar {
     }
 
     loadSaveData(savedData) {
-       
         if (savedData) {
-            console.log(this.elementId)
             this.element = document.getElementById(this.elementId);
             this.level = savedData.level;
             this.maxprogress = savedData.maxprogress;
             this.progress = savedData.progress;
             if (this.elementId) {
-                document.getElementById(`${this.elementId}LevelDisplay`).innerText = `${barInfo[this.elementId][1]} Level: ${this.level}`;
-                let widthPercent = Math.min((this.progress / this.maxprogress) * 100, 100);
-                this.element.style.width = widthPercent + "%";                    
+                if (this.elementId !== "creation") {
+                    document.getElementById(`${this.elementId}LevelDisplay`).innerText = `${barInfo[this.elementId][1]} Level: ${this.level}`;
+     
+                } else {
+                    document.getElementById(`creationLevelDisplay`).innerText = `Matter Level: ${creationBar.level}`
+                    let widthPercent = Math.min((this.progress / this.maxprogress) * 100, 100);
+                    this.element.style.width = widthPercent + "%";                                                
+                }
             }
         }
-            
     }
 };
 
@@ -130,7 +137,6 @@ let matterBarActive = false;
 
 // Update Progress Bars
 function updateProgress() {
-
     Object.keys(barInfo).forEach(bar => {
         const specificBar = barInfo[bar]
         specificBar[0].update()

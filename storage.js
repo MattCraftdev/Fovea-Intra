@@ -53,7 +53,8 @@ function saveGame() {
         player: player,
         potionStock: potionStock.stocks,
         upgrades: upgrades.map(u => ({ id: u.id, unlocked: u.unlocked, purchased: u.purchased })),
-        bars: barsOnly.map(b => ({ id: b.elementId, level: b.level, maxprogress: b.maxprogress, progress: b.progress}))
+        bars: barsOnly.map(b => ({ id: b.elementId, level: b.level, maxprogress: b.maxprogress, progress: b.progress})),
+        creation: { id: "creation", level: creationBar.level, maxprogress: creationBar.maxprogress, progress: creationBar.progress}
     };  
     localStorage.setItem("gameSave", JSON.stringify(state));
 
@@ -104,6 +105,11 @@ function loadGame() {
             });
         } else {
             console.log("Bars not loaded")
+        }
+
+        if (state.creation) {
+            let saveState = state.creation
+            creationBar.loadSaveData(saveState);
         }
 
         document.getElementById("saveIntervalDisplay").innerText = `Save Interval: ${player.saveInterval/1000} Seconds`
