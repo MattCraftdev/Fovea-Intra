@@ -30,10 +30,6 @@ html {
 
 .tabs button:hover{
     background-color:#003106;
-    color:white;
-    padding: 20px;
-    font-size:26px; 
-    font-family:'Times New Roman';
 }
 
 .tabs {
@@ -58,6 +54,17 @@ html {
     position: fixed;
     z-index: 12;
     background-color: black;
+
+}
+
+#googleFeedback {
+    width: 60%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    z-index: 12;
 
 }
 

@@ -73,9 +73,35 @@ const upgrades = [
     },
 
     {
+        name: "Click to hold Knowledge",
+        id: "holdknowledge",
+        cost: [["matter", 15]],
+        unlocked: false,
+        reqs: [["matter", 10]],
+        flavortext: "I want to be lazier",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {},
+        purchasetext: "Instead of on purpose, passively think."
+    },
+
+    {
+        name: "Click to hold Wisdom",
+        id: "holdwisdom",
+        cost: [["wisdom", 25]],
+        unlocked: false,
+        reqs: [["matter", 50]],
+        flavortext: "I want to be even lazier",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {},
+        purchasetext: "Wisdom requires deep thought. You don't have that but I'm granting you it."
+    },
+
+    {
         name: "Unlock Vitality",
         id: "unlockvitbtn",
-        cost: [["knowledge", 50], ["wisdom", 2]],
+        cost: [["knowledge", 50]],
         unlocked: false,
         reqs: [["knowledge", 30]],
         flavortext: "I may not have a brain gentlemen. But I have an idea..",
@@ -148,7 +174,7 @@ const upgrades = [
         purchased: 0,
         maxpurchases: 1,
         onpurchase: () => {
-            document.getElementById("switchtoWisdom").classList.remove("hidden");
+            document.getElementById("createWisdom").classList.remove("hidden");
             document.getElementById("displayWisdom").classList.remove("hidden");
             document.getElementById("displayWisdomBonus").classList.remove("hidden");
         },

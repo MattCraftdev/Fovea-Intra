@@ -1,5 +1,13 @@
 # Newest versions
 
+2026/08/31 11:37 - [0.63.0]
+- Switched all navs to divs to stay structurally correct
+- Fixed again the hardreset not reseting sometimes
+- Updated tabs hovering to be simple (only darken color)
+- Tweaked vit cost to make it functionally impossible to be softlocked
+- Added click to hold upgrade and it's respective functions
+Added click to hold to wisdom and knowledge (Their respective upgrades)
+
 2026/08/28 9:11 PM - [0.62.1]
 - Fixed issue with the creationBar not saving (manual save)
 - Fixed the issue with it throwing an error because this.element in bars was not there
@@ -443,3 +451,4 @@ VACA: July 8-28th
 CAMP: AUGUST 4-7th
 GALAXY: AUGUST 11th-15th
 FF: August 14th, 21st, 28th
+VACA #2: August 28th to September 4th

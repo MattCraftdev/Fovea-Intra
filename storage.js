@@ -35,8 +35,12 @@ function startSaveTimer() {
 function hardReset() {
     if (confirm("Are you sure you want to erase your lifetime progress and start over?")) {
         if (confirm("Are you doubley sure? This might make you sad :(")) {
+            if (saveTimer) {clearInterval(saveTimer)}
+            console.log("starting removal")
             localStorage.removeItem("gameSave");
+            console.log("removed gamesave")
             location.reload();
+            console.log("reloading")
         }
     }
 }

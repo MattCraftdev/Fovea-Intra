@@ -79,13 +79,13 @@
     <button id = "tryAgain" class = "hidden">Try Again.</button>
 
 
-    <nav id = "Story">
+    <div id = "Story">
         <h1 id = "storyTitle">Message Log</h1>
         
         <p id = "chatbox"></p>
 
         <button id = "closeStory" class = "tech">Close</button>
-    </nav> 
+    </div> 
 
     <div id = "savingnotif">Saving...</div>
 
@@ -124,12 +124,12 @@
         <button class = "tab-button" data-tab="Settings">Settings</button>
     </div>
 
-    <nav class = "tab-content" id = "Creation">
-    <br>
-        
+    <div class = "tab-content" id = "Creation">
+        <br>
+            
         <section id = "box">
             <button id = "createKnowledge" class = "anyButton" >Create 1 knowledge</button>
-            <button id = "switchtoWisdom" class = "anyButton hidden" >Create 1 wisdom (0/20)</button>
+            <button id = "createWisdom" class = "anyButton hidden" >Create 1 wisdom (0/20)</button>
         </section>
 
         <section>
@@ -143,17 +143,17 @@
             <div id = "magicHolder"></div>
             
         </section>
-    </nav>
+    </div>
 
 
-    <nav class = "tab-content" id = "Inventions">
+    <div class = "tab-content" id = "Inventions">
         <button id = "unlocker" class = "upgrade">Find random requirements for an upgrade - Costs 100 knowledge</button>
 
         <div id = "upgradeContainer"></div>
         <br>
-    </nav>
+    </div>
     
-    <nav class = "tab-content" id = "Pit">
+    <div class = "tab-content" id = "Pit">
         <p>The pit will take your resources you throw into it and MIGHT give you something back if you're nice. Something good.</p>
         <p id = "displayThePitTimer">Time until reset: </p>
         Throw <input type ="number" id = "thepitKnowledge"> Knowledge into the pit
@@ -162,9 +162,9 @@
         <button id = "setToMax" class = "hidden upgrade">Set to players knowledge and wisdom amounts</button>
         <button id = "the-pit">Sacrifice stuff into the pit</button>
 
-    </nav>
+    </div>
 
-    <nav class = "tab-content" id = "Matter">
+    <div class = "tab-content" id = "Matter">
         <div id="creationContainer">
             <div class="progress-container">
                 <div class="progress-bar" id="creation"></div>
@@ -174,9 +174,9 @@
 
         <button id = "enableMatter">Enable Matter</button>
         <button id = "disableMatter">Disable Matter</button>
-    </nav>
+    </div>
 
-    <nav class = "tab-content" id = "Energy">
+    <div class = "tab-content" id = "Energy">
         <p id = "displayGoop">Goop: 0</p>
         <p id = "displayGloop">Gloop: 0</p>
         <p id = "displayEnergy">Energy: 0</p>
@@ -184,9 +184,9 @@
         <button class = "energybtn" id = "collectGoop">Collect Raw Goop - Costs 5 knowledge</button>
         <button class = "energybtn" id = "processGloop">Process into Gloop - Costs 5 knowledge & 2 Goop</button>
         <button class = "energybtn" id = "packageEnergy">Package into useable energy - Costs 2 wisdom & 2 Gloop</button>
-    </nav>
+    </div>
 
-    <nav class = "tab-content" id = "Potion">
+    <div class = "tab-content" id = "Potion">
         <p id = "potionTimers"></p>
         <br>
         <button class = "potionbtn" id="createPotion">Create a Potion</button>
@@ -197,10 +197,10 @@
         <br>
 
         <p id = "potionShowing" ></p>
-    </nav>
+    </div>
 
 
-    <nav class = "tab-content" id = "Settings">
+    <div class = "tab-content" id = "Settings">
         <h1>Saving/Loading</h1>
         <p>If you're having issues saving or loading, press these buttons</p>
         <button id = "saveGame" class = "tech">Save Game</button>
@@ -216,8 +216,6 @@
 
         <h1>Suggestions && player feedback!</h1>
         <a href = "https://docs.google.com/forms/d/e/1FAIpQLSfZzc5mmAiAml43Evbn82LncR4xEki9pOgxahC1puiPt-Zmsg/viewform?usp=publish-editor" target ="_blank">Google form ANON feedback</a>
-
-        <h1>Other</h1>
         <button id = "showStory" class = "tech">Reshow Story</button>
         <button id = "getHelp" class = "tech">Reshow help screen</button>
         <button id = "getChangelog" class = "tech">Changelog</button>
@@ -225,7 +223,7 @@
     
         <h1>Statistics</h1>
         <p>Sorry I didn't add any...check back later</p>
-    </nav>
+    </div>
 
     <script src="main.js" defer></script>
     <script src="systems.js" defer></script>

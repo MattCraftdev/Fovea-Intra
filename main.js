@@ -98,8 +98,17 @@ Ideas:
 - Add images
 */
 
+document.getElementById("createKnowledge").addEventListener("mousedown", () => {
+    holdDown("createKnowledge", "holdknowledge", knowledgeAction)
+})
+
+document.getElementById("createWisdom").addEventListener("mousedown", () => {
+    holdDown("createWisdom", "holdwisdom", wisdomAction)
+})
+
+
 // Knowledge addition system + wisdom sys
-document.getElementById("createKnowledge").addEventListener("click", () => {
+const knowledgeAction = () => {
     let boosts = 1;
     if (potionStock["Knowledge I"]>0) {
         boosts = boosts*1.5
@@ -120,12 +129,10 @@ document.getElementById("createKnowledge").addEventListener("click", () => {
         document.getElementById("createKnowledge").innerText = `Create ${knowledgeIncrease} Knowledge`;
     } else {
         say("You got too much knowledge per click, so basically your mood can't support it.")
-    }
-});
+    }    
+}
 
-
-
-document.getElementById("switchtoWisdom").addEventListener("click", () => {
+const wisdomAction = () => {
     if (mood+((Math.floor(player.reflection/player.wisdomRate)*4))<player.cap) {
         let boosts = 1;
         if (potionStock["Wisdom I"]>0) {
@@ -151,8 +158,8 @@ document.getElementById("switchtoWisdom").addEventListener("click", () => {
         } 
     } else {
         say("There's not enough mood capacity, so you can't have more wisdom. Damn developer doing this, we should overthrown him together!")
-    }
-});
+    }    
+}
 
 // Energy Systems
 document.getElementById("collectGoop").addEventListener("click", () => {
@@ -192,6 +199,65 @@ document.getElementById("enableMatter").addEventListener("click", () => {
     }
 });
 
+// If it's holding down
+function holdDown(buttonId, upgradeId, action) {
+    const element = document.getElementById(buttonId)
+    let ifBought = false;
+    const upgrade = upgrades.find(UP => UP.id === upgradeId);
+
+    if (element.hasHoldListener === true) return // Prevents stacking. Do not remove
+    element.hasHoldListener = true;
+
+    if (upgrade.purchased === 1) {
+        ifBought = true;
+    }
+
+    let timer = null;
+
+    if (ifBought === true) {
+
+        let pressTime = 0;
+        const clickTime = 250;
+
+        function normalClick() {
+            if (Date.now()-pressTime<clickTime) {
+                action()
+            }
+        }
+        
+        if (timer) {clearInterval(timer)}
+        element.addEventListener("mousedown", () => {
+            pressTime = Date.now()
+            timer = setInterval(() => {
+                action()
+            }, 1000); // Runs action per 2 seconds
+        })
+
+        element.addEventListener("mouseup", () => {
+            normalClick()
+            clearInterval(timer)
+        });
+
+        element.addEventListener("mouseleave", () => {
+            normalClick()
+            clearInterval(timer)
+        });
+
+
+        if (timer) {
+            console.log("timer is alive")
+        }
+
+    } else {
+        element.addEventListener("click", () => {
+            action()            
+        })
+
+        console.log("Clicking Normal")
+    }
+}
+
+ 
 // Umami Tracking for detailed analytics to improve game (yeah well i need to know what to improve)
 function track(event, data) {
     if (typeof umami !== "undefined") {
