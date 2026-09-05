@@ -55,6 +55,9 @@ setInterval(() => {
     document.getElementById("displayMatter").innerText = "Matter: " + player.matter;
     document.getElementById("displayMatterBonus").innerText = ` (+${player.matterBonus})`
 
+    document.getElementById("displayBarcoins").innerText = `Barcoins: ${player.barcoins}`
+    document.getElementById("displayTotalMiners").innerText = `Total Miners: ${player.miners}`
+
     document.getElementById("displayGoop").innerText = "Goop: " + player.rawgoop;
     document.getElementById("displayGloop").innerText = "Gloop: " + player.processedgloop;
     document.getElementById("displayEnergy").innerText = "Energy: " + player.energy;
@@ -63,6 +66,7 @@ setInterval(() => {
     
     solveMood();
     updateLifespan();
+
 
     let boosts = 1;
     if (potionStock["Slow I"]>0) {
@@ -114,14 +118,10 @@ function solveMood() {
     else if (mood<=(player.cap*0.1)) { moodStatus = "Overjoyed"; }
     else { moodStatus = "Ok" }
 
-    const fillratio = mood/player.cap
     if (document.getElementById("moodContainer").classList.contains("hidden")) {
         document.getElementById("displayMood").innerText = "Mood: " + moodStatus;
     } else {
-        moodBar.element.style.width = fillratio*100 + "%";
         document.getElementById("moodBarDisplay").innerText =`Mood: ${moodStatus} (${Math.floor(mood.toFixed(0))}/${player.cap})`;
-        moodBar.element.style.backgroundColor = `hsl(${(1-fillratio)*120}, 100%, 45%)`;
-
         if (!document.getElementById("displayMood").classList.contains("hidden")) {
             document.getElementById("displayMood").classList.add("hidden")
         }

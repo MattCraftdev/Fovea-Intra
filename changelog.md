@@ -1,6 +1,16 @@
 # Newest versions
 
-2026/08/31 11:37 - [0.63.0]
+2026/09/04 3:15 PM - [0.65.0] MINING
+- Modified and changed the tabs (moved bars to new training tab, merged matter/energy into creation) for cleaner structure
+- Added the upgrade and tab for mining
+- Added mineshaft upgrade, as well as miner purchasing (which is calced by 100+sq of miners)
+- Added another file, mining.js
+- Also added barcoins system (for mining) where filling up a bar gives you a barcoin and bar coin display unlocked
+- Changed the bar system, so bars that are "normal progressBars" do update() while special cases call display()
+- Added upgrade types which will move where the upgrade will appear (and different colors depending on)
+- Rendering mineshafts (this is not done, very hard to work with)
+
+2026/08/31 12:57 PM - [0.63.0]
 - Switched all navs to divs to stay structurally correct
 - Fixed again the hardreset not reseting sometimes
 - Updated tabs hovering to be simple (only darken color)

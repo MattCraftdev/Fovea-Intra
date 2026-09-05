@@ -52,6 +52,7 @@
         <br>
 
         <h2>Advanced Mechanics</h2>
+        <dl>
             <dt>The Pit</dt>
             <dd>Throw your knowledge and wisdom into it to potientally recieve stuff back or nothing. Wisdom is better to throw FYI</dd>
             
@@ -71,6 +72,11 @@
             <dt>Dealers</dt>
             <dd>When getting potions, there are individual dealers. Each dealer can give you better potions if they're lucky, or scam you. If you feel unlucky, simply switch dealers!</dd>
             <dd>Each dealer also has a different cooldown for purchasing potions, so take that in mind. Switching dealers also has a 5 min cooldown</dd>
+       
+            <dt>Barcoins</dt>
+            <dd>Barcoins are generated whenever any bar (normal bar) fills up. They are used to purchase various things in the miner tab</dd>
+        
+        </dl>
     </div>
 
 
@@ -115,13 +121,24 @@
 
 
     <div class = "tabs">
+        <button class = "tab-button hidden" data-tab="Training">Training</button>
         <button class = "tab-button" data-tab="Creation">Creation</button>
         <button class = "tab-button" data-tab="Inventions">Inventions</button>
         <button class = "tab-button hidden" data-tab="Pit">The Pit</button>
-        <button class = "tab-button hidden" data-tab="Matter">Matter</button>
-        <button class = "tab-button hidden" data-tab="Energy">Energy Wells</button>
         <button class = "tab-button hidden" data-tab="Potion">Potion Brewery</button>
+        <button class = "tab-button hidden" data-tab="Mining">Mining</button>
         <button class = "tab-button" data-tab="Settings">Settings</button>
+    </div>
+
+    <div class = "tab-content" id = "Training">
+        <h2 class="section-title" id = "naheader">Basic</h2>
+        <div id = "naHolder"></div>
+
+        <h2 class="section-title" id = "healthheader">Health</h2>
+        <div id = "healthHolder"></div>
+
+        <h2 class="section-title" id = "magicheader">Magic</h2>
+        <div id = "magicHolder"></div>
     </div>
 
     <div class = "tab-content" id = "Creation">
@@ -132,17 +149,27 @@
             <button id = "createWisdom" class = "anyButton hidden" >Create 1 wisdom (0/20)</button>
         </section>
 
-        <section>
-            <h2 class="section-title" id = "naheader">Basic</h2>
-            <div id = "naHolder"></div>
+        <div id = "matterContainer" class = "hidden">
+            <div id="creationContainer">
+                <div class="progress-container">
+                    <div class="progress-bar" id="creation"></div>
+                    <span class= "progress-text" id = "creationLevelDisplay"></span>
+                </div>
+            </div>
 
-            <h2 class="section-title" id = "healthheader">Health</h2>
-            <div id = "healthHolder"></div>
+            <button id = "enableMatter">Enable Matter</button>
+            <button id = "disableMatter">Disable Matter</button>
+        </div>
 
-            <h2 class="section-title" id = "magicheader">Magic</h2>
-            <div id = "magicHolder"></div>
-            
-        </section>
+        <div id = "energyContainer" class="hidden">
+            <p id = "displayGoop">Goop: 0</p>
+            <p id = "displayGloop">Gloop: 0</p>
+            <p id = "displayEnergy">Energy: 0</p>
+
+            <button class = "energybtn" id = "collectGoop">Collect Raw Goop - Costs 5 knowledge</button>
+            <button class = "energybtn" id = "processGloop">Process into Gloop - Costs 5 knowledge & 2 Goop</button>
+            <button class = "energybtn" id = "packageEnergy">Package into useable energy - Costs 2 wisdom & 2 Gloop</button>
+        </div>
     </div>
 
 
@@ -161,29 +188,6 @@
         Throw <input type ="number" id = "thepitWisdom"> Wisdom into the pit
         <button id = "setToMax" class = "hidden upgrade">Set to players knowledge and wisdom amounts</button>
         <button id = "the-pit">Sacrifice stuff into the pit</button>
-
-    </div>
-
-    <div class = "tab-content" id = "Matter">
-        <div id="creationContainer">
-            <div class="progress-container">
-                <div class="progress-bar" id="creation"></div>
-                <span class= "progress-text" id = "creationLevelDisplay"></span>
-            </div>
-        </div>
-
-        <button id = "enableMatter">Enable Matter</button>
-        <button id = "disableMatter">Disable Matter</button>
-    </div>
-
-    <div class = "tab-content" id = "Energy">
-        <p id = "displayGoop">Goop: 0</p>
-        <p id = "displayGloop">Gloop: 0</p>
-        <p id = "displayEnergy">Energy: 0</p>
-
-        <button class = "energybtn" id = "collectGoop">Collect Raw Goop - Costs 5 knowledge</button>
-        <button class = "energybtn" id = "processGloop">Process into Gloop - Costs 5 knowledge & 2 Goop</button>
-        <button class = "energybtn" id = "packageEnergy">Package into useable energy - Costs 2 wisdom & 2 Gloop</button>
     </div>
 
     <div class = "tab-content" id = "Potion">
@@ -197,6 +201,16 @@
         <br>
 
         <p id = "potionShowing" ></p>
+    </div>
+
+    <div class = "tab-content" id="Mining">
+        <p id="displayBarcoins">Barcoins: 0</p>
+        <br>
+        <span id="displayMiners">Unassigned miners: 0</span><span id="displayTotalMiners">Total Miners: 0</span>
+        <p id="miningUpgradeContainer"></p>
+        <button id="buyMiner">Buy a miner for 100 Barcoins</button>
+        
+        <p id="mineshaftContainer"></p>
     </div>
 
 
@@ -232,6 +246,7 @@
     <script src="thepit.js" defer></script>
     <script src="storage.js" defer></script>
     <script src="potions.js" defer></script>
+    <script src="mining.js" defer></script>
 
     <script data-goatcounter="https://mattcraft-dev.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>

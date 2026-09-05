@@ -58,7 +58,8 @@ function saveGame() {
         potionStock: potionStock.stocks,
         upgrades: upgrades.map(u => ({ id: u.id, unlocked: u.unlocked, purchased: u.purchased })),
         bars: barsOnly.map(b => ({ id: b.elementId, level: b.level, maxprogress: b.maxprogress, progress: b.progress})),
-        creation: { id: "creation", level: creationBar.level, maxprogress: creationBar.maxprogress, progress: creationBar.progress}
+        creation: { id: "creation", level: creationBar.level, maxprogress: creationBar.maxprogress, progress: creationBar.progress},
+        mine: mine,
     };  
     localStorage.setItem("gameSave", JSON.stringify(state));
 
@@ -76,6 +77,7 @@ function loadGame() {
         
         if (state.player) {Object.assign(player, state.player);}
         if (state.potionStock) {Object.assign(potionStock.stocks, state.potionStock)}
+        if (state.mine) {Object.assign(mine, state.mine);}
 
         if (state.upgrades) {
             state.upgrades.forEach(savedU => {
@@ -115,6 +117,8 @@ function loadGame() {
             let saveState = state.creation
             creationBar.loadSaveData(saveState);
         }
+
+
 
         document.getElementById("saveIntervalDisplay").innerText = `Save Interval: ${player.saveInterval/1000} Seconds`
         saveSlider.value = player.saveInterval/1000

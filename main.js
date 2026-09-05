@@ -31,6 +31,9 @@ const player = {
     processedgloop: 0,
     energy: 0,
 
+    barcoins: 0, // Non intrusive variables (standard)
+    miners: 0,
+
     currentDealer: null,
     currentDealerSwitchable: false,
     currentPotionCost: null,
@@ -65,6 +68,21 @@ const potionStock = {
     "Slow IV": 0,
 }
 
+const mine = { // Dedicated specifics
+    minerCost: 100,
+    minerlevel: 1,
+
+    stone: 0,
+    blackCrystal: 0,
+    blueGem: 0,
+    darkPyrite: 0,
+
+    hut: 0,
+    shack: 0,
+    house: 0,
+    apartment: 0,
+}
+
 /*
 Ideas:
 - Free pit rolls (Like a token)
@@ -93,7 +111,6 @@ Ideas:
 
 - mass wisdom conversion upgrade
 - mass energy conversion upgrade
-- Click and hold upgrade
 
 - Add images
 */

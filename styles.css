@@ -310,3 +310,14 @@ dt {
 .potionsContainer {
     display: flex;
 }
+
+.minerbtn {
+    background-color:#623eff;
+    color:rgb(0, 0, 0);
+    padding: 10px;
+    border: 20px;
+    font-size: 100%;
+    font-family:'georgia';
+    display: flex;
+    margin: 10px; 
+}

@@ -13,18 +13,16 @@ class ProgressBar {
     update() {
         this.element = document.getElementById(this.elementId);
         let speed = this.speed
-        if (this.elementId !== "creation") {
-            if (activeBar === this.elementId) {
-                speed = this.speed
-            } else {
-                speed = (this.speed*magicmultiBar.level)/100 // Basically if the magicmulti bar goes to level 100 the bar fills like normal        
-            }
 
-            if (speed<0) {
-                speed = 1;
-            }
-        } 
+        if (activeBar === this.elementId) {
+            speed = this.speed
+        } else {
+            speed = (this.speed*magicmultiBar.level)/100 // Basically if the magicmulti bar goes to level 100 the bar fills like normal        
+        }
 
+        if (speed<0) {
+            speed = 1;
+        }
 
         if (this.progress < this.maxprogress) {
             this.progress += speed;
@@ -37,24 +35,38 @@ class ProgressBar {
             console.log(`${this.progress}/${this.maxprogress}. Speed is ${speed}, base speed is ${this.speed}`)
             // Expo increase value
             this.maxprogress = this.maxprogress*this.expoincrease;
+            player.barcoins += 1;
             
-            if (this.elementId === "creation") {
-                player.matter += 1;
-            } else {
-                track(this.elementId)
-            }
+            track(this.elementId)
         };
-
-        if (this.elementId !== "creation") {
-            updateAllSpeeds();            
-        }
 
         document.querySelectorAll(".progress-container").forEach(bar => bar.classList.remove("selectedTab"));
         if (activeBar) {
             document.getElementById(`${activeBar}btn`).classList.add("selectedTab");            
         }
-
+        updateAllSpeeds();   
     };
+
+    display() {
+        if (this.elementId === "creation") {
+            if (this.progress < this.maxprogress) {
+                this.progress += this.speed;
+                let widthPercent = Math.min((this.progress / this.maxprogress) * 100, 100);
+                this.element.style.width = widthPercent + "%";
+
+            } else {
+                this.level++;
+                this.progress = 0;
+                player.matter += 1;
+                this.maxprogress = this.maxprogress*this.expoincrease;
+            }
+            
+        } else if (this.elementId === "mood") {
+            const fillratio = mood/player.cap
+            this.element.style.backgroundColor = `hsl(${(1-fillratio)*120}, 100%, 45%)`;
+            this.element.style.width = fillratio*100 + "%";
+        }
+    }
 
     reset() {
         this.progress = 0;
@@ -144,9 +156,11 @@ function updateProgress() {
     })
 
     if (matterBarActive) {
-        creationBar.update();
+        creationBar.display();
         document.getElementById(`creationLevelDisplay`).innerText = `Matter Level: ${creationBar.level}`
     }
+
+    moodBar.display();
 
     recalcBuffs();
 };
