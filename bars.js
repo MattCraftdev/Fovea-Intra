@@ -27,7 +27,7 @@ class ProgressBar {
         if (this.progress < this.maxprogress) {
             this.progress += speed;
             let widthPercent = Math.min((this.progress / this.maxprogress) * 100, 100);
-            this.element.style.width = widthPercent + "%";
+            this.view(widthPercent)
 
         } else {
             this.level++;
@@ -52,7 +52,7 @@ class ProgressBar {
             if (this.progress < this.maxprogress) {
                 this.progress += this.speed;
                 let widthPercent = Math.min((this.progress / this.maxprogress) * 100, 100);
-                this.element.style.width = widthPercent + "%";
+                this.view(widthPercent);
 
             } else {
                 this.level++;
@@ -64,8 +64,12 @@ class ProgressBar {
         } else if (this.elementId === "mood") {
             const fillratio = mood/player.cap
             this.element.style.backgroundColor = `hsl(${(1-fillratio)*120}, 100%, 45%)`;
-            this.element.style.width = fillratio*100 + "%";
+            this.view(fillratio*100)
         }
+    }
+
+    view(percent) { // Strictly for only VIEW bars that displays
+        this.element.style.width = percent + "%";
     }
 
     reset() {
@@ -234,7 +238,6 @@ function renderBars() {
         const progressText = document.createElement("span")
         const infoContainer = document.createElement("div")
         const infoText = document.createElement("p")
-
         
         containerDiv.classList.add("hidden")
         containerDiv.classList.add("skill-row")

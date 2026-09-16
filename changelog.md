@@ -1,6 +1,17 @@
 # Newest versions
 
-2026/09/04 3:15 PM - [0.65.0] MINING
+2026/09/15 10:22 PM - [0.66.0] MINING II
+- Set everything to a global reqAniLoop for peak performance and simplicity - This greatly increased FPS to match screen hz
+- Optimized bars again with this.view()
+- Mineshafts creation fully automated and works!
+- Assigning miners works aswell, with it displaying + buttons
+- Added mineshaft bars
+- Added 3 mineshaft upgrades, completing it for now (along with fixed a big error because of the no upgrades)
+
+The pursuit of education sadly will halt updates if you haven't noticed already.
+Nonetheless, I will try my best to continue the project, and won't give up unless I formally declare so in the changelog
+
+2026/09/04 8:34 PM - [0.65.0] MINING
 - Modified and changed the tabs (moved bars to new training tab, merged matter/energy into creation) for cleaner structure
 - Added the upgrade and tab for mining
 - Added mineshaft upgrade, as well as miner purchasing (which is calced by 100+sq of miners)
@@ -460,5 +471,6 @@ Such a pain to add.
 VACA: July 8-28th
 CAMP: AUGUST 4-7th
 GALAXY: AUGUST 11th-15th
-FF: August 14th, 21st, 28th
+FF: August 14th, 21st, 28th, september 4th
 VACA #2: August 28th to September 4th
+HELL: September 7th+

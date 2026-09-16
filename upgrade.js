@@ -363,6 +363,49 @@ const upgrades = [
         purchasetext: "Finally completed.",
         type: "mining",
     },
+
+    {
+        name: "Unlock Mineshaft 2: Dark Celler",
+        id: "unlockshaft2",
+        cost: [["barcoins", 250]],
+        unlocked: false,
+        reqs: [["barcoins", 150]],
+        flavortext: "The 2nd shaft is created, leading into somehow a celler. Strange.",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {},
+        purchasetext: "Ah. The sweet wine of spoils.",
+        type: "mining",
+    },
+
+    {
+        name: "Unlock Mineshaft 3: Scary Cave",
+        id: "unlockshaft3",
+        cost: [["barcoins", 500]],
+        unlocked: false,
+        reqs: [["barcoins", 300]],
+        flavortext: "The 3rd shaft is created, leading into somehow a cave. A dark one by that.",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {},
+        purchasetext: "The smell of dust fills your nose.",
+        type: "mining",
+    },
+
+    {
+        name: "Unlock Mineshaft 4: Dark Celler",
+        id: "unlockshaft4",
+        cost: [["barcoins", 1250]],
+        unlocked: false,
+        reqs: [["barcoins", 750]],
+        flavortext: "The 4th shaft is created, leading into the abyss. A pit.",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {},
+        purchasetext: "Shall you venture?",
+        type: "mining",
+    },
+
 ]
 
 // Checks if any upgrade can be unlocked
@@ -435,7 +478,7 @@ function buyUpgrade(upgradeId) {
 
         upgrade.onpurchase();
         console.log(upgrade);
-        say(upgrade.purchasetext)            
+        say(upgrade.purchasetext)
     }
 };
 

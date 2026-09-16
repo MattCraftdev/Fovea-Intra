@@ -98,7 +98,7 @@ function loadGame() {
             });
 
         } else {
-            console.log("No upgrades loaded ERROR")
+            console.error("No upgrades loaded ERROR")
         }
 
 
@@ -110,7 +110,7 @@ function loadGame() {
                 }
             });
         } else {
-            console.log("Bars not loaded")
+            console.error("Bars not loaded")
         }
 
         if (state.creation) {
@@ -127,6 +127,9 @@ function loadGame() {
         createPotionShowing();
         resetThePitTimer();
         changeDealerTimer();
+        displayLoop();
+        renderMineshafts();
+
 
     } else {
         console.log("no save found")

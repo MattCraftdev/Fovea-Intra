@@ -5,8 +5,13 @@ function calcCost(resourceCost) {
 
     for (const costObject of resourceCost) {
         const [resourceType, cost] = costObject;
+        const totalAmount = 0;
+        if (player[`${resourceType}Bonus`]) {
+            totalAmount = player[resourceType] + player[`${resourceType}Bonus`]
+        } else {
+            totalAmount = player[resourceType]
+        }
 
-        const totalAmount = player[resourceType] + player[`${resourceType}Bonus`]
 
         console.log(`Resource: ${resourceType}. Cost: ${cost}. Player amount with Bonus: ${totalAmount}`)
 
@@ -44,7 +49,25 @@ function calcCost(resourceCost) {
 }
 
 // Display Loops
-setInterval(() => {
+function displayLoop() {
+    solveMood();
+    updateLifespan();
+    displays();
+    totalMinersUsed();
+    updateMineshaft();
+
+    requestAnimationFrame(displayLoop);
+}
+
+let totalMinersUse = 0;
+function totalMinersUsed() {
+    totalMinersUse = 0;
+    for (const mines of mineshafts) {
+        totalMinersUse += mines.minersOn
+    }
+}
+
+function displays() {
     document.getElementById("displayKnowledge").innerText = "Knowledge: " + player.knowledge;
     document.getElementById("displayKnowledgeBonus").innerText = ` (+${player.knowledgeBonus})`
 
@@ -64,10 +87,6 @@ setInterval(() => {
 
     document.getElementById("displayThePitTimer").innerText = `Time until reset: ${player.pitTimer}`
     
-    solveMood();
-    updateLifespan();
-
-
     let boosts = 1;
     if (potionStock["Slow I"]>0) {
         boosts = boosts*0.8
@@ -83,7 +102,7 @@ setInterval(() => {
     }
 
     timeInterval = boosts*500
-}, 50);
+}
 
 
 // Mood system
