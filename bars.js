@@ -44,7 +44,6 @@ class ProgressBar {
         if (activeBar) {
             document.getElementById(`${activeBar}btn`).classList.add("selectedTab");            
         }
-        updateAllSpeeds();   
     };
 
     display() {
@@ -65,10 +64,21 @@ class ProgressBar {
             const fillratio = mood/player.cap
             this.element.style.backgroundColor = `hsl(${(1-fillratio)*120}, 100%, 45%)`;
             this.view(fillratio*100)
+
+        } else if (this.elementId === "minerlevel") {
+            const levelprogress = (mine.minerlevelProgress/mine.minerlevelMax)*100
+            this.view(levelprogress)
+            document.getElementById("minerlevelBarDisplay").innerText = `Level: ${mine.minerlevel} (Progress: ${mine.minerlevelProgress}/${mine.minerlevelMax})`
+
+        } else if (this.elementId === "minerinterval") {
+            const timerin = (timerintervalChecker/mine.minerInterval)*100
+            this.view(timerin)
+            document.getElementById("minerintervalBarDisplay").innerText = `Time until miner mines once: ${Math.floor(timerintervalChecker/1000)}s/${mine.minerInterval/1000}s`
         }
     }
 
     view(percent) { // Strictly for only VIEW bars that displays
+        this.element = document.getElementById(this.elementId);
         this.element.style.width = percent + "%";
     }
 
@@ -124,7 +134,10 @@ const magiclearnerBar = new ProgressBar("magiclearner", 10, 25000, 1.3);
 const magicmultiBar = new ProgressBar("magicmulti", 10, 50000, 1.4);
 const abyssalBar = new ProgressBar("abyssal", 10, 10000, 1.25);
 
-const moodBar = new ProgressBar("mood", 0, 0, 0); // Do not mark. Placeholder Bar!!!
+const moodBar = new ProgressBar("mood", 0, 0, 0); // Do not mark. Placeholder Bars!!!
+const minerlevelBar = new ProgressBar("minerlevel", 0, 0, 0);
+const minerintervalBar = new ProgressBar("minerinterval", 0, 0, 0);
+
 const creationBar = new ProgressBar("creation", 10, 2500, 1.0003);
 
 const barInfo = { // activebar id, then says their bar then name to DISPLAY. These also create the bars+containers
@@ -165,10 +178,9 @@ function updateProgress() {
     }
 
     moodBar.display();
-
-    recalcBuffs();
+    minerlevelBar.display();
+    minerintervalBar.display();
 };
-
 
 // Updates all speeds quickly
 function updateAllSpeeds() {
@@ -176,25 +188,24 @@ function updateAllSpeeds() {
     const mooddiff = 0.5 - currentProgress;
     const baseSpeed = 10
 
-    let boostSpeed = baseSpeed
+    boosts.speed = baseSpeed
 
     if (potionStock["Speed I"]>0) {
-        boostSpeed = boostSpeed*1.25
+        boosts.speed = boosts.speed*1.25
     } 
     if (potionStock["Speed II"]>0) {
-        boostSpeed = boostSpeed*1.5
+        boosts.speed = boosts.speed*1.5
     }
     if (potionStock["Speed III"]>0) {
-        boostSpeed = boostSpeed*2
+        boosts.speed = boosts.speed*2
     }
     if (potionStock["Speed IV"]>0) {
-        boostSpeed = boostSpeed*3
+        boosts.speed = boosts.speed*3
     }
-
 
     const mediateBuff = mediateBar.level*2
     // Total Mood diff between (5 and -5). BTW bMs is the total average and affects ALL Bars. Careful.
-    const baseMoodspeed = (boostSpeed + mooddiff*10)+magiclearnerBar.level*3
+    const baseMoodspeed = (boosts.speed + mooddiff*10)+magiclearnerBar.level*3
     const magicsum = (magicBar.level-10)+mediateBuff
     const healthsum = (taichiBar.level*3)-(hitBar.level*2);
 
@@ -215,9 +226,6 @@ function updateAllSpeeds() {
     magiclearnerBar.speed = baseMoodspeed + magicsum
     abyssalBar.speed = baseMoodspeed + magicsum
 }
-
-// Setting interval higher = worse transitioning rate. Currently 
-setInterval(updateProgress, 20);
 
 // Creates Barz
 function renderBars() {
@@ -269,6 +277,7 @@ function renderBars() {
             holder = magicHolder
             progressBar.style.backgroundColor = `#1c3a5c`;
         } else {
+            holder = healthHolder
             console.log(barInfo[bar][3])
         }
     

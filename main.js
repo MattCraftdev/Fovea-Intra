@@ -71,6 +71,9 @@ const potionStock = {
 const mine = { // Dedicated specifics
     minerCost: 100,
     minerlevel: 1,
+    minerlevelProgress: 0,
+    minerlevelMax: 200,
+    minerInterval: 5000, // ms
 
     stone: 0,
     blackCrystal: 0,
@@ -92,7 +95,6 @@ Ideas:
 - Maybe make some upgrades unlock 2 bars        
 - Cheap helptext upgrades
 - Upgrade that reveals max resources reached on each resource
-- Make story able to be hidden and have different chat types (flavortext, storytext, pittext, etc.)
 
 - Optimize upgrade code (merge id and name by making the id THE name but id is just without spaces)
 
@@ -101,9 +103,6 @@ Ideas:
 - Add popup every ~10mins that asks user to give feedback (upgrade can disable it)
 
 - Add more potion types
-
-- Fix issues where knowledge does not update unless clicked (as bonus doesn't update)
-- Fix the same issue with wisdom
 
 - Add inventions helptext for each upgrade (on what they do like bars)
 - Make bars say their progress,speed, etc.
@@ -126,24 +125,10 @@ document.getElementById("createWisdom").addEventListener("mousedown", () => {
 
 // Knowledge addition system + wisdom sys
 const knowledgeAction = () => {
-    let boosts = 1;
-    if (potionStock["Knowledge I"]>0) {
-        boosts = boosts*1.5
-    }
-    if (potionStock["Knowledge II"]>0) {
-        boosts = boosts*2
-    }
-    if (potionStock["Knowledge III"]>0) {
-        boosts = boosts*3
-    }
-    if (potionStock["Knowledge IV"]>0) {
-        boosts = boosts*5
-    }
 
-    const knowledgeIncrease = Math.floor(player.baseKnowledgeIncrease*boosts)
+    const knowledgeIncrease = Math.floor(player.baseKnowledgeIncrease*boosts.know)
     if ((knowledgeIncrease+mood)<player.cap) {
         player.knowledge += knowledgeIncrease;
-        document.getElementById("createKnowledge").innerText = `Create ${knowledgeIncrease} Knowledge`;
     } else {
         say("You got too much knowledge per click, so basically your mood can't support it.")
     }    
@@ -151,21 +136,7 @@ const knowledgeAction = () => {
 
 const wisdomAction = () => {
     if (mood+((Math.floor(player.reflection/player.wisdomRate)*4))<player.cap) {
-        let boosts = 1;
-        if (potionStock["Wisdom I"]>0) {
-            boosts = boosts*1.5
-        }
-        if (potionStock["Wisdom II"]>0) {
-            boosts = boosts*2
-        }
-        if (potionStock["Wisdom III"]>0) {
-            boosts = boosts*3
-        }
-        if (potionStock["Wisdom IV"]>0) {
-            boosts = boosts*4
-        }
-
-        const reflectionIncrease = player.wisdomClickPower*boosts
+        const reflectionIncrease = player.wisdomClickPower*boosts.wis
 
         player.reflection += reflectionIncrease;
         if (player.reflection>=player.wisdomRate) {
@@ -314,7 +285,7 @@ setInterval(() => console.clear() , 120000); // 2 Minutes every clear
 
 // Prevents clicking enter IMPORTANT!
 window.addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' || e.keyCode === 13) {
+  if (e.key === 'Enter') {
     e.preventDefault();
   }
 }, true);

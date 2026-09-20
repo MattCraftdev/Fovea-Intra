@@ -11,33 +11,41 @@ const mineshafts = [
     {
         id: "unlockshaft1",
         name: "Basic Tunnel",
-        diff: 10,
+        diff: 100,
+        xp: 2,
         progress: 0,
         minersOn: 0,
+        resourceChances: [["stone", 10], ["blackCrystal", 95]]
     },
 
     {
         id: "unlockshaft2",
         name: "Dark Celler",
-        diff: 100,
+        diff: 1000,
+        xp: 3,
         progress: 0,
         minersOn: 0,
+        resourceChances: [["stone", 0], ["blackCrystal", 50], ["darkPyrite", 95]]
     },
 
     {
         id: "unlockshaft3",
         name: "Scary Cave",
-        diff: 1000,
+        diff: 10000,
+        xp: 4,
         progress: 0,
         minersOn: 0,
+        resourceChances: [["stone", 0], ["blackCrystal", 40], ["blueGem", 90]]
     },
 
     {
         id: "unlockshaft4",
         name: "Deep Pit",
-        diff: 5000,
+        diff: 50000,
+        xp: 5,
         progress: 0,
         minersOn: 0,
+        resourceChances: [["blackCrystal", 0], ["blueGem", 70], ["darkPyrite", 85]]
     },
 
 ]
@@ -50,54 +58,54 @@ function renderMineshafts() {
 
     for (const chosenmine of mineshafts) {
  
-        const element = document.createElement("div")
-        element.classList.add("progress-container")
-        element.classList.add("hidden")
-        element.innerText = `${chosenmine.name}: ${chosenmine.minersOn}/${player.miners}`
-        element.style.width = "400px"
-        element.style.height = "100px"
-        element.id = `${chosenmine.id}div`
+        const text = document.createElement("div")
+        text.id = `${chosenmine.id}btn`
+        text.classList.add("progress-text")
 
         const buttonAdd = document.createElement("button")
         const buttonSubtract = document.createElement("button")
 
         buttonAdd.innerText = `Assign a miner to ${chosenmine.name}`
         buttonAdd.classList.add("minerbtn")
-        buttonAdd.classList.add("hidden")
         buttonAdd.id = `${chosenmine.id}add`
 
         buttonSubtract.innerText = `Take off a miner from ${chosenmine.name}`
         buttonSubtract.classList.add("minerbtn")
-        buttonSubtract.classList.add("hidden")
         buttonSubtract.id = `${chosenmine.id}subtract`
 
         // Progress bars in the mining
-        const containerDiv = document.createElement("div")
-        const progressContainer = document.createElement("div")
-        const progressBar = document.createElement("div")
-        const progressText = document.createElement("span")
-        miningBarsRenders[chosenmine.id] = new ProgressBar(chosenmine.id, 0, 0, 0)
+        miningBarsRenders[chosenmine.id] = new ProgressBar(`${chosenmine.id}bar`, 0, 0, 0)
 
-        progressContainer.classList.add("progress-container")
-        progressContainer.classList.add("hidden")
-        progressContainer.id = `${chosenmine.id}btn`
-        
-        progressBar.classList.add("progress-bar")
-        progressBar.id = `${chosenmine.id}`
+        const pContainer = document.createElement("div")
+        pContainer.classList.add("progress-container")
+        pContainer.style.width = "400px"
+        pContainer.style.height = "100px"
 
-        progressText.classList.add("progress-text")
-        progressText.id = `${chosenmine.id}Display`
 
-        container.appendChild(element)
-        container.appendChild(buttonAdd)
-        container.appendChild(buttonSubtract)
-        container.appendChild(containerDiv)
+        const bar = document.createElement("div")
+        bar.id = `${chosenmine.id}bar`
+        bar.classList.add("progress-bar")
+        bar.style.backgroundColor = `rgb(79, 79, 79)`
 
-        containerDiv.appendChild(progressContainer)
-        progressContainer.appendChild(progressBar)
-        progressContainer.appendChild(progressText)
+        const shaftDiv = document.createElement("div")
+        shaftDiv.id = `${chosenmine.id}mainContainer`
+        shaftDiv.classList.add("hidden")
+        shaftDiv.classList.add("minerContainer")
+
+        container.appendChild(shaftDiv)
+        container.appendChild(pContainer)
+        shaftDiv.appendChild(buttonAdd)
+        shaftDiv.appendChild(buttonSubtract)
+        pContainer.appendChild(text)
+        pContainer.appendChild(bar)
 
         buttonAdd.addEventListener("click", () => {
+
+            let totalMinersUse = 0;
+            for (const mines of mineshafts) {
+                totalMinersUse += mines.minersOn
+            }
+
             if (totalMinersUse<player.miners) {
                 chosenmine.minersOn += 1
             }
@@ -108,8 +116,9 @@ function renderMineshafts() {
                 chosenmine.minersOn -= 1;
             }
         })
-        
+
     }
+
     console.log("Completed mineshaft render")
 }
 
@@ -119,11 +128,8 @@ function updateMineshaft() { // Updates units
         const unlockMineshaft = upgrades.find(check => check.id === mineshaft.id); // Unlocks visual mineshafts
 
         const ids = mineshaft.id
-        const divC = `${ids}div`
-        const addBtn = `${ids}add`
-        const subtractBtn = `${ids}subtract`
-        const progressContainer = `${ids}btn`
-        const progressText = `${ids}Display`
+        const mainContainer = `${ids}mainContainer`
+        const text = `${ids}btn`
         const progressBar = miningBarsRenders[ids]
 
         if (unlockMineshaft && unlockMineshaft.purchased === 1) {
@@ -131,26 +137,67 @@ function updateMineshaft() { // Updates units
                 document.getElementById("mineshaftContainer").classList.remove("hidden")
             }
 
-            if (document.getElementById(divC) && document.getElementById(divC).classList.contains("hidden")) {
-                document.getElementById(divC).classList.remove("hidden")
-                document.getElementById(addBtn).classList.remove("hidden")
-                document.getElementById(subtractBtn).classList.remove("hidden")
-                document.getElementById(progressContainer).classList.remove("hidden")
+            if (document.getElementById(mainContainer) && document.getElementById(mainContainer).classList.contains("hidden")) {
+                document.getElementById(mainContainer).classList.remove("hidden")
             }
 
         }
-        
-        if (document.getElementById(divC)) {
-            document.getElementById(divC).innerText = `${mineshaft.name}: ${mineshaft.minersOn}/${player.miners}`            
+
+        if (document.getElementById(text)) {
+            document.getElementById(text).innerText = `${mineshaft.name}: ${mineshaft.minersOn}/${player.miners} (${mineshaft.progress}/${mineshaft.diff})`
         }
 
-        if (document.getElementById(progressText)) {
-            document.getElementById(progressText).innerText = `${mineshaft.progress}/${mineshaft.diff}`
-        }
-
-        if (document.getElementById(progressContainer)) {
+        if (document.getElementById(mainContainer)) {
             const percent = (mineshaft.progress/mineshaft.diff)*100
             progressBar.view(percent)
         }
     }
+}
+
+function minerUpdate() {
+    for (const mines of mineshafts) {
+        if (player.barcoins>mines.minersOn) {
+
+            player.barcoin -= mines.minersOn;
+            mines.progress += mines.minersOn
+            
+            if (mines.progress>mines.diff) { // If it progresses enough to get xp
+                mines.progress = 0
+
+                const roll = Math.random()*100
+
+                let topChecker = 0;
+                let top = null;
+                for (const resources of mines.resourceChances) {
+                    if (resources[1]<roll) {
+                        topChecker = resources[1]
+                        top = resources[0]
+                    }
+                }
+
+                if (top===null) {
+                    say("Your miner came back with...nothing")
+                } else {
+                    mine[top] += 1;
+                }
+
+
+                mine.minerlevelProgress += mines.xp // XP giving for leveling miners
+
+                if (mine.minerlevelProgress>=mine.minerlevelMax) {
+                    mine.minerlevel += 1;
+                    mine.minerlevelProgress = 0;
+                    mine.levelMax = (mine.levelMax ** 2)
+                }
+            }
+
+        } else {
+
+            say("Need more barcoins for miners to operate! Don't be a cheapskate, they ain't working free.")
+        }
+    }
+
+    // Level Buffs
+    mine.minerInterval = 5001-(mine.minerlevel)
+    
 }

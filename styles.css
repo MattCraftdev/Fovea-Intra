@@ -292,7 +292,7 @@ dt {
     border: 20px;
     font-size: 100%;
     font-family:'georgia';
-    display:flex;
+    display: flex;
     margin: 10px;
 }
 
@@ -318,6 +318,10 @@ dt {
     border: 20px;
     font-size: 100%;
     font-family:'georgia';
-    display: flex;
+    display: block;
     margin: 10px; 
+}
+
+.minerContainer {
+    display: flex;
 }

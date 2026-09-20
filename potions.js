@@ -234,7 +234,7 @@ function switchDealers() {
             player.currentDealer = newDealer
             say(`You got a new dealer! Say hello to ${player.currentDealer.Name}`)
             document.getElementById("currentDealer").innerText = `Current Dealer: ${player.currentDealer.Name}`
-
+            changeDealerTimer();
         } else {
             if (player.currentDealer.Name == newDealer.Name) {
                 switchDealers();
@@ -242,10 +242,9 @@ function switchDealers() {
                 player.currentDealer = newDealer
                 say(`You got a new dealer! Say hello to ${player.currentDealer.Name}`)
                 document.getElementById("currentDealer").innerText = `Current Dealer: ${player.currentDealer.Name}`
+                changeDealerTimer();
             }
         }
-        
-    changeDealerTimer();
 
     } else {
         say("Wait until you can locate a new dealer.")

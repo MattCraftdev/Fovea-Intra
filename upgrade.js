@@ -405,13 +405,12 @@ const upgrades = [
         purchasetext: "Shall you venture?",
         type: "mining",
     },
-
 ]
 
 // Checks if any upgrade can be unlocked
 const inventionsBtn = document.querySelector('[data-tab = "Inventions"]');
 
-setInterval(() => {
+function checkIfUnlocked() {
     for (const loop of upgrades) { // Goes through each consecutive Upgrade
         let allReqsMet = true;
 
@@ -462,8 +461,7 @@ setInterval(() => {
 
         };
     };
-
-}, 500); // Checks every 0.5 seconds
+}
 
 // Buying the upgrade
 function buyUpgrade(upgradeId) {

@@ -43,6 +43,9 @@
             <dt>Inventions</dt>
             <dd>Technically you can call them upgrades, but anyway their requirements to unlock are hidden! Some take knowledge/wisdom (BUT NEVER BONUSES!) or levels of bars. Since the 0.50.0 update, there can be multi requirements or costs</dd>
             
+            <dt>Training</dt>
+            <dd>Click on a bar. For free, it passively fills up. Only 1 may be active at a time (until later), so choose wisely.</dd>
+
             <p>If you're ever stuck and no upgrades are visible, you can click the find a random unlock (if you have enough) and it'll say a random unlock requirements in the story page.</p>
         </dl>
         
@@ -51,7 +54,7 @@
         <p>The point of this game is to carve your own personal path. You may miss an upgrade or something, but that's the exact point. Discover something hella cool your personal own way.</p>
         <br>
 
-        <h2>Advanced Mechanics</h2>
+        <h1>Advanced Tabs</h1>
         <dl>
             <dt>The Pit</dt>
             <dd>Throw your knowledge and wisdom into it to potientally recieve stuff back or nothing. Wisdom is better to throw FYI</dd>
@@ -59,12 +62,18 @@
             <dt>Bonuses (+0)</dt>
             <dd>Bonuses are the numbers next to your resources. Gotten only from the pit, it's not taxed by mood and only used when you cannot normally afford an upgrade. Is not thrown into the pit aswell</dd>
             
+            <dt>Unlocker</dt>
+            <dd>Paying a small fee, the unlocker will give you the requirements for a random upgrade. Not the upgrade. So to see the upgrade you first must do the requirements. Some requirements may be confusing. Always said in the message box. If it says "All upgrades bought" you've completed the game for the most part as of now!</dd>
+            
             <dt>Magic</dt>
             <dd>Many people say to me that they don't know what it does, but you must find out! (Hint: level it up)</dd>
 
             <dt>Matter/Creation</dt>
             <dd>The creation bar gives you +1 matter every time it levels up. While active, it makes your mood capacity be able to take 1/2 as much as normal.</dd>
-    
+        </dl>
+
+        <h2>Potion Brewery</h2>
+        <dl>
             <dt>Potions</dt>
             <dd>Potions are given by dealers, and each have their own effects, hinted by the name. A higher tier potion (ex: II is higher than I) does more and lasts longer opposed to a lower tier.</dd>
             <dd>Potions also stack. Using a potion individually is much less superior to stacking different potion tiers at once, as they MULTIPLY each other. (if II gives 3x boost, III gives 4x boost, together they give a 12x, not 7x)</dd>
@@ -72,10 +81,24 @@
             <dt>Dealers</dt>
             <dd>When getting potions, there are individual dealers. Each dealer can give you better potions if they're lucky, or scam you. If you feel unlucky, simply switch dealers!</dd>
             <dd>Each dealer also has a different cooldown for purchasing potions, so take that in mind. Switching dealers also has a 5 min cooldown</dd>
-       
+        </dl>
+
+        <h2>Mining</h2>
+        <dl>
             <dt>Barcoins</dt>
-            <dd>Barcoins are generated whenever any bar (normal bar) fills up. They are used to purchase various things in the miner tab</dd>
+            <dd>Barcoins are generated whenever any bar in the Training tab fills up. They are used to purchase various things in the miner tab. In depth, it's a form of currency used at bars that miners solely rely on</dd>
+            
+            <dt>Miners</dt>
+            <dd>Miners progress in mineshafts, to gather resources. Finishing 1 mineshaft gives experience to the group of miners to mine better (slightly faster). To operate, they require 1 barcoin per progress mined.</dd>
         
+            <dt>Mineshafts</dt>
+            <dd>Miners may be assigned to a mineshaft to earn resources there. Each mineshaft has a different amount of difficulty to recieve a resource, and different chances for different resources depending on the mineshaft.</dd>
+
+            <dt>Resources</dt>
+            <dd>You will earn various resources while mining. Each one is different, and no resource is superior to others ever.</dd>
+            
+            <dt>Miner Levels/leveling</dt>
+            <dd>Miners have a collective level, which grows when the level bar fills up. To get experience for them, they must work in the mines and collect resources. Passively they will learn, and therefore gain XP. Be patient with them.</dd>
         </dl>
     </div>
 
@@ -127,6 +150,7 @@
         <button class = "tab-button hidden" data-tab="Pit">The Pit</button>
         <button class = "tab-button hidden" data-tab="Potion">Potion Brewery</button>
         <button class = "tab-button hidden" data-tab="Mining">Mining</button>
+        <button class = "tab-button hidden" data-tab="Market">Market</button>
         <button class = "tab-button" data-tab="Settings">Settings</button>
     </div>
 
@@ -205,14 +229,38 @@
 
     <div class = "tab-content" id="Mining">
         <p id="displayBarcoins">Barcoins: 0</p>
-        <br>
-        <span id="displayMiners">Unassigned miners: 0</span><span id="displayTotalMiners">Total Miners: 0</span>
+        <p id="displayStone">Stone: 0</p>
+        <p id="displayblackCrystal">Black Crystal: 0</p>
+        <p id="displaydarkPyrite">Dark Pyrite: 0</p>
+        <p id="displayblueGem">Blue Gem: 0</p>
+
+        <br><p id="displayTotalMiners">Total Miners: 0</p>
+
+        <div id = "minerlevelContainer">
+            <div class="progress-container">
+                <div class="progress-bar" id="minerlevel"></div>
+                <span class= "progress-text" id = "minerlevelBarDisplay">0%</span>
+            </div>
+        </div>
+
+        <div id = "minerintervalContainer">
+            <div class="progress-container">
+                <div class="progress-bar" id="minerinterval"></div>
+                <span class= "progress-text" id = "minerintervalBarDisplay">0%</span>
+            </div>
+        </div>
+
         <p id="miningUpgradeContainer"></p>
-        <button id="buyMiner">Buy a miner for 100 Barcoins</button>
+        <button class = "tech" id="buyMiner">Buy a miner for 100 Barcoins</button>
         
         <p id="mineshaftContainer" class="hidden"></p>
     </div>
 
+    <div class = "tab-content" id="Market">
+        <p>Market Offers</p>
+
+
+    </div>
 
     <div class = "tab-content" id = "Settings">
         <h1>Saving/Loading</h1>

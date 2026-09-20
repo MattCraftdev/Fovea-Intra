@@ -118,18 +118,9 @@ function loadGame() {
             creationBar.loadSaveData(saveState);
         }
 
-
-
         document.getElementById("saveIntervalDisplay").innerText = `Save Interval: ${player.saveInterval/1000} Seconds`
         saveSlider.value = player.saveInterval/1000
-        resetPotionStock();
-        resetDealerStock();
-        createPotionShowing();
-        resetThePitTimer();
-        changeDealerTimer();
-        displayLoop();
-        renderMineshafts();
-
+        OnLoadFunctions();
 
     } else {
         console.log("no save found")
@@ -141,3 +132,13 @@ window.addEventListener('DOMContentLoaded', () => {
     loadGame();
     startSaveTimer();
 });
+
+function OnLoadFunctions() {
+    resetPotionStock(); // Ret
+    resetDealerStock(); // Resets 
+    createPotionShowing(); // Sets potion showing to be updated
+    resetThePitTimer(); // Resets pit timer
+    changeDealerTimer(); // Resets Dealer timer
+    renderMineshafts();
+    displayLoop();
+}
