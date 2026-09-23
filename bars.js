@@ -35,7 +35,7 @@ class ProgressBar {
             console.log(`${this.progress}/${this.maxprogress}. Speed is ${speed}, base speed is ${this.speed}`)
             // Expo increase value
             this.maxprogress = this.maxprogress*this.expoincrease;
-            player.barcoins += 1;
+            resources.barcoins += 5;
             
             track(this.elementId)
         };
@@ -56,24 +56,24 @@ class ProgressBar {
             } else {
                 this.level++;
                 this.progress = 0;
-                player.matter += 1;
+                resources.matter += 1;
                 this.maxprogress = this.maxprogress*this.expoincrease;
             }
             
         } else if (this.elementId === "mood") {
-            const fillratio = mood/player.cap
+            const fillratio = mood/resources.cap
             this.element.style.backgroundColor = `hsl(${(1-fillratio)*120}, 100%, 45%)`;
             this.view(fillratio*100)
 
         } else if (this.elementId === "minerlevel") {
-            const levelprogress = (mine.minerlevelProgress/mine.minerlevelMax)*100
+            const levelprogress = (player.mine.minerlevelProgress/player.mine.minerlevelMax)*100
             this.view(levelprogress)
-            document.getElementById("minerlevelBarDisplay").innerText = `Level: ${mine.minerlevel} (Progress: ${mine.minerlevelProgress}/${mine.minerlevelMax})`
+            document.getElementById("minerlevelBarDisplay").innerText = `Level: ${player.mine.minerlevel} (Progress: ${player.mine.minerlevelProgress}/${player.mine.minerlevelMax})`
 
         } else if (this.elementId === "minerinterval") {
-            const timerin = (timerintervalChecker/mine.minerInterval)*100
+            const timerin = (timerintervalChecker/player.mine.minerInterval)*100
             this.view(timerin)
-            document.getElementById("minerintervalBarDisplay").innerText = `Time until miner mines once: ${Math.floor(timerintervalChecker/1000)}s/${mine.minerInterval/1000}s`
+            document.getElementById("minerintervalBarDisplay").innerText = `Time until miner mines once: ${Math.floor(timerintervalChecker/1000)}s/${player.mine.minerInterval/1000}s`
         }
     }
 
@@ -120,7 +120,7 @@ class ProgressBar {
 const vitBar = new ProgressBar("vit", 10, 1000, 1.15);
 const flexBar = new ProgressBar("flex", 10, 500, 1.1);
 const mediateBar = new ProgressBar("mediate", 10, 2000, 1.2);
-const martialBar = new ProgressBar("martial", 10, 3500, 1.2);
+const martialBar = new ProgressBar("martial", 10, 3000, 1.15);
 const hitBar = new ProgressBar("hit", 10, 5000, 1.25);
 const taichiBar = new ProgressBar("taichi", 10, 4000, 1.15);
 
@@ -184,7 +184,7 @@ function updateProgress() {
 
 // Updates all speeds quickly
 function updateAllSpeeds() {
-    const currentProgress = mood/player.cap;
+    const currentProgress = mood/resources.cap;
     const mooddiff = 0.5 - currentProgress;
     const baseSpeed = 10
 
@@ -302,7 +302,7 @@ function recalcBuffs() {
         player.matterCapNerf = 1;
     }
 
-    player.cap = Math.floor((100+(vitBar.level*5)+(martialBar.level*10)+(taichiBar.level*100)-(mediateBar.level)+player.capBonus)*player.matterCapNerf)
+    resources.cap = Math.floor((100+(vitBar.level*5)+(martialBar.level*10)+(taichiBar.level*100)-(mediateBar.level)+resources.capBonus)*player.matterCapNerf)
     
     player.lifespan = 50;
 

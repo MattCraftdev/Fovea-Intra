@@ -1,8 +1,8 @@
 // Buy miners
 document.getElementById("buyMiner").addEventListener("click", () => {
-    if (calcCost([["barcoins", mine.minerCost]])) {
+    if (calcCost([["barcoins", player.mine.minerCost]])) {
         player.miners += 1;
-        mine.minerCost = 100+(player.miners ** 2)
+        player.mine.minerCost = 500+(player.miners ** 2)
     }
 })
 
@@ -59,7 +59,7 @@ function renderMineshafts() {
     for (const chosenmine of mineshafts) {
  
         const text = document.createElement("div")
-        text.id = `${chosenmine.id}btn`
+        text.id = `${chosenmine.id}text`
         text.classList.add("progress-text")
 
         const buttonAdd = document.createElement("button")
@@ -77,10 +77,11 @@ function renderMineshafts() {
         miningBarsRenders[chosenmine.id] = new ProgressBar(`${chosenmine.id}bar`, 0, 0, 0)
 
         const pContainer = document.createElement("div")
+        pContainer.id = `${chosenmine.id}mainContainer`
+        pContainer.classList.add("hidden")
         pContainer.classList.add("progress-container")
         pContainer.style.width = "400px"
         pContainer.style.height = "100px"
-
 
         const bar = document.createElement("div")
         bar.id = `${chosenmine.id}bar`
@@ -88,7 +89,7 @@ function renderMineshafts() {
         bar.style.backgroundColor = `rgb(79, 79, 79)`
 
         const shaftDiv = document.createElement("div")
-        shaftDiv.id = `${chosenmine.id}mainContainer`
+        shaftDiv.id = `${chosenmine.id}btns`
         shaftDiv.classList.add("hidden")
         shaftDiv.classList.add("minerContainer")
 
@@ -129,7 +130,8 @@ function updateMineshaft() { // Updates units
 
         const ids = mineshaft.id
         const mainContainer = `${ids}mainContainer`
-        const text = `${ids}btn`
+        const btns = `${ids}btns`
+        const text = `${ids}text`
         const progressBar = miningBarsRenders[ids]
 
         if (unlockMineshaft && unlockMineshaft.purchased === 1) {
@@ -139,6 +141,7 @@ function updateMineshaft() { // Updates units
 
             if (document.getElementById(mainContainer) && document.getElementById(mainContainer).classList.contains("hidden")) {
                 document.getElementById(mainContainer).classList.remove("hidden")
+                document.getElementById(btns).classList.remove("hidden")
             }
 
         }
@@ -156,9 +159,9 @@ function updateMineshaft() { // Updates units
 
 function minerUpdate() {
     for (const mines of mineshafts) {
-        if (player.barcoins>mines.minersOn) {
+        if (resources.barcoins>mines.minersOn) {
 
-            player.barcoin -= mines.minersOn;
+            resources.barcoins -= mines.minersOn;
             mines.progress += mines.minersOn
             
             if (mines.progress>mines.diff) { // If it progresses enough to get xp
@@ -175,29 +178,79 @@ function minerUpdate() {
                     }
                 }
 
-                if (top===null) {
+                if (top === null) {
                     say("Your miner came back with...nothing")
                 } else {
-                    mine[top] += 1;
+                    player[top] += 1;
                 }
 
 
-                mine.minerlevelProgress += mines.xp // XP giving for leveling miners
+                player.mine.minerlevelProgress += mines.xp // XP giving for leveling miners
 
-                if (mine.minerlevelProgress>=mine.minerlevelMax) {
-                    mine.minerlevel += 1;
-                    mine.minerlevelProgress = 0;
-                    mine.levelMax = (mine.levelMax ** 2)
+                if (player.mine.minerlevelProgress>=player.mine.minerlevelMax) {
+                    player.mine.minerlevel += 1;
+                    player.mine.minerlevelProgress = 0;
+                    player.mine.levelMax = (player.mine.levelMax ** 2)
                 }
             }
 
-        } else {
-
-            say("Need more barcoins for miners to operate! Don't be a cheapskate, they ain't working free.")
         }
     }
 
     // Level Buffs
-    mine.minerInterval = 5001-(mine.minerlevel)
+    player.mine.minerInterval = 5001-(player.mine.minerlevel)
     
+}
+
+// Market Code
+let marketInterval = null;
+function resetMarketStock() {
+    const container = document.getElementById("marketHoldings")
+    container.innerHTML = ``
+
+    console.log("resetting market stock")
+
+    for (let a = 0; a < player.marketStocks; a++) {
+
+        const resourceKeys = (Object.keys(resources)).filter(stn => !stn.includes("Bonus"))
+                
+        let resourcesCost = Math.floor(Math.random()*100+100);
+        const typeCost = resourceKeys[Math.floor(Math.random()*resourceKeys.length)]
+    
+        const resourcesGive = Math.floor(Math.random()*50+75);
+        let typeGiven = resourceKeys[Math.floor(Math.random()*resourceKeys.length)]
+
+        if (typeGiven === "cap") {
+            typeGiven = "capBonus"
+        }
+
+        const elementBtn = document.createElement("button")
+        elementBtn.id = `marketButton${a}`
+        elementBtn.classList.add("upgrade")
+
+        const container = document.getElementById("marketHoldings")
+
+        container.appendChild(elementBtn)
+
+        elementBtn.innerText = `Trade in ${resourcesCost} ${typeCost} to recieve in return ${resourcesGive} ${typeGiven}`
+        elementBtn.addEventListener("click", () => {
+            if (calcCost([[typeCost, resourcesCost]])) {
+                resources[typeGiven] += resourcesGive
+                resourcesCost += 5;
+                elementBtn.innerText = `Trade in ${resourcesCost} ${typeCost} to recieve in return ${resourcesGive} ${typeGiven}`
+            }
+        });
+    }
+
+    let timeLeft = player.marketResetInterval
+
+    if (marketInterval) {clearInterval(marketInterval)}
+    
+    marketInterval = setInterval(() => {
+        timeLeft -= 1
+        document.getElementById("displayMarketInterval").innerText = `Time until market trades expire and change: ${timeLeft}`
+        if (timeLeft <= 0) {
+            resetMarketStock();
+        }
+    }, 1000)
 }

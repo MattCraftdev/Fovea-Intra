@@ -159,15 +159,19 @@ const potionDealers = [
 ]
 
 // Potion creation system
-let resources = 0;
+let resourcesCost = 0;
 let typeCost = "";
 // Resets stock, important!
 function resetPotionStock() {
-    resources = Math.floor(Math.random()*100+100);
-    const resourceTypes = ["knowledge", "wisdom", "energy", "matter"]
-    typeCost = resourceTypes[Math.floor(Math.random()*resourceTypes.length)]
+    resourcesCost = Math.floor(Math.random()*100+100);
+    const resourceKeys = (Object.keys(resources)).filter(stn => !stn.includes("Bonus"))
+    typeCost = resourceKeys[Math.floor(Math.random()*resourceKeys.length)]
 
-    document.getElementById("createPotion").innerText = `Buy Potion for ${typeCost} ${resources}`
+    if (typeCost && typeCost.includes("Bonus")) {
+        typeCost = typeCost.replace("Bonus", "");
+    }
+
+    document.getElementById("createPotion").innerText = `Buy Potion for ${typeCost} ${resourcesCost}`
 }
 
 // Buying potions
@@ -179,9 +183,9 @@ document.getElementById("createPotion").addEventListener("click", () => {
         
         if (player.currentPotionBuyable) {
             document.getElementById("currentDealer").innerText = `Current Dealer: ${player.currentDealer.Name}`
-            console.log(`${typeCost}, ${resources}`)
+            console.log(`${typeCost}, ${resourcesCost}`)
 
-            if (calcCost([[typeCost, resources]])) { // If you have enough shtuff
+            if (calcCost([[typeCost, resourcesCost]])) { // If you have enough shtuff
 
                 const randomPotion = Math.random()*100*potionOdds.length/4 // Rolls Potion
                 const rollPotion = potionOdds.find(tier => tier.rollmin<randomPotion && tier.rollmax>=randomPotion ); // Finds option from roll       
@@ -263,7 +267,7 @@ function changeDealerTimer() {
         document.getElementById("displayDealerWait").innerText = `Time until switching dealers permitted: ${timeLeft}`
         if (timeLeft <= 0) {
             player.currentDealerSwitchable = true;
-            clearTimeout(dealerInterval)
+            clearInterval(dealerInterval)
         }
         
     }, 1000)
@@ -284,7 +288,7 @@ function resetDealerStock() {
             document.getElementById("displayPotionBuyTimer").innerText = `Time until next potion purchaseable: ${timeLeft}`
             if (timeLeft <= 0) {
                 player.currentPotionBuyable = true;
-                clearTimeout(potionInterval)
+                clearInterval(potionInterval)
             }
             
         }, 1000);

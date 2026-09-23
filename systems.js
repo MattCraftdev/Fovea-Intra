@@ -1,15 +1,15 @@
 // Calculates cost relating to the bonuses (WILL DO SUBTRACTION BUT NOT RESULT, 
 function calcCost(resourceCost) {
-
     let overallCanBuy = true;
 
     for (const costObject of resourceCost) {
         const [resourceType, cost] = costObject;
         let totalAmount = 0;
-        if (player[`${resourceType}Bonus`]) {
-            totalAmount = player[resourceType] + player[`${resourceType}Bonus`]
+
+        if (resources[`${resourceType}Bonus`]) {
+            totalAmount = resources[resourceType] + resources[`${resourceType}Bonus`]
         } else {
-            totalAmount = player[resourceType]
+            totalAmount = resources[resourceType]
         }
 
 
@@ -17,14 +17,14 @@ function calcCost(resourceCost) {
 
         costObject.payWithBonus = false;
 
-        if (player[resourceType]>=cost) {
+        if (resources[resourceType]>=cost) {
             costObject.payWithBonus = false;
 
         } else if (totalAmount>=cost) {
             costObject.payWithBonus = true;
 
         } else {
-            console.log(`Cannot buy, because player only has ${player[resourceType]} ${resourceType}, which is less than ${cost} ${resourceType}`)
+            console.log(`Cannot buy, because player only has ${resources[resourceType]} ${resourceType}, which is less than ${cost} ${resourceType}`)
             overallCanBuy = false;
         }
         
@@ -35,11 +35,11 @@ function calcCost(resourceCost) {
             const [resourceType, cost] = costObject
 
             if (!costObject.payWithBonus) {
-                player[resourceType] -= cost;
+                resources[resourceType] -= cost;
             } else {
-                const difference = cost - player[resourceType];
-                player[resourceType] = 0;
-                player[`${resourceType}Bonus`] -= difference;
+                const difference = cost - resources[resourceType];
+                resources[resourceType] = 0;
+                resources[`${resourceType}Bonus`] -= difference;
             }
 
         }        
@@ -84,7 +84,7 @@ const intervalTimers = [
 
     {
         id: "UpdateMiners",
-        interval: mine.minerInterval,
+        interval: player.mine.minerInterval,
         lastChecked: 1000,
         execute: () => minerUpdate(),
     },
@@ -177,27 +177,26 @@ function recalcBoosts() {
 }
 
 function displays() {
-    document.getElementById("displayKnowledge").innerText = "Knowledge: " + player.knowledge;
-    document.getElementById("displayKnowledgeBonus").innerText = ` (+${player.knowledgeBonus})`
+    document.getElementById("displayKnowledge").innerText = "Knowledge: " + resources.knowledge;
+    document.getElementById("displayKnowledgeBonus").innerText = ` (+${resources.knowledgeBonus})`
 
-    document.getElementById("displayWisdom").innerText = "Wisdom: " + player.wisdom;
-    document.getElementById("displayWisdomBonus").innerText = ` (+${player.wisdomBonus})`
+    document.getElementById("displayWisdom").innerText = "Wisdom: " + resources.wisdom;
+    document.getElementById("displayWisdomBonus").innerText = ` (+${resources.wisdomBonus})`
 
-    document.getElementById("displayMatter").innerText = "Matter: " + player.matter;
-    document.getElementById("displayMatterBonus").innerText = ` (+${player.matterBonus})`
+    document.getElementById("displayMatter").innerText = "Matter: " + resources.matter;
 
-    document.getElementById("displayBarcoins").innerText = `Barcoins: ${player.barcoins}`
-    document.getElementById("displayStone").innerText = `Stone: ${mine.stone}`
-    document.getElementById("displayblackCrystal").innerText = `Black Crystal: ${mine.blackCrystal}`
-    document.getElementById("displaydarkPyrite").innerText = `Dark Pyrite: ${mine.darkPyrite}`
-    document.getElementById("displayblueGem").innerText = `Blue Gem: ${mine.blueGem}`
+    document.getElementById("displayBarcoins").innerText = `Barcoins: ${resources.barcoins}`
+    document.getElementById("displayStone").innerText = `Stone: ${resources.stone}`
+    document.getElementById("displayblackCrystal").innerText = `Black Crystal: ${resources.blackCrystal}`
+    document.getElementById("displaydarkPyrite").innerText = `Dark Pyrite: ${resources.darkPyrite}`
+    document.getElementById("displayblueGem").innerText = `Blue Gem: ${resources.blueGem}`
 
     document.getElementById("displayTotalMiners").innerText = `Total Miners: ${player.miners}`
-    document.getElementById("buyMiner").innerText = `Buy a miner for ${mine.minerCost} Barcoins`
+    document.getElementById("buyMiner").innerText = `Buy a miner for ${player.mine.minerCost} Barcoins`
 
-    document.getElementById("displayGoop").innerText = "Goop: " + player.rawgoop;
-    document.getElementById("displayGloop").innerText = "Gloop: " + player.processedgloop;
-    document.getElementById("displayEnergy").innerText = "Energy: " + player.energy;
+    document.getElementById("displayGoop").innerText = "Goop: " + resources.rawgoop;
+    document.getElementById("displayGloop").innerText = "Gloop: " + resources.processedgloop;
+    document.getElementById("displayEnergy").innerText = "Energy: " + resources.energy;
 
     document.getElementById("displayThePitTimer").innerText = `Time until reset: ${player.pitTimer}`
 }
@@ -208,37 +207,37 @@ let mood = 0;
 let moodStatus = "Ok";
 
 function solveMood() {
-    const ratio = Math.max(player.knowledge+player.wisdom*4, 0)/player.cap
-    mood = ratio*player.cap
+    const ratio = Math.max(resources.knowledge+resources.wisdom*4, 0)/resources.cap
+    mood = ratio*resources.cap
     
-    if (mood>=player.cap) {
+    if (mood>=resources.cap) {
         moodStatus = "Death awaits."
     }
 
-    if (mood>player.cap) {
-        if (player.knowledge>player.wisdom*4) { // IF numerically more knowledge that wisdom contributes to moodcap
-            if (player.knowledge>0) {
-                player.knowledge -= 1;
+    if (mood>resources.cap) {
+        if (resources.knowledge>resources.wisdom*4) { // IF numerically more knowledge that wisdom contributes to moodcap
+            if (resources.knowledge>0) {
+                resources.knowledge -= 1;
             }  
         } else {
-            if (player.wisdom>0) {
-                player.wisdom -= 1;
+            if (resources.wisdom>0) {
+                resources.wisdom -= 1;
             }
         }
 
     }
 
-    else if (mood>=(player.cap*0.9)) { moodStatus = "Depressed." }
-    else if (mood>(player.cap*0.6) && mood<(player.cap*0.9)) { moodStatus = "Sad." }
-    else if (mood>(player.cap*0.4) && mood<(player.cap*0.6)) { moodStatus = "Alright." }
-    else if (mood>(player.cap*0.1) && mood<(player.cap * 0.4)) { moodStatus = "Happy" }
-    else if (mood<=(player.cap*0.1)) { moodStatus = "Overjoyed"; }
+    else if (mood>=(resources.cap*0.9)) { moodStatus = "Depressed." }
+    else if (mood>(resources.cap*0.6) && mood<(resources.cap*0.9)) { moodStatus = "Sad." }
+    else if (mood>(resources.cap*0.4) && mood<(resources.cap*0.6)) { moodStatus = "Alright." }
+    else if (mood>(resources.cap*0.1) && mood<(resources.cap * 0.4)) { moodStatus = "Happy" }
+    else if (mood<=(resources.cap*0.1)) { moodStatus = "Overjoyed"; }
     else { moodStatus = "Ok" }
 
     if (document.getElementById("moodContainer").classList.contains("hidden")) {
         document.getElementById("displayMood").innerText = "Mood: " + moodStatus;
     } else {
-        document.getElementById("moodBarDisplay").innerText =`Mood: ${moodStatus} (${Math.floor(mood.toFixed(0))}/${player.cap})`;
+        document.getElementById("moodBarDisplay").innerText =`Mood: ${moodStatus} (${Math.floor(mood.toFixed(0))}/${resources.cap})`;
         if (!document.getElementById("displayMood").classList.contains("hidden")) {
             document.getElementById("displayMood").classList.add("hidden")
         }
@@ -314,7 +313,9 @@ TabButtons.forEach(button => {
 
         if (tabId == "Inventions") {
             inventionsBtn.classList.remove("glow");
-        };
+        } else if (tabId == "Mining") {
+            miningBtn.classList.remove("glow");
+        }
         console.log(`Clicking on ${tabId}`);
         
         button.classList.add("selectedTab");

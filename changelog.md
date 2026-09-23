@@ -1,20 +1,31 @@
 # Newest versions
 
-2026/09/18 - [0.69.0] MINING III &&RESTRUCTURING
+2026/09/22 - [0.70.0] MARKET && RESTRUCTURING II
+- Added the market tab and upgrade
+- The market has a basic amount of 2 trades going.
+- Trades involve 2 random resources for 2 random amounts
+- Trades periodically will change every 60 seconds automatically regardless
+- After purchasing a trade, it periodically goes up by +5
+- Switched all (mine) variables and player vars into a global resource pool of spendables
+- From the switch to mass resource array, some things are better
+- Minor bugfixes and changes
+- Tweaks to progression (you get 5 barcoins per bar fill opposed to 1, but raised costs)
+- Glow affect is now added to mining when an upgarde is available there
+
+2026/09/19 11:40 PM - [0.68.1] MINING III && RESTRUCTURING
 - Tied more functions and cleaned it up to reqAniLoop
 - Optimized code as well
 - Created timer functions to avoid using mass setIntervals, and tying it back to simply reqAniLoop
 - Optimized Miner code (merged progressbars and miner bars into 1)
 - Offically now you must pay 1 bar coin for 1 progress for each miner. (if you have 5 miners on 1 mine you pay sum 5 not 1 increments, so it's by mine.)
 - Finally added the important part: getting resources from miners mining (but different depending on mines)
-- Resources now are shown/collected (and saved).
+- Resources now are shown/collected (and saved).    
 - Miners now have a total level, with them mining increasing their level
 - Bars displaying minerlevel progress and the miner interval (when miners update) cleanly
 - Updated help info page a LOT
 - Updated potion how boost affects are added (array) and got rid of small errors (potion not getting dealer first time and importantly the knowledge/wisdom creation text not updating with potion boosts)
 
 FOvEA Intra (Optio vel Electio [aut] Arbitrium)
-Also haha funny number lol
 
 2026/09/15 10:22 PM - [0.66.0] MINING II
 - Set everything to a global reqAniLoop for peak performance and simplicity - This greatly increased FPS to match screen hz

@@ -187,12 +187,12 @@ const randomBad = [
 // THE PIT
 let flavor = "";
 document.getElementById("the-pit").addEventListener("click", () => {
-    if ((knowledge > 0 || wisdom > 0) && knowledge<=player.knowledge && wisdom<=player.wisdom && (knowledge>=0 && wisdom >= 0)) {
+    if ((knowledge > 0 || wisdom > 0) && knowledge<=resources.knowledge && wisdom<=resources.wisdom && (knowledge>=0 && wisdom >= 0)) {
         if (player.pitUsable === true) {
             const addbuff = Number(knowledge) + Number(wisdom)*5
 
-            player.knowledge -= knowledge;
-            player.wisdom -= wisdom;
+            resources.knowledge -= knowledge;
+            resources.wisdom -= wisdom;
 
             const roll = Math.random()*100 + (Math.sqrt(addbuff*player.pitMulti))-1; //addbuff directly adds to the roll improving roll ceiling, be careful
 
@@ -243,15 +243,15 @@ document.getElementById("the-pit").addEventListener("click", () => {
 
             const currentBonusKnowledge = Math.floor(Math.max(Math.random()*kMax,0) + kBoost);
             const currentBonusWisdom = Math.floor(Math.max(Math.random()*wMax, 0) + wBoost)
-            const currentBonusMatter = Math.floor(Math.max(Math.random()*mMax, 0) + mBoost)
+            const currentMatter = Math.floor(Math.max(Math.random()*mMax, 0) + mBoost)
             const currentCap = Math.floor(Math.max(Math.random()*addCap,0));
 
-            player.energy += Math.floor(Math.max(Math.random()*eMax, 0));
+            resources.energy += Math.floor(Math.max(Math.random()*eMax, 0));
+            resources.matter += Math.floor(Math.max(Math.random()*mMax, 0) + mBoost)
 
-            player.capBonus += currentCap;
-            player.knowledgeBonus += currentBonusKnowledge;
-            player.wisdomBonus += currentBonusWisdom;
-            player.matterBonus += currentBonusMatter;
+            resources.capBonus += currentCap;
+            resources.knowledgeBonus += currentBonusKnowledge;
+            resources.wisdomBonus += currentBonusWisdom;
 
             if (addCap>0) {
                 say(`Mood is calmed. Precisely by ${currentCap} points.`)
@@ -325,9 +325,9 @@ let knowledge = 0;
 let wisdom = 0;
 // Sets values to what's on player hand
 document.getElementById("setToMax").addEventListener("click", () => {
-    knowledge = player.knowledge
-    wisdom = player.wisdom
+    knowledge = resources.knowledge
+    wisdom = resources.wisdom
 
-    elementpitK.value = player.knowledge
-    elementpitW.value = player.wisdom
+    elementpitK.value = resources.knowledge
+    elementpitW.value = resources.wisdom
 });

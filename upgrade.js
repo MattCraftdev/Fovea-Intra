@@ -56,7 +56,6 @@ const upgrades = [
         maxpurchases: 1,
         onpurchase: () => {
             document.getElementById("displayMatter").classList.remove("hidden");
-            document.getElementById("displayMatterBonus").classList.remove("hidden");
             document.getElementById("matterContainer").classList.remove("hidden");
         },
         purchasetext: "Matter is shown to ye!",
@@ -114,10 +113,7 @@ const upgrades = [
         flavortext: "I may not have a brain gentlemen. But I have an idea..",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => {
-            document.getElementById("vitContainer").classList.remove("hidden");
-            document.querySelector('[data-tab = "Training"]').classList.remove("hidden");
-        },
+        onpurchase: () => { document.getElementById("vitContainer").classList.remove("hidden"); },
         purchasetext: "A strict routine only for the best",
         type: "basic",
     },
@@ -339,7 +335,7 @@ const upgrades = [
         id: "unlockmining",
         cost: [["matter", 50]],
         unlocked: false,
-        reqs: [["barcoins", 100]],
+        reqs: [["barcoins", 750]],
         flavortext: "Down by a bar, an old man told you bout some miners.",
         purchased: 0,
         maxpurchases: 1,
@@ -367,9 +363,9 @@ const upgrades = [
     {
         name: "Unlock Mineshaft 2: Dark Celler",
         id: "unlockshaft2",
-        cost: [["barcoins", 250]],
+        cost: [["barcoins", 2000], ["stone", 5], ["matter", 25]],
         unlocked: false,
-        reqs: [["barcoins", 150]],
+        reqs: [["barcoins", 1250]],
         flavortext: "The 2nd shaft is created, leading into somehow a celler. Strange.",
         purchased: 0,
         maxpurchases: 1,
@@ -381,9 +377,9 @@ const upgrades = [
     {
         name: "Unlock Mineshaft 3: Scary Cave",
         id: "unlockshaft3",
-        cost: [["barcoins", 500]],
+        cost: [["stone", 50], ["blackCrystal", 10], ["darkPyrite", 2], ["barcoins", 1000]],
         unlocked: false,
-        reqs: [["barcoins", 300]],
+        reqs: [["stone", 10], ["blackCrystal", 5]],
         flavortext: "The 3rd shaft is created, leading into somehow a cave. A dark one by that.",
         purchased: 0,
         maxpurchases: 1,
@@ -395,9 +391,9 @@ const upgrades = [
     {
         name: "Unlock Mineshaft 4: Dark Celler",
         id: "unlockshaft4",
-        cost: [["barcoins", 1250]],
+        cost: [["blueGem", 10], ["stone", 200], ["matter", 200]],
         unlocked: false,
-        reqs: [["barcoins", 750]],
+        reqs: [["blackCrystal", 100]],
         flavortext: "The 4th shaft is created, leading into the abyss. A pit.",
         purchased: 0,
         maxpurchases: 1,
@@ -405,10 +401,28 @@ const upgrades = [
         purchasetext: "Shall you venture?",
         type: "mining",
     },
+
+    {
+        name: "Unlock the Market",
+        id: "unlockmarket",
+        cost: [["matter", 100], ["energy", 10]],
+        unlocked: false,
+        reqs: [["matter", 100]],
+        flavortext: "You see a market in the distance. But...there's forest everywhere and you would like to make this easier in the future.",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => { document.querySelector('[data-tab = "Market"]').classList.remove("hidden"); },
+        purchasetext: "Constructing a path, you make it to the local market",
+        type: "mining",
+    },
+
+
 ]
 
 // Checks if any upgrade can be unlocked
 const inventionsBtn = document.querySelector('[data-tab = "Inventions"]');
+const miningBtn = document.querySelector('[data-tab = "Mining"]');
+
 
 function checkIfUnlocked() {
     for (const loop of upgrades) { // Goes through each consecutive Upgrade
@@ -419,11 +433,11 @@ function checkIfUnlocked() {
             const [reqType, reqAmount] = req;
 
             if (loop.unlocked === false) {
-
-                if (reqType === "knowledge" || reqType === "wisdom" || reqType === "matter" || reqType === "energy" || reqType === "barcoins") {
-                    if (!(player[reqType] >= reqAmount)) {
+                if (reqType in resources) {
+                    if (!(resources[reqType] >= reqAmount)) {
                         allReqsMet = false;
                     }
+                    
                 } else {
                     if (!(barInfo[reqType][0].level >= reqAmount)) { allReqsMet = false; }
                 }
@@ -433,11 +447,14 @@ function checkIfUnlocked() {
             }
         }
 
+
         if (loop.id == "unlockvitbtn" && loop.purchased === 1) {
             document.getElementById("healthheader").style.display = "flex";
+            document.querySelector('[data-tab = "Training"]').classList.remove("hidden");
         } else if (loop.id == "unlockmagicbtn" && loop.purchased === 1) {
             document.getElementById("magicheader").style.display = "flex";
         } else if (loop.id == "unlockpeacebtn" && loop.purchased === 1) {
+            document.querySelector('[data-tab = "Training"]').classList.remove("hidden");
             document.getElementById("naheader").style.display = "flex";
         }
 
@@ -447,9 +464,10 @@ function checkIfUnlocked() {
         }
 
         if (allReqsMet === true) { // If the reqs are met does this
-            if (!inventionsBtn.classList.contains("glow")) {
+            if (!inventionsBtn.classList.contains("glow") && loop.type === "basic") {
                 inventionsBtn.classList.add("glow");
-                console.log(`Added glow on ${loop.id} using ${inventionsBtn.classList.contains("glow")}`)
+            } else if (!miningBtn.classList.contains("glow") && loop.type === "mining") {
+                miningBtn.classList.add("glow");
             }
 
             loop.unlocked = true;
@@ -547,7 +565,7 @@ document.getElementById("unlocker").addEventListener("click", () => {
 
                 }
                 console.log(eachReq[0])
-                if (eachReq[0] === "knowledge" || eachReq[0] === "wisdom" || eachReq[0] === "matter" || eachReq[0] === "energy" || eachReq[0] === "barcoins") {
+                if (eachReq[0] in resources) {
                     allreqs += `${eachReq[1]} ${eachReq[0]}`
                 } else {
                     allreqs += ` ${barInfo[eachReq[0]][1]} at ${eachReq[1]} Levels`

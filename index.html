@@ -97,6 +97,9 @@
             <dt>Resources</dt>
             <dd>You will earn various resources while mining. Each one is different, and no resource is superior to others ever.</dd>
             
+            <dt>Market</dt>
+            <dd>Importantly, the resources earned from mining and in general, can be used at the market to convert to other resources or in general.</dd>
+
             <dt>Miner Levels/leveling</dt>
             <dd>Miners have a collective level, which grows when the level bar fills up. To get experience for them, they must work in the mines and collect resources. Passively they will learn, and therefore gain XP. Be patient with them.</dd>
         </dl>
@@ -122,8 +125,7 @@
         <br>
         <span id= "displayKnowledge" >Knowledge: </span><span id = "displayKnowledgeBonus" class = "displayVariables"></span>
         <span id= "displayWisdom" class = "hidden">Wisdom: 0</span><span id = "displayWisdomBonus" class = "hidden displayVariables"></span>
-        <span id = "displayMatter" class = "hidden">Matter: 0</span><span id = "displayMatterBonus" class = "hidden displayVariables"></span>
-        <br><br>
+        <span id = "displayMatter" class = "hidden">Matter: 0</span>
         <span id= "displayDay">Day: </span>
         <br>
         <span id= "displayYear">Age: </span><span id="displayLifespan" class = "hidden displayVariables"></span>
@@ -258,8 +260,8 @@
 
     <div class = "tab-content" id="Market">
         <p>Market Offers</p>
-
-
+        <p id="displayMarketInterval"></p>
+        <p id="marketHoldings"></p>
     </div>
 
     <div class = "tab-content" id = "Settings">

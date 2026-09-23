@@ -1,18 +1,8 @@
 const player = {
-    knowledge: 0,
-    knowledgeBonus: 0,
-
-    matter: 0,
-    matterBonus: 0,
     matterCapNerf: 0.5,
 
     baseKnowledgeIncrease: 1,
 
-    cap: 100,
-    capBonus: 0,
-
-    wisdom: 0,
-    wisdomBonus: 0,
     wisdomRate: 20,
     reflection: 0,
     wisdomClickPower:1,
@@ -27,11 +17,6 @@ const player = {
     pitResetTime: 30000,
     pitMulti: 0,
 
-    rawgoop: 0,
-    processedgloop: 0,
-    energy: 0,
-
-    barcoins: 0, // Non intrusive variables (standard)
     miners: 0,
 
     currentDealer: null,
@@ -41,6 +26,24 @@ const player = {
     currentPotionBuyable: false,
 
     saveInterval: 10000,
+
+    mine: {
+        minerCost: 100,
+        minerlevel: 1,
+        minerlevelProgress: 0,
+        minerlevelMax: 200,
+        minerInterval: 5000, // ms
+    },
+
+    marketStocks: 2,
+    marketResetInterval: 60,
+
+    structures: {
+        hut: 0,
+        shack: 0,
+        house: 0,
+        apartment: 0,
+    },
 }
 
 const potionStock = {
@@ -68,26 +71,39 @@ const potionStock = {
     "Slow IV": 0,
 }
 
-const mine = { // Dedicated specifics
-    minerCost: 100,
-    minerlevel: 1,
-    minerlevelProgress: 0,
-    minerlevelMax: 200,
-    minerInterval: 5000, // ms
+const resources = {
+    knowledge: 0,
+    knowledgeBonus: 0,
+
+    matter: 0,
+
+    cap: 100,
+    capBonus: 0,
+
+    wisdom: 0,
+    wisdomBonus: 0,
+
+    rawgoop: 0,
+    processedgloop: 0,
+    energy: 0,
+
+    barcoins: 0,
 
     stone: 0,
     blackCrystal: 0,
     blueGem: 0,
     darkPyrite: 0,
-
-    hut: 0,
-    shack: 0,
-    house: 0,
-    apartment: 0,
 }
 
 /*
 Ideas:
+Fix error with after buying "hold" upgrade it doesn't work
+Matter has it's own bar speed depending on mood but it's the OPPOSITE! When mood is BAD matter speed goes up!
+Check if energy is obtainable before upgrade
+Add toggle on/off for miner going (as upgrade because nun free in life)
+Update ALL timers into the main reqAni fully
+
+
 - Free pit rolls (Like a token)
 - The pit emits radiation or something that over time hurts the player. Can be removed to "dump sites"
 - Add trash pit that rarely gives pit coins (used mainly for dumping)
@@ -125,23 +141,22 @@ document.getElementById("createWisdom").addEventListener("mousedown", () => {
 
 // Knowledge addition system + wisdom sys
 const knowledgeAction = () => {
-
     const knowledgeIncrease = Math.floor(player.baseKnowledgeIncrease*boosts.know)
-    if ((knowledgeIncrease+mood)<player.cap) {
-        player.knowledge += knowledgeIncrease;
+    if ((knowledgeIncrease+mood)<resources.cap) {
+        resources.knowledge += knowledgeIncrease;
     } else {
         say("You got too much knowledge per click, so basically your mood can't support it.")
     }    
 }
 
 const wisdomAction = () => {
-    if (mood+((Math.floor(player.reflection/player.wisdomRate)*4))<player.cap) {
+    if (mood+((Math.floor(player.reflection/player.wisdomRate)*4))<resources.cap) {
         const reflectionIncrease = player.wisdomClickPower*boosts.wis
 
         player.reflection += reflectionIncrease;
         if (player.reflection>=player.wisdomRate) {
             const leftOverAcc = player.reflection % player.wisdomRate;
-            player.wisdom += Math.floor(player.reflection/player.wisdomRate);
+            resources.wisdom += Math.floor(player.reflection/player.wisdomRate);
             player.reflection = leftOverAcc;
         } 
     } else {
@@ -152,7 +167,7 @@ const wisdomAction = () => {
 // Energy Systems
 document.getElementById("collectGoop").addEventListener("click", () => {
     if (calcCost([["knowledge", 5]])) {
-        player.rawgoop += 1;
+        resources.rawgoop += 1;
     } else {
         say("Not enough smarts up there laddy!")
     }
@@ -160,7 +175,7 @@ document.getElementById("collectGoop").addEventListener("click", () => {
 
 document.getElementById("processGloop").addEventListener("click", () => {
     if (calcCost([["knowledge", 5], ["rawgoop", 2]])) {
-        player.processedgloop += 1;
+        resources.processedgloop += 1;
     } else {
         say("need more bucko!")
     }
@@ -168,7 +183,7 @@ document.getElementById("processGloop").addEventListener("click", () => {
 
 document.getElementById("packageEnergy").addEventListener("click", () => {
     if (calcCost([["wisdom", 2], ["processedgloop", 2]])) {
-        player.energy += 1;
+        resources.energy += 1;
     } else {
         say("Not enough shtuff brochacho")
     }
@@ -180,7 +195,7 @@ document.getElementById("disableMatter").addEventListener("click", () => {
 });
 
 document.getElementById("enableMatter").addEventListener("click", () => {
-    if (mood>(player.cap*0.5)) {
+    if (mood>(resources.cap*0.5)) {
         say("Mood is too high! Lower it to less than half to enable the matterbar!")
     } else {
         matterBarActive = true;
@@ -193,17 +208,20 @@ function holdDown(buttonId, upgradeId, action) {
     let ifBought = false;
     const upgrade = upgrades.find(UP => UP.id === upgradeId);
 
-    if (element.hasHoldListener === true) return // Prevents stacking. Do not remove
-    element.hasHoldListener = true;
-
     if (upgrade.purchased === 1) {
         ifBought = true;
+    } else {
+        ifBought = false;
     }
 
+    
+    if (element.hasHoldListener === true) return // Prevents stacking. Do not remove
+    element.hasHoldListener = true;
+    
     let timer = null;
 
-    if (ifBought === true) {
 
+    if (ifBought === true) {
         let pressTime = 0;
         const clickTime = 250;
 
@@ -214,11 +232,14 @@ function holdDown(buttonId, upgradeId, action) {
         }
         
         if (timer) {clearInterval(timer)}
+
         element.addEventListener("mousedown", () => {
+
             pressTime = Date.now()
             timer = setInterval(() => {
                 action()
             }, 1000); // Runs action per 2 seconds
+
         })
 
         element.addEventListener("mouseup", () => {

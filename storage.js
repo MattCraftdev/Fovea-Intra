@@ -59,7 +59,7 @@ function saveGame() {
         upgrades: upgrades.map(u => ({ id: u.id, unlocked: u.unlocked, purchased: u.purchased })),
         bars: barsOnly.map(b => ({ id: b.elementId, level: b.level, maxprogress: b.maxprogress, progress: b.progress})),
         creation: { id: "creation", level: creationBar.level, maxprogress: creationBar.maxprogress, progress: creationBar.progress},
-        mine: mine,
+        resources: resources,
     };  
     localStorage.setItem("gameSave", JSON.stringify(state));
 
@@ -77,7 +77,7 @@ function loadGame() {
         
         if (state.player) {Object.assign(player, state.player);}
         if (state.potionStock) {Object.assign(potionStock.stocks, state.potionStock)}
-        if (state.mine) {Object.assign(mine, state.mine);}
+        if (state.resources) {Object.assign(resources, state.resources);}
 
         if (state.upgrades) {
             state.upgrades.forEach(savedU => {
@@ -125,6 +125,7 @@ function loadGame() {
     } else {
         console.log("no save found")
         renderBars();
+        OnLoadFunctions();
     }
 };
 
@@ -141,4 +142,5 @@ function OnLoadFunctions() {
     changeDealerTimer(); // Resets Dealer timer
     renderMineshafts();
     displayLoop();
+    resetMarketStock();
 }
