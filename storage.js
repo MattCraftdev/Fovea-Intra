@@ -143,4 +143,6 @@ function OnLoadFunctions() {
     renderMineshafts();
     displayLoop();
     resetMarketStock();
+    createInventory();
+    updateInventory();
 }

@@ -35,6 +35,13 @@ const player = {
         minerInterval: 5000, // ms
     },
 
+    inventory: {
+        head: "empty",
+        main: "empty",
+        pants: "empty",
+        hand: "empty",
+    },
+
     marketStocks: 2,
     marketResetInterval: 60,
 
@@ -43,6 +50,10 @@ const player = {
         shack: 0,
         house: 0,
         apartment: 0,
+
+        shed: 0,
+        storage_unit: 0,
+        warehouse: 0,
     },
 }
 
@@ -101,16 +112,15 @@ Fix error with after buying "hold" upgrade it doesn't work
 Matter has it's own bar speed depending on mood but it's the OPPOSITE! When mood is BAD matter speed goes up!
 Check if energy is obtainable before upgrade
 Add toggle on/off for miner going (as upgrade because nun free in life)
-Update ALL timers into the main reqAni fully
 
+Update ALL timers into the main reqAni fully
+Update all boosts into a big pot for all (differentiate between set boosts by timers vs accumulated boosts)
 
 - Free pit rolls (Like a token)
 - The pit emits radiation or something that over time hurts the player. Can be removed to "dump sites"
 - Add trash pit that rarely gives pit coins (used mainly for dumping)
-
-- Maybe make some upgrades unlock 2 bars        
+     
 - Cheap helptext upgrades
-- Upgrade that reveals max resources reached on each resource
 
 - Optimize upgrade code (merge id and name by making the id THE name but id is just without spaces)
 

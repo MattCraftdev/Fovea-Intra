@@ -18,6 +18,8 @@
             script.onload = () => {
                 umami.track("game_loaded");
             };
+        } else {
+            console.log("Local Host Confirmed. If you are not the dev, I don't know what to say")
         }
     </script>
 
@@ -103,6 +105,19 @@
             <dt>Miner Levels/leveling</dt>
             <dd>Miners have a collective level, which grows when the level bar fills up. To get experience for them, they must work in the mines and collect resources. Passively they will learn, and therefore gain XP. Be patient with them.</dd>
         </dl>
+
+        <h2>Inventory && Crafting</h2>
+        <dl>
+            <dt>Loadout</dt>
+            <dd>The loadout is what you are currently wearing. When wearing an item, it passively degrades in durability but gives you the boost on it</dd>
+
+            <dt>Inventory Slots</dt>
+            <dd>These slots house your equipment. Clicking on a slot will equip the item to the loadout, BUT the item will not just disappear into the loadout- it will stay in the inventory slot too.</dd>
+
+
+
+
+        </dl>
     </div>
 
 
@@ -153,6 +168,7 @@
         <button class = "tab-button hidden" data-tab="Potion">Potion Brewery</button>
         <button class = "tab-button hidden" data-tab="Mining">Mining</button>
         <button class = "tab-button hidden" data-tab="Market">Market</button>
+        <button class = "tab-button hidden" data-tab="Inventory">Inventory</button>
         <button class = "tab-button" data-tab="Settings">Settings</button>
     </div>
 
@@ -264,6 +280,14 @@
         <p id="marketHoldings"></p>
     </div>
 
+    <div class="tab-content" id="Inventory">
+        <p>Current Loadout</p>
+        <div id="inventoryHolder"></div>
+
+        <p>Inventory Slots:</p>
+        <div id="inventorySlots"></div>
+    </div>
+
     <div class = "tab-content" id = "Settings">
         <h1>Saving/Loading</h1>
         <p>If you're having issues saving or loading, press these buttons</p>
@@ -297,6 +321,7 @@
     <script src="storage.js" defer></script>
     <script src="potions.js" defer></script>
     <script src="mining.js" defer></script>
+    <script src="inventory.js" defer></script>
 
     <script data-goatcounter="https://mattcraft-dev.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>

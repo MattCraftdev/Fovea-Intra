@@ -187,7 +187,7 @@ function minerUpdate() {
 
                 player.mine.minerlevelProgress += mines.xp // XP giving for leveling miners
 
-                if (player.mine.minerlevelProgress>=player.mine.minerlevelMax) {
+                if (player.mine.minerlevelProgress>=player.mine.minerlevelMax) { // Miner level up
                     player.mine.minerlevel += 1;
                     player.mine.minerlevelProgress = 0;
                     player.mine.levelMax = (player.mine.levelMax ** 2)
@@ -214,10 +214,10 @@ function resetMarketStock() {
 
         const resourceKeys = (Object.keys(resources)).filter(stn => !stn.includes("Bonus"))
                 
-        let resourcesCost = Math.floor(Math.random()*100+100);
+        let resourcesCost = Math.floor(Math.random()*10+5);
         const typeCost = resourceKeys[Math.floor(Math.random()*resourceKeys.length)]
     
-        const resourcesGive = Math.floor(Math.random()*50+75);
+        const resourcesGive = Math.floor(Math.random()*10+1);
         let typeGiven = resourceKeys[Math.floor(Math.random()*resourceKeys.length)]
 
         if (typeGiven === "cap") {
@@ -236,7 +236,7 @@ function resetMarketStock() {
         elementBtn.addEventListener("click", () => {
             if (calcCost([[typeCost, resourcesCost]])) {
                 resources[typeGiven] += resourcesGive
-                resourcesCost += 5;
+                resourcesCost += 1;
                 elementBtn.innerText = `Trade in ${resourcesCost} ${typeCost} to recieve in return ${resourcesGive} ${typeGiven}`
             }
         });

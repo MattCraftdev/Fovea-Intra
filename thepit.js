@@ -273,8 +273,8 @@ document.getElementById("the-pit").addEventListener("click", () => {
             }
 
             if (!document.getElementById("displayMatter").classList.contains("hidden")) {
-                if (currentBonusMatter > 0) {
-                    say(`It gifted ya ${currentBonusMatter} bonus matter!! Kool beans!`)
+                if (currentMatter > 0) {
+                    say(`It gifted ya ${currentMatter} bonus matter!! Kool beans!`)
                 }
             }
             

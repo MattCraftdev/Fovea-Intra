@@ -416,7 +416,19 @@ const upgrades = [
         type: "mining",
     },
 
-
+    {
+        name: "Learn the act of having items on hand",
+        id: "unlockinventory",
+        cost: [["matter", 100]],
+        unlocked: false,
+        reqs: [["stone", 10]],
+        flavortext: "The art of equipping is nigh",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => { document.querySelector('[data-tab = "Inventory"]').classList.remove("hidden"); },
+        purchasetext: "Clothes are going to feel great!",
+        type: "mining",
+    },
 ]
 
 // Checks if any upgrade can be unlocked

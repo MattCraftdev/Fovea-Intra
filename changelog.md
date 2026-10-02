@@ -1,6 +1,13 @@
 # Newest versions
 
-2026/09/22 - [0.70.0] MARKET && RESTRUCTURING II
+2026/09/26 N/a - [0.72.0] INVENTORY CREATION
+- Tweaked bar scaling to be less extreme (so you can earn barcoins still, and it's less of a drag)
+- Tweaked market resource trades to be less resource exchange
+- Added inventory upgrade, it's own tab and it's own inventory.js file
+- Added the complex integration of inventory && equppables: In the inventory tab, it shows you what's equpped currently, and what inventory slots you have (and what's in each slot). Clicking inventory slot swaps items
+- It works
+
+2026/09/22 10:37 PM - [0.70.0] MARKET && RESTRUCTURING II
 - Added the market tab and upgrade
 - The market has a basic amount of 2 trades going.
 - Trades involve 2 random resources for 2 random amounts
@@ -498,6 +505,6 @@ Such a pain to add.
 VACA: July 8-28th
 CAMP: AUGUST 4-7th
 GALAXY: AUGUST 11th-15th
-FF: August 14th, 21st, 28th, september 4th
+FeedbackFridays: August 14th, 21st, 28th, september 4th
 VACA #2: August 28th to September 4th
 HELL: September 7th+

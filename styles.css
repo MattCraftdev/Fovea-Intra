@@ -325,3 +325,8 @@ dt {
 .minerContainer {
     display: flex;
 }
+
+#inventoryHolder {
+    background-color:rgb(41, 43, 69);
+    width: 25%;
+}

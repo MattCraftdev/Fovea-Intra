@@ -117,10 +117,10 @@ class ProgressBar {
 };
 
 // Progress Bars: ID, speed(Doesn't matter), Max Progress, Exponentional
-const vitBar = new ProgressBar("vit", 10, 1000, 1.15);
-const flexBar = new ProgressBar("flex", 10, 500, 1.1);
-const mediateBar = new ProgressBar("mediate", 10, 2000, 1.2);
-const martialBar = new ProgressBar("martial", 10, 3000, 1.15);
+const vitBar = new ProgressBar("vit", 10, 1000, 1.1);
+const flexBar = new ProgressBar("flex", 10, 700, 1.05);
+const mediateBar = new ProgressBar("mediate", 10, 1750, 1.15);
+const martialBar = new ProgressBar("martial", 10, 2500, 1.15);
 const hitBar = new ProgressBar("hit", 10, 5000, 1.25);
 const taichiBar = new ProgressBar("taichi", 10, 4000, 1.15);
 
@@ -128,11 +128,11 @@ const studyBar = new ProgressBar("study", 10, 10000, 1.15);
 const peaceBar = new ProgressBar("peace", 10, 4000, 1.25);
 const insightBar = new ProgressBar("insight", 10, 6000, 1.2);
 
-const magicBar = new ProgressBar("magic", 10, 5000, 1.2);
-const magicstudyBar = new ProgressBar("magicstudy", 10, 10000, 1.15);
-const magiclearnerBar = new ProgressBar("magiclearner", 10, 25000, 1.3);
-const magicmultiBar = new ProgressBar("magicmulti", 10, 50000, 1.4);
-const abyssalBar = new ProgressBar("abyssal", 10, 10000, 1.25);
+const magicBar = new ProgressBar("magic", 10, 4000, 1.15);
+const magicstudyBar = new ProgressBar("magicstudy", 10, 7500, 1.15);
+const magiclearnerBar = new ProgressBar("magiclearner", 10, 20000, 1.3);
+const magicmultiBar = new ProgressBar("magicmulti", 10, 50000, 1.35);
+const abyssalBar = new ProgressBar("abyssal", 10, 7500, 1.25);
 
 const moodBar = new ProgressBar("mood", 0, 0, 0); // Do not mark. Placeholder Bars!!!
 const minerlevelBar = new ProgressBar("minerlevel", 0, 0, 0);
