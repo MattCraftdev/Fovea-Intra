@@ -1,11 +1,20 @@
 # Newest versions
 
+2026/10/02 10:17 PM - [0.74.0] QOL
+- Added exploder bar, which speeds up matter bar by a small bit
+- Matter bar now is affected: when mood is high, it affects opposite of a normal bar (0.5x speed - 1.5x speed) no boosts
+- Added important extra stats button, which when toggled shows extra stats for bars (settings)
+Stats include progress/maxprogress, speed and time left
+- Added more helptext
+- Importantly, revolutionized menus by adding dropdown menus, which greatly increases total menu scope without clutter!!!
+From that, pit/potions merged aswell as market/inventory merged, totally to 7 tabs only opposed to 9
+
 2026/09/26 N/a - [0.72.0] INVENTORY CREATION
 - Tweaked bar scaling to be less extreme (so you can earn barcoins still, and it's less of a drag)
 - Tweaked market resource trades to be less resource exchange
 - Added inventory upgrade, it's own tab and it's own inventory.js file
 - Added the complex integration of inventory && equppables: In the inventory tab, it shows you what's equpped currently, and what inventory slots you have (and what's in each slot). Clicking inventory slot swaps items
-- It works
+- Added a few items aswell
 
 2026/09/22 10:37 PM - [0.70.0] MARKET && RESTRUCTURING II
 - Added the market tab and upgrade

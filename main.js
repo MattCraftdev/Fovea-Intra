@@ -55,6 +55,10 @@ const player = {
         storage_unit: 0,
         warehouse: 0,
     },
+
+    settings: {
+        extraStats: false,
+    }
 }
 
 const potionStock = {
@@ -109,12 +113,12 @@ const resources = {
 /*
 Ideas:
 Fix error with after buying "hold" upgrade it doesn't work
-Matter has it's own bar speed depending on mood but it's the OPPOSITE! When mood is BAD matter speed goes up!
 Check if energy is obtainable before upgrade
 Add toggle on/off for miner going (as upgrade because nun free in life)
 
 Update ALL timers into the main reqAni fully
 Update all boosts into a big pot for all (differentiate between set boosts by timers vs accumulated boosts)
+Add crafting
 
 - Free pit rolls (Like a token)
 - The pit emits radiation or something that over time hurts the player. Can be removed to "dump sites"
@@ -351,3 +355,13 @@ document.getElementById("showStory").addEventListener("click", () => {
         document.getElementById("Story").classList.remove("hidden")
     }
 });
+
+document.getElementById("extraStats").addEventListener("click", () => {
+    if (player.settings.extraStats === true) {
+        player.settings.extraStats = false;
+        document.getElementById("extraStats").innerText = "Extra Stats Disabled"
+    } else {
+        player.settings.extraStats = true;
+        document.getElementById("extraStats").innerText = "Extra Stats Enabled"
+    }
+})

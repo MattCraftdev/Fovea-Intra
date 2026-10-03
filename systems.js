@@ -303,7 +303,7 @@ TabButtons.forEach(button => {
         const tabId = button.dataset.tab;
         
         TabButtons.forEach(btn => btn.classList.remove("selectedTab"));
-        
+        for (const all of DropDown) {all.classList.remove("selectedTab")}
         document.querySelectorAll(".tab-content").forEach(tab => {
             tab.style.display = "none";
         });
@@ -322,3 +322,26 @@ TabButtons.forEach(button => {
        
     });
 });
+
+// Grab your dropdown menu
+const DropDown = document.getElementsByClassName("selector");
+
+for (const all of DropDown) {
+    all.addEventListener("click", (event) => {
+        const tabId = event.target.value; 
+
+        TabButtons.forEach(btn => btn.classList.remove("selectedTab"));
+
+        document.querySelectorAll(".tab-content").forEach(tab => {
+            tab.style.display = "none";
+        });
+
+        if (document.getElementById(tabId)) {
+            document.getElementById(tabId).style.display = "block";            
+        }
+
+        all.classList.add("selectedTab");
+        console.log(`Dropdown changed to ${tabId}`);
+    });
+
+}

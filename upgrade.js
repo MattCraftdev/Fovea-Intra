@@ -24,7 +24,7 @@ const upgrades = [
         purchased: 0,
         maxpurchases: 1,
         onpurchase: () => {
-            document.querySelector('[data-tab = "Pit"]').classList.remove("hidden");
+            document.querySelector('[value = "Pit"]').disabled = false;
             resetThePitTimer();
         },
         purchasetext: "A big dark hole emerged from the nearby ground. It's deep.",
@@ -283,7 +283,7 @@ const upgrades = [
         flavortext: "Hmm. Maybe you should call the local drug de- I mean potion maker.",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => { document.querySelector('[data-tab = "Potion"]').classList.remove("hidden"); },
+        onpurchase: () => { document.querySelector('[value = "Potion"]').disabled = false; },
         purchasetext: "Potion man giving you a call. Better head down.",
         type: "basic",
     },
@@ -411,7 +411,7 @@ const upgrades = [
         flavortext: "You see a market in the distance. But...there's forest everywhere and you would like to make this easier in the future.",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => { document.querySelector('[data-tab = "Market"]').classList.remove("hidden"); },
+        onpurchase: () => { document.querySelector('[value = "Market"]').disabled = false; },
         purchasetext: "Constructing a path, you make it to the local market",
         type: "mining",
     },
@@ -425,9 +425,23 @@ const upgrades = [
         flavortext: "The art of equipping is nigh",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => { document.querySelector('[data-tab = "Inventory"]').classList.remove("hidden"); },
+        onpurchase: () => { document.querySelector('[value = "Inventory"]').disabled = false; },
         purchasetext: "Clothes are going to feel great!",
         type: "mining",
+    },
+
+    {
+        name: "Unlock Exploder",
+        id: "unlockexploderbtn",
+        cost: [["matter", 200], ["stone", 5]],
+        unlocked: false,
+        reqs: [["matter", 175], ["magic", 15]],
+        flavortext: "me wanna use bomb",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => { document.getElementById("exploderContainer").classList.remove("hidden"); },
+        purchasetext: "bomb",
+        type: "basic",
     },
 ]
 

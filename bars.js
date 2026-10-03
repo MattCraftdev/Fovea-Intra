@@ -134,6 +134,8 @@ const magiclearnerBar = new ProgressBar("magiclearner", 10, 20000, 1.3);
 const magicmultiBar = new ProgressBar("magicmulti", 10, 50000, 1.35);
 const abyssalBar = new ProgressBar("abyssal", 10, 7500, 1.25);
 
+const exploderBar = new ProgressBar("exploder", 10, 10000, 1.2)
+
 const moodBar = new ProgressBar("mood", 0, 0, 0); // Do not mark. Placeholder Bars!!!
 const minerlevelBar = new ProgressBar("minerlevel", 0, 0, 0);
 const minerintervalBar = new ProgressBar("minerinterval", 0, 0, 0);
@@ -158,6 +160,7 @@ const barInfo = { // activebar id, then says their bar then name to DISPLAY. The
     magiclearner: [magiclearnerBar, "Magic Learner", "Increases the base speed of all bars. (Yes it's OP)", "magic"],
     magicmulti: [magicmultiBar, "Magic Multitasker", "Passively increases all bars by flat 1% of their normal speed (Very OP)", "magic"],
     abyssal: [abyssalBar, "Abyssal", "Increases the pit loot by boosting what you throw in there", "magic"],
+    exploder: [exploderBar, "Exploder", "Uses magic to manually explode and collect matter faster", "magic"]
 }   
 
 // Vars
@@ -169,7 +172,19 @@ function updateProgress() {
     Object.keys(barInfo).forEach(bar => {
         const specificBar = barInfo[bar]
         specificBar[0].update()
-        document.getElementById(`${bar}LevelDisplay`).innerText = `${specificBar[1]} Level: ${specificBar[0].level}`
+
+        if (player.settings.extraStats === true) {
+            const thisbar = specificBar[0]
+
+            const progressleft = thisbar.maxprogress - thisbar.progress
+            const timeLeft = Math.floor((progressleft/thisbar.speed*20)/1000)
+        
+            document.getElementById(`${bar}LevelDisplay`).innerText = `${specificBar[1]} Progress: ${Math.floor(thisbar.progress)}/${Math.floor(thisbar.maxprogress)} (Time left: ${timeLeft}s) Level: ${thisbar.level} Speed: ${Math.floor(thisbar.speed)}`   
+        } else {
+            document.getElementById(`${bar}LevelDisplay`).innerText = `${specificBar[1]} Level: ${specificBar[0].level}`       
+        }
+
+
     })
 
     if (matterBarActive) {
@@ -225,6 +240,7 @@ function updateAllSpeeds() {
     magicstudyBar.speed = baseMoodspeed + magicsum
     magiclearnerBar.speed = baseMoodspeed + magicsum
     abyssalBar.speed = baseMoodspeed + magicsum
+    creationBar.speed = (baseSpeed + mooddiff*(-10)) + exploderBar.level
 }
 
 // Creates Barz

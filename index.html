@@ -46,7 +46,7 @@
             <dd>Technically you can call them upgrades, but anyway their requirements to unlock are hidden! Some take knowledge/wisdom (BUT NEVER BONUSES!) or levels of bars. Since the 0.50.0 update, there can be multi requirements or costs</dd>
             
             <dt>Training</dt>
-            <dd>Click on a bar. For free, it passively fills up. Only 1 may be active at a time (until later), so choose wisely.</dd>
+            <dd>Click on a bar. For free, it passively fills up. Only 1 may be active at a time (until later), so choose wisely. The worse your mood is the slower it fills, higher the better (0.5-1.5)</dd>
 
             <p>If you're ever stuck and no upgrades are visible, you can click the find a random unlock (if you have enough) and it'll say a random unlock requirements in the story page.</p>
         </dl>
@@ -72,6 +72,7 @@
 
             <dt>Matter/Creation</dt>
             <dd>The creation bar gives you +1 matter every time it levels up. While active, it makes your mood capacity be able to take 1/2 as much as normal.</dd>
+            <dd>The bar works fastest when your mood is bad, opposite basically as bars work</dd>
         </dl>
 
         <h2>Potion Brewery</h2>
@@ -113,9 +114,6 @@
 
             <dt>Inventory Slots</dt>
             <dd>These slots house your equipment. Clicking on a slot will equip the item to the loadout, BUT the item will not just disappear into the loadout- it will stay in the inventory slot too.</dd>
-
-
-
 
         </dl>
     </div>
@@ -164,11 +162,19 @@
         <button class = "tab-button hidden" data-tab="Training">Training</button>
         <button class = "tab-button" data-tab="Creation">Creation</button>
         <button class = "tab-button" data-tab="Inventions">Inventions</button>
-        <button class = "tab-button hidden" data-tab="Pit">The Pit</button>
-        <button class = "tab-button hidden" data-tab="Potion">Potion Brewery</button>
+
+        <select name="mechanics" class="selector">
+            <option value="Pit" disabled>The Pit</option>
+            <option value="Potion" disabled>Potion Brewery</option>
+        </select>
+
         <button class = "tab-button hidden" data-tab="Mining">Mining</button>
-        <button class = "tab-button hidden" data-tab="Market">Market</button>
-        <button class = "tab-button hidden" data-tab="Inventory">Inventory</button>
+
+        <select name="resource" class="selector">
+            <option value="Market" disabled>Market</option>
+            <option value="Inventory" disabled>Inventory</option>
+        </select>
+
         <button class = "tab-button" data-tab="Settings">Settings</button>
     </div>
 
@@ -298,6 +304,8 @@
         <p>WARNING! Earlier saves may get corrupted, so you may have to start a new save(as the way it works, saves layer over, so you might get incorrect old variables)</p>
 
         <h1>Settings</h1>
+
+        <button id="extraStats" class="tech">Extra Stats Disabled</button>
 
         <p id = "saveIntervalDisplay">Save interval: 5 Seconds</p>
         <input type="range" id="slidersaveInterval" min = "5" max = "60" value = "10" step = "1">
