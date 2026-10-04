@@ -181,7 +181,7 @@ function minerUpdate() {
                 if (top === null) {
                     say("Your miner came back with...nothing")
                 } else {
-                    player[top] += 1;
+                    resources[top] += 1;
                 }
 
 

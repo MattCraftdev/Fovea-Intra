@@ -135,6 +135,7 @@ const magicmultiBar = new ProgressBar("magicmulti", 10, 50000, 1.35);
 const abyssalBar = new ProgressBar("abyssal", 10, 7500, 1.25);
 
 const exploderBar = new ProgressBar("exploder", 10, 10000, 1.2)
+const fortitudeBar = new ProgressBar("fortitude", 10, 5000, 1.1)
 
 const moodBar = new ProgressBar("mood", 0, 0, 0); // Do not mark. Placeholder Bars!!!
 const minerlevelBar = new ProgressBar("minerlevel", 0, 0, 0);
@@ -151,6 +152,7 @@ const barInfo = { // activebar id, then says their bar then name to DISPLAY. The
     vit: [vitBar, "Vitality", "Vitality increases mood tolerance, meaning you can hold more resources", "health"],
     flex: [flexBar, "Flexability", "Flexability increases the speed of vitality", "health"],
     mediate: [mediateBar, "Mediate", "Mediate increases all magic bar speeds but lowers mood tolerance by 1", "health"],
+    fortitude: [fortitudeBar, "Fortitude", "Matter creation takes less mental strain during it", "health"],
     martial: [martialBar, "Martial Arts", "Martial Arts greatly increases mood tolerance", "health"],
     hit: [hitBar, "HIT", "HIT increases all health bar speeds", "health"],
     taichi: [taichiBar, "Tai Chi", "Tai chi decreases all health bar speeds but gives immense amounts of mood tolerance", "health"],
@@ -160,7 +162,8 @@ const barInfo = { // activebar id, then says their bar then name to DISPLAY. The
     magiclearner: [magiclearnerBar, "Magic Learner", "Increases the base speed of all bars. (Yes it's OP)", "magic"],
     magicmulti: [magicmultiBar, "Magic Multitasker", "Passively increases all bars by flat 1% of their normal speed (Very OP)", "magic"],
     abyssal: [abyssalBar, "Abyssal", "Increases the pit loot by boosting what you throw in there", "magic"],
-    exploder: [exploderBar, "Exploder", "Uses magic to manually explode and collect matter faster", "magic"]
+
+    exploder: [exploderBar, "Exploder", "Uses magic to manually explode and collect matter faster", "magic"],
 }   
 
 // Vars
@@ -199,8 +202,7 @@ function updateProgress() {
 
 // Updates all speeds quickly
 function updateAllSpeeds() {
-    const currentProgress = mood/resources.cap;
-    const mooddiff = 0.5 - currentProgress;
+    const mooddiff = 0.5 - (mood/resources.cap);
     const baseSpeed = 10
 
     boosts.speed = baseSpeed
@@ -220,26 +222,32 @@ function updateAllSpeeds() {
 
     const mediateBuff = mediateBar.level*2
     // Total Mood diff between (5 and -5). BTW bMs is the total average and affects ALL Bars. Careful.
-    const baseMoodspeed = (boosts.speed + mooddiff*10)+magiclearnerBar.level*3
-    const magicsum = (magicBar.level-10)+mediateBuff
-    const healthsum = (taichiBar.level*3)-(hitBar.level*2);
+    const preSpeeds = boosts.speed+magiclearnerBar.level*3
+    const magicsum = preSpeeds+(magicBar.level-10)+mediateBuff
+    const healthsum = preSpeeds+(hitBar.level*3)-(taichiBar.level*2);
 
 
     // Speed applications
-    vitBar.speed = baseMoodspeed + (flexBar.level*2) + healthsum
-    flexBar.speed = baseMoodspeed + healthsum
-    mediateBar.speed = baseMoodspeed + healthsum
-    martialBar.speed = baseMoodspeed + healthsum
-    hitBar.speed = baseMoodspeed + healthsum
+    vitBar.speed = ((flexBar.level*2) + healthsum)*(mooddiff + 1)
+    flexBar.speed = healthsum*(mooddiff + 1)
+    mediateBar.speed = healthsum*(mooddiff + 1)
+    martialBar.speed = healthsum*(mooddiff + 1)
+    hitBar.speed = preSpeeds*(mooddiff + 1)
+    taichiBar.speed = preSpeeds*(mooddiff + 1)
 
-    studyBar.speed = baseMoodspeed + magicstudyBar.level*2;
-    peaceBar.speed = baseMoodspeed + insightBar.level*2;
-    insightBar.speed = baseMoodspeed
+    fortitudeBar.speed = healthsum*(mooddiff + 1)
 
-    magicBar.speed = baseMoodspeed + mediateBuff // Magic does not boost itself but gets boosted by other bars!
-    magicstudyBar.speed = baseMoodspeed + magicsum
-    magiclearnerBar.speed = baseMoodspeed + magicsum
-    abyssalBar.speed = baseMoodspeed + magicsum
+    studyBar.speed = (preSpeeds + magicstudyBar.level*2)*(mooddiff + 1);
+    peaceBar.speed = (preSpeeds + insightBar.level*2)*(mooddiff + 1);
+    insightBar.speed = preSpeeds*(mooddiff + 1)
+
+    magicBar.speed = (preSpeeds + mediateBar.level*2)*(mooddiff + 1) // Magic does not boost itself but gets boosted by other bars!
+    magicstudyBar.speed = magicsum*(mooddiff + 1)
+    magiclearnerBar.speed = magicsum*(mooddiff + 1)
+    magicmultiBar.speed = magicsum*(mooddiff + 1)
+    abyssalBar.speed = magicsum*(mooddiff + 1)
+    exploderBar.speed = magicsum*(mooddiff + 1)
+
     creationBar.speed = (baseSpeed + mooddiff*(-10)) + exploderBar.level
 }
 
@@ -323,7 +331,7 @@ function recalcBuffs() {
     player.lifespan = 50;
 
     player.wisdomClickPower = peaceBar.level+1;
-    player.matterCapNerf = 0.5
+    player.matterCapNerf = 0.5 - (fortitudeBar.level/50)
 
     if (vitBar.level>=10) {document.getElementById("flexContainer").classList.remove("hidden");}
 

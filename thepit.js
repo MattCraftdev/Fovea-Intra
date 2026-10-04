@@ -200,7 +200,7 @@ document.getElementById("the-pit").addEventListener("click", () => {
 
             if (!fitroll) {
                 console.log("Roll number fitting in bracket not found!");
-                say("The pit warps reality just to say no. LOL");
+                say("The pit warps reality just to say no. LOL (this is a glitch btw)");
                 return;
             }
 
@@ -222,18 +222,6 @@ document.getElementById("the-pit").addEventListener("click", () => {
 
             const mMax = fitroll.mMax || 0; // Matter
             const mBoost = fitroll.mBoost || 0;
-
-            // Lifespan
-            const lMax = fitroll.lMax || 0;
-            const lBoost = fitroll.lBoost|| 0;
-
-            // Goop
-            const rgMax = fitroll.rgMax || 0;
-            const rgBoost = fitroll.rgBoost || 0;
-
-            // Gloop
-            const pgMax = fitroll.pgMax || 0;
-            const pgBoost = fitroll.pgBoost || 0;
 
             // Energy
             const eMax = fitroll.eMax || 0;

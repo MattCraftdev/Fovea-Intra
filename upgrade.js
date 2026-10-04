@@ -331,7 +331,7 @@ const upgrades = [
     },
 
     {
-        name: "Unlock Mining/Barcoins",
+        name: "Unlock Mining",
         id: "unlockmining",
         cost: [["matter", 50]],
         unlocked: false,
@@ -339,9 +339,7 @@ const upgrades = [
         flavortext: "Down by a bar, an old man told you bout some miners.",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => {
-            document.querySelector('[data-tab = "Mining"]').classList.remove("hidden");
-            document.getElementById("displayBarcoins").classList.remove("hidden");},
+        onpurchase: () => { document.querySelector('[data-tab = "Mining"]').classList.remove("hidden"); },
         purchasetext: "Finally you go down to the big ole' mountain nearby, and discover a whole new place to explore...",
         type: "basic",
     },
@@ -443,6 +441,20 @@ const upgrades = [
         purchasetext: "bomb",
         type: "basic",
     },
+
+    {
+        name: "Unlock Fortitude",
+        id: "unlockfortitudebtn",
+        cost: [["matter", 100], ["cap", 50]],
+        unlocked: false,
+        reqs: [["matter", 25], ["mediate", 12]],
+        flavortext: "me wanna use bomb",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => { document.getElementById("fortitudeContainer").classList.remove("hidden"); },
+        purchasetext: "bomb",
+        type: "basic",
+    },
 ]
 
 // Checks if any upgrade can be unlocked
@@ -482,6 +494,16 @@ function checkIfUnlocked() {
         } else if (loop.id == "unlockpeacebtn" && loop.purchased === 1) {
             document.querySelector('[data-tab = "Training"]').classList.remove("hidden");
             document.getElementById("naheader").style.display = "flex";
+        }
+
+        if (loop.id == "unlockpit" && loop.purchased === 1) {
+            document.getElementById("mechanics").classList.remove("hidden");
+        } else if (loop.id == "unlockpotionbtn" && loop.purchased === 1) {
+            document.getElementById("mechanics").classList.remove("hidden");
+        } else if (loop.id == "unlockinventory" && loop.purchased === 1) {
+            document.getElementById("resources").classList.remove("hidden");
+        } else if (loop.id == "unlockmarket" && loop.purchased === 1) {
+            document.getElementById("resources").classList.remove("hidden");
         }
 
         if (loop.unlocked === true && document.getElementById(loop.id).classList.contains("hidden") && loop.purchased === 0) {

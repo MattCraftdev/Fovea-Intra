@@ -1,7 +1,14 @@
 # Newest versions
 
+2026/10/04 5:31 PM - [0.75.0] QOL II
+- Fixed small errors with bar speeds (some bars did not get affected by moods; wrong effects)
+- Added fortitude bar, which decreases matter mental strain
+- Fixed miner error with incorrect name
+- Dropdowns are hidden until a dropdown is avaible for use
+- Very very good mood change where mood now instead of a flat -5 to +5 speed, now does multiplying (scale!) by 0.5 to 1.5!!
+
 2026/10/02 10:17 PM - [0.74.0] QOL
-- Added exploder bar, which speeds up matter bar by a small bit
+- Added exploder bar, which speeds up matter bar by a small bit & it's upgrade
 - Matter bar now is affected: when mood is high, it affects opposite of a normal bar (0.5x speed - 1.5x speed) no boosts
 - Added important extra stats button, which when toggled shows extra stats for bars (settings)
 Stats include progress/maxprogress, speed and time left
@@ -55,7 +62,7 @@ The pursuit of education sadly will halt updates if you haven't noticed already.
 Nonetheless, I will try my best to continue the project, and won't give up unless I formally declare so in the changelog
 
 2026/09/04 8:34 PM - [0.65.0] MINING
-- Modified and changed the tabs (moved bars to new training tab, merged matter/energy into creation) for cleaner structure
+- Modified and changed the tabs (moved bars to new training tab from the creation tab, merged matter/energy into creation) for cleaner structure
 - Added the upgrade and tab for mining
 - Added mineshaft upgrade, as well as miner purchasing (which is calced by 100+sq of miners)
 - Added another file, mining.js
@@ -361,7 +368,7 @@ Such a pain to add.
 - Added game saving and loading
 
 2026/08/09 6:55 PM - [0.22.0] THE PIT 
-- Added the pit and it's own tab
+- Added the pit and it's own tab (replaced work tab)
 - Added the pit's own upgrade, and also a little blurb that initially shown but hides after bought
 - Fixed a small error with chatbox
 - Added the pit system when you throw in stuff
@@ -502,13 +509,14 @@ Such a pain to add.
 - Fixed error with depression
 
 2026/07/01 - [0.2.0] TABS
-- Added Tabs for each part
+- Added Tabs for each part (Creation, Inventions & work)
 - Added knowledge and made it so you can "birth knowledge"
 - Added story message box on the side
-- Added depression as a mechanic, mainly mood thoughsss
+- Added depression as a mechanic, mainly mood thoughss
 
 2026/07/01 3:33PM - Initial Build [0] (EQ to 0.1.0)
 - Time system implemented
+- main.js added, starting point
 
 (Dates interfering with this:)
 VACA: July 8-28th
