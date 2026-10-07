@@ -259,6 +259,14 @@ dt {
     color: rgb(20, 128, 20);
 }
 
+#displayVars {
+    padding: 10px;
+    background-color: rgb(48, 48, 48);
+    color:rgb(200, 200, 200);
+    width: fit-content;
+    font-size: 16px;
+}
+
 #box {
     padding: 20px;
     margin: 10px;
@@ -329,4 +337,11 @@ dt {
 #inventoryHolder {
     background-color:rgb(41, 43, 69);
     width: 25%;
+}
+
+#achievementContainer {
+    background-color:#222222;
+    padding: 10px;
+    margin: 10px;
+    display: block; 
 }

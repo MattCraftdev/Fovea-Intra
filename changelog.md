@@ -1,5 +1,17 @@
 # Newest versions
 
+2026/10/06 8:18 PM - [0.77.0] ACHEIVE ME!
+- UI refactor for resources (at the top of screen)
+- Added ACHIEVEMENTS system (completing achievement gives you once time thingy)
+Added achievement color-coding (grey if not completed, green if)
+Achievements give a hidden reward aswell
+Clicking on them gives their description in the chatbox
+Trigger once (as normal)
+- Added achievements saving
+- Added achievements tab
+- Added 4 achievements
+- Added achivements.js
+
 2026/10/04 5:31 PM - [0.75.0] QOL II
 - Fixed small errors with bar speeds (some bars did not get affected by moods; wrong effects)
 - Added fortitude bar, which decreases matter mental strain

@@ -56,6 +56,7 @@ function displayLoop(timestamp) {
     updateMineshaft();
 
     checkIfUnlocked(); // Checks Upgrades/unlocks
+    checkAchievements();
 
     recalcBuffs(); // For bars
     recalcBoosts(); // For anything boosts affect

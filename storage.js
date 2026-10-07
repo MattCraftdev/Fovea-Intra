@@ -57,9 +57,11 @@ function saveGame() {
         player: player,
         potionStock: potionStock.stocks,
         upgrades: upgrades.map(u => ({ id: u.id, unlocked: u.unlocked, purchased: u.purchased })),
+        achievementStack: achievementStack.map(ul => ({ id: ul.id, unlocked: ul.unlocked })),
         bars: barsOnly.map(b => ({ id: b.elementId, level: b.level, maxprogress: b.maxprogress, progress: b.progress})),
         creation: { id: "creation", level: creationBar.level, maxprogress: creationBar.maxprogress, progress: creationBar.progress},
         resources: resources,
+        resourcesMaxReached: resourcesMaxReached,
     };  
     localStorage.setItem("gameSave", JSON.stringify(state));
 
@@ -78,6 +80,17 @@ function loadGame() {
         if (state.player) {Object.assign(player, state.player);}
         if (state.potionStock) {Object.assign(potionStock.stocks, state.potionStock)}
         if (state.resources) {Object.assign(resources, state.resources);}
+        if (state.resourcesMaxReached) {Object.assign(resourcesMaxReached, state.resourcesMaxReached);}
+
+        if (state.achievementStack) {
+            state.achievementStack.forEach(savedA => {
+                let realA = achievementStack.find(ul => ul.id === savedA.id);
+                if (realA) {
+                    realA.unlocked = savedA.unlocked;
+                }
+                console.log("Completed Achievements")
+            })
+        }
 
         if (state.upgrades) {
             state.upgrades.forEach(savedU => {

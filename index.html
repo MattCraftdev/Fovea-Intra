@@ -56,7 +56,7 @@
         <p>The point of this game is to carve your own personal path. You may miss an upgrade or something, but that's the exact point. Discover something hella cool your personal own way.</p>
         <br>
 
-        <h1>Advanced Tabs</h1>
+        <h1>Basic Mechanics II</h1>
         <dl>
             <dt>The Pit</dt>
             <dd>Throw your knowledge and wisdom into it to potientally recieve stuff back or nothing. Wisdom is better to throw FYI</dd>
@@ -130,22 +130,23 @@
         <p id = "chatbox"></p>
 
         <button id = "closeStory" class = "tech">Close</button>
-    </div> 
+    </div>
 
     <div id = "savingnotif">Saving...</div>
 
     <div>
-        <br>
-        <span id= "displayKnowledge" >Knowledge: </span><span id = "displayKnowledgeBonus" class = "displayVariables"></span>
-        <span id= "displayWisdom" class = "hidden">Wisdom: 0</span><span id = "displayWisdomBonus" class = "hidden displayVariables"></span>
-        <span id = "displayMatter" class = "hidden">Matter: 0</span>
-        <span id= "displayDay">Day: </span>
-        <br>
-        <span id= "displayYear">Age: </span><span id="displayLifespan" class = "hidden displayVariables"></span>
-        <br>
+        <div id="displayVars">
+            <span id= "displayKnowledge" >Knowledge: </span><span id = "displayKnowledgeBonus" class = "displayVariables"></span>
+            <span id= "displayWisdom" class = "hidden">Wisdom: 0</span><span id = "displayWisdomBonus" class = "hidden displayVariables"></span>
+            <span id = "displayMatter" class = "hidden">Matter: 0</span>
 
-        <p id= "displayMood">Mood: </p>
-        <br>
+            <br><br>
+            <span id= "displayYear">Age: </span><span id="displayLifespan" class = "hidden displayVariables"></span>
+            <br>
+            <span id= "displayDay">Day: </span>
+            <br>
+            <p id= "displayMood">Mood: </p>
+        </div>
 
         <div class = "hidden" id = "moodContainer">
             <div class="progress-container">
@@ -175,6 +176,7 @@
             <option value="Inventory" disabled>Inventory</option>
         </select>
 
+        <button class="tab-button" data-tab="Achievements">Achievements</button>
         <button class = "tab-button" data-tab="Settings">Settings</button>
     </div>
 
@@ -294,6 +296,10 @@
         <div id="inventorySlots"></div>
     </div>
 
+    <div class="tab-content" id="Achievements">
+        <div id="achievementContainer"></div>
+    </div>
+
     <div class = "tab-content" id = "Settings">
         <h1>Saving/Loading</h1>
         <p>If you're having issues saving or loading, press these buttons</p>
@@ -330,6 +336,7 @@
     <script src="potions.js" defer></script>
     <script src="mining.js" defer></script>
     <script src="inventory.js" defer></script>
+    <script src="achievements.js" defer></script>
 
     <script data-goatcounter="https://mattcraft-dev.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
