@@ -312,6 +312,7 @@ dt {
     margin: 10px;
     font-family:'Times New Roman';
 }
+
 .potionbtn {
     background-color:#a101b2;
     color:rgb(0, 0, 0);
@@ -352,4 +353,8 @@ dt {
     padding: 10px;
     margin: 10px;
     display: block; 
+}
+
+.achievementFlexer {
+    display: flex;
 }

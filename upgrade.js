@@ -448,11 +448,11 @@ const upgrades = [
         cost: [["matter", 100], ["cap", 50]],
         unlocked: false,
         reqs: [["matter", 25], ["mediate", 12]],
-        flavortext: "me wanna use bomb",
+        flavortext: "Strength is power",
         purchased: 0,
         maxpurchases: 1,
         onpurchase: () => { document.getElementById("fortitudeContainer").classList.remove("hidden"); },
-        purchasetext: "bomb",
+        purchasetext: "Power is love",
         type: "basic",
     },
 ]
@@ -501,9 +501,9 @@ function checkIfUnlocked() {
         } else if (loop.id == "unlockpotionbtn" && loop.purchased === 1) {
             document.getElementById("mechanics").classList.remove("hidden");
         } else if (loop.id == "unlockinventory" && loop.purchased === 1) {
-            document.getElementById("resources").classList.remove("hidden");
+            document.getElementById("resource").classList.remove("hidden");
         } else if (loop.id == "unlockmarket" && loop.purchased === 1) {
-            document.getElementById("resources").classList.remove("hidden");
+            document.getElementById("resource").classList.remove("hidden");
         }
 
         if (loop.unlocked === true && document.getElementById(loop.id).classList.contains("hidden") && loop.purchased === 0) {

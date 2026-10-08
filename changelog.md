@@ -1,6 +1,13 @@
 # Newest versions
 
-2026/10/07 - [0.78.0] ACHIEVE ME! II
+
+2026/10/08 7:39 PM - [0.79.0] ACHIEVE ME! III
+- Refactored achievements to be neater through flexing in groups of 4
+- Moved the main.js code and settings code into storage.js (as it is not as full)
+- Added setting for achievement rows (Kind of useless perchance)
+- Added 14 achievements (total 25)
+
+2026/10/07 11:26 PM - [0.78.0] ACHIEVE ME! II
 - Fixed achievements to be hidden (???) title until
 - Settings and achievements tab marged into 1 dropdown (aswell as seperated settings into 2)
 - Styled dropdowns to be similar to normal tabs visually

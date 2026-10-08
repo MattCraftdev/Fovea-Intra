@@ -42,8 +42,12 @@ const player = {
         hand: "empty",
     },
 
-    marketStocks: 2,
-    marketResetInterval: 60,
+    market: {
+        stocks: 2,
+        resetInterval: 60,
+    },
+
+    totalTrades: 0,  
 
     structures: {
         hut: 0,
@@ -58,6 +62,7 @@ const player = {
 
     settings: {
         extraStats: false,
+        achievementDisplay: 4,
     }
 }
 
@@ -120,11 +125,15 @@ Update ALL timers into the main reqAni fully
 Update all boosts into a big pot for all (differentiate between set boosts by timers vs accumulated boosts)
 Add crafting
 
+Blue gems boost magic by having
+
 - Free pit rolls (Like a token)
 - The pit emits radiation or something that over time hurts the player. Can be removed to "dump sites"
 - Add trash pit that rarely gives pit coins (used mainly for dumping)
-     
-- Cheap helptext upgrades
+
+- achievements show rewards/requirements
+
+- Assign max miners/take off all for mining shafts
 
 - Optimize upgrade code (merge id and name by making the id THE name but id is just without spaces)
 
@@ -138,7 +147,6 @@ Add crafting
 - Make bars say their progress,speed, etc.
 - Make mood say it's affect on the overall speed (Or just do the bars...lol)
 
-- mass wisdom conversion upgrade
 - mass energy conversion upgrade
 
 - Add images
@@ -324,44 +332,3 @@ window.addEventListener('keydown', function(e) {
     e.preventDefault();
   }
 }, true);
-
-// Changelog embed iframe
-document.getElementById("getChangelog").addEventListener("click", () => {
-    if (document.getElementById("changelog").classList.contains("hidden")) {
-        document.getElementById("changelog").classList.remove("hidden")
-        document.getElementById("getChangelog").innerText = "Back"
-    } else {
-        document.getElementById("changelog").classList.add("hidden")
-        document.getElementById("getChangelog").innerText = "Changelog"
-    }
-});
-
-document.getElementById("getHelp").addEventListener("click", () => {
-    if (document.getElementById("gameInfo").classList.contains("hidden")) {
-        document.getElementById("gameInfo").classList.remove("hidden")
-    }
-});
-
-document.getElementById("backHelp").addEventListener("click", () => {
-    document.getElementById("gameInfo").classList.add("hidden")
-});
-
-document.getElementById("closeStory").addEventListener("click", () => {
-    document.getElementById("Story").classList.add("hidden")
-});
-
-document.getElementById("showStory").addEventListener("click", () => {
-    if (document.getElementById("Story").classList.contains("hidden")) {
-        document.getElementById("Story").classList.remove("hidden")
-    }
-});
-
-document.getElementById("extraStats").addEventListener("click", () => {
-    if (player.settings.extraStats === true) {
-        player.settings.extraStats = false;
-        document.getElementById("extraStats").innerText = "Extra Stats Disabled"
-    } else {
-        player.settings.extraStats = true;
-        document.getElementById("extraStats").innerText = "Extra Stats Enabled"
-    }
-})

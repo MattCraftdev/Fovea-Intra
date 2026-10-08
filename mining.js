@@ -210,7 +210,7 @@ function resetMarketStock() {
 
     console.log("resetting market stock")
 
-    for (let a = 0; a < player.marketStocks; a++) {
+    for (let a = 0; a < player.market.stocks; a++) {
 
         const resourceKeys = (Object.keys(resources)).filter(stn => !stn.includes("Bonus"))
                 
@@ -237,12 +237,13 @@ function resetMarketStock() {
             if (calcCost([[typeCost, resourcesCost]])) {
                 resources[typeGiven] += resourcesGive
                 resourcesCost += 1;
+                player.market.totalTrades += 1;
                 elementBtn.innerText = `Trade in ${resourcesCost} ${typeCost} to recieve in return ${resourcesGive} ${typeGiven}`
             }
         });
     }
 
-    let timeLeft = player.marketResetInterval
+    let timeLeft = player.market.resetInterval
 
     if (marketInterval) {clearInterval(marketInterval)}
     

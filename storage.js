@@ -13,7 +13,8 @@ document.getElementById("resetGame").addEventListener("click", () => {
     hardReset();
 });
 
-// Save Slider setting
+// settings
+// Save Slider
 const saveSlider = document.getElementById("slidersaveInterval")
 
 saveSlider.addEventListener("input", () => {
@@ -24,12 +25,63 @@ saveSlider.addEventListener("input", () => {
     startSaveTimer();
 });
 
-let saveTimer = null
+let saveTimer = null;
 function startSaveTimer() {
-    if (saveTimer) {clearInterval(saveTimer)}
-    saveTimer = setInterval(saveGame, player.saveInterval)
+    if (saveTimer) {clearInterval(saveTimer)};
+    saveTimer = setInterval(saveGame, player.saveInterval);
 };
 
+const achievementSlider = document.getElementById("achievementSliderBtns");
+
+achievementSlider.addEventListener("input", () => {
+    player.settings.achievementDisplay = achievementSlider.value;
+    document.getElementById("achivementStepBtns").innerText = `Achievement buttons in a row: ${player.settings.achievementDisplay}`;
+
+    createAchievementButtons();
+});
+
+
+// SETTING BUTTONS
+// Changelog embed iframe
+document.getElementById("getChangelog").addEventListener("click", () => {
+    if (document.getElementById("changelog").classList.contains("hidden")) {
+        document.getElementById("changelog").classList.remove("hidden")
+        document.getElementById("getChangelog").innerText = "Back"
+    } else {
+        document.getElementById("changelog").classList.add("hidden")
+        document.getElementById("getChangelog").innerText = "Changelog"
+    }
+});
+
+document.getElementById("getHelp").addEventListener("click", () => {
+    if (document.getElementById("gameInfo").classList.contains("hidden")) {
+        document.getElementById("gameInfo").classList.remove("hidden")
+    }
+});
+
+document.getElementById("backHelp").addEventListener("click", () => {
+    document.getElementById("gameInfo").classList.add("hidden")
+});
+
+document.getElementById("closeStory").addEventListener("click", () => {
+    document.getElementById("Story").classList.add("hidden")
+});
+
+document.getElementById("showStory").addEventListener("click", () => {
+    if (document.getElementById("Story").classList.contains("hidden")) {
+        document.getElementById("Story").classList.remove("hidden")
+    }
+});
+
+document.getElementById("extraStats").addEventListener("click", () => {
+    if (player.settings.extraStats === true) {
+        player.settings.extraStats = false;
+        document.getElementById("extraStats").innerText = "Extra Stats Disabled"
+    } else {
+        player.settings.extraStats = true;
+        document.getElementById("extraStats").innerText = "Extra Stats Enabled"
+    }
+})
 
 // Hard reset
 function hardReset() {
@@ -149,6 +201,7 @@ function OnLoadFunctions() {
     resetPotionStock(); // Ret
     resetDealerStock(); // Resets 
     createPotionShowing(); // Sets potion showing to be updated
+    createAchievementButtons();
     resetThePitTimer(); // Resets pit timer
     changeDealerTimer(); // Resets Dealer timer
     renderMineshafts();
@@ -156,4 +209,5 @@ function OnLoadFunctions() {
     resetMarketStock();
     createInventory();
     updateInventory();
+
 }
