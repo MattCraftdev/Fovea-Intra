@@ -176,8 +176,12 @@
             <option value="Inventory" disabled>Inventory</option>
         </select>
 
-        <button class="tab-button" data-tab="Achievements">Achievements</button>
-        <button class = "tab-button" data-tab="Settings">Settings</button>
+        <select id="settings" class="selector">
+            <option value="saveLoad">Save/Load</option>
+            <option value="Achievements">Achievements</option>
+            <option value="Settings">Settings</option>
+        </select>
+
     </div>
 
     <div class = "tab-content" id = "Training">
@@ -300,7 +304,7 @@
         <div id="achievementContainer"></div>
     </div>
 
-    <div class = "tab-content" id = "Settings">
+    <div class="tab-content" id="saveLoad">
         <h1>Saving/Loading</h1>
         <p>If you're having issues saving or loading, press these buttons</p>
         <button id = "saveGame" class = "tech">Save Game</button>
@@ -308,9 +312,11 @@
         <button id = "resetGame" class = "tech">Hard reset game</button>
 
         <p>WARNING! Earlier saves may get corrupted, so you may have to start a new save(as the way it works, saves layer over, so you might get incorrect old variables)</p>
+    </div>
+
+    <div class = "tab-content" id="Settings">
 
         <h1>Settings</h1>
-
         <button id="extraStats" class="tech">Extra Stats Disabled</button>
 
         <p id = "saveIntervalDisplay">Save interval: 5 Seconds</p>

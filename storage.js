@@ -61,7 +61,6 @@ function saveGame() {
         bars: barsOnly.map(b => ({ id: b.elementId, level: b.level, maxprogress: b.maxprogress, progress: b.progress})),
         creation: { id: "creation", level: creationBar.level, maxprogress: creationBar.maxprogress, progress: creationBar.progress},
         resources: resources,
-        resourcesMaxReached: resourcesMaxReached,
     };  
     localStorage.setItem("gameSave", JSON.stringify(state));
 
@@ -80,7 +79,6 @@ function loadGame() {
         if (state.player) {Object.assign(player, state.player);}
         if (state.potionStock) {Object.assign(potionStock.stocks, state.potionStock)}
         if (state.resources) {Object.assign(resources, state.resources);}
-        if (state.resourcesMaxReached) {Object.assign(resourcesMaxReached, state.resourcesMaxReached);}
 
         if (state.achievementStack) {
             state.achievementStack.forEach(savedA => {

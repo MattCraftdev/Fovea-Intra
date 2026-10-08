@@ -1,5 +1,13 @@
 # Newest versions
 
+2026/10/07 - [0.78.0] ACHIEVE ME! II
+- Fixed achievements to be hidden (???) title until
+- Settings and achievements tab marged into 1 dropdown (aswell as seperated settings into 2)
+- Styled dropdowns to be similar to normal tabs visually
+- Added 7 more achievements (total 11)
+- Updating achievements code (big optimize + refactor) to work better
+- Added hints aswell (clicking reveals hint vs clicking when it's shown revels flavortext)
+
 2026/10/06 8:18 PM - [0.77.0] ACHEIVE ME!
 - UI refactor for resources (at the top of screen)
 - Added ACHIEVEMENTS system (completing achievement gives you once time thingy)

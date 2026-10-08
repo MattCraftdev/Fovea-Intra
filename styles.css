@@ -304,6 +304,14 @@ dt {
     margin: 10px;
 }
 
+.selector {
+    background-color:#00981483;
+    color:white;
+    padding: 5px;
+    font-size:20px;
+    margin: 10px;
+    font-family:'Times New Roman';
+}
 .potionbtn {
     background-color:#a101b2;
     color:rgb(0, 0, 0);
