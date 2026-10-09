@@ -455,6 +455,34 @@ const upgrades = [
         purchasetext: "Power is love",
         type: "basic",
     },
+
+    {
+        name: "Unlock Crafting",
+        id: "unlockcraftingbtn",
+        cost: [["stone", 100], ["blackCrystal", 50], ["blueGem", 5]],
+        unlocked: false,
+        reqs: [["stone", 50], ["blueGem", 3]],
+        flavortext: "Crafter time!",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => { document.querySelector('[value = "Crafting"]').disabled = false; },
+        purchasetext: "Blacksmither",
+        type: "mining",
+    },
+
+    {
+        name: "Magical Absorption",
+        id: "unlockmagicalabsorptionbtn",
+        cost: [["knowledge", 500], ["wisdom", 100], ["blueGem", 5]],
+        unlocked: false,
+        reqs: [["magic", 30], ["blueGem", 3]],
+        flavortext: "Your extensive magic knowledge allows you to commit the unthinkable: extendation of the lifespan",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => { document.getElementById("magicalabsorptionContainer").classList.remove("hidden"); },
+        purchasetext: "Learn the old ways where you were more than human..",
+        type: "basic",
+    },
 ]
 
 // Checks if any upgrade can be unlocked

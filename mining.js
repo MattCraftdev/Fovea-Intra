@@ -11,7 +11,7 @@ const mineshafts = [
     {
         id: "unlockshaft1",
         name: "Basic Tunnel",
-        diff: 100,
+        diff: 50,
         xp: 2,
         progress: 0,
         minersOn: 0,
@@ -21,7 +21,7 @@ const mineshafts = [
     {
         id: "unlockshaft2",
         name: "Dark Celler",
-        diff: 1000,
+        diff: 750,
         xp: 3,
         progress: 0,
         minersOn: 0,
@@ -31,7 +31,7 @@ const mineshafts = [
     {
         id: "unlockshaft3",
         name: "Scary Cave",
-        diff: 10000,
+        diff: 9999,
         xp: 4,
         progress: 0,
         minersOn: 0,
@@ -41,7 +41,7 @@ const mineshafts = [
     {
         id: "unlockshaft4",
         name: "Deep Pit",
-        diff: 50000,
+        diff: 10000,
         xp: 5,
         progress: 0,
         minersOn: 0,

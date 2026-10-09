@@ -1,5 +1,19 @@
 # Newest versions
 
+2026/10/08 - [0.81.1] CRAFTING && COOL VISUAL && QOL III
+- Added an important visual effect that pops across the screen when something happens (clicked, bar fills)
+- Added setting toggle aswell
+- The visual affect says like +1 level or +5 knowledge, etc.
+- Added crafting upgrade/option tab
+- Crafting now has for you to learn recipe then you can buy THEN you get to be able to "craft" it
+- Crafting works from selecting recipes from the thingy and then hitting craft while showing stats and stuff from item
+- Scrapping items also works (for the most part)
+- Overall: Scrap, craft, research and you can see item stats aswell (not to the best but fair)
+- Mineshafts are slightly easier
+- Added item chain vest
+- Fixed error with potions (they would compound immensely)
+- Fixed small error with dropdowns switching to dropdowns not unselecting
+- Added magical absorption bar, which increases your lifespan +0.1 per level (and it's upgrade of course)
 
 2026/10/08 7:39 PM - [0.79.0] ACHIEVE ME! III
 - Refactored achievements to be neater through flexing in groups of 4
@@ -549,6 +563,6 @@ Such a pain to add.
 VACA: July 8-28th
 CAMP: AUGUST 4-7th
 GALAXY: AUGUST 11th-15th
-FeedbackFridays: August 14th, 21st, 28th, september 4th
+FeedbackFridays: August 14th, 21st, 28th, september 4th, oct 2nd, oct 9th
 VACA #2: August 28th to September 4th
 HELL: September 7th+

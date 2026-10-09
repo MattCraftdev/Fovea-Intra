@@ -118,6 +118,11 @@ let boosts = [
 
 function recalcBoosts() {
 
+    boosts.time = 1;
+    boosts.wis = 1;
+    boosts.speed = 1;
+    boosts.know = 1;
+
     if (potionStock["Slow I"]>0) {
         boosts.time = boosts.time*0.8
     }
@@ -171,6 +176,8 @@ function recalcBoosts() {
 
     if (potionStock["Wisdom I"] === 0 && potionStock["Wisdom II"] === 0 && potionStock["Wisdom III"] === 0 && potionStock["Wisdom IV"] === 0) {
         boosts.wis = 1;
+    } else {
+        boosts.wis = Math.floor(boosts.wis); 
     }
 
     document.getElementById("createWisdom").innerText = `Create 1 wisdom +${Math.floor(player.wisdomClickPower*boosts.wis)}(${player.reflection}/${player.wisdomRate})`
@@ -332,7 +339,7 @@ for (const all of DropDown) {
         const tabId = event.target.value; 
 
         TabButtons.forEach(btn => btn.classList.remove("selectedTab"));
-
+        for (const all of DropDown) {all.classList.remove("selectedTab")}
         document.querySelectorAll(".tab-content").forEach(tab => {
             tab.style.display = "none";
         });
@@ -346,3 +353,35 @@ for (const all of DropDown) {
     });
 
 }
+
+// Lil thingy
+function gainingStuff(stuff) {
+    if (player.settings.visualEffects) {
+
+        const div = document.createElement("div")
+        div.innerText = stuff;
+        div.classList.add("gainingStuff");
+
+        const randomX = Math.random()*80+10;
+        const randomY = Math.random()*80+10;
+
+        div.style.left = `${randomX}%`;
+        div.style.top = `${randomY}%`;
+
+        div.classList.remove("hidden");
+        document.body.appendChild(div);
+        setTimeout(() => {
+            div.remove();
+        }, 1000); 
+    };
+};
+
+document.getElementById("visualEffects").addEventListener("click", () => {
+    if (player.settings.visualEffects === true) {
+        player.settings.visualEffects = false;
+        document.getElementById("visualEffects").innerText = "Visual Effects: Disabled";
+    } else {
+        player.settings.visualEffects = true;
+        document.getElementById("visualEffects").innerText = "Visual Effects: Enabled";
+    };
+});

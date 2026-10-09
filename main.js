@@ -62,6 +62,7 @@ const player = {
 
     settings: {
         extraStats: false,
+        visualEffects: true,
         achievementDisplay: 4,
     }
 }
@@ -117,23 +118,31 @@ const resources = {
 
 /*
 Ideas:
+REFACTOR ALL BOOSTS AND SETS
+-> TO refactor: Have 2 types of the vars, 1 is a decided one, 1 is a booster one that changes
+
+MAJOR ISSUE: RECREATE MAJOR FUNCTIONS FOR AUTOMATION
+-> Or Other things that repeat!!!
+
 Fix error with after buying "hold" upgrade it doesn't work
 Check if energy is obtainable before upgrade
+
 Add toggle on/off for miner going (as upgrade because nun free in life)
+- Assign max miners/take off all for mining shafts
 
 Update ALL timers into the main reqAni fully
 Update all boosts into a big pot for all (differentiate between set boosts by timers vs accumulated boosts)
 Add crafting
 
-Blue gems boost magic by having
+chatbox has types and can be filtered
+
+Blue gems boost magic by having them
 
 - Free pit rolls (Like a token)
 - The pit emits radiation or something that over time hurts the player. Can be removed to "dump sites"
 - Add trash pit that rarely gives pit coins (used mainly for dumping)
 
 - achievements show rewards/requirements
-
-- Assign max miners/take off all for mining shafts
 
 - Optimize upgrade code (merge id and name by making the id THE name but id is just without spaces)
 
@@ -166,6 +175,7 @@ const knowledgeAction = () => {
     const knowledgeIncrease = Math.floor(player.baseKnowledgeIncrease*boosts.know)
     if ((knowledgeIncrease+mood)<resources.cap) {
         resources.knowledge += knowledgeIncrease;
+        gainingStuff(`+${knowledgeIncrease} Knowledge!`);
     } else {
         say("You got too much knowledge per click, so basically your mood can't support it.")
     }    
@@ -180,6 +190,7 @@ const wisdomAction = () => {
             const leftOverAcc = player.reflection % player.wisdomRate;
             resources.wisdom += Math.floor(player.reflection/player.wisdomRate);
             player.reflection = leftOverAcc;
+            gainingStuff(`+${Math.floor(player.reflection/player.wisdomRate)} Wisdom!`);
         } 
     } else {
         say("There's not enough mood capacity, so you can't have more wisdom. Damn developer doing this, we should overthrown him together!")
@@ -190,6 +201,7 @@ const wisdomAction = () => {
 document.getElementById("collectGoop").addEventListener("click", () => {
     if (calcCost([["knowledge", 5]])) {
         resources.rawgoop += 1;
+        gainingStuff(`+1 Raw goop`)
     } else {
         say("Not enough smarts up there laddy!")
     }
@@ -198,6 +210,7 @@ document.getElementById("collectGoop").addEventListener("click", () => {
 document.getElementById("processGloop").addEventListener("click", () => {
     if (calcCost([["knowledge", 5], ["rawgoop", 2]])) {
         resources.processedgloop += 1;
+        gainingStuff(`+1 Processed Gloop`)
     } else {
         say("need more bucko!")
     }
@@ -206,6 +219,7 @@ document.getElementById("processGloop").addEventListener("click", () => {
 document.getElementById("packageEnergy").addEventListener("click", () => {
     if (calcCost([["wisdom", 2], ["processedgloop", 2]])) {
         resources.energy += 1;
+        gainingStuff(`+1 Energy`)
     } else {
         say("Not enough shtuff brochacho")
     }
@@ -236,12 +250,10 @@ function holdDown(buttonId, upgradeId, action) {
         ifBought = false;
     }
 
-    
     if (element.hasHoldListener === true) return // Prevents stacking. Do not remove
     element.hasHoldListener = true;
     
     let timer = null;
-
 
     if (ifBought === true) {
         let pressTime = 0;

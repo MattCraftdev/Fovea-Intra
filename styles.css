@@ -113,6 +113,14 @@ dt {
     position: fixed;
     border: 2px solid #414141;
 }
+.gainingStuff {
+    font-size:40px;
+    color: rgb(249, 247, 247);
+    z-index: 10;
+    margin: 5px;
+    position: fixed;
+    transform: translate(-50%, -50%); 
+}
 
 #the-pit {
     background-color:#37004b;
@@ -123,6 +131,18 @@ dt {
     font-family:'georgia';
     display:flex;
     margin: 20px;
+}
+
+#craftingRecipes {
+    display: block;
+    background: #2d2d2d;
+    padding: 10px;
+    width: 20%;
+    height: 50%;
+    overflow: scroll;
+    border: 2px solid #000000;
+    z-index: 7;
+    resize: both;
 }
 /* Story box */
 

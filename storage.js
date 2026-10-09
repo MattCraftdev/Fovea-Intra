@@ -76,10 +76,10 @@ document.getElementById("showStory").addEventListener("click", () => {
 document.getElementById("extraStats").addEventListener("click", () => {
     if (player.settings.extraStats === true) {
         player.settings.extraStats = false;
-        document.getElementById("extraStats").innerText = "Extra Stats Disabled"
+        document.getElementById("extraStats").innerText = "Extra Stats: Disabled"
     } else {
         player.settings.extraStats = true;
-        document.getElementById("extraStats").innerText = "Extra Stats Enabled"
+        document.getElementById("extraStats").innerText = "Extra Stats: Enabled"
     }
 })
 
@@ -113,6 +113,7 @@ function saveGame() {
         bars: barsOnly.map(b => ({ id: b.elementId, level: b.level, maxprogress: b.maxprogress, progress: b.progress})),
         creation: { id: "creation", level: creationBar.level, maxprogress: creationBar.maxprogress, progress: creationBar.progress},
         resources: resources,
+        playerInventorySlots: playerInventorySlots,
     };  
     localStorage.setItem("gameSave", JSON.stringify(state));
 
@@ -131,6 +132,7 @@ function loadGame() {
         if (state.player) {Object.assign(player, state.player);}
         if (state.potionStock) {Object.assign(potionStock.stocks, state.potionStock)}
         if (state.resources) {Object.assign(resources, state.resources);}
+        if (state.playerInventorySlots) {Object.assign(playerInventorySlots, state.playerInventorySlots);}
 
         if (state.achievementStack) {
             state.achievementStack.forEach(savedA => {
@@ -208,6 +210,7 @@ function OnLoadFunctions() {
     displayLoop();
     resetMarketStock();
     createInventory();
+    createCraftButtons();
     updateInventory();
 
 }

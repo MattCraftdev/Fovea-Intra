@@ -274,7 +274,7 @@ function createAchievementButtons() {
     
         const button = document.createElement("button");
         button.id = btns.id;
-        if (btns.unlocked == true) {
+        if (btns.unlocked) {
             button.style.backgroundColor = `#1b851b`;
         } else {
             button.style.backgroundColor = `#717171`;
