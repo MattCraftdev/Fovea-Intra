@@ -186,7 +186,7 @@ const randomBad = [
 ]
 // THE PIT
 let flavor = "";
-document.getElementById("the-pit").addEventListener("click", () => {
+thepitimg.addEventListener("click", () => {
     if ((knowledge > 0 || wisdom > 0) && knowledge<=resources.knowledge && wisdom<=resources.wisdom && (knowledge>=0 && wisdom >= 0)) {
         if (player.pitUsable === true) {
             const addbuff = Number(knowledge) + Number(wisdom)*5

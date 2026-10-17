@@ -10,42 +10,62 @@ document.getElementById("buyMiner").addEventListener("click", () => {
 const mineshafts = [
     {
         id: "unlockshaft1",
-        name: "Basic Tunnel",
+        name: "Light Tunnel",
         diff: 50,
         xp: 2,
         progress: 0,
         minersOn: 0,
-        resourceChances: [["stone", 10], ["blackCrystal", 95]]
+        resourceChances: [["soil", 0], ["stone", 70], ["blackCrystal", 98]]
     },
 
     {
         id: "unlockshaft2",
-        name: "Dark Celler",
-        diff: 750,
+        name: "Celler",
+        diff: 150,
         xp: 3,
         progress: 0,
         minersOn: 0,
-        resourceChances: [["stone", 0], ["blackCrystal", 50], ["darkPyrite", 95]]
+        resourceChances: [["soil", 0], ["stone", 50], ["blackCrystal", 90] ["darkPyrite", 95]]
     },
 
     {
         id: "unlockshaft3",
-        name: "Scary Cave",
-        diff: 9999,
+        name: "Small Cave",
+        diff: 400,
         xp: 4,
         progress: 0,
         minersOn: 0,
-        resourceChances: [["stone", 0], ["blackCrystal", 40], ["blueGem", 90]]
+        resourceChances: [["soil", 0], ["stone", 10], ["blackCrystal", 80], ["blueGem", 95]]
     },
 
     {
         id: "unlockshaft4",
-        name: "Deep Pit",
-        diff: 10000,
+        name: "Dark Tunnel",
+        diff: 1000,
         xp: 5,
         progress: 0,
         minersOn: 0,
-        resourceChances: [["blackCrystal", 0], ["blueGem", 70], ["darkPyrite", 85]]
+        resourceChances: [["stone", 0], ["darkPyrite", 70], ["blueGem", 85]]
+    },
+
+    {
+        id: "unlockshaft5",
+        name: "The Pit..",
+        diff: 1500,
+        xp: 10,
+        progress: 0,
+        minersOn: 0,
+        resourceChances: [["soil", 0], ["stone", 40], ["blueGem", 60], ["darkPyrite", 80]]
+    },
+
+    {
+        id: "unlockshaft6",
+        name: "Inside the heart of the Mountain",
+        diff: 3000,
+        xp: 8,
+        progress: 0,
+        minersOn: 0,
+        resourceChances: [["blackCrystal", 0], ["blueGem", 50], ["darkPyrite", 75]]
     },
 
 ]
@@ -162,28 +182,34 @@ function minerUpdate() {
         if (resources.barcoins>mines.minersOn) {
 
             resources.barcoins -= mines.minersOn;
-            mines.progress += mines.minersOn
-            
-            if (mines.progress>mines.diff) { // If it progresses enough to get xp
-                mines.progress = 0
 
-                const roll = Math.random()*100
+            const increase = mines.progress+mines.minersOn;
+            if (increase >= mines.diff) { // If it progresses enough to get xp
+                const leftOverDiff = increase % mines.diff;
+                mines.progress = leftOverDiff
 
-                let topChecker = 0;
-                let top = null;
-                for (const resources of mines.resourceChances) {
-                    if (resources[1]<roll) {
-                        topChecker = resources[1]
-                        top = resources[0]
+                const repititions = Math.floor(increase*100/mines.diff)
+                gainingStuff(`+${mines.name} Gave you something!`);
+
+                for (let a = 0; a>=repititions; a++) {
+                    const roll = Math.random()*100
+
+                    let topChecker = 0;
+                    let top = null;
+                    for (const resources of mines.resourceChances) {
+                        if (resources[1]<roll) {
+                            topChecker = resources[1]
+                            top = resources[0]
+                        }
                     }
-                }
 
-                if (top === null) {
-                    say("Your miner came back with...nothing")
-                } else {
-                    resources[top] += 1;
-                }
+                    if (top === null) {
+                        say("Your miner came back with...nothing")
+                    } else {
+                        resources[top] += 1;
+                    }
 
+                }
 
                 player.mine.minerlevelProgress += mines.xp // XP giving for leveling miners
 
@@ -192,14 +218,16 @@ function minerUpdate() {
                     player.mine.minerlevelProgress = 0;
                     player.mine.levelMax = (player.mine.levelMax ** 2)
                 }
-            }
 
-        }
-    }
+            } else {
+                mines.progress += mines.minersOn;
+            };
+
+        };
+    };
 
     // Level Buffs
     player.mine.minerInterval = 5001-(player.mine.minerlevel)
-    
 }
 
 // Market Code

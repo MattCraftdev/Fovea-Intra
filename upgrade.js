@@ -25,6 +25,7 @@ const upgrades = [
         maxpurchases: 1,
         onpurchase: () => {
             document.querySelector('[value = "Pit"]').disabled = false;
+            document.querySelector('[value = "Pit"]').innerText = "The Pit";
             resetThePitTimer();
         },
         purchasetext: "A big dark hole emerged from the nearby ground. It's deep.",
@@ -283,7 +284,10 @@ const upgrades = [
         flavortext: "Hmm. Maybe you should call the local drug de- I mean potion maker.",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => { document.querySelector('[value = "Potion"]').disabled = false; },
+        onpurchase: () => {
+            document.querySelector('[value = "Potion"]').disabled = false;
+            document.querySelector('[value = "Potion"]').innerText = "Potion Brewery";
+        },
         purchasetext: "Potion man giving you a call. Better head down.",
         type: "basic",
     },
@@ -345,7 +349,7 @@ const upgrades = [
     },
 
     {
-        name: "Unlock Mineshaft 1: Basic tunnel",
+        name: "Unlock Mineshaft 1: Light tunnel",
         id: "unlockshaft1",
         cost: [["matter", 50]],
         unlocked: false,
@@ -359,11 +363,11 @@ const upgrades = [
     },
 
     {
-        name: "Unlock Mineshaft 2: Dark Celler",
+        name: "Unlock Mineshaft 2: Celler",
         id: "unlockshaft2",
-        cost: [["barcoins", 2000], ["stone", 5], ["matter", 25]],
+        cost: [["barcoins", 500], ["soil", 5], ["matter", 25]],
         unlocked: false,
-        reqs: [["barcoins", 1250]],
+        reqs: [["soil", 2], ["stone", 1]],
         flavortext: "The 2nd shaft is created, leading into somehow a celler. Strange.",
         purchased: 0,
         maxpurchases: 1,
@@ -373,11 +377,11 @@ const upgrades = [
     },
 
     {
-        name: "Unlock Mineshaft 3: Scary Cave",
+        name: "Unlock Mineshaft 3: Small Cave",
         id: "unlockshaft3",
-        cost: [["stone", 50], ["blackCrystal", 10], ["darkPyrite", 2], ["barcoins", 1000]],
+        cost: [["soil", 25], ["stone", 10], ["darkPyrite", 1], ["matter", 50]],
         unlocked: false,
-        reqs: [["stone", 10], ["blackCrystal", 5]],
+        reqs: [["stone", 10], ["blackCrystal", 1]],
         flavortext: "The 3rd shaft is created, leading into somehow a cave. A dark one by that.",
         purchased: 0,
         maxpurchases: 1,
@@ -387,9 +391,23 @@ const upgrades = [
     },
 
     {
-        name: "Unlock Mineshaft 4: Dark Celler",
+        name: "Unlock Mineshaft 4: Dark Tunnel",
         id: "unlockshaft4",
-        cost: [["blueGem", 10], ["stone", 200], ["matter", 200]],
+        cost: [["blueGem", 1], ["soil", 200], ["stone", 100]],
+        unlocked: false,
+        reqs: [["blackCrystal", 100]],
+        flavortext: "Moving down, you venture deep into the pit",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {},
+        purchasetext: "Shall you venture?",
+        type: "mining",
+    },
+
+    {
+        name: "Unlock Mineshaft 5: The Pit.",
+        id: "unlockshaft5",
+        cost: [["darkPyrite", 5], ["stone", 100], ["blackCrystal", 5]],
         unlocked: false,
         reqs: [["blackCrystal", 100]],
         flavortext: "The 4th shaft is created, leading into the abyss. A pit.",
@@ -401,6 +419,22 @@ const upgrades = [
     },
 
     {
+        name: "Unlock Mineshaft 6: Dark Celler",
+        id: "unlockshaft6",
+        cost: [["blueGem", 10], ["stone", 200], ["matter", 200]],
+        unlocked: false,
+        reqs: [["blackCrystal", 100]],
+        flavortext: "The 4th shaft is created, leading into the abyss. A pit.",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {},
+        purchasetext: "Shall you venture?",
+        type: "mining",
+    },
+
+
+
+    {
         name: "Unlock the Market",
         id: "unlockmarket",
         cost: [["matter", 100], ["energy", 10]],
@@ -409,7 +443,10 @@ const upgrades = [
         flavortext: "You see a market in the distance. But...there's forest everywhere and you would like to make this easier in the future.",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => { document.querySelector('[value = "Market"]').disabled = false; },
+        onpurchase: () => {
+            document.querySelector('[value = "Market"]').disabled = false;
+            document.querySelector('[value = "Market"]').innerText = "Market";
+        },
         purchasetext: "Constructing a path, you make it to the local market",
         type: "mining",
     },
@@ -423,7 +460,10 @@ const upgrades = [
         flavortext: "The art of equipping is nigh",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => { document.querySelector('[value = "Inventory"]').disabled = false; },
+        onpurchase: () => {
+            document.querySelector('[value = "Inventory"]').disabled = false;
+            document.querySelector('[value = "Inventory"]').innerText = "Inventory";
+        },
         purchasetext: "Clothes are going to feel great!",
         type: "mining",
     },
@@ -465,7 +505,10 @@ const upgrades = [
         flavortext: "Crafter time!",
         purchased: 0,
         maxpurchases: 1,
-        onpurchase: () => { document.querySelector('[value = "Crafting"]').disabled = false; },
+        onpurchase: () => {
+            document.querySelector('[value = "Crafting"]').disabled = false;
+            document.querySelector('[value = "Crafting"]').innerText = "Crafting";
+        },
         purchasetext: "Blacksmither",
         type: "mining",
     },

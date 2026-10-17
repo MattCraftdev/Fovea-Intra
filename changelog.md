@@ -1,6 +1,33 @@
 # Newest versions
 
-2026/10/08 - [0.81.1] CRAFTING && COOL VISUAL && QOL III
+2026/10/17 5:23 PM - [0.84.0] QOL IV + MINING IV + FILE RESTRUCTURING
+Additions:
+- Added saving/loading for mining and researches
+- Added a few extraStat extra stats on things
+- Added more on info page
+- Added 2 more item craftable/equips
+- Added 2 more mineshafts, and their respective upgrades
+- Added a new resource (soil), which acts as the new "stone" replacement (moving others up)
+- Added images (the pit) to swap for the button -> Specifically a clean nice pixel art image, setting the basics
+
+Changes:
+- Changed miner code so it stacks (Basically before if you had 1000 miners and mine progress max was 100, it would just do max 100 per, but now it stacks so you instead get 10 cycles vs 1)
+- Dropdown menus now are called (LOCKED) until purchased
+- Further changed mining to be easier
+- Mining now has modified drop rates, in accordance to soil
+- Modified mining unlock shaft costs
+- Merged crafting/researching into one, when clicking you first research then craft
+- Miner code edits/optimizations
+
+Fixes:
+- Fixed minor errors with the cool pop visual, as well as wisdom/etc. errors
+
+File Changes:
+- Pushed some js mechanical files into a folder (inventory.js, mining.js, potions.js, thepit.js) to remove excessive clutter
+- Added images folder for images
+
+2026/10/09 3:33 PM - [0.81.1] CRAFTING && COOL VISUAL && QOL III
+Additions:
 - Added an important visual effect that pops across the screen when something happens (clicked, bar fills)
 - Added setting toggle aswell
 - The visual affect says like +1 level or +5 knowledge, etc.
@@ -9,11 +36,15 @@
 - Crafting works from selecting recipes from the thingy and then hitting craft while showing stats and stuff from item
 - Scrapping items also works (for the most part)
 - Overall: Scrap, craft, research and you can see item stats aswell (not to the best but fair)
-- Mineshafts are slightly easier
 - Added item chain vest
+- Added magical absorption bar, which increases your lifespan +0.1 per level (and it's upgrade of course)
+
+Changes:
+- Mineshafts are slightly easier
+
+Fixes:
 - Fixed error with potions (they would compound immensely)
 - Fixed small error with dropdowns switching to dropdowns not unselecting
-- Added magical absorption bar, which increases your lifespan +0.1 per level (and it's upgrade of course)
 
 2026/10/08 7:39 PM - [0.79.0] ACHIEVE ME! III
 - Refactored achievements to be neater through flexing in groups of 4

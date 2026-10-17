@@ -114,6 +114,9 @@ function saveGame() {
         creation: { id: "creation", level: creationBar.level, maxprogress: creationBar.maxprogress, progress: creationBar.progress},
         resources: resources,
         playerInventorySlots: playerInventorySlots,
+        items: items.map(i => ({ id: i.id, researched: i.researched })),
+        mineshafts: mineshafts.map(m => ({ id: m.id, progress: m.progress, minersOn: m.minersOn })),
+
     };  
     localStorage.setItem("gameSave", JSON.stringify(state));
 
@@ -134,6 +137,16 @@ function loadGame() {
         if (state.resources) {Object.assign(resources, state.resources);}
         if (state.playerInventorySlots) {Object.assign(playerInventorySlots, state.playerInventorySlots);}
 
+        if (state.mineshafts) {
+            state.mineshafts.forEach(savedM => {
+                let realM = mineshafts.find(m => m.id === savedM.id);
+                if (realM) {
+                    realM.progress = savedM.progress;
+                    realM.minersOn = savedM.minersOn;
+                }
+            })
+        }
+
         if (state.achievementStack) {
             state.achievementStack.forEach(savedA => {
                 let realA = achievementStack.find(ul => ul.id === savedA.id);
@@ -141,6 +154,16 @@ function loadGame() {
                     realA.unlocked = savedA.unlocked;
                 }
                 console.log("Completed Achievements")
+            })
+        }
+
+
+        if (state.items) {
+            state.items.forEach(savedA => {
+                let realA = items.find(ul => ul.id === savedA.id);
+                if (realA) {
+                    realA.researched = savedA.researched;
+                }
             })
         }
 
@@ -212,5 +235,5 @@ function OnLoadFunctions() {
     createInventory();
     createCraftButtons();
     updateInventory();
-
+    
 }

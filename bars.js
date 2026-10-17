@@ -62,9 +62,9 @@ class ProgressBar {
             } else {
                 this.level++;
                 this.progress = 0;
-                resources.matter += 1;
+                resources.matter += player.matterMulti;
                 this.maxprogress = this.maxprogress*this.expoincrease;
-                gainingStuff(`${this.element} +1 level`);
+                gainingStuff(`Matter +${player.matterMulti}!`);
             }
             
         } else if (this.elementId === "mood") {
@@ -75,12 +75,17 @@ class ProgressBar {
         } else if (this.elementId === "minerlevel") {
             const levelprogress = (player.mine.minerlevelProgress/player.mine.minerlevelMax)*100
             this.view(levelprogress)
-            document.getElementById("minerlevelBarDisplay").innerText = `Level: ${player.mine.minerlevel} (Progress: ${player.mine.minerlevelProgress}/${player.mine.minerlevelMax})`
+            if (player.settings.extraStats) {
+                document.getElementById("minerlevelBarDisplay").innerText = `Level: ${player.mine.minerlevel} (Progress: ${player.mine.minerlevelProgress}/${player.mine.minerlevelMax})`
+            } else {
+                document.getElementById("minerlevelBarDisplay").innerText = `Level: ${player.mine.minerlevel}`
+            }
+
 
         } else if (this.elementId === "minerinterval") {
             const timerin = (timerintervalChecker/player.mine.minerInterval)*100
             this.view(timerin)
-            document.getElementById("minerintervalBarDisplay").innerText = `Time until miner mines once: ${Math.floor(timerintervalChecker/1000)}s/${player.mine.minerInterval/1000}s`
+            document.getElementById("minerintervalBarDisplay").innerText = `Time until miner mines once: ${Math.floor(timerintervalChecker/1000)}s/${player.mine.minerInterval/1000}s`;
         }
     }
 
@@ -273,7 +278,6 @@ function renderBars() {
     magicHolder.innerHTML = ""
 
     Object.keys(barInfo).forEach(bar => {
-
         const containerDiv = document.createElement("div")
         const progressContainer = document.createElement("div")
         const progressBar = document.createElement("div")
@@ -312,7 +316,7 @@ function renderBars() {
             progressBar.style.backgroundColor = `#1c3a5c`;
         } else {
             holder = healthHolder
-            console.log(barInfo[bar][3])
+            console.error(`${barInfo[bar][3]} (This bar is not assigned to a holder natively)`)
         }
     
         holder.appendChild(containerDiv)
@@ -338,14 +342,15 @@ function recalcBuffs() {
 
     resources.cap = Math.floor((100+(vitBar.level*5)+(martialBar.level*10)+(taichiBar.level*100)-(mediateBar.level)+resources.capBonus)*player.matterCapNerf)
     
-    player.lifespan = 50+(magicabsorptionBar.level*0.1);
+    player.time.lifespan = 50+(magicabsorptionBar.level*0.1);
 
     player.wisdomClickPower = peaceBar.level+1;
-    player.matterCapNerf = 0.5 - (fortitudeBar.level/50)
-
-    if (vitBar.level>=10) {document.getElementById("flexContainer").classList.remove("hidden");}
-
     player.baseKnowledgeIncrease = (studyBar.level) + 1;
 
+    player.matterCapNerf = 0.5 - (fortitudeBar.level/50);
+    player.matterMulti = 1;
+
     player.pitMulti = 1+(abyssalBar.level/50)
+
+    if (vitBar.level>=10) {document.getElementById("flexContainer").classList.remove("hidden");}
 };

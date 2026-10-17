@@ -1,15 +1,20 @@
 const player = {
     matterCapNerf: 0.5,
+    matterMulti: 1,
 
     baseKnowledgeIncrease: 1,
+
+    resourceIncreases: {
+        rawgoop: 1,
+        processedgloop: 1,
+        energy: 1,
+    },
+
+
 
     wisdomRate: 20,
     reflection: 0,
     wisdomClickPower:1,
-
-    lifespan: 50,
-    day: 0,
-    year: 0,
 
     totalpitrolls: 0,
     pitTimer: 0,
@@ -58,6 +63,12 @@ const player = {
         shed: 0,
         storage_unit: 0,
         warehouse: 0,
+    },
+
+    time: {
+        lifespan: 50,
+        day: 0,
+        year: 0,
     },
 
     settings: {
@@ -110,19 +121,28 @@ const resources = {
 
     barcoins: 0,
 
+    soil: 0,
     stone: 0,
     blackCrystal: 0,
     blueGem: 0,
     darkPyrite: 0,
 }
 
+// Images
+const thepitimg = document.getElementById("thepitimg");
+thepitimg.src = "Images/thepitimage.png";
+
 /*
 Ideas:
 REFACTOR ALL BOOSTS AND SETS
--> TO refactor: Have 2 types of the vars, 1 is a decided one, 1 is a booster one that changes
+-> TO refactor: Have 2 types of the vars, 1 is a decided one, 1 is a booster one that changes\
+-> for specifically inventory effects
+-> Later merge bundles {knowledge, knowledgeBonus}
 
 MAJOR ISSUE: RECREATE MAJOR FUNCTIONS FOR AUTOMATION
 -> Or Other things that repeat!!!
+
+Create a inventory picker wheel thingy (Scrap, Equip, Merge)
 
 Fix error with after buying "hold" upgrade it doesn't work
 Check if energy is obtainable before upgrade
@@ -132,16 +152,17 @@ Add toggle on/off for miner going (as upgrade because nun free in life)
 
 Update ALL timers into the main reqAni fully
 Update all boosts into a big pot for all (differentiate between set boosts by timers vs accumulated boosts)
-Add crafting
+
+Make it so lifespan has it's own visual bar unlockable
 
 chatbox has types and can be filtered
 
+Add item merging to make a better item
+Add actual item givig buffs
+
 Blue gems boost magic by having them
 
-- Free pit rolls (Like a token)
-- The pit emits radiation or something that over time hurts the player. Can be removed to "dump sites"
-- Add trash pit that rarely gives pit coins (used mainly for dumping)
-
+- Free pit rolls (Like a token) that "USE" (but don't throw into the pit) the resources
 - achievements show rewards/requirements
 
 - Optimize upgrade code (merge id and name by making the id THE name but id is just without spaces)
@@ -152,8 +173,10 @@ Blue gems boost magic by having them
 
 - Add more potion types
 
+- Maybe add new resource of wood for specifically mines (And wood maybe for general..idk)
+
+
 - Add inventions helptext for each upgrade (on what they do like bars)
-- Make bars say their progress,speed, etc.
 - Make mood say it's affect on the overall speed (Or just do the bars...lol)
 
 - mass energy conversion upgrade
@@ -189,8 +212,8 @@ const wisdomAction = () => {
         if (player.reflection>=player.wisdomRate) {
             const leftOverAcc = player.reflection % player.wisdomRate;
             resources.wisdom += Math.floor(player.reflection/player.wisdomRate);
-            player.reflection = leftOverAcc;
             gainingStuff(`+${Math.floor(player.reflection/player.wisdomRate)} Wisdom!`);
+            player.reflection = leftOverAcc;
         } 
     } else {
         say("There's not enough mood capacity, so you can't have more wisdom. Damn developer doing this, we should overthrown him together!")
@@ -200,8 +223,8 @@ const wisdomAction = () => {
 // Energy Systems
 document.getElementById("collectGoop").addEventListener("click", () => {
     if (calcCost([["knowledge", 5]])) {
-        resources.rawgoop += 1;
-        gainingStuff(`+1 Raw goop`)
+        resources.rawgoop += player.resourceIncreases.rawgoop;
+        gainingStuff(`+${player.resourceIncreases.rawgoop} Raw goop`)
     } else {
         say("Not enough smarts up there laddy!")
     }
@@ -209,8 +232,8 @@ document.getElementById("collectGoop").addEventListener("click", () => {
 
 document.getElementById("processGloop").addEventListener("click", () => {
     if (calcCost([["knowledge", 5], ["rawgoop", 2]])) {
-        resources.processedgloop += 1;
-        gainingStuff(`+1 Processed Gloop`)
+        resources.processedgloop += player.resourceIncreases.processedgloop;
+        gainingStuff(`+${player.resourceIncreases.processedgloop} Processed Gloop`)
     } else {
         say("need more bucko!")
     }
@@ -218,8 +241,8 @@ document.getElementById("processGloop").addEventListener("click", () => {
 
 document.getElementById("packageEnergy").addEventListener("click", () => {
     if (calcCost([["wisdom", 2], ["processedgloop", 2]])) {
-        resources.energy += 1;
-        gainingStuff(`+1 Energy`)
+        resources.energy += player.resourceIncreases.energy;
+        gainingStuff(`+${player.resourceIncreases.energy} Energy`)
     } else {
         say("Not enough shtuff brochacho")
     }

@@ -116,8 +116,8 @@ let boosts = [
     {speed: 1},
 ]
 
+// Specifically for potion/one-time/equips
 function recalcBoosts() {
-
     boosts.time = 1;
     boosts.wis = 1;
     boosts.speed = 1;
@@ -194,6 +194,7 @@ function displays() {
     document.getElementById("displayMatter").innerText = "Matter: " + resources.matter;
 
     document.getElementById("displayBarcoins").innerText = `Barcoins: ${resources.barcoins}`
+    document.getElementById("displaySoil").innerText = `Soil: ${resources.soil}`
     document.getElementById("displayStone").innerText = `Stone: ${resources.stone}`
     document.getElementById("displayblackCrystal").innerText = `Black Crystal: ${resources.blackCrystal}`
     document.getElementById("displaydarkPyrite").innerText = `Dark Pyrite: ${resources.darkPyrite}`
@@ -255,20 +256,20 @@ function solveMood() {
 let dead = false;
 // Time System
 function updateTime() {
-    player.day += 1;
-    if (player.day > 365) {
-        player.day = 0;
-        player.year += 1;
+    player.time.day += 1;
+    if (player.time.day > 365) {
+        player.time.day = 0;
+        player.time.year += 1;
     };
-    if (player.year>=player.lifespan && dead === false) {
+    if (player.year>=player.time.lifespan && dead === false) {
         initiateDeath();
     }
-    document.getElementById("displayDay").innerText = "Day: " + player.day;
-    document.getElementById("displayYear").innerText = "Age: " + player.year;
+    document.getElementById("displayDay").innerText = "Day: " + player.time.day;
+    document.getElementById("displayYear").innerText = "Age: " + player.time.year;
 };
 
 function updateLifespan() {
-    const lifespanReal = player.lifespan.toFixed(2) // Sets decimals to max 0.XX
+    const lifespanReal = player.time.lifespan.toFixed(2) // Sets decimals to max 0.XX
     document.getElementById("displayLifespan").innerText = `/${lifespanReal} (Time left.)`
 }
 
