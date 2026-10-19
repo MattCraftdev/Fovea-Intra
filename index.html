@@ -135,6 +135,9 @@
     <p id = "youDied" class = "hidden">You DIED!</p>
     <button id = "tryAgain" class = "hidden">Try Again.</button>
 
+    <img id = "TrainingBackground" alt = "TrainingBackgroundImg" class="specificbackgroundImage backImage">
+    <img id = "InventionsBackground" alt = "InventionsBackgroundImg" class="backImage">
+    
 
     <div id = "Story">
         <h1 id = "storyTitle">Message Log</h1>
@@ -146,7 +149,7 @@
 
     <div id = "savingnotif">Saving...</div>
 
-    <div>
+    <div id="topHUD">
         <div id="displayVars">
             <span id= "displayKnowledge" >Knowledge: </span><span id = "displayKnowledgeBonus" class = "displayVariables"></span>
             <span id= "displayWisdom" class = "hidden">Wisdom: 0</span><span id = "displayWisdomBonus" class = "hidden displayVariables"></span>
@@ -169,203 +172,205 @@
 
         <br>
     </div>
+    
+    <div id="allContent">
+        <div class = "tabs">
+            <button class = "tab-button hidden" data-tab="Training">Training</button>
+            <button class = "tab-button" data-tab="Creation">Creation</button>
+            <button class = "tab-button" data-tab="Inventions">Inventions</button>
+
+            <select id="mechanics" class="selector hidden">
+                <option value="Pit" disabled>LOCKED</option>
+                <option value="Potion" disabled>LOCKED</option>
+            </select>
+
+            <button class = "tab-button hidden" data-tab="Mining">Mining</button>
+
+            <select id="resource" class="selector hidden">
+                <option value="Market" disabled>LOCKED</option>
+                <option value="Inventory" disabled>LOCKED</option>
+                <option value="Crafting" disabled>LOCKED</option>
+            </select>
+
+            <select id="settings" class="selector">
+                <option value="saveLoad">Save/Load</option>
+                <option value="Achievements">Achievements</option>
+                <option value="Settings">Settings</option>
+            </select>
+
+        </div>
+
+        <div class = "tab-content" id = "Training">
+            <h2 class="section-title" id = "naheader">Basic</h2>
+            <div id = "naHolder"></div>
+
+            <h2 class="section-title" id = "healthheader">Health</h2>
+            <div id = "healthHolder"></div>
+
+            <h2 class="section-title" id = "magicheader">Magic</h2>
+            <div id = "magicHolder"></div>
+        </div>
+
+        <div class = "tab-content" id = "Creation">
+            <br>
+                
+            <section id = "box">
+                <button id = "createKnowledge" class = "anyButton" >Create 1 knowledge</button>
+                <button id = "createWisdom" class = "anyButton hidden" >Create 1 wisdom (0/20)</button>
+            </section>
+
+            <div id = "matterContainer" class = "hidden">
+                <div id="creationContainer">
+                    <div class="progress-container">
+                        <div class="progress-bar" id="creation"></div>
+                        <span class= "progress-text" id = "creationLevelDisplay"></span>
+                    </div>
+                </div>
+
+                <button id = "enableMatter">Enable Matter</button>
+                <button id = "disableMatter">Disable Matter</button>
+            </div>
+
+            <div id = "energyContainer" class="hidden">
+                <p id = "displayGoop">Goop: 0</p>
+                <p id = "displayGloop">Gloop: 0</p>
+                <p id = "displayEnergy">Energy: 0</p>
+
+                <button class = "energybtn" id = "collectGoop">Collect Raw Goop - Costs 5 knowledge</button>
+                <button class = "energybtn" id = "processGloop">Process into Gloop - Costs 5 knowledge & 2 Goop</button>
+                <button class = "energybtn" id = "packageEnergy">Package into useable energy - Costs 2 wisdom & 2 Gloop</button>
+            </div>
+        </div>
 
 
-    <div class = "tabs">
-        <button class = "tab-button hidden" data-tab="Training">Training</button>
-        <button class = "tab-button" data-tab="Creation">Creation</button>
-        <button class = "tab-button" data-tab="Inventions">Inventions</button>
+        <div class = "tab-content" id = "Inventions">
+            <button id = "unlocker" class = "upgrade">Find random requirements for an upgrade - Costs 100 knowledge</button>
 
-        <select id="mechanics" class="selector hidden">
-            <option value="Pit" disabled>LOCKED</option>
-            <option value="Potion" disabled>LOCKED</option>
-        </select>
+            <div id = "upgradeContainer"></div>
+            <br>
+        </div>
+        
+        <div class = "tab-content" id = "Pit">
+            <p>The pit will take your resources you throw into it and MIGHT give you something back if you're nice. Something good.</p>
+            <p id = "displayThePitTimer">Time until reset: </p>
+            Throw <input type ="number" id = "thepitKnowledge"> Knowledge into the pit
+            <br>
+            Throw <input type ="number" id = "thepitWisdom"> Wisdom into the pit
+            <button id = "setToMax" class = "hidden upgrade">Set to players knowledge and wisdom amounts</button>
+            <p>Sacrifice stuff into the pit</p>
+            <img id = "thepitimg" alt = "thepitimage">
 
-        <button class = "tab-button hidden" data-tab="Mining">Mining</button>
+        </div>
 
-        <select id="resource" class="selector hidden">
-            <option value="Market" disabled>LOCKED</option>
-            <option value="Inventory" disabled>LOCKED</option>
-            <option value="Crafting" disabled>LOCKED</option>
-        </select>
+        <div class = "tab-content" id = "Potion">
+            <p id = "potionTimers"></p>
+            <br>
+            <button class = "potionbtn" id="createPotion">Create a Potion</button>
+            <p id = "displayPotionBuyTimer">Time left: </p>
+            <p id = "currentDealer">Current Dealer: </p>
+            <button id = "switchDealer" class = "potionbtn">Switch Dealers</button>
+            <p id = "displayDealerWait">Time Left:</p>
+            <br>
 
-        <select id="settings" class="selector">
-            <option value="saveLoad">Save/Load</option>
-            <option value="Achievements">Achievements</option>
-            <option value="Settings">Settings</option>
-        </select>
+            <p id = "potionShowing" ></p>
+        </div>
 
-    </div>
+        <div class = "tab-content" id="Mining">
+            <p id="displayBarcoins">Barcoins: 0</p>
+            <p id="displaySoil">Soil: 0</p>
+            <p id="displayStone">Stone: 0</p>
+            <p id="displayblackCrystal">Black Crystal: 0</p>
+            <p id="displaydarkPyrite">Dark Pyrite: 0</p>
+            <p id="displayblueGem">Blue Gem: 0</p>
 
-    <div class = "tab-content" id = "Training">
-        <h2 class="section-title" id = "naheader">Basic</h2>
-        <div id = "naHolder"></div>
+            <br><p id="displayTotalMiners">Total Miners: 0</p>
 
-        <h2 class="section-title" id = "healthheader">Health</h2>
-        <div id = "healthHolder"></div>
-
-        <h2 class="section-title" id = "magicheader">Magic</h2>
-        <div id = "magicHolder"></div>
-    </div>
-
-    <div class = "tab-content" id = "Creation">
-        <br>
-            
-        <section id = "box">
-            <button id = "createKnowledge" class = "anyButton" >Create 1 knowledge</button>
-            <button id = "createWisdom" class = "anyButton hidden" >Create 1 wisdom (0/20)</button>
-        </section>
-
-        <div id = "matterContainer" class = "hidden">
-            <div id="creationContainer">
+            <div id = "minerlevelContainer">
                 <div class="progress-container">
-                    <div class="progress-bar" id="creation"></div>
-                    <span class= "progress-text" id = "creationLevelDisplay"></span>
+                    <div class="progress-bar" id="minerlevel"></div>
+                    <span class= "progress-text" id = "minerlevelBarDisplay">0%</span>
                 </div>
             </div>
 
-            <button id = "enableMatter">Enable Matter</button>
-            <button id = "disableMatter">Disable Matter</button>
+            <div id = "minerintervalContainer">
+                <div class="progress-container">
+                    <div class="progress-bar" id="minerinterval"></div>
+                    <span class= "progress-text" id = "minerintervalBarDisplay">0%</span>
+                </div>
+            </div>
+
+            <p id="miningUpgradeContainer"></p>
+            <button class = "tech" id="buyMiner">Buy a miner for 100 Barcoins</button>
+            
+            <p id="mineshaftContainer" class="hidden"></p>
         </div>
 
-        <div id = "energyContainer" class="hidden">
-            <p id = "displayGoop">Goop: 0</p>
-            <p id = "displayGloop">Gloop: 0</p>
-            <p id = "displayEnergy">Energy: 0</p>
-
-            <button class = "energybtn" id = "collectGoop">Collect Raw Goop - Costs 5 knowledge</button>
-            <button class = "energybtn" id = "processGloop">Process into Gloop - Costs 5 knowledge & 2 Goop</button>
-            <button class = "energybtn" id = "packageEnergy">Package into useable energy - Costs 2 wisdom & 2 Gloop</button>
+        <div class = "tab-content" id="Market">
+            <p>Market Offers</p>
+            <p id="displayMarketInterval"></p>
+            <p id="marketHoldings"></p>
         </div>
-    </div>
 
+        <div class="tab-content" id="Inventory">
+            <p>Current Loadout</p>
+            <div id="inventoryHolder"></div>
 
-    <div class = "tab-content" id = "Inventions">
-        <button id = "unlocker" class = "upgrade">Find random requirements for an upgrade - Costs 100 knowledge</button>
+            <button id="scrapItem">Scrap Item</button>
 
-        <div id = "upgradeContainer"></div>
-        <br>
-    </div>
-    
-    <div class = "tab-content" id = "Pit">
-        <p>The pit will take your resources you throw into it and MIGHT give you something back if you're nice. Something good.</p>
-        <p id = "displayThePitTimer">Time until reset: </p>
-        Throw <input type ="number" id = "thepitKnowledge"> Knowledge into the pit
-        <br>
-        Throw <input type ="number" id = "thepitWisdom"> Wisdom into the pit
-        <button id = "setToMax" class = "hidden upgrade">Set to players knowledge and wisdom amounts</button>
-        <p>Sacrifice stuff into the pit</p>
-        <img id = "thepitimg" alt = "thepitimage">
+            <p>Inventory Slots:</p>
+            <div id="inventorySlots"></div>
+        </div>
 
-    </div>
+        <div class="tab-content" id="Crafting">
+            <div id="craftingRecipes">Select a recipe</div>
+            <div>
+                <p id="itemName">Item Name:</p>
+                <p id="itemReqs">Item requires:</p>
+                <p id="itemDescript">Item Descript</p>
+                <p id="itemOther">Item Other:</p>
+                <p id="itemResearched">Item Researched.</p>
 
-    <div class = "tab-content" id = "Potion">
-        <p id = "potionTimers"></p>
-        <br>
-        <button class = "potionbtn" id="createPotion">Create a Potion</button>
-        <p id = "displayPotionBuyTimer">Time left: </p>
-        <p id = "currentDealer">Current Dealer: </p>
-        <button id = "switchDealer" class = "potionbtn">Switch Dealers</button>
-        <p id = "displayDealerWait">Time Left:</p>
-        <br>
-
-        <p id = "potionShowing" ></p>
-    </div>
-
-    <div class = "tab-content" id="Mining">
-        <p id="displayBarcoins">Barcoins: 0</p>
-        <p id="displaySoil">Soil: 0</p>
-        <p id="displayStone">Stone: 0</p>
-        <p id="displayblackCrystal">Black Crystal: 0</p>
-        <p id="displaydarkPyrite">Dark Pyrite: 0</p>
-        <p id="displayblueGem">Blue Gem: 0</p>
-
-        <br><p id="displayTotalMiners">Total Miners: 0</p>
-
-        <div id = "minerlevelContainer">
-            <div class="progress-container">
-                <div class="progress-bar" id="minerlevel"></div>
-                <span class= "progress-text" id = "minerlevelBarDisplay">0%</span>
+                <button id="craftIt">Craft it!</button>
             </div>
         </div>
 
-        <div id = "minerintervalContainer">
-            <div class="progress-container">
-                <div class="progress-bar" id="minerinterval"></div>
-                <span class= "progress-text" id = "minerintervalBarDisplay">0%</span>
-            </div>
+        <div class="tab-content" id="Achievements">
+            <div id="achievementContainer"></div>
         </div>
 
-        <p id="miningUpgradeContainer"></p>
-        <button class = "tech" id="buyMiner">Buy a miner for 100 Barcoins</button>
+        <div class="tab-content" id="saveLoad">
+            <h1>Saving/Loading</h1>
+            <p>If you're having issues saving or loading, press these buttons</p>
+            <button id = "saveGame" class = "tech">Save Game</button>
+            <button id = "loadGame" class = "tech">Load Game</button>
+            <button id = "resetGame" class = "tech">Hard reset game</button>
+
+            <p>WARNING! Earlier saves may get corrupted, so you may have to start a new save(as the way it works, saves layer over, so you might get incorrect old variables)</p>
+        </div>
+
+        <div class = "tab-content" id="Settings">
+
+            <h1>Settings</h1>
+            <button id="extraStats" class="tech">Extra Stats: Disabled</button>
+            <button id="visualEffects" class="tech">Visual Effects: Enabled</button>
+            <button id="parallax" class="tech">Parallax: Enabled</button>
+
+            <p id = "saveIntervalDisplay">Save interval: 5 Seconds</p>
+            <input type="range" id="slidersaveInterval" min = "5" max = "60" value = "10" step = "1">
+
+            <p id="achivementStepBtns">Achievement Buttons In a row: 4</p>
+            <input type="range" id="achievementSliderBtns" min="1" max="8" value="4" step="1">
+
+            <h1>Suggestions && player feedback!</h1>
+            <a href = "https://docs.google.com/forms/d/e/1FAIpQLSfZzc5mmAiAml43Evbn82LncR4xEki9pOgxahC1puiPt-Zmsg/viewform?usp=publish-editor" target ="_blank">Google form ANON feedback</a>
+            <button id = "showStory" class = "tech">Reshow Story</button>
+            <button id = "getHelp" class = "tech">Reshow help screen</button>
+            <button id = "getChangelog" class = "tech">Changelog</button>
+            <iframe id = "changelog" src="changelog.md" title="Embedded Content" class = "hidden"></iframe>
         
-        <p id="mineshaftContainer" class="hidden"></p>
-    </div>
-
-    <div class = "tab-content" id="Market">
-        <p>Market Offers</p>
-        <p id="displayMarketInterval"></p>
-        <p id="marketHoldings"></p>
-    </div>
-
-    <div class="tab-content" id="Inventory">
-        <p>Current Loadout</p>
-        <div id="inventoryHolder"></div>
-
-        <button id="scrapItem">Scrap Item</button>
-
-        <p>Inventory Slots:</p>
-        <div id="inventorySlots"></div>
-    </div>
-
-    <div class="tab-content" id="Crafting">
-        <div id="craftingRecipes">Select a recipe</div>
-        <div>
-            <p id="itemName">Item Name:</p>
-            <p id="itemReqs">Item requires:</p>
-            <p id="itemDescript">Item Descript</p>
-            <p id="itemOther">Item Other:</p>
-            <p id="itemResearched">Item Researched.</p>
-
-            <button id="craftIt">Craft it!</button>
+            <h1>Statistics</h1>
+            <p>Sorry I didn't add any...check back later</p>
         </div>
-    </div>
-
-    <div class="tab-content" id="Achievements">
-        <div id="achievementContainer"></div>
-    </div>
-
-    <div class="tab-content" id="saveLoad">
-        <h1>Saving/Loading</h1>
-        <p>If you're having issues saving or loading, press these buttons</p>
-        <button id = "saveGame" class = "tech">Save Game</button>
-        <button id = "loadGame" class = "tech">Load Game</button>
-        <button id = "resetGame" class = "tech">Hard reset game</button>
-
-        <p>WARNING! Earlier saves may get corrupted, so you may have to start a new save(as the way it works, saves layer over, so you might get incorrect old variables)</p>
-    </div>
-
-    <div class = "tab-content" id="Settings">
-
-        <h1>Settings</h1>
-        <button id="extraStats" class="tech">Extra Stats: Disabled</button>
-        <button id="visualEffects" class="tech">Visual Effects: Enabled</button>
-
-        <p id = "saveIntervalDisplay">Save interval: 5 Seconds</p>
-        <input type="range" id="slidersaveInterval" min = "5" max = "60" value = "10" step = "1">
-
-        <p id="achivementStepBtns">Achievement Buttons In a row: 4</p>
-        <input type="range" id="achievementSliderBtns" min="1" max="8" value="4" step="1">
-
-        <h1>Suggestions && player feedback!</h1>
-        <a href = "https://docs.google.com/forms/d/e/1FAIpQLSfZzc5mmAiAml43Evbn82LncR4xEki9pOgxahC1puiPt-Zmsg/viewform?usp=publish-editor" target ="_blank">Google form ANON feedback</a>
-        <button id = "showStory" class = "tech">Reshow Story</button>
-        <button id = "getHelp" class = "tech">Reshow help screen</button>
-        <button id = "getChangelog" class = "tech">Changelog</button>
-        <iframe id = "changelog" src="changelog.md" title="Embedded Content" class = "hidden"></iframe>
-    
-        <h1>Statistics</h1>
-        <p>Sorry I didn't add any...check back later</p>
     </div>
 
     <script src="main.js" defer></script>

@@ -25,7 +25,6 @@ html {
     font-size:20px;
     margin: 10px;
     font-family:'Times New Roman';
-
 }
 
 .tabs button:hover{
@@ -52,19 +51,8 @@ html {
     left: 50%;
     transform: translate(-50%, -50%);
     position: fixed;
-    z-index: 12;
+    z-index: 15;
     background-color: black;
-
-}
-
-#googleFeedback {
-    width: 60%;
-    height: 80%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    position: fixed;
-    z-index: 12;
 
 }
 
@@ -94,6 +82,7 @@ dt {
     padding: 15px;
     font-size: 100%;
     font-family:'Times New Roman';
+    z-index: 3;
 }
 
 .anyButton:hover{
@@ -112,6 +101,7 @@ dt {
     margin: 5px;
     position: fixed;
     border: 2px solid #414141;
+    z-index: 20;
 }
 .gainingStuff {
     font-size:40px;
@@ -120,17 +110,7 @@ dt {
     margin: 5px;
     position: fixed;
     transform: translate(-50%, -50%); 
-}
-
-#the-pit {
-    background-color:#37004b;
-    color:rgb(241, 255, 135);
-    padding: 20px;
-    border: 20px;
-    font-size: 25px;
-    font-family:'georgia';
-    display:flex;
-    margin: 20px;
+    z-index: 30;
 }
 
 #craftingRecipes {
@@ -141,7 +121,7 @@ dt {
     height: 50%;
     overflow: scroll;
     border: 2px solid #000000;
-    z-index: 7;
+    z-index: 10;
     resize: both;
 }
 /* Story box */
@@ -156,7 +136,7 @@ dt {
     height: 50%;
     overflow: scroll;
     border: 2px solid #000000;
-    z-index: 7;
+    z-index: 12;
     resize: both;
 
 }
@@ -164,7 +144,7 @@ dt {
 #storyTitle {
     font-size: 30px;
     font-family: "georgia";
-    z-index: 8;
+    z-index: 13;
 }
 
 /* Progress bars */
@@ -178,6 +158,7 @@ dt {
     align-items: center;
     position: relative;
     overflow: hidden;
+    z-index: 3;
 }
 
 .progress-bar {
@@ -188,7 +169,7 @@ dt {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 4;
 }
 
 .progress-text {
@@ -197,7 +178,7 @@ dt {
     text-align: center;
     width: 100%;
     position: relative;
-    z-index: 2;
+    z-index: 5;
     color: black;
 }
 
@@ -209,6 +190,7 @@ dt {
     padding: 20px;
     margin: 10px;
     display: none;
+    z-index: 2;
 }
 
 .skill-info {
@@ -216,6 +198,7 @@ dt {
     flex-direction: column;
     justify-content: center;
     padding-left: 10px;
+    z-index: 2;
 }
 
 .skill-row {
@@ -224,18 +207,22 @@ dt {
     align-items: center;
     gap: 20px;
     width: 100%;
+    z-index: 2;
 }
 
 #healthheader {
     background-color: rgb(22, 63, 27);
+    z-index: 3;
 }
 
 #magicheader {
     background-color: rgb(38, 43, 79);
+    z-index: 3;
 }
 
 #naheader {
     background-color: rgb(82, 82, 82);
+    z-index: 3;
 }
 
 /* Death Screen */
@@ -243,7 +230,7 @@ dt {
     position: absolute;
     font-weight: bold;
     font-size: 160px;
-    z-index:21;
+    z-index: 99;
     color:red;
     top: 0%;
     left: 50%;
@@ -254,7 +241,7 @@ dt {
     height: 100%;
     width: 100%;
     position: absolute;
-    z-index: 20;
+    z-index: 98;
     background:rgb(241, 241, 241);
     top: 0%;
     left: 0%;
@@ -262,7 +249,7 @@ dt {
 
 #tryAgain {
     position: absolute;
-    z-index: 21;
+    z-index: 99;
     top: 60%;
     left: 50%;
     background-color:red;
@@ -277,6 +264,7 @@ dt {
 /* In tabs buttons */
 .displayVariables {
     color: rgb(20, 128, 20);
+    z-index: 4;
 }
 
 #displayVars {
@@ -285,6 +273,7 @@ dt {
     color:rgb(200, 200, 200);
     width: fit-content;
     font-size: 16px;
+    z-index: 4;
 }
 
 #box {
@@ -293,6 +282,7 @@ dt {
     display: flex;
     background-color: rgb(48, 48, 48);
     width: fit-content;
+    z-index: 3;
 }
 
 .energybtn {
@@ -302,6 +292,7 @@ dt {
     border: 20px;
     font-size: 100%;
     font-family:'georgia';
+    z-index: 3;
 }
 
 .tech {
@@ -311,6 +302,7 @@ dt {
     padding: 10px;
     font-size: 100%;
     font-family:'georgia';
+    z-index: 3;
 }
 
 .upgrade {
@@ -322,6 +314,7 @@ dt {
     font-family:'georgia';
     display: flex;
     margin: 10px;
+    z-index: 3;
 }
 
 .selector {
@@ -331,6 +324,7 @@ dt {
     font-size:20px;
     margin: 10px;
     font-family:'Times New Roman';
+    z-index: 3;
 }
 
 .potionbtn {
@@ -342,9 +336,10 @@ dt {
     font-family:'georgia';
     margin: 10px;
     display: block;
+    z-index: 3;
 }
 
-.potionsContainer {
+.flexer {
     display: flex;
 }
 
@@ -356,11 +351,8 @@ dt {
     font-size: 100%;
     font-family:'georgia';
     display: block;
-    margin: 10px; 
-}
-
-.minerContainer {
-    display: flex;
+    margin: 10px;
+    z-index: 3;
 }
 
 #inventoryHolder {
@@ -372,9 +364,38 @@ dt {
     background-color:#222222;
     padding: 10px;
     margin: 10px;
-    display: block; 
+    display: block;
 }
 
-.achievementFlexer {
-    display: flex;
+/* Images */
+.backImage {
+    display: none;
 }
+
+.specificbackgroundImage {
+    height: 100vh;
+    width: 200vh; 
+    image-rendering: pixelated;
+    background-size: cover;
+    display: block;
+    position: fixed;
+    z-index: 0;
+    filter: brightness(70%); 
+}
+
+/* All */
+
+#topHUD {
+    position: relative;
+    display: block;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#allContent {
+    position: absolute;
+    display:block;
+    z-index: 1;
+}
+

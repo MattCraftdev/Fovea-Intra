@@ -303,22 +303,22 @@ function createPotionShowing() {
     let container = null;
     potionOdds.forEach (potion => {
         if (potion.Num % 4 === 0) {
-            container = document.createElement("div")
-            container.classList.add("potionsContainer")
+            container = document.createElement("div");
+            container.classList.add("flexer");
 
-            potionInventory.appendChild(container)
+            potionInventory.appendChild(container);
         }
         
-        const btn = document.createElement("button")
-        let potionNum = potionStock.stocks[potion.Num]
+        const btn = document.createElement("button");
+        let potionNum = potionStock.stocks[potion.Num];
 
-        if (potionNum === null || potionNum === undefined) {potionNum = 0}
-        btn.innerText = `Use ${potion.Name} (You have ${potionNum})`
-        btn.classList.add("potionbtn")
+        if (potionNum === null || potionNum === undefined) {potionNum = 0};
+        btn.innerText = `Use ${potion.Name} (You have ${potionNum})`;
+        btn.classList.add("potionbtn");
         btn.addEventListener("click", () => { usePotion(potion.Num) });
 
         if (container) {
-            container.appendChild(btn)            
+            container.appendChild(btn);
         }
     });
 }

@@ -74,6 +74,7 @@ const player = {
     settings: {
         extraStats: false,
         visualEffects: true,
+        parallax: true,
         achievementDisplay: 4,
     }
 }
@@ -131,6 +132,13 @@ const resources = {
 // Images
 const thepitimg = document.getElementById("thepitimg");
 thepitimg.src = "Images/thepitimage.png";
+
+// Background Images
+const TrainingBackground = document.getElementById("TrainingBackground");
+TrainingBackground.src = "Images/TrainingBackgroundSpring.png";
+
+const InventionsBackground = document.getElementById("InventionsBackground");
+InventionsBackground.src = "Images/InventionsBackgroundCleanEye.png";
 
 /*
 Ideas:

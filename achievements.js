@@ -265,7 +265,7 @@ function createAchievementButtons() {
             const container = document.createElement("div");
 
             container.id = `${containerId}Container`;
-            container.classList.add("achievementFlexer");
+            container.classList.add("flexer");
 
             document.getElementById("achievementContainer").appendChild(container);
             containerId += 1;

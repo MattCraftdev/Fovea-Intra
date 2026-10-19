@@ -31,8 +31,8 @@ function startSaveTimer() {
     saveTimer = setInterval(saveGame, player.saveInterval);
 };
 
+// Achieve Slider
 const achievementSlider = document.getElementById("achievementSliderBtns");
-
 achievementSlider.addEventListener("input", () => {
     player.settings.achievementDisplay = achievementSlider.value;
     document.getElementById("achivementStepBtns").innerText = `Achievement buttons in a row: ${player.settings.achievementDisplay}`;
@@ -83,6 +83,16 @@ document.getElementById("extraStats").addEventListener("click", () => {
     }
 })
 
+document.getElementById("parallax").addEventListener("click", () => {
+    if (player.settings.parallax === true) {
+        player.settings.parallax = false;
+        document.getElementById("parallax").innerText = "Parallax: Disabled"
+    } else {
+        player.settings.parallax = true;
+        document.getElementById("parallax").innerText = "Parallax: Enabled"
+    }
+})
+
 // Hard reset
 function hardReset() {
     if (confirm("Are you sure you want to erase your lifetime progress and start over?")) {
@@ -92,7 +102,8 @@ function hardReset() {
             localStorage.removeItem("gameSave");
             console.log("removed gamesave")
             location.reload();
-            console.log("reloading")
+            console.log("reloading (If you see this, it has not successfully reset");
+            say("ERROR! Don't know why but it ain't resetting. Clear your cache of this game.")
         }
     }
 }

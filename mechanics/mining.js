@@ -111,7 +111,7 @@ function renderMineshafts() {
         const shaftDiv = document.createElement("div")
         shaftDiv.id = `${chosenmine.id}btns`
         shaftDiv.classList.add("hidden")
-        shaftDiv.classList.add("minerContainer")
+        shaftDiv.classList.add("flexer")
 
         container.appendChild(shaftDiv)
         container.appendChild(pContainer)

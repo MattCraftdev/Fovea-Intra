@@ -311,24 +311,15 @@ TabButtons.forEach(button => {
         // Hides all tabs
         const tabId = button.dataset.tab;
         
-        TabButtons.forEach(btn => btn.classList.remove("selectedTab"));
-        for (const all of DropDown) {all.classList.remove("selectedTab")}
-        document.querySelectorAll(".tab-content").forEach(tab => {
-            tab.style.display = "none";
-        });
-
-        // Shows selected tab
-        document.getElementById(tabId).style.display = "block";
+        selectTab(tabId);
 
         if (tabId == "Inventions") {
             inventionsBtn.classList.remove("glow");
         } else if (tabId == "Mining") {
             miningBtn.classList.remove("glow");
         }
-        console.log(`Clicking on ${tabId}`);
         
         button.classList.add("selectedTab");
-       
     });
 });
 
@@ -339,21 +330,47 @@ for (const all of DropDown) {
     all.addEventListener("click", (event) => {
         const tabId = event.target.value; 
 
-        TabButtons.forEach(btn => btn.classList.remove("selectedTab"));
-        for (const all of DropDown) {all.classList.remove("selectedTab")}
-        document.querySelectorAll(".tab-content").forEach(tab => {
-            tab.style.display = "none";
-        });
-
-        if (document.getElementById(tabId)) {
-            document.getElementById(tabId).style.display = "block";            
-        }
+        selectTab(tabId);
 
         all.classList.add("selectedTab");
-        console.log(`Dropdown changed to ${tabId}`);
+    });
+}
+
+// Tab parsing
+function selectTab(tabId) {
+    TabButtons.forEach(btn => btn.classList.remove("selectedTab"));
+    for (const all of DropDown) {all.classList.remove("selectedTab")}
+    document.querySelectorAll(".tab-content").forEach(tab => {
+        tab.style.display = "none";
     });
 
+    if (document.getElementById(tabId)) {
+        document.getElementById(tabId).style.display = "block";
+    }
+
+    document.querySelectorAll(".backImage").forEach(img => img.classList.remove("specificbackgroundImage"));
+    document.getElementById(tabId+"Background")?.classList.add("specificbackgroundImage");
 }
+
+// Parallax
+document.addEventListener("mousemove", (e) =>{
+    if (player.settings.parallax) {
+        const mousex = e.clientX - (window.innerWidth/2);
+        const mousey = e.clientY - (window.innerHeight/2); // Middle of screen parallax
+
+        const baseSpeed = 0.05
+
+        const xspeed = baseSpeed
+        const yspeed = baseSpeed
+
+        const translateX = -(mousex * xspeed);
+        const translateY = -(mousey * yspeed);
+
+        document.querySelector(".specificbackgroundImage").style.transform = `scale(1.15) translate(${translateX}px, ${translateY}px)`;
+    } else {
+        document.querySelector(".specificbackgroundImage").style.transform = "scale(1) translate(0px, 0px)";
+    }
+})
 
 // Lil thingy
 function gainingStuff(stuff) {

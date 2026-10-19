@@ -1,6 +1,19 @@
 # Newest versions
 
-2026/10/17 5:23 PM - [0.84.0] QOL IV + MINING IV + FILE RESTRUCTURING
+2026/10/19 2:54 PM - [0.85.0] BACKGROUNDS
+
+Additions:
+- Added 2 background images that fits whole screen/scales
+- They change depending on what tab you are in (Currently for training, inventions)
+- A little darker
+- Parallax for background images, with a setting button to toggle on/off
+
+Changes:
+- Modified lots of CSS to accomidate background images
+- Optimized CSS
+- Optimized tab code
+
+2026/10/17 5:23 PM - [0.84.0] QOL IV + MINING IV + FILE RESTRUCTURING - BASE 6
 Additions:
 - Added saving/loading for mining and researches
 - Added a few extraStat extra stats on things
@@ -79,7 +92,7 @@ Trigger once (as normal)
 - Dropdowns are hidden until a dropdown is avaible for use
 - Very very good mood change where mood now instead of a flat -5 to +5 speed, now does multiplying (scale!) by 0.5 to 1.5!!
 
-2026/10/02 10:17 PM - [0.74.0] QOL
+2026/10/02 10:17 PM - [0.74.0] QOL - BASE 5
 - Added exploder bar, which speeds up matter bar by a small bit & it's upgrade
 - Matter bar now is affected: when mood is high, it affects opposite of a normal bar (0.5x speed - 1.5x speed) no boosts
 - Added important extra stats button, which when toggled shows extra stats for bars (settings)
@@ -167,10 +180,10 @@ Added click to hold to wisdom and knowledge (Their respective upgrades)
 
 2026/08/27 1:25 PM - [0.61.0]
 - Fixed small issue with unlocker text saying "And" at the start of the sentence (gramatically incorrect)
-Fixed same issue in upgrade buttons as it uses the same base infastructure as unlocker
+Fixed same issue in upgrade buttons as it uses the sames infastructure as unlocker
 - Fixed multiple small issues/errors
 - Added automated holders (Bars get assigned to holders)
-Each bar gets a diffent color based off holder
+Each bar gets a diffent color depending on holder
 - Optimized header text and header colors
 - Deleted some unused things (hopefully unused)
 - Deleted overcomplicated useless classes in creating grids for the HTML cont.
@@ -188,7 +201,7 @@ Each bar gets a diffent color based off holder
 - Completely optimized potion duration code by splicing potionstackTimers and potionStock
 - For the most part fixed a major issue with when dying, track spam
 
-2026/08/24 11:28 AM - [0.58.0] POTIONS IV
+2026/08/24 11:28 AM - [0.58.0] POTIONS IV - BASE 4
 - Minor fixes and more tracking (UMAMI)
 - Made knowledge increase boost from potions more integrated + cleaned up code
 - Aswell as altered some wisdom code
@@ -255,7 +268,7 @@ And the same thing to matter
 - Did a playtest: Fixed more bugs, reworked a few things and edited a few more things.
 - Redid more upgrades, and the pacing is smoother
 
-2026/08/18 11:40 PM - [0.50.0] DYNAMIC UPGRADES II && (TWEAKS && FIXES IV + QOL)
+2026/08/18 11:40 PM - [0.50.0] DYNAMIC UPGRADES II && (TWEAKS && FIXES IV + QOL) - BASE 3
 - Added UMAMI tracker, which added a script so it only goes when not my localHost
 - Updated calcCost structure, enabling multiple costs
 - Merged cost and costtype in upgrades
@@ -354,7 +367,7 @@ And the same thing to matter
 - Added a placeholder potion upgrade that works, and potion stocks which save
 - Added random potion odds, 3 potions (knowledge I, II and III) and the whole potion getting system
 
-2026/08/13 4:22 PM - [0.36.0] TWEAKS && FIXES III + QOL/UI
+2026/08/13 4:22 PM - [0.36.0] TWEAKS && FIXES III + QOL/UI - BASE 2
 - Fixed minor error with create knowledge not updating after page load
 - Optimized bar code for selecting and leveling bars
 - Redid the code to work so it had correct names
@@ -435,7 +448,7 @@ Such a pain to add.
 - Health/magic/etc. groups now hidden until your first upgrade on them
 - Added a little saving notif in the bottom corner that appears for 1 second
 
-2026/08/09 10:42 PM - [0.23.0] SAVE/LOAD
+2026/08/09 10:42 PM - [0.23.0] SAVE/LOAD - BASE 1
 - Changed a few varaibles/cleaned up code
 - Added game saving and loading
 
@@ -508,7 +521,7 @@ Such a pain to add.
 2026/07/10 1:44 PM - [0.12.0]
 - Slight modifications of bars
 - Fixed a few minor errors
-- Added mood affecting base bar speed
+- Added mood affecting bar speed
 
 2026/07/07 5:42 PM - [0.11.2]
 - Added different scaling for each bar increase
