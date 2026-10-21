@@ -40,6 +40,13 @@ achievementSlider.addEventListener("input", () => {
     createAchievementButtons();
 });
 
+// Volume setting
+const musicSlider = document.getElementById("musicVolumeSlider")
+musicSlider.addEventListener("input", () => {
+    player.settings.musicVolume = musicSlider.value;
+    playMusicTrack();
+    document.getElementById("musicVolume").innerText = `Music Volume: ${player.settings.musicVolume}`;
+});
 
 // SETTING BUTTONS
 // Changelog embed iframe
@@ -125,7 +132,7 @@ function saveGame() {
         creation: { id: "creation", level: creationBar.level, maxprogress: creationBar.maxprogress, progress: creationBar.progress},
         resources: resources,
         playerInventorySlots: playerInventorySlots,
-        items: items.map(i => ({ id: i.id, researched: i.researched })),
+        items: items.map(i => ({ name: i.name, researched: i.researched })),
         mineshafts: mineshafts.map(m => ({ id: m.id, progress: m.progress, minersOn: m.minersOn })),
 
     };  
@@ -171,7 +178,7 @@ function loadGame() {
 
         if (state.items) {
             state.items.forEach(savedA => {
-                let realA = items.find(ul => ul.id === savedA.id);
+                let realA = items.find(ul => ul.name === savedA.name);
                 if (realA) {
                     realA.researched = savedA.researched;
                 }
@@ -246,5 +253,4 @@ function OnLoadFunctions() {
     createInventory();
     createCraftButtons();
     updateInventory();
-    
 }

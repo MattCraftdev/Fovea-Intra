@@ -144,7 +144,7 @@ const magicBar = new ProgressBar("magic", 10, 4000, 1.15);
 const magicstudyBar = new ProgressBar("magicstudy", 10, 7500, 1.15);
 const magiclearnerBar = new ProgressBar("magiclearner", 10, 20000, 1.3);
 const magicmultiBar = new ProgressBar("magicmulti", 10, 50000, 1.35);
-const magicabsorptionBar = new ProgressBar("magicabsorption", 10, 25000, 1.1);
+const magicalabsorptionBar = new ProgressBar("magicalabsorption", 10, 25000, 1.1);
 const abyssalBar = new ProgressBar("abyssal", 10, 7500, 1.25);
 
 const exploderBar = new ProgressBar("exploder", 10, 10000, 1.2)
@@ -154,7 +154,7 @@ const moodBar = new ProgressBar("mood", 0, 0, 0); // Do not mark. Placeholder Ba
 const minerlevelBar = new ProgressBar("minerlevel", 0, 0, 0);
 const minerintervalBar = new ProgressBar("minerinterval", 0, 0, 0);
 
-const creationBar = new ProgressBar("creation", 10, 2500, 1.0003);
+const creationBar = new ProgressBar("creation", 10, 2500, 1.0003); // Creation bar that SPECIFICALLY has low expo.
 
 const barInfo = { // activebar id, then says their bar then name to DISPLAY. These also create the bars+containers
     // ID: Bar, Name, Description, Type
@@ -174,7 +174,7 @@ const barInfo = { // activebar id, then says their bar then name to DISPLAY. The
     magicstudy: [magicstudyBar, "Magic Study", "Increases the study learning speed", "magic"],
     magiclearner: [magiclearnerBar, "Magic Learner", "Increases the base speed of all bars. (Yes it's OP)", "magic"],
     magicmulti: [magicmultiBar, "Magic Multitasker", "Passively increases all bars by flat 1% of their normal speed (Very OP)", "magic"],
-    magicabsorption: [magicabsorptionBar, "Magical Absorption", "Increases lifespan by +0.1 per level (Keep in mind you need it to get to a solid number to count)", "magic"],
+    magicalabsorption: [magicalabsorptionBar, "Magical Absorption", "Increases lifespan by +0.1 per level (Keep in mind you need it to get to a solid number to count)", "magic"],
     abyssal: [abyssalBar, "Abyssal", "Increases the pit loot by boosting what you throw in there", "magic"],
 
     exploder: [exploderBar, "Exploder", "Uses magic to manually explode and collect matter faster", "magic"],
@@ -259,7 +259,7 @@ function updateAllSpeeds() {
     magicstudyBar.speed = magicsum*(mooddiff + 1)
     magiclearnerBar.speed = magicsum*(mooddiff + 1)
     magicmultiBar.speed = magicsum*(mooddiff + 1)
-    magicabsorptionBar.speed = magicsum*(mooddiff + 1)
+    magicalabsorptionBar.speed = magicsum*(mooddiff + 1)
     abyssalBar.speed = magicsum*(mooddiff + 1)
     exploderBar.speed = magicsum*(mooddiff + 1)
 
@@ -342,7 +342,7 @@ function recalcBuffs() {
 
     resources.cap = Math.floor((100+(vitBar.level*5)+(martialBar.level*10)+(taichiBar.level*100)-(mediateBar.level)+resources.capBonus)*player.matterCapNerf)
     
-    player.time.lifespan = 50+(magicabsorptionBar.level*0.1);
+    player.time.lifespan = 50+(magicalabsorptionBar.level*0.1);
 
     player.wisdomClickPower = peaceBar.level+1;
     player.baseKnowledgeIncrease = (studyBar.level) + 1;

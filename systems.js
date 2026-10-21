@@ -365,10 +365,13 @@ document.addEventListener("mousemove", (e) =>{
 
         const translateX = -(mousex * xspeed);
         const translateY = -(mousey * yspeed);
-
-        document.querySelector(".specificbackgroundImage").style.transform = `scale(1.15) translate(${translateX}px, ${translateY}px)`;
+        if (document.querySelector(".specificbackgroundImage")) {
+            document.querySelector(".specificbackgroundImage").style.transform = `scale(1.15) translate(${translateX}px, ${translateY}px)`;
+        }
     } else {
-        document.querySelector(".specificbackgroundImage").style.transform = "scale(1) translate(0px, 0px)";
+        if (document.querySelector(".specificbackgroundImage")) {
+            document.querySelector(".specificbackgroundImage").style.transform = "scale(1.0) translate(0px, 0px)"
+        }
     }
 })
 

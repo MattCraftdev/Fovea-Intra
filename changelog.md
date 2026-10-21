@@ -1,11 +1,16 @@
 # Newest versions
+2026/10/19 - [0.86.0] MUSIC
+Added:
+- Music folder for all audio
+- Track 1 of music, that plays on a loop (Created by me using the excellent tool, "Beepbox"!)
+- Settings slider for volume (Which also can be used to "mute" the music)
+- README.md file
+
+Fixes: Minor errors with parallax, and mild CSS pointer events: none fixes, and barname mismatch
 
 2026/10/19 2:54 PM - [0.85.0] BACKGROUNDS
-
-Additions:
-- Added 2 background images that fits whole screen/scales
-- They change depending on what tab you are in (Currently for training, inventions)
-- A little darker
+Added:
+- 2 background images that fits whole screen/scales (I drew them personally) that change depending on what tab you are in (Currently for training, inventions), they are also darker
 - Parallax for background images, with a setting button to toggle on/off
 
 Changes:
@@ -14,14 +19,14 @@ Changes:
 - Optimized tab code
 
 2026/10/17 5:23 PM - [0.84.0] QOL IV + MINING IV + FILE RESTRUCTURING - BASE 6
-Additions:
-- Added saving/loading for mining and researches
-- Added a few extraStat extra stats on things
-- Added more on info page
-- Added 2 more item craftable/equips
-- Added 2 more mineshafts, and their respective upgrades
-- Added a new resource (soil), which acts as the new "stone" replacement (moving others up)
-- Added images (the pit) to swap for the button -> Specifically a clean nice pixel art image, setting the basics
+Added:
+- Saving/loading for mining and researches
+- Few extraStat extra stats on things
+- More to the info page
+- 2 more item craftable/equips
+- 2 more mineshafts, and their respective upgrades
+- New resource (soil), which acts as the new "stone" replacement (moving others up)
+- First image ever- (the pit) to swap for the button -> Specifically a clean nice pixel art image, setting the basics
 
 Changes:
 - Changed miner code so it stacks (Basically before if you had 1000 miners and mine progress max was 100, it would just do max 100 per, but now it stacks so you instead get 10 cycles vs 1)
@@ -32,25 +37,23 @@ Changes:
 - Merged crafting/researching into one, when clicking you first research then craft
 - Miner code edits/optimizations
 
-Fixes:
-- Fixed minor errors with the cool pop visual, as well as wisdom/etc. errors
+Fixes: Minor errors with the cool pop visual, as well as wisdom/etc. errors
 
 File Changes:
 - Pushed some js mechanical files into a folder (inventory.js, mining.js, potions.js, thepit.js) to remove excessive clutter
 - Added images folder for images
 
 2026/10/09 3:33 PM - [0.81.1] CRAFTING && COOL VISUAL && QOL III
-Additions:
-- Added an important visual effect that pops across the screen when something happens (clicked, bar fills)
-- Added setting toggle aswell
+Added:
+- Important visual effect that pops across the screen when something happens (clicked, bar fills) with setting toggle aswell
 - The visual affect says like +1 level or +5 knowledge, etc.
-- Added crafting upgrade/option tab
+- crafting upgrade/option tab
 - Crafting now has for you to learn recipe then you can buy THEN you get to be able to "craft" it
 - Crafting works from selecting recipes from the thingy and then hitting craft while showing stats and stuff from item
 - Scrapping items also works (for the most part)
 - Overall: Scrap, craft, research and you can see item stats aswell (not to the best but fair)
-- Added item chain vest
-- Added magical absorption bar, which increases your lifespan +0.1 per level (and it's upgrade of course)
+- New item: Chain vest
+- Magical absorption bar, which increases your lifespan +0.1 per level (and it's upgrade of course)
 
 Changes:
 - Mineshafts are slightly easier
@@ -92,7 +95,7 @@ Trigger once (as normal)
 - Dropdowns are hidden until a dropdown is avaible for use
 - Very very good mood change where mood now instead of a flat -5 to +5 speed, now does multiplying (scale!) by 0.5 to 1.5!!
 
-2026/10/02 10:17 PM - [0.74.0] QOL - BASE 5
+2026/10/02 10:17 PM - [0.74.0] QOL 
 - Added exploder bar, which speeds up matter bar by a small bit & it's upgrade
 - Matter bar now is affected: when mood is high, it affects opposite of a normal bar (0.5x speed - 1.5x speed) no boosts
 - Added important extra stats button, which when toggled shows extra stats for bars (settings)
@@ -101,7 +104,7 @@ Stats include progress/maxprogress, speed and time left
 - Importantly, revolutionized menus by adding dropdown menus, which greatly increases total menu scope without clutter!!!
 From that, pit/potions merged aswell as market/inventory merged, totally to 7 tabs only opposed to 9
 
-2026/09/26 N/a - [0.72.0] INVENTORY CREATION
+2026/09/26 N/a - [0.72.0] INVENTORY CREATION - BASE 5
 - Tweaked bar scaling to be less extreme (so you can earn barcoins still, and it's less of a drag)
 - Tweaked market resource trades to be less resource exchange
 - Added inventory upgrade, it's own tab and it's own inventory.js file
@@ -156,7 +159,7 @@ Nonetheless, I will try my best to continue the project, and won't give up unles
 - Added upgrade types which will move where the upgrade will appear (and different colors depending on)
 - Rendering mineshafts (this is not done, very hard to work with)
 
-2026/08/31 12:57 PM - [0.63.0]
+2026/08/31 12:57 PM - [0.63.0] - BASE 4
 - Switched all navs to divs to stay structurally correct
 - Fixed again the hardreset not reseting sometimes
 - Updated tabs hovering to be simple (only darken color)
@@ -201,7 +204,7 @@ Each bar gets a diffent color depending on holder
 - Completely optimized potion duration code by splicing potionstackTimers and potionStock
 - For the most part fixed a major issue with when dying, track spam
 
-2026/08/24 11:28 AM - [0.58.0] POTIONS IV - BASE 4
+2026/08/24 11:28 AM - [0.58.0] POTIONS IV
 - Minor fixes and more tracking (UMAMI)
 - Made knowledge increase boost from potions more integrated + cleaned up code
 - Aswell as altered some wisdom code
@@ -603,7 +606,10 @@ Such a pain to add.
 - Time system implemented
 - main.js added, starting point
 
-(Dates interfering with this:)
+BASE ##: Base means a completed functional build. Ie, a stable v1 or v2, but unrelated to that system of sementic versioning.
+TITLE: Titles are used for only larger/significant updates, summarizing/explaining what the update is. Not all updates will get a title. Some titles are extensions of older titles, and follow the traditional [NAME ##] Format.
+
+Dates interfering with this:
 VACA: July 8-28th
 CAMP: AUGUST 4-7th
 GALAXY: AUGUST 11th-15th

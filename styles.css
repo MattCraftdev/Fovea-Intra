@@ -102,6 +102,7 @@ dt {
     position: fixed;
     border: 2px solid #414141;
     z-index: 20;
+    pointer-events: none;
 }
 .gainingStuff {
     font-size:40px;
@@ -111,6 +112,7 @@ dt {
     position: fixed;
     transform: translate(-50%, -50%); 
     z-index: 30;
+    pointer-events: none;
 }
 
 #craftingRecipes {
@@ -380,7 +382,7 @@ dt {
     display: block;
     position: fixed;
     z-index: 0;
-    filter: brightness(70%); 
+    filter: brightness(70%);
 }
 
 /* All */
@@ -398,4 +400,3 @@ dt {
     display:block;
     z-index: 1;
 }
-

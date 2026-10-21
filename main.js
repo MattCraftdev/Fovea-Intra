@@ -75,6 +75,7 @@ const player = {
         extraStats: false,
         visualEffects: true,
         parallax: true,
+        musicVolume: 100,
         achievementDisplay: 4,
     }
 }
@@ -140,6 +141,20 @@ TrainingBackground.src = "Images/TrainingBackgroundSpring.png";
 const InventionsBackground = document.getElementById("InventionsBackground");
 InventionsBackground.src = "Images/InventionsBackgroundCleanEye.png";
 
+// Audios
+const track1 = new Audio('Audios/Track1.mp3');
+track1.loop = true;
+track1.volume = (player.settings.musicVolume/100);
+
+function playMusicTrack() {
+    track1.play();
+    track1.volume = (player.settings.musicVolume/100);
+}
+
+
+window.addEventListener('click', () => {
+    playMusicTrack();
+}, { once: true });
 /*
 Ideas:
 REFACTOR ALL BOOSTS AND SETS
