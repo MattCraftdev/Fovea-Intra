@@ -253,4 +253,6 @@ function OnLoadFunctions() {
     createInventory();
     createCraftButtons();
     updateInventory();
+    loadAudios();
+    loadImages();
 }

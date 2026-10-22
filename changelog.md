@@ -1,4 +1,16 @@
 # Newest versions
+
+2026/10/21 11:27 PM - [0.87.0] LOADING REFACTOR
+Added:
+- Another track (Track2, ~44secs)
+- Dynamic track loading system that loads the tracks in on it's own
+- Plays a random track every time upon loading
+- Array system that loads images aswell, so I don't have to copy and paste a lot
+- Both iamge/audio have their own functions for loading
+
+Changes:
+- Boosted original track1 from ~50 seconds to ~2mins
+
 2026/10/19 - [0.86.0] MUSIC
 Added:
 - Music folder for all audio

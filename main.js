@@ -131,26 +131,69 @@ const resources = {
 }
 
 // Images
-const thepitimg = document.getElementById("thepitimg");
-thepitimg.src = "Images/thepitimage.png";
+const imageData = [
+    {
+        imageid: "thepitimg",
+        srctype:"thepitimage.png"
+    },
+    {
+        imageid: "TrainingBackground",
+        srctype:"TrainingBackgroundSpring.png"
+    },
+    {
+        imageid: "InventionsBackground",
+        srctype:"InventionsBackgroundCleanEye.png"
+    },
+]
 
-// Background Images
-const TrainingBackground = document.getElementById("TrainingBackground");
-TrainingBackground.src = "Images/TrainingBackgroundSpring.png";
-
-const InventionsBackground = document.getElementById("InventionsBackground");
-InventionsBackground.src = "Images/InventionsBackgroundCleanEye.png";
+function loadImages() {
+    for (const selectedImage of imageData) {
+        if (selectedImage) {
+            const id = document.getElementById(selectedImage.imageid);
+            if (id) {
+                id.src = `Images/${selectedImage.srctype}`;
+            };            
+        }
+    };
+};
 
 // Audios
-const track1 = new Audio('Audios/Track1.mp3');
-track1.loop = true;
-track1.volume = (player.settings.musicVolume/100);
+const audioData = [
+    {
+        trackName: "Track1",
+        filename:"Track1.wav",
+        objectData: null,
+    },
+    {
+        trackName: "Track2",
+        filename:"Track2.wav",
+        objectData: null,
+    },
+]
 
-function playMusicTrack() {
-    track1.play();
-    track1.volume = (player.settings.musicVolume/100);
+function loadAudios() {
+    for (const anAudio of audioData) {;
+        const newTrack = new Audio(`Audios/${anAudio.filename}`);
+        newTrack.loop = false;
+        newTrack.volume = (player.settings.musicVolume/100);
+        newTrack.preload = 'metadata';
+
+        anAudio.objectData = newTrack;
+
+        newTrack.addEventListener('ended', () => {
+            playMusicTrack();
+        });
+    }
 }
 
+function playMusicTrack() {
+    const randomTrack = audioData[Math.floor(Math.random()*audioData.length)];
+    if (randomTrack && randomTrack.objectData) {
+        randomTrack.objectData.currentTime = 0;
+        randomTrack.objectData.play();
+        randomTrack.objectData.volume = (player.settings.musicVolume/100);        
+    }
+}
 
 window.addEventListener('click', () => {
     playMusicTrack();
