@@ -218,7 +218,6 @@ function updateProgress() {
 function updateAllSpeeds() {
     const mooddiff = 0.5 - (mood/resources.cap);
     const baseSpeed = 10
-
     boosts.speed = baseSpeed
 
     if (potionStock["Speed I"]>0) {
@@ -234,36 +233,34 @@ function updateAllSpeeds() {
         boosts.speed = boosts.speed*3
     }
 
-    const mediateBuff = mediateBar.level*2
-    // Total Mood diff between (5 and -5). BTW bMs is the total average and affects ALL Bars. Careful.
-    const preSpeeds = boosts.speed+magiclearnerBar.level*3
-    const magicsum = preSpeeds+(magicBar.level-10)+mediateBuff
-    const healthsum = preSpeeds+(hitBar.level*3)-(taichiBar.level*2);
+    let furnaceBuff = 1;
+    if (player.furnace.isOn === true) {
+        furnaceBuff = player.furnace.Buff;
+    }
 
+    for (const bars of Object.values(barInfo)) {
+        const [bar, id, descrpt, type] = bars
+    
+        let extras = 1;
+        if (id == "Vitality") { extras = (flexBar.level*2)
+        } else if (id == "Study") { extras = (magicstudyBar.level*2)
+        } else if (id == "Peace") { extras = (insightBar.level*2)
+        } else if (id == "Magic") { extras = (mediateBar.level*3) }
 
-    // Speed applications
-    vitBar.speed = ((flexBar.level*2) + healthsum)*(mooddiff + 1)
-    flexBar.speed = healthsum*(mooddiff + 1)
-    mediateBar.speed = healthsum*(mooddiff + 1)
-    martialBar.speed = healthsum*(mooddiff + 1)
-    hitBar.speed = preSpeeds*(mooddiff + 1)
-    taichiBar.speed = preSpeeds*(mooddiff + 1)
+        let typeAffect = 1;
+        if (type == "magic") {
+            if (id == "Magic") {
+            } else { typeAffect = (magicBar.level-10)+mediateBar.level*2; }
+        } else if (type == "health") {
+            if (id == "Tai Chi") {
+            } else if (id == "HIT") {
+            } else { typeAffect = (hitBar.level*3)-(taichiBar.level*2); }
+        }
 
-    fortitudeBar.speed = healthsum*(mooddiff + 1)
-
-    studyBar.speed = (preSpeeds + magicstudyBar.level*2)*(mooddiff + 1);
-    peaceBar.speed = (preSpeeds + insightBar.level*2)*(mooddiff + 1);
-    insightBar.speed = preSpeeds*(mooddiff + 1)
-
-    magicBar.speed = (preSpeeds + mediateBar.level*2)*(mooddiff + 1) // Magic does not boost itself but gets boosted by other bars!
-    magicstudyBar.speed = magicsum*(mooddiff + 1)
-    magiclearnerBar.speed = magicsum*(mooddiff + 1)
-    magicmultiBar.speed = magicsum*(mooddiff + 1)
-    magicalabsorptionBar.speed = magicsum*(mooddiff + 1)
-    abyssalBar.speed = magicsum*(mooddiff + 1)
-    exploderBar.speed = magicsum*(mooddiff + 1)
-
-    creationBar.speed = (baseSpeed + mooddiff*(-10)) + exploderBar.level
+        const totals = (boosts.speed)+(magiclearnerBar.level*3)+typeAffect+extras
+        bar.speed = totals*(mooddiff + 1)*(furnaceBuff)
+    }
+    creationBar.speed = (baseSpeed + mooddiff*(-10)*furnaceBuff) + exploderBar.level
 }
 
 // Creates Barz

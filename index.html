@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fovea Intra</title>
     
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="Other/styles.css">
 
     <script>
         if (location.hostname !== "127.0.0.1" && location.hostname !== "localhost") {
@@ -138,7 +138,6 @@
     <img id = "TrainingBackground" alt = "TrainingBackgroundImg" class="specificbackgroundImage backImage">
     <img id = "InventionsBackground" alt = "InventionsBackgroundImg" class="backImage">
     
-
     <div id = "Story">
         <h1 id = "storyTitle">Message Log</h1>
         
@@ -201,6 +200,9 @@
         </div>
 
         <div class = "tab-content" id = "Training">
+            <button id="Furnace" class="hidden">Turn on Furnace</button>
+            <p id="displayCoal" class="hidden">Coal: 0</p>
+
             <h2 class="section-title" id = "naheader">Basic</h2>
             <div id = "naHolder"></div>
 
@@ -309,6 +311,9 @@
             <p>Market Offers</p>
             <p id="displayMarketInterval"></p>
             <p id="marketHoldings"></p>
+
+            <p>Market Stall Stock</p>
+            <button id="marketStall">Buy an Inventory slot for 100 Stone</button>
         </div>
 
         <div class="tab-content" id="Inventory">
@@ -369,7 +374,7 @@
             <button id = "showStory" class = "tech">Reshow Story</button>
             <button id = "getHelp" class = "tech">Reshow help screen</button>
             <button id = "getChangelog" class = "tech">Changelog</button>
-            <iframe id = "changelog" src="changelog.md" title="Embedded Content" class = "hidden"></iframe>
+            <iframe id = "changelog" src="Other/changelog.md" title="Embedded Content" class = "hidden"></iframe>
         
             <h1>Statistics</h1>
             <p>Sorry I didn't add any...check back later</p>

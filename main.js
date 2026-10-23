@@ -10,8 +10,13 @@ const player = {
         energy: 1,
     },
 
-
-
+    furnace: {
+        Buff: 1.5, // Multi
+        CPL: 1, // Cost per loop
+        loopRate: 5000, // Seconds
+        isOn: false,
+    },
+    
     wisdomRate: 20,
     reflection: 0,
     wisdomClickPower:1,
@@ -50,17 +55,18 @@ const player = {
     market: {
         stocks: 2,
         resetInterval: 60,
+        inventorySpaceCost: 100,
     },
 
     totalTrades: 0,  
 
     structures: {
-        hut: 0,
+        hut: 0, // For miners
         shack: 0,
         house: 0,
         apartment: 0,
 
-        shed: 0,
+        shed: 0, // For total resources
         storage_unit: 0,
         warehouse: 0,
     },
@@ -125,6 +131,7 @@ const resources = {
 
     soil: 0,
     stone: 0,
+    coal: 0,
     blackCrystal: 0,
     blueGem: 0,
     darkPyrite: 0,
@@ -198,6 +205,7 @@ function playMusicTrack() {
 window.addEventListener('click', () => {
     playMusicTrack();
 }, { once: true });
+
 /*
 Ideas:
 REFACTOR ALL BOOSTS AND SETS
@@ -246,8 +254,6 @@ Blue gems boost magic by having them
 - Make mood say it's affect on the overall speed (Or just do the bars...lol)
 
 - mass energy conversion upgrade
-
-- Add images
 */
 
 document.getElementById("createKnowledge").addEventListener("mousedown", () => {

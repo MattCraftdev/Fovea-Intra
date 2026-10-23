@@ -35,7 +35,7 @@ const mineshafts = [
         xp: 4,
         progress: 0,
         minersOn: 0,
-        resourceChances: [["soil", 0], ["stone", 10], ["blackCrystal", 80], ["blueGem", 95]]
+        resourceChances: [["soil", 0], ["stone", 10], ["coal", 50], ["blackCrystal", 85] ["blueGem", 95]]
     },
 
     {
@@ -68,6 +68,15 @@ const mineshafts = [
         resourceChances: [["blackCrystal", 0], ["blueGem", 50], ["darkPyrite", 75]]
     },
 
+    {
+        id: "unlockshaft7",
+        name: "Burning Volcano",
+        diff: 5000,
+        xp: 9,
+        progress: 0,
+        minersOn: 0,
+        resourceChances: [["blackCrystal", 0], ["coal", 50], ["blueGem", 75]]
+    },
 ]
 
 const miningBarsRenders = {}

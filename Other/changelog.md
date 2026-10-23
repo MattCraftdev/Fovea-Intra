@@ -1,5 +1,20 @@
 # Newest versions
 
+2026/10/23 10:00 AM - [0.88.0]  FURNACE
+Added:
+- Inventory space purchaseable
+- Cost scales up by flat 1.25*, costs stone
+- Coal as a resource in mining
+- Shaft 7 in mining
+- Furnace + furnace upgrade (A device that uses coal to run, and when on, gives a boost to all trainings by a base)
+
+Changed:
+- Shaft upgrade requirements
+- Updated old bars speed calculations from hardcoding into dynamical form
+
+File Modifications: 
+- "Other" folder created, (README.md, changelog.md, styles.css) moved there.
+
 2026/10/21 11:27 PM - [0.87.0] LOADING REFACTOR
 Added:
 - Another track (Track2, ~44secs)
@@ -8,10 +23,9 @@ Added:
 - Array system that loads images aswell, so I don't have to copy and paste a lot
 - Both iamge/audio have their own functions for loading
 
-Changes:
-- Boosted original track1 from ~50 seconds to ~2mins
+Changes: Boosted original track1 from ~50 seconds to ~2mins
 
-2026/10/19 - [0.86.0] MUSIC
+2026/10/20 9:53 PM - [0.86.0] MUSIC
 Added:
 - Music folder for all audio
 - Track 1 of music, that plays on a loop (Created by me using the excellent tool, "Beepbox"!)

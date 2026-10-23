@@ -77,7 +77,7 @@ document.getElementById("closeStory").addEventListener("click", () => {
 document.getElementById("showStory").addEventListener("click", () => {
     if (document.getElementById("Story").classList.contains("hidden")) {
         document.getElementById("Story").classList.remove("hidden")
-    }
+    };
 });
 
 document.getElementById("extraStats").addEventListener("click", () => {
@@ -87,8 +87,8 @@ document.getElementById("extraStats").addEventListener("click", () => {
     } else {
         player.settings.extraStats = true;
         document.getElementById("extraStats").innerText = "Extra Stats: Enabled"
-    }
-})
+    };
+});
 
 document.getElementById("parallax").addEventListener("click", () => {
     if (player.settings.parallax === true) {
@@ -97,8 +97,18 @@ document.getElementById("parallax").addEventListener("click", () => {
     } else {
         player.settings.parallax = true;
         document.getElementById("parallax").innerText = "Parallax: Enabled"
-    }
-})
+    };
+});
+
+document.getElementById("visualEffects").addEventListener("click", () => {
+    if (player.settings.visualEffects === true) {
+        player.settings.visualEffects = false;
+        document.getElementById("visualEffects").innerText = "Visual Effects: Disabled";
+    } else {
+        player.settings.visualEffects = true;
+        document.getElementById("visualEffects").innerText = "Visual Effects: Enabled";
+    };
+});
 
 // Hard reset
 function hardReset() {

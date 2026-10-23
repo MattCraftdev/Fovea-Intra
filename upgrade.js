@@ -409,8 +409,8 @@ const upgrades = [
         id: "unlockshaft5",
         cost: [["darkPyrite", 5], ["stone", 100], ["blackCrystal", 5]],
         unlocked: false,
-        reqs: [["blackCrystal", 100]],
-        flavortext: "The 4th shaft is created, leading into the abyss. A pit.",
+        reqs: [["darkPyrite", 2], ["blueGem", 1]],
+        flavortext: "The 5th shaft is created, leading into the abyss. A pit.",
         purchased: 0,
         maxpurchases: 1,
         onpurchase: () => {},
@@ -419,12 +419,12 @@ const upgrades = [
     },
 
     {
-        name: "Unlock Mineshaft 6: Dark Celler",
+        name: "Unlock Mineshaft 6: Heart of the mountain",
         id: "unlockshaft6",
         cost: [["blueGem", 10], ["stone", 200], ["matter", 200]],
         unlocked: false,
-        reqs: [["blackCrystal", 100]],
-        flavortext: "The 4th shaft is created, leading into the abyss. A pit.",
+        reqs: [["darkPyrite", 10], ["stone", 150]],
+        flavortext: "You've dug into the heart of the mountain. You can't turn back now",
         purchased: 0,
         maxpurchases: 1,
         onpurchase: () => {},
@@ -432,7 +432,19 @@ const upgrades = [
         type: "mining",
     },
 
-
+    {
+        name: "Unlock Mineshaft 7: Burning Volcano",
+        id: "unlockshaft7",
+        cost: [["blueGem", 10], ["stone", 200], ["matter", 200]],
+        unlocked: false,
+        reqs: [["blackCrystal", 500]],
+        flavortext: "The heat is overwhelming, but you've heard of lots of coal near here.",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {},
+        purchasetext: "Shall you venture?",
+        type: "mining",
+    },
 
     {
         name: "Unlock the Market",
@@ -525,6 +537,23 @@ const upgrades = [
         onpurchase: () => { document.getElementById("magicalabsorptionContainer").classList.remove("hidden"); },
         purchasetext: "Learn the old ways where you were more than human..",
         type: "basic",
+    },
+
+    {
+        name: "Furnace",
+        id: "unlockfurnacebtn",
+        cost: [["knowledge", 100], ["stone", 50], ["darkPyrite", 5], ["coal", 5]],
+        unlocked: false,
+        reqs: [["stone", 30], ["knowledge", 500], ["coal", 2]],
+        flavortext: "Took you THIS long to get basic heating...",
+        purchased: 0,
+        maxpurchases: 1,
+        onpurchase: () => {
+            document.getElementById("Furnace").classList.remove("hidden");
+            document.getElementById("displayCoal").classList.remove("hidden");
+        },
+        purchasetext: "A way to be comfortable while working.",
+        type: "mining",
     },
 ]
 

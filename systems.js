@@ -195,6 +195,7 @@ function displays() {
 
     document.getElementById("displayBarcoins").innerText = `Barcoins: ${resources.barcoins}`
     document.getElementById("displaySoil").innerText = `Soil: ${resources.soil}`
+    document.getElementById("displayCoal").innerText = `Coal: ${resources.coal}`
     document.getElementById("displayStone").innerText = `Stone: ${resources.stone}`
     document.getElementById("displayblackCrystal").innerText = `Black Crystal: ${resources.blackCrystal}`
     document.getElementById("displaydarkPyrite").innerText = `Dark Pyrite: ${resources.darkPyrite}`
@@ -397,12 +398,31 @@ function gainingStuff(stuff) {
     };
 };
 
-document.getElementById("visualEffects").addEventListener("click", () => {
-    if (player.settings.visualEffects === true) {
-        player.settings.visualEffects = false;
-        document.getElementById("visualEffects").innerText = "Visual Effects: Disabled";
+let furnaceInterval = null;
+const furnace = document.getElementById("Furnace");
+
+furnace.addEventListener("click", () => {
+    if (resources.coal>=1 && player.furnace.isOn === false) {
+        furnace.innerText = "Turn off Furnace"
+
+        if (furnaceInterval) {clearInterval(furnaceInterval)}
+        furnaceInterval = setInterval(() => {
+            resources.coal -= player.furnace.CPL;
+            if (resources.coal <= 0) {
+                player.furnace.isOn = false;
+                furnace.innerText = "Turn on Furnace"
+                clearInterval(furnaceInterval);
+            } else {
+                furnace.innerText = "Turn off Furnace"
+                player.furnace.isOn = true;
+            }
+        }, player.furnace.loopRate)
+    } else if (player.furnace.isOn === true) {
+        player.furnace.isOn = false;
+        if (furnaceInterval) {clearInterval(furnaceInterval)}
+        furnace.innerText = "Turn on Furnace"
+
     } else {
-        player.settings.visualEffects = true;
-        document.getElementById("visualEffects").innerText = "Visual Effects: Enabled";
-    };
+        say("You're too poor.")
+    }
 });

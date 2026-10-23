@@ -1,16 +1,8 @@
 // Inventory displays
 const playerInventorySlots = [
-    {
-        slotname: "empty",
-    },
-
-    {
-        slotname: "empty"
-    },
-
-    {
-        slotname: "empty"
-    },
+    { slotname: "empty" },
+    { slotname: "empty" },
+    { slotname: "empty" },
 ]
 
 function createInventory() {
@@ -28,7 +20,6 @@ function createInventory() {
     }
 
     console.log("Finished creating inventory")
-
 }
 
 
@@ -233,3 +224,13 @@ function createCraftButtons() {
     };
 
 };
+
+document.getElementById("marketStall").addEventListener("click", () => {
+    if (calcCost([["stone", player.market.inventorySpaceCost]])) {
+        player.market.inventorySpaceCost = Math.floor(player.market.inventorySpaceCost*1.25);
+        playerInventorySlots.push( {slotname: "empty" },);
+        updateInventory();
+
+        document.getElementById("marketStall").innerText = `Buy an Inventory slot for ${player.market.inventorySpaceCost} Stone`
+    }
+})
